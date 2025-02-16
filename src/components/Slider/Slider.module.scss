@@ -1,0 +1,46 @@
+.slide-show{
+  border-radius: 20px;
+  width: 100%;
+}
+
+.arrow {
+  font-size: 1.2rem;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  background-color: white;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  box-shadow: 0 3px 6px #00000029;
+
+  &.left {
+    left: 0;
+    transform: translateX(-50%);
+  }
+
+  &.right {
+    right: 0;
+    transform: translateX(50%);
+  }
+
+}
+
+.indicator {
+  margin: 10px;
+  width: 32px;
+  height: 8px;
+  background-color: #dce0e3;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: width .3s linear, background-color .3s linear;
+
+  &.active {
+    background-color: #b4bdc3;
+    width: 50px;
+  }
+}
