@@ -81,11 +81,24 @@ const Home = () => {
                     <span className={cx('section')}>Khóa học Pro</span>
                     <span className={cx('tag')}>MỚI</span>
 
-                    <div className={cx('pro-list')}>
+                    <div className={cx('course-list')}>
                         {proList.map(pro => (
-                            <CourseItem key={pro.id} item={pro}/>
+                            <CourseItem key={pro.id} item={pro} isPro={true}/>
                         ))}
                     </div>
+
+                    <p className={cx('learned-users')}>
+                        <strong className={cx('user-number')}>431.477+</strong> người khác đã học
+                    </p>
+
+                    {/*<span className={cx('section')}>Khóa học Pro</span>*/}
+                    {/*<span className={cx('tag')}>MỚI</span>*/}
+
+                    {/*<div className={cx('course-list')}>*/}
+                    {/*    {proList.map(pro => (*/}
+                    {/*        <CourseItem key={pro.id} item={pro}/>*/}
+                    {/*    ))}*/}
+                    {/*</div>*/}
                 </div>
             </div>
 

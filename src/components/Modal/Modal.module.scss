@@ -1,0 +1,76 @@
+.wrapper {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 9999;
+  background: #000c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.25s linear;
+}
+
+.wrapper.fade-out {
+  animation: fadeOut 0.25s linear;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.no-scroll {
+  overflow: hidden;
+}
+
+.container {
+  pointer-events: auto;
+  filter: drop-shadow(0 -4px 32px rgba(0, 0, 0, .2));
+  transition: all .3s ease-in-out;
+  overflow: hidden auto;
+  background-color: white;
+  min-height: 200px;
+  max-height: calc(100vh - 80px);
+  width: 760px;
+  border-radius: 8px;
+}
+
+.close-button {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 99;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border-radius: 50%;
+  color: #4c4c4c;
+  ;
+  background: rgba(22, 24, 35, .08);
+  border: none;
+  outline: none;
+  pointer-events: initial;
+  font-size: 2rem;
+  opacity: .8;
+  transition: opacity .25s;
+  cursor: pointer;
+}

@@ -5,7 +5,7 @@ const cx = classNames.bind(styles)
 
 const Blog = () => {
     return (
-        <div>Blog</div>
+        <div className={cx('wrapper')}>Blog</div>
     )
 }
 

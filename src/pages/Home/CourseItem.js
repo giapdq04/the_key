@@ -7,7 +7,7 @@ import styles from "./Home.module.scss";
 
 const cx = classNames.bind(styles);
 
-const CourseItem = ({item}) => {
+const CourseItem = ({item, isPro = false}) => {
 
     const converToCurrencyFormat = (price) => {
         return price.toLocaleString('vi-VN');
@@ -29,10 +29,10 @@ const CourseItem = ({item}) => {
 
     return (
         <Link to={'#'}>
-            <div className={cx('pro-item')}>
+            <div className={cx('item')}>
                 <div className={cx('thumbnail')}>
                     <img src={item.thumbnail} alt={item.title}/>
-                    <FontAwesomeIcon icon={faCrown} className={cx('crown')}/>
+                    {isPro && <FontAwesomeIcon icon={faCrown} className={cx('crown')}/>}
                 </div>
 
                 <div className={cx('item-content')}>

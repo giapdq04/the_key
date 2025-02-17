@@ -1,9 +1,8 @@
-
 import styles from './SideBar.module.scss'
 import classNames from 'classnames/bind'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHouse, faNewspaper, faRoad } from '@fortawesome/free-solid-svg-icons'
-import { NavLink } from 'react-router'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faHouse, faNewspaper, faRoad} from '@fortawesome/free-solid-svg-icons'
+import ListItem from "./ListItem";
 
 const cx = classNames.bind(styles)
 
@@ -26,19 +25,6 @@ const listMenu = [
 ]
 
 const SideBar = () => {
-
-    const ListItem = ({ icon, title, to }) => {
-        return (
-            <NavLink to={to} className={(nav) =>
-                cx('item', {
-                    'active': nav.isActive
-                })
-            }>
-                {icon}
-                <span className={cx('item-title')}>{title}</span>
-            </NavLink>
-        )
-    }
     return (
         <div className={cx('wrapper')}>
 
