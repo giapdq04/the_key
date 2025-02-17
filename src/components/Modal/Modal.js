@@ -9,21 +9,20 @@ const cx = classNames.bind(styles);
 const Modal = ({ children, isShow, onClose }) => {
     const [isClosing, setIsClosing] = useState(false);
 
-    useEffect(() => {
-        if (!isShow) {
-            setIsClosing(true);
-            setTimeout(() => {
-                setIsClosing(false);
-            }, 250); // Thời gian trùng với thời gian animation
-        }
-    }, [isShow]);
+    const handleClose = () => {
+        setIsClosing(true);
+        setTimeout(() => {
+            setIsClosing(false);
+            onClose();
+        }, 250);
+    }
 
     if (!isShow && !isClosing) return null;
 
     return (
-        <div className={cx('wrapper', { 'fade-out': isClosing })} onClick={() => onClose()}>
+        <div className={cx('wrapper', { 'fade-out': isClosing })} onClick={handleClose}>
             <div className={cx('container')} onClick={(e) => e.stopPropagation()}>
-                <button className={cx('close-button')} onClick={() => onClose()}>
+                <button className={cx('close-button')} onClick={handleClose}>
                     <FontAwesomeIcon icon={faXmark} />
                 </button>
                 {children}
