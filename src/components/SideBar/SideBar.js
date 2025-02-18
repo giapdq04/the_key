@@ -3,24 +3,25 @@ import classNames from 'classnames/bind'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faHouse, faNewspaper, faRoad} from '@fortawesome/free-solid-svg-icons'
 import ListItem from "./ListItem";
+import config from "../../config";
 
 const cx = classNames.bind(styles)
 
 const listMenu = [
     {
         title: 'Trang chủ',
-        icon: <FontAwesomeIcon icon={faHouse} className={cx('icon')} />,
-        to: '/'
+        icon: <FontAwesomeIcon icon={faHouse} className={cx('icon')}/>,
+        to: config.routes.home
     },
     {
         title: 'Lộ trình',
-        icon: <FontAwesomeIcon icon={faRoad} className={cx('icon')} />,
-        to: '/learning-path'
+        icon: <FontAwesomeIcon icon={faRoad} className={cx('icon')}/>,
+        to: config.routes.learningPath
     },
     {
         title: 'Bài viết',
-        icon: <FontAwesomeIcon icon={faNewspaper} className={cx('icon')} />,
-        to: '/blog'
+        icon: <FontAwesomeIcon icon={faNewspaper} className={cx('icon')}/>,
+        to: config.routes.blog
     }
 ]
 

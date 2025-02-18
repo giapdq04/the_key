@@ -11,7 +11,7 @@ import Modal from "../../components/Modal/Modal";
 const cx = classNames.bind(styles);
 
 const DefaultLayout = ({ children }) => {
-    const [isShowModal, setIsShowModal] = useState(true)
+    const [isShowModal, setIsShowModal] = useState(false)
 
     const handleOpenModal = () => {
         setIsShowModal(true)
