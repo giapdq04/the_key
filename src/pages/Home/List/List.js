@@ -1,15 +1,16 @@
 import React from 'react';
-import CourseItem from "./CourseItem";
+import CourseItem from "../Items/CourseItem/CourseItem";
 import classNames from "classnames/bind";
-import styles from "./Home.module.scss";
+import styles from "./List.module.scss";
 import {faChevronRight} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import config from "../../config";
+import config from "../../../config";
 import {Link} from "react-router";
+import FeaturedItem from "../Items/FeaturedItem/FeaturedItem";
 
 const cx = classNames.bind(styles);
 
-const List = ({title, tag, list, isPro = false}) => {
+const List = ({title, tag, list, isPro = false, isCourse = true}) => {
     return (
         <>
             <div className={cx('list-title')}>
@@ -26,9 +27,12 @@ const List = ({title, tag, list, isPro = false}) => {
             </div>
 
             <div className={cx('course-list')}>
-                {list.map(item => (
+                {list.map(item => isCourse
+                    ?
                     <CourseItem key={item.id} item={item} isPro={isPro}/>
-                ))}
+                    :
+                    <FeaturedItem key={item.id} item={item}/>
+                )}
             </div>
         </>
     );

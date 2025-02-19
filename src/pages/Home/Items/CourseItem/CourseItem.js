@@ -3,7 +3,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCirclePlay, faClock, faCrown, faUsers} from "@fortawesome/free-solid-svg-icons";
 import {Link} from "react-router";
 import classNames from "classnames/bind";
-import styles from "./Home.module.scss";
+import styles from "./CourseItem.module.scss";
 
 const cx = classNames.bind(styles);
 
@@ -54,7 +54,7 @@ const CourseItem = ({item, isPro = false}) => {
                             :
                             <div className={cx('info-item')}>
                                 <FontAwesomeIcon icon={faUsers}/>
-                                <span>{converToNumberFormat(item.view)}</span>
+                                <span>{converToNumberFormat(item.student)}</span>
                             </div>
                         }
 
