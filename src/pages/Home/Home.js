@@ -3,6 +3,7 @@ import React from 'react';
 import Slideshow from "../../components/Slider/Slider";
 import styles from './Home.module.scss';
 import List from "./List/List";
+import config from '../../config';
 
 const cx = classNames.bind(styles);
 const slideImages = [
@@ -255,7 +256,7 @@ const Home = () => {
                     <Slideshow>
                         {slideImages.map((slideImage, index) => (
                             <div key={index}>
-                                <div className={cx('slide')} style={{'backgroundImage': `url(${slideImage.url})`}}>
+                                <div className={cx('slide')} style={{ 'backgroundImage': `url(${slideImage.url})` }}>
                                     {/*nội dung bên trong slide*/}
                                 </div>
                             </div>
@@ -265,14 +266,29 @@ const Home = () => {
 
                 <div className={cx('content-wrapper')}>
 
-                    <List title='Khóa học Pro' list={proList} tag={'MỚI'} isPro={true}/>
+                    <List
+                        title='Khóa học Pro'
+                        list={proList}
+                        tag={'MỚI'}
+                        isPro={true}
+                    />
 
-                    <p className={cx('learned-users')}>
-                        <strong className={cx('user-number')}>431.477+</strong> người khác đã học
-                    </p>
 
-                    <List title='Khóa học miễn phí' list={freeList}/>
-                    <List title='Bài viết nổi bật' list={postList} isCourse={false}/>
+
+                    <List
+                        title='Khóa học miễn phí'
+                        list={freeList}
+                        moreBtnTitle={'Xem lộ trình'}
+                        moreBtnTo={config.routes.learningPath}
+                        numPersonLearn={1000}
+                    />
+                    <List
+                        title='Bài viết nổi bật'
+                        list={postList}
+                        isCourse={false}
+                        moreBtnTitle={'Xem tất cả'}
+                        moreBtnTo={config.routes.learningPath}
+                    />
                 </div>
             </div>
 
