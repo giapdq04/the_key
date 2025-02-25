@@ -1,0 +1,218 @@
+.wrapper {
+  width: min(100% - var(--layout-sidebar-width), 2400px);
+  margin: 0 auto;
+  padding: 0 32px 0 10px;
+}
+
+.container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.content-wrapper {
+  margin-top: 24px;
+  padding: 0 44px 68px;
+
+  .description-col {
+    flex: 0 0 auto;
+    width: 66.6666666667%;
+
+    .description {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+
+      .course-name {
+        margin-top: 16px;
+        font-size: 3.2rem;
+        font-weight: 700;
+        min-height: 33px;
+      }
+
+      .text-content {
+        margin-top: 16px;
+        line-height: 1.6;
+        font-size: 1.4rem;
+        color: #000c;
+      }
+
+      .topic-list {
+        .topic-heading {
+          font-size: 2rem;
+          font-weight: 700;
+        }
+
+        .index-module-row {
+          margin-left: -12px;
+          margin-right: -12px;
+
+          .index-module-col {
+            width: 100%;
+            padding-right: 12px;
+            padding-left: 12px;
+
+            .list {
+              margin-top: 4px;
+              padding-left: 0;
+              display: flex;
+              flex-wrap: wrap;
+              list-style-type: none;
+
+              li {
+                position: relative;
+                flex-basis: 50%;
+                margin-top: 12px;
+                padding: 0 24px;
+                font-size: 1.4rem;
+                line-height: 1.6;
+                color: #333;
+
+                .check-icon {
+                  font-size: 1.4rem;
+                  position: absolute;
+                  top: 2px;
+                  left: 0;
+                  color: #f05123;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .curriculum-of-course {
+
+        .header-sticky {
+          padding-bottom: 4px;
+          background-color: #fff;
+
+          .header-block {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+          }
+
+          .sub-head-wrapper {
+            display: flex;
+            align-items: center;
+            margin-top: 16px;
+            font-size: 1.4rem;
+
+            ul {
+              display: flex;
+              padding-left: 0;
+            }
+
+            .num-chapter {
+              display: inline-block;
+            }
+
+            .dot {
+              padding: 0 8px;
+              font-size: 1.4rem;
+              opacity: .8;
+              margin-top: 1px;
+              display: inline-block;
+            }
+
+            .toggle-Btn {
+              margin-left: auto;
+              color: var(--primary-color);
+              font-weight: 600;
+              -webkit-user-select: none;
+              user-select: none;
+
+              &:hover {
+                cursor: pointer;
+                opacity: .8;
+              }
+            }
+          }
+
+
+        }
+      }
+    }
+  }
+
+  .video-col {
+    flex: 0 0 auto;
+    width: 33.3333333333%;
+  }
+}
+
+.curriculum-panel {
+  margin-top: 20px;
+
+  .panel-group {
+
+    .panel {
+      margin-bottom: 8px;
+      border: none;
+      box-shadow: none;
+      border-radius: 0;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.panel-heading {
+  padding: 0;
+  border: 1px solid #ebebeb;
+  border-radius: 6px;
+  background: #f5f5f5;
+
+  &.noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  .panel-title {
+    margin-top: 0;
+    margin-bottom: 0;
+    color: var(--text-color);
+    font-size: 1.6rem;
+    line-height: 1.4;
+
+    .headline {
+      display: flex;
+      align-items: center;
+      padding: 14px 30px 14px 48px;
+      font-weight: 400;
+      position: relative;
+      overflow: hidden;
+
+      &:before {
+        content: "+";
+        position: absolute;
+        font-size: 26px;
+        font-weight: 300;
+        left: 20px;
+        top: 45%;
+        transform: translateY(-50%);
+        color: var(--primary-color);
+      }
+
+      strong {
+        font-weight: 600;
+      }
+
+      .num-of-section {
+        min-width: 72px;
+        margin-left: auto;
+        text-align: right;
+        font-size: 1.4rem;
+      }
+    }
+  }
+}
