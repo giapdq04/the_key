@@ -1,13 +1,14 @@
 import React from 'react';
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faCirclePlay, faClock, faCrown, faUsers} from "@fortawesome/free-solid-svg-icons";
-import {Link} from "react-router";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCirclePlay, faClock, faCrown, faUsers } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router";
 import classNames from "classnames/bind";
 import styles from "./CourseItem.module.scss";
+import config from "../../../../config";
 
 const cx = classNames.bind(styles);
 
-const CourseItem = ({item, isPro = false}) => {
+const CourseItem = ({ item, isPro = false }) => {
 
     const converToNumberFormat = (price) => {
         return price?.toLocaleString('vi-VN');
@@ -28,19 +29,19 @@ const CourseItem = ({item, isPro = false}) => {
     }
 
     return (
-        <Link to={'#'}>
+        <Link to={config.routes.courses.replace(':slug', item.slug)}>
             <div className={cx('item')}>
                 <div className={cx('thumbnail')}>
-                    <img src={item.thumbnail} alt={item.title}/>
-                    {isPro && <FontAwesomeIcon icon={faCrown} className={cx('crown')}/>}
+                    <img src={item.thumbnail} alt={item.title} />
+                    {isPro && <FontAwesomeIcon icon={faCrown} className={cx('crown')} />}
                 </div>
 
                 <div className={cx('item-content')}>
                     <span className={cx('item-title')}>{item.title}</span>
                     <div className={cx('item-price')}>
                         {isPro && <span className={cx('price')}>
-                                                {converToNumberFormat(item.price)}đ
-                                            </span>}
+                            {converToNumberFormat(item.price)}đ
+                        </span>}
                         <span
                             className={cx('newPrice')}>{isPro ? converToNumberFormat(item.price * item.discount / 100) + 'đ' : 'Miễn phí'}</span>
                     </div>
@@ -48,23 +49,23 @@ const CourseItem = ({item, isPro = false}) => {
                     <div className={cx('more-info')}>
                         {isPro
                             ? <div className={cx('info-item')}>
-                                <img src={item.avtAuthor} alt={item.author}/>
+                                <img src={item.avtAuthor} alt={item.author} />
                                 <span>{item.author}</span>
                             </div>
                             :
                             <div className={cx('info-item')}>
-                                <FontAwesomeIcon icon={faUsers}/>
+                                <FontAwesomeIcon icon={faUsers} />
                                 <span>{converToNumberFormat(item.student)}</span>
                             </div>
                         }
 
                         <div className={cx('info-item')}>
-                            <FontAwesomeIcon icon={faCirclePlay}/>
+                            <FontAwesomeIcon icon={faCirclePlay} />
                             <span>{item.video}</span>
                         </div>
 
                         <div className={cx('info-item')}>
-                            <FontAwesomeIcon icon={faClock}/>
+                            <FontAwesomeIcon icon={faClock} />
                             <span>{converToMinute(item.minute)}</span>
                         </div>
                     </div>

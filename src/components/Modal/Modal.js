@@ -6,7 +6,7 @@ import styles from './Modal.module.scss';
 
 const cx = classNames.bind(styles);
 
-const Modal = ({ children, isShow, onClose }) => {
+const Modal = ({ children, isShow, onClose, width }) => {
     const [isClosing, setIsClosing] = useState(false);
 
     const handleClose = () => {
@@ -21,7 +21,7 @@ const Modal = ({ children, isShow, onClose }) => {
 
     return (
         <div className={cx('wrapper', { 'fade-out': isClosing })} onClick={handleClose}>
-            <div className={cx('container')} onClick={(e) => e.stopPropagation()}>
+            <div className={cx('container')} style={width ? { width: width } : {}} onClick={(e) => e.stopPropagation()}>
                 <button className={cx('close-button')} onClick={handleClose}>
                     <FontAwesomeIcon icon={faXmark} />
                 </button>

@@ -68,6 +68,7 @@ const freeList = [
         student: 1000,
         minute: 130,
         video: 130,
+        slug: 'lessons-for-newbie'
 
     },
 
@@ -78,6 +79,7 @@ const freeList = [
         student: 1000,
         minute: 120,
         video: 130,
+        slug: 'lap-trinh-c-co-ban-nang-cao'
 
     },
 
@@ -88,6 +90,7 @@ const freeList = [
         student: 1000,
         minute: 120,
         video: 130,
+        slug: 'html-css'
 
     },
 
@@ -98,6 +101,7 @@ const freeList = [
         student: 1000,
         minute: 130,
         video: 130,
+        slug: 'responsive-web-design'
 
     },
 
@@ -108,6 +112,7 @@ const freeList = [
         student: 1000,
         minute: 120,
         video: 130,
+        slug: 'javascript-co-ban'
 
     },
 
@@ -118,6 +123,7 @@ const freeList = [
         student: 1000,
         minute: 120,
         video: 130,
+        slug: 'javascript-nang-cao'
 
     },
 
@@ -128,6 +134,7 @@ const freeList = [
         student: 1000,
         minute: 130,
         video: 130,
+        slug: 'windows-terminal-wsl'
 
     },
 
@@ -138,6 +145,7 @@ const freeList = [
         student: 1000,
         minute: 120,
         video: 130,
+        slug: 'reactjs'
 
     },
 
@@ -148,16 +156,18 @@ const freeList = [
         student: 1000,
         minute: 120,
         video: 130,
+        slug: 'nodejs'
 
     },
 
     {
         id: 10,
         thumbnail: 'https://files.fullstack.edu.vn/f8-prod/courses/4/61a9e9e701506.png',
-        title: 'App "Đừng Chạm Tay Lên Mặt"',
+        title: 'App "Đừng Chạm Tay Lên Mặt',
         student: 1000,
         minute: 120,
         video: 130,
+        slug: 'tool-canh-bao-so-len-mat'
 
     },
 ]
@@ -256,7 +266,7 @@ const Home = () => {
                     <Slideshow>
                         {slideImages.map((slideImage, index) => (
                             <div key={index}>
-                                <div className={cx('slide')} style={{ 'backgroundImage': `url(${slideImage.url})` }}>
+                                <div className={cx('slide')} style={{'backgroundImage': `url(${slideImage.url})`}}>
                                     {/*nội dung bên trong slide*/}
                                 </div>
                             </div>
@@ -272,7 +282,6 @@ const Home = () => {
                         tag={'MỚI'}
                         isPro={true}
                     />
-
 
 
                     <List
