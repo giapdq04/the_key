@@ -1,0 +1,83 @@
+.wrapper {
+  width: 100%;
+  height: 100vh;
+}
+
+.header {
+  --wrapper-height: 50px;
+  height: var(--wrapper-height);
+  background-color: #29303b;
+  display: flex;
+  align-items: center;
+  z-index: 1;
+  position: relative;
+
+  .back-icon {
+    width: 60px;
+    height: var(--wrapper-height);
+    display: flex;
+    cursor: pointer;
+    transition: background-color linear .2s;
+
+    svg {
+      overflow: visible;
+      box-sizing: content-box;
+      margin: auto;
+      color: var(--white);
+    }
+  }
+
+  .logo {
+    position: relative;
+    top: 1px;
+    margin-left: 8px;
+    -webkit-tap-highlight-color: transparent;
+    height: 32px;
+
+    img {
+      height: 30px;
+      border-radius: 8px;
+    }
+  }
+
+  .course-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-left: 16px;
+    color: var(--white);
+    overflow: hidden;
+    word-wrap: break-word;
+  }
+}
+
+.action {
+  display: flex;
+  margin-left: auto;
+  align-items: center;
+
+  .progress-bar {
+    display: flex;
+    align-items: center;
+    margin-right: 24px;
+
+    .progress{
+      width: 34px;
+      height: 34px;
+    }
+
+    .completed-lesson{
+      color: var(--white);
+      font-size: 1.3rem;
+      margin-left: 6px;
+
+      strong{
+        font-weight: 600;
+      }
+
+      .num{
+        font-size: 1.2rem;
+        font-variant-numeric: tabular-nums;
+      }
+    }
+  }
+}

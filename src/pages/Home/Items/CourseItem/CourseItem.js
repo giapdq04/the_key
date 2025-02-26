@@ -10,6 +10,8 @@ const cx = classNames.bind(styles);
 
 const CourseItem = ({ item, isPro = false }) => {
 
+    const isEnrolled = true
+
     const converToNumberFormat = (price) => {
         return price?.toLocaleString('vi-VN');
     }
