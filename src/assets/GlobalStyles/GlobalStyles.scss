@@ -6,6 +6,7 @@
     --default-layout-footer-height: 350px;
 
     --white: #fff;
+    --black: #000;
     --text-color: #333;
     --primary-color: #f05123;
     --default-layout-horizontal-spacer: 24px;
@@ -60,4 +61,8 @@ a {
 ol,
 ul {
     list-style: none;
+}
+
+h1, h2, h3, h4, h5, h6, strong, b {
+    font-weight: 600;
 }

@@ -31,7 +31,12 @@ const CourseItem = ({ item, isPro = false }) => {
     }
 
     return (
-        <Link to={config.routes.courses.replace(':slug', item.slug)}>
+        <Link to={
+            isEnrolled
+                ? config.routes.learning.replace(':slug', item.slug)
+                : config.routes.courses.replace(':slug', item.slug)
+        }
+        >
             <div className={cx('item')}>
                 <div className={cx('thumbnail')}>
                     <img src={item.thumbnail} alt={item.title} />

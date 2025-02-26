@@ -1,10 +1,10 @@
 .wrapper {
   width: 100%;
   height: 100vh;
+  --wrapper-height: 50px;
 }
 
 .header {
-  --wrapper-height: 50px;
   height: var(--wrapper-height);
   background-color: #29303b;
   display: flex;
@@ -60,24 +60,68 @@
     align-items: center;
     margin-right: 24px;
 
-    .progress{
+    .progress {
       width: 34px;
       height: 34px;
     }
 
-    .completed-lesson{
+    .completed-lesson {
       color: var(--white);
       font-size: 1.3rem;
       margin-left: 6px;
 
-      strong{
+      strong {
         font-weight: 600;
       }
 
-      .num{
+      .num {
         font-size: 1.2rem;
         font-variant-numeric: tabular-nums;
       }
+    }
+  }
+}
+
+.side-bar {
+  //background-color: red;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 2;
+  bottom: var(--wrapper-height);
+  width: 23%;
+  margin-top: var(--wrapper-height);
+  border-left: 1px solid #e7e7e7;
+
+  .container {
+    width: 100%;
+    height: 100%;
+    background-color: var(--white);
+    display: flex;
+    flex-direction: column;
+    animation: fadeIn ease-in .2s;
+
+    .sidebar-header {
+      padding: 12px 16px;
+      user-select: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .heading {
+        margin: 0;
+        font-size: 1.6rem;
+        line-height: 1.4;
+      }
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
     }
   }
 }
