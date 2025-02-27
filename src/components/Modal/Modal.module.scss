@@ -9,11 +9,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  animation: fadeIn 0.25s linear;
+}
+
+.show {
+  display: flex;
+}
+
+.wrapper.fade-in {
+  animation: fadeIn 0.25s ease-in;
 }
 
 .wrapper.fade-out {
-  animation: fadeOut 0.25s linear;
+  animation: fadeOut 0.25s ease-out forwards;
 }
 
 @keyframes fadeIn {
