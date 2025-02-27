@@ -1,5 +1,5 @@
 {
-  "homepage": "https://giapdq04.github.io/the_key/",
+  "homepage": "https://giapdoquang.click",
   "name": "the_key",
   "version": "0.1.0",
   "private": true,
@@ -13,6 +13,7 @@
     "react": "^19.0.0",
     "react-circular-progressbar": "^2.2.0",
     "react-dom": "^19.0.0",
+    "react-player": "^2.16.0",
     "react-router": "^7.1.5",
     "react-scripts": "5.0.1",
     "react-slick": "^0.30.3",

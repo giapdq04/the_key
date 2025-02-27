@@ -83,7 +83,6 @@
 }
 
 .side-bar {
-  //background-color: red;
   position: fixed;
   top: 0;
   right: 0;
@@ -120,8 +119,162 @@
     from {
       opacity: 0;
     }
+
     to {
       opacity: 1;
     }
+  }
+}
+
+.main-content {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  bottom: 50px;
+  width: 77%;
+  margin-top: 50px;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+
+  .video-container {
+    width: 100%;
+    position: relative;
+    background-color: var(--black);
+    padding: 0 8.5%;
+    user-select: none;
+
+    .video-player-container {
+      position: relative;
+      padding-top: 56.25%;
+
+      .video-player {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+      }
+
+    }
+  }
+}
+
+footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  background-color: #f0f0f0;
+  box-shadow: #0000001a 0 -2px 3px;
+
+  .btn-group {
+    display: flex;
+    gap: 16px;
+
+    .btn {
+      border-radius: 99px;
+      display: inline-block;
+      min-width: 148px;
+      height: 32px;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.8;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      white-space: nowrap;
+      overflow: hidden;
+      background: linear-gradient(#5ebbff80 40%, #a174ff80);
+      transition: opacity .2s;
+      outline: none;
+      border: none;
+      user-select: none;
+      padding: 0;
+      cursor: pointer;
+      box-shadow: none;
+      color: inherit;
+    }
+
+    .inner {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      width: 100%;
+      height: 100%;
+      padding: 4px 16px;
+      border-radius: inherit;
+      border: 1px solid transparent;
+      background-color: #fff;
+      background-clip: padding-box;
+    }
+
+    .pre-btn-inner {
+
+      svg {
+        overflow: visible;
+        box-sizing: content-box;
+        color: #5ebbff;
+        display: inline-block;
+        height: 1em;
+        vertical-align: -.125em;
+        fill: currentColor;
+      }
+
+      .btn-title {
+        color: transparent;
+        background: linear-gradient(to bottom right, #5ebbff, #a174ff);
+        background-clip: text;
+        line-height: 32px; // Đặt line-height bằng với chiều cao của phần tử
+        height: 32px;
+        text-align: center; // Căn giữa theo chiều ngang
+      }
+    }
+
+    .next-btn-inner {
+      border: none;
+      background-color: #0093fc;
+
+      .btn-title {
+        background-image: none;
+        background-color: #fff;
+        color: transparent;
+        //background: linear-gradient(to bottom right, #5ebbff, #a174ff);
+        background-clip: text;
+        line-height: 32px; // Đặt line-height bằng với chiều cao của phần tử
+        height: 32px;
+        text-align: center; // Căn giữa theo chiều ngang
+      }
+
+      svg {
+        color: #fff;
+        overflow: visible;
+        box-sizing: content-box;
+        display: inline-block;
+        height: 1em;
+        vertical-align: -.125em;
+        fill: currentColor;
+        overflow-clip-margin: content-box;
+      }
+    }
+  }
+
+  .toggle-wrap {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    cursor: pointer;
   }
 }
