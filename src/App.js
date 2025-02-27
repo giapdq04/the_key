@@ -5,7 +5,7 @@ import { Fragment } from "react";
 
 function App() {
   return (
-    <BrowserRouter basename="/the_key">
+    <BrowserRouter>
       <div className="App">
         <Routes>
           {publicRoutes.map((route, index) => {

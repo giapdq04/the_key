@@ -20,7 +20,9 @@ const Modal = ({ children, isShow, onClose, width }) => {
     if (!isShow && !isClosing) return null;
 
     return (
-        <div className={cx('wrapper', { 'fade-out': isClosing })} onClick={handleClose}>
+        <div className={cx('wrapper', 
+        { 'fade-out': isClosing }
+        )} onClick={handleClose}>
             <div className={cx('container')} style={width ? { width: width } : {}} onClick={(e) => e.stopPropagation()}>
                 <button className={cx('close-button')} onClick={handleClose}>
                     <FontAwesomeIcon icon={faXmark} />
