@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react'
 import classNames from 'classnames/bind'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faChevronLeft, faChevronRight} from '@fortawesome/free-solid-svg-icons'
+import {faChevronLeft, faChevronRight, faHeart} from '@fortawesome/free-solid-svg-icons'
 import {Link} from 'react-router'
 import {buildStyles, CircularProgressbar} from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
@@ -9,7 +9,6 @@ import 'react-circular-progressbar/dist/styles.css';
 import config from '../../config'
 import styles from './Learning.module.scss'
 import Section from './Section/Section'
-import section from "./Section/Section";
 import ReactPlayer from "react-player";
 
 const cx = classNames.bind(styles)
@@ -94,8 +93,150 @@ const SectionList = [
                 isDoc: false,
             }
         ]
+    },
+
+    // Thêm 10 section mới
+    {
+        id: 4,
+        title: 'Section 4',
+        lessons: [
+            {
+                id: 1,
+                title: 'Lesson 1',
+                isCompleted: false,
+                status: 3,
+                duration: 300,
+                isDoc: false,
+            }
+        ]
+    },
+    {
+        id: 5,
+        title: 'Section 5',
+        lessons: [
+            {
+                id: 1,
+                title: 'Lesson 1',
+                isCompleted: false,
+                status: 3,
+                duration: 300,
+                isDoc: false,
+            }
+        ]
+    },
+    {
+        id: 6,
+        title: 'Section 6',
+        lessons: [
+            {
+                id: 1,
+                title: 'Lesson 1',
+                isCompleted: false,
+                status: 3,
+                duration: 300,
+                isDoc: false,
+            }
+        ]
+    },
+    {
+        id: 7,
+        title: 'Section 7',
+        lessons: [
+            {
+                id: 1,
+                title: 'Lesson 1',
+                isCompleted: false,
+                status: 3,
+                duration: 300,
+                isDoc: false,
+            }
+        ]
+    },
+    {
+        id: 8,
+        title: 'Section 8',
+        lessons: [
+            {
+                id: 1,
+                title: 'Lesson 1',
+                isCompleted: false,
+                status: 3,
+                duration: 300,
+                isDoc: false,
+            }
+        ]
+    },
+    {
+        id: 9,
+        title: 'Section 9',
+        lessons: [
+            {
+                id: 1,
+                title: 'Lesson 1',
+                isCompleted: false,
+                status: 3,
+                duration: 300,
+                isDoc: false,
+            }
+        ]
+    },
+    {
+        id: 10,
+        title: 'Section 10',
+        lessons: [
+            {
+                id: 1,
+                title: 'Lesson 1',
+                isCompleted: false,
+                status: 3,
+                duration: 300,
+                isDoc: false,
+            }
+        ]
+    },
+    {
+        id: 11,
+        title: 'Section 11',
+        lessons: [
+            {
+                id: 1,
+                title: 'Lesson 1',
+                isCompleted: false,
+                status: 3,
+                duration: 300,
+                isDoc: false,
+            }
+        ]
+    },
+    {
+        id: 12,
+        title: 'Section 12',
+        lessons: [
+            {
+                id: 1,
+                title: 'Lesson 1',
+                isCompleted: false,
+                status: 3,
+                duration: 300,
+                isDoc: false,
+            }
+        ]
+    },
+    {
+        id: 13,
+        title: 'Section 13',
+        lessons: [
+            {
+                id: 1,
+                title: 'Lesson 1',
+                isCompleted: false,
+                status: 3,
+                duration: 300,
+                isDoc: false,
+            }
+        ]
     }
-]
+];
 
 const Learning = () => {
 
@@ -184,20 +325,43 @@ const Learning = () => {
             </div>
             <div className={cx('main-content')}>
                 <div className={cx('video-container')}>
-                    <div>
-                        <div className={cx('video-player-container')}>
-                            <div className={cx('video-player')}>
-                                <ReactPlayer
-                                    width={'100%'}
-                                    height={'100%'}
-                                    controls
-                                    url='https://www.youtube.com/watch?v=LXb3EKWsInQ'/>
-                            </div>
+                    <div className={cx('video-player-container')}>
+                        <div className={cx('video-player')}>
+                            <ReactPlayer
+                                width={'100%'}
+                                height={'100%'}
+                                controls
+                                url='https://www.youtube.com/watch?v=LXb3EKWsInQ'/>
                         </div>
                     </div>
                 </div>
+
+                <div className={cx('content')}>
+                    <div className={cx('content-top')}>
+                        <header className={cx('description-wrapper')}>
+                            <h1 className={cx('heading')}>DOM events example</h1>
+                            <p className={cx('update-at')}>Cập nhật tháng 2 năm 2022</p>
+                        </header>
+
+                        {/*<button className={cx('notes')}>Ghi chú</button>*/}
+                    </div>
+
+                    <div className={cx('content-wrapper')}>
+                        <p>Tham gia nhóm <a rel="noopener noreferrer nofollow" target="_blank"
+                               href="https://www.facebook.com/groups/f8official/">Học lập trình tại
+                                F8</a> trên Facebook để cùng nhau trao đổi trong quá trình học tập ❤️
+                        </p>
+                        <p>Các bạn subscribe kênh Youtube <a rel="noopener noreferrer nofollow" target="_blank"
+                                                             href="https://url.mycv.vn/f8_youtube?ref=lesson_desc">F8
+                            Official</a> để nhận thông báo khi có các bài học mới nhé ❤️</p>
+                    </div>
+                </div>
+
+                <div className={cx('content-footer')}>
+                    Made with <FontAwesomeIcon icon={faHeart}/> <span className={cx('dot')}>·</span> Powered by TheKey
+                </div>
             </div>
-            <footer>
+            <footer className={cx('footer')}>
                 <div className={cx('btn-group')}>
                     <button className={cx('btn', 'previous-lesson')}>
                         <span className={cx('inner', 'pre-btn-inner')}>

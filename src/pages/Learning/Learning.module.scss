@@ -113,6 +113,12 @@
         line-height: 1.4;
       }
     }
+
+    .body {
+      overflow-y: overlay;
+      flex: 1;
+      overscroll-behavior: contain;
+    }
   }
 
   @keyframes fadeIn {
@@ -160,9 +166,75 @@
 
     }
   }
+
+  .content {
+    padding: 0 8.5%;
+    min-height: 400px;
+
+    .content-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+
+      .description-wrapper {
+        display: block;
+
+        .heading {
+          margin: 48px 0 8px;
+          font-size: 2.8rem;
+          line-height: 1.4;
+        }
+
+        .update-at {
+          font-size: 1.3rem;
+          margin-bottom: 36px;
+        }
+      }
+    }
+
+    .content-wrapper {
+      --font-size: 1.6rem;
+      --line-height: 1.8;
+      color: #292929;
+      word-wrap: break-word;
+      line-height: var(--line-height, 2);
+      font-size: var(--font-size, 1.8rem);
+
+      p {
+        margin: 16px 0;
+
+        a {
+          color: var(--primary-color);
+          text-decoration: underline;
+          outline: none;
+        }
+      }
+    }
+  }
+
+  .content-footer {
+    padding: 30px 0;
+    font-size: 1.4rem;
+    text-align: center;
+    color: #666;
+
+    svg {
+      overflow: visible;
+      box-sizing: content-box;
+      color: #d43c68;
+      display: inline-block;
+      height: 1em;
+      vertical-align: -.125em;
+      fill: currentColor;
+      overflow-clip-margin: content-box;
+      font-size: 1.4rem;
+      text-align: center;
+    }
+  }
 }
 
-footer {
+.footer {
   position: fixed;
   left: 0;
   right: 0;
