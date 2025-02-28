@@ -32,6 +32,7 @@ const proList = [
         avtAuthor: 'https://fullstack.edu.vn/images/founder.jpeg',
         video: 100,
         minute: 130,
+        ytbVideoId: '4xTbZzXvAGg'
     },
 
     {
@@ -44,6 +45,7 @@ const proList = [
         avtAuthor: 'https://fullstack.edu.vn/images/founder.jpeg',
         video: 40,
         minute: 120,
+        ytbVideoId: 'YbV__eQDgMQ'
     },
 
     {
@@ -56,6 +58,7 @@ const proList = [
         avtAuthor: 'https://fullstack.edu.vn/images/founder.jpeg',
         video: 50,
         minute: 120,
+        ytbVideoId: 'Hqmbo0ROBQw'
     },
 
 
@@ -68,7 +71,8 @@ const freeList = [
         student: 1000,
         minute: 130,
         video: 130,
-        slug: 'lessons-for-newbie'
+        slug: 'lessons-for-newbie',
+        ytbVideoId: 'rw0O_sqqtgM'
 
     },
 
@@ -79,8 +83,8 @@ const freeList = [
         student: 1000,
         minute: 120,
         video: 130,
-        slug: 'lap-trinh-c-co-ban-nang-cao'
-
+        slug: 'lap-trinh-c-co-ban-nang-cao',
+        ytbVideoId: 'SP_M-RezjHA'
     },
 
     {
@@ -90,8 +94,8 @@ const freeList = [
         student: 1000,
         minute: 120,
         video: 130,
-        slug: 'html-css'
-
+        slug: 'html-css',
+        ytbVideoId: '3bPTUAFX1XI'
     },
 
     {
@@ -101,8 +105,8 @@ const freeList = [
         student: 1000,
         minute: 130,
         video: 130,
-        slug: 'responsive-web-design'
-
+        slug: 'responsive-web-design',
+        ytbVideoId: 'D-7VWOg5O_w'
     },
 
     {
@@ -112,8 +116,8 @@ const freeList = [
         student: 1000,
         minute: 120,
         video: 130,
-        slug: 'javascript-co-ban'
-
+        slug: 'javascript-co-ban',
+        ytbVideoId: 'Aj0t3CSPGPg'
     },
 
     {
@@ -123,8 +127,8 @@ const freeList = [
         student: 1000,
         minute: 120,
         video: 130,
-        slug: 'javascript-nang-cao'
-
+        slug: 'javascript-nang-cao',
+        ytbVideoId: 'jZgeidLTsdk',
     },
 
     {
@@ -134,8 +138,8 @@ const freeList = [
         student: 1000,
         minute: 130,
         video: 130,
-        slug: 'windows-terminal-wsl'
-
+        slug: 'windows-terminal-wsl',
+        ytbVideoId: 'js6JBdLzNn4',
     },
 
     {
@@ -145,8 +149,8 @@ const freeList = [
         student: 1000,
         minute: 120,
         video: 130,
-        slug: 'reactjs'
-
+        slug: 'reactjs',
+        ytbVideoId: 'Z3HLKC6g7SE',
     },
 
     {
@@ -156,8 +160,8 @@ const freeList = [
         student: 1000,
         minute: 120,
         video: 130,
-        slug: 'nodejs'
-
+        slug: 'nodejs',
+        ytbVideoId: 'KbCyP7AN6UI',
     },
 
     {
@@ -167,7 +171,8 @@ const freeList = [
         student: 1000,
         minute: 120,
         video: 130,
-        slug: 'tool-canh-bao-so-len-mat'
+        slug: 'tool-canh-bao-so-len-mat',
+        ytbVideoId: 'g8gYCuD36ok',
 
     },
 ]

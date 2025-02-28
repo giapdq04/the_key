@@ -46,7 +46,10 @@ const Section = ({item, index}) => {
                     <div className={cx('track-step-list')}>
                         {item.lessons.map((lesson, index) => {
                             return (
-                                <Lesson key={lesson.id} index={index} item={lesson}/>
+                                <Lesson
+                                    key={lesson.id}
+                                    index={index}
+                                    item={lesson}/>
                             )
                         })}
                     </div>

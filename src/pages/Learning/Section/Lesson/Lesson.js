@@ -1,23 +1,27 @@
-import React from 'react';
-import styles from './Lesson.module.scss'
-import classNames from "classnames/bind";
 import { faCircleCheck, faCirclePlay, faCompactDisc, faFileLines, faLock } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import classNames from "classnames/bind";
+import React from 'react';
 import convertTime from "../../../../utils/ConvertSeconds";
+import styles from './Lesson.module.scss';
 
 const cx = classNames.bind(styles)
 
-const Lesson = ({ item, index }) => {
+const Lesson = ({item, index}) => {
 
     return (
-        <div className={cx('wrapper', { locked: item.status === 3 }, { active: item.status === 2 })}>
+        <div onClick={() => handlePlayVideo(item)} className={cx('wrapper',
+            {locked: item.status === 3},
+            {active: item.status === 2})}
+        >
             <div className={cx('info')}>
                 <h3 className={cx('title')}>{index + 1}. {item.title}</h3>
                 <p className={cx('description')}>
                     {
                         item.status === 2
-                            ? <FontAwesomeIcon className={cx('disc-icon')} icon={faCompactDisc} />
-                            : (item.isDoc ? <FontAwesomeIcon icon={faFileLines} /> : <FontAwesomeIcon icon={faCirclePlay} />)
+                            ? <FontAwesomeIcon className={cx('disc-icon')} icon={faCompactDisc}/>
+                            : (item.isDoc ? <FontAwesomeIcon icon={faFileLines}/> :
+                                <FontAwesomeIcon icon={faCirclePlay}/>)
                     }
                     <span>{convertTime(item.duration)}</span>
                 </p>
@@ -31,7 +35,7 @@ const Lesson = ({ item, index }) => {
                         />
                         : (
                             item.status === 3 &&
-                            <FontAwesomeIcon className={cx('lock-icon')} icon={faLock} />
+                            <FontAwesomeIcon className={cx('lock-icon')} icon={faLock}/>
                         )
                 }
             </div>

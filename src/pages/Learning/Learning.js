@@ -1,15 +1,15 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import classNames from 'classnames/bind'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faChevronLeft, faChevronRight, faHeart} from '@fortawesome/free-solid-svg-icons'
 import {Link} from 'react-router'
 import {buildStyles, CircularProgressbar} from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+import ReactPlayer from "react-player";
 
 import config from '../../config'
 import styles from './Learning.module.scss'
 import Section from './Section/Section'
-import ReactPlayer from "react-player";
 
 const cx = classNames.bind(styles)
 
@@ -25,8 +25,9 @@ const SectionList = [
                 status: 1, // 1: opened, 2: opening, 3: locked
                 duration: 484,
                 isDoc: false,
+                ytbVideoId: '4xTbZzXvAGg',
+                updatedAt: new Date('2022-02-01T09:19:11.864+00:00').toISOString()
             },
-
             {
                 id: 2,
                 title: 'HTTP protocol',
@@ -34,10 +35,11 @@ const SectionList = [
                 status: 1,
                 duration: 817,
                 isDoc: false,
+                ytbVideoId: 'YbV__eQDgMQ',
+                updatedAt: new Date('2022-02-02T09:19:11.864+00:00').toISOString()
             }
         ]
     },
-
     {
         id: 2,
         title: 'Kiến thức cốt lõi',
@@ -49,8 +51,9 @@ const SectionList = [
                 status: 1,
                 duration: 1632,
                 isDoc: false,
+                ytbVideoId: 'Hqmbo0ROBQw',
+                updatedAt: new Date('2022-02-03T09:19:11.864+00:00').toISOString()
             },
-
             {
                 id: 2,
                 title: 'Static file & SCSS',
@@ -58,8 +61,9 @@ const SectionList = [
                 status: 2,
                 duration: 2261,
                 isDoc: false,
+                ytbVideoId: '7-HIBA-zOIQ',
+                updatedAt: new Date('2022-02-04T09:19:11.864+00:00').toISOString()
             },
-
             {
                 id: 3,
                 title: 'Thế nào là 1 câu điều kiện?',
@@ -67,10 +71,11 @@ const SectionList = [
                 status: 3,
                 duration: 60,
                 isDoc: true,
+                ytbVideoId: 'SP_M-RezjHA',
+                updatedAt: new Date('2022-02-05T09:19:11.864+00:00').toISOString()
             }
         ]
     },
-
     {
         id: 3,
         title: 'Xây dựng website',
@@ -82,8 +87,9 @@ const SectionList = [
                 status: 3,
                 duration: 328,
                 isDoc: false,
+                ytbVideoId: '3bPTUAFX1XI',
+                updatedAt: new Date('2022-02-06T09:19:11.864+00:00').toISOString()
             },
-
             {
                 id: 2,
                 title: '[MVC] Routes & Controllers',
@@ -91,10 +97,11 @@ const SectionList = [
                 status: 3,
                 duration: 1261,
                 isDoc: false,
+                ytbVideoId: 'D-7VWOg5O_w',
+                updatedAt: new Date('2022-02-07T09:19:11.864+00:00').toISOString()
             }
         ]
     },
-
     // Thêm 10 section mới
     {
         id: 4,
@@ -107,6 +114,8 @@ const SectionList = [
                 status: 3,
                 duration: 300,
                 isDoc: false,
+                ytbVideoId: 'Aj0t3CSPGPg',
+                updatedAt: new Date('2022-02-08T09:19:11.864+00:00').toISOString()
             }
         ]
     },
@@ -121,6 +130,8 @@ const SectionList = [
                 status: 3,
                 duration: 300,
                 isDoc: false,
+                ytbVideoId: 'jZgeidLTsdk',
+                updatedAt: new Date('2022-02-09T09:19:11.864+00:00').toISOString()
             }
         ]
     },
@@ -135,6 +146,8 @@ const SectionList = [
                 status: 3,
                 duration: 300,
                 isDoc: false,
+                ytbVideoId: 'js6JBdLzNn4',
+                updatedAt: new Date('2022-02-10T09:19:11.864+00:00').toISOString()
             }
         ]
     },
@@ -149,6 +162,8 @@ const SectionList = [
                 status: 3,
                 duration: 300,
                 isDoc: false,
+                ytbVideoId: 'Z3HLKC6g7SE',
+                updatedAt: new Date('2022-02-11T09:19:11.864+00:00').toISOString()
             }
         ]
     },
@@ -163,6 +178,8 @@ const SectionList = [
                 status: 3,
                 duration: 300,
                 isDoc: false,
+                ytbVideoId: 'KbCyP7AN6UI',
+                updatedAt: new Date('2022-02-12T09:19:11.864+00:00').toISOString()
             }
         ]
     },
@@ -177,6 +194,8 @@ const SectionList = [
                 status: 3,
                 duration: 300,
                 isDoc: false,
+                ytbVideoId: 'g8gYCuD36ok',
+                updatedAt: new Date('2022-02-13T09:19:11.864+00:00').toISOString()
             }
         ]
     },
@@ -191,6 +210,8 @@ const SectionList = [
                 status: 3,
                 duration: 300,
                 isDoc: false,
+                ytbVideoId: 'g8gYCuD36ok',
+                updatedAt: new Date('2022-02-14T09:19:11.864+00:00').toISOString()
             }
         ]
     },
@@ -205,6 +226,8 @@ const SectionList = [
                 status: 3,
                 duration: 300,
                 isDoc: false,
+                ytbVideoId: 'g8gYCuD36ok',
+                updatedAt: new Date('2022-02-15T09:19:11.864+00:00').toISOString()
             }
         ]
     },
@@ -219,6 +242,8 @@ const SectionList = [
                 status: 3,
                 duration: 300,
                 isDoc: false,
+                ytbVideoId: 'g8gYCuD36ok',
+                updatedAt: new Date('2022-02-16T09:19:11.864+00:00').toISOString()
             }
         ]
     },
@@ -233,6 +258,8 @@ const SectionList = [
                 status: 3,
                 duration: 300,
                 isDoc: false,
+                ytbVideoId: 'g8gYCuD36ok',
+                updatedAt: new Date('2022-02-17T09:19:11.864+00:00').toISOString()
             }
         ]
     }
@@ -240,30 +267,44 @@ const SectionList = [
 
 const Learning = () => {
 
+    const [video, setVideo] = useState('7kVBp2B2N5M');
+    const [title, setTitle] = useState();
+    const [updatedAt, setUpdatedAt] = useState();
+
     useEffect(() => {
-        const currentLesson = SectionList.find(section =>
-            section.lessons.find(lesson => lesson.status === 2)
-        )
+        let result = [];
+        let output;
+        let title = '';
+        let updatedTime = '';
 
-        console.log(currentLesson.title)
+        SectionList.forEach(section => {
+            result = result.concat(section.lessons);
+        });
+        output = result.find(lesson => lesson.status === 2);
 
-        document.title = currentLesson.title
-    }, []);
+        title = output.title;
+        updatedTime = new Date(output.updatedAt).toLocaleDateString('vi-VN', {timeZone: 'Asia/Ho_Chi_Minh'});
 
-    const routeHome = config.routes.home
+        document.title = title;
+        setTitle(title);
+        setUpdatedAt(updatedTime);
+        setVideo(`https://www.youtube.com/watch?v=${output.ytbVideoId}`);
+    }, [video, SectionList]);
+
+    const routeHome = config.routes.home;
 
     const countLearnedLesson = SectionList.reduce((result, section) => {
-        const countLearnedLessonInaSection = section.lessons.filter(lesson => lesson.isCompleted).length
-        return result + countLearnedLessonInaSection
-    }, 0)
+        const countLearnedLessonInaSection = section.lessons.filter(lesson => lesson.isCompleted).length;
+        return result + countLearnedLessonInaSection;
+    }, 0);
 
     const totalLesson = SectionList.reduce((result, section) => {
-        return result + section.lessons.length
-    }, 0)
+        return result + section.lessons.length;
+    }, 0);
 
     const courseProgess = () => {
-        return Math.floor(countLearnedLesson / totalLesson * 100)
-    }
+        return Math.floor(countLearnedLesson / totalLesson * 100);
+    };
 
     return (
         <div className={cx('wrapper')}>
@@ -315,11 +356,13 @@ const Learning = () => {
                         <h1 className={cx('heading')}>Nội dung khóa học</h1>
                     </header>
                     <div className={cx('body')}>
-                        {
-                            SectionList.map((section, index) => (
-                                <Section key={section.id} index={index} item={section}/>
-                            ))
-                        }
+                        {SectionList.map((section, index) => (
+                            <Section
+                                key={section.id}
+                                index={index}
+                                item={section}
+                            />
+                        ))}
                     </div>
                 </div>
             </div>
@@ -331,7 +374,8 @@ const Learning = () => {
                                 width={'100%'}
                                 height={'100%'}
                                 controls
-                                url='https://www.youtube.com/watch?v=LXb3EKWsInQ'/>
+                                url={video}
+                            />
                         </div>
                     </div>
                 </div>
@@ -339,8 +383,8 @@ const Learning = () => {
                 <div className={cx('content')}>
                     <div className={cx('content-top')}>
                         <header className={cx('description-wrapper')}>
-                            <h1 className={cx('heading')}>DOM events example</h1>
-                            <p className={cx('update-at')}>Cập nhật tháng 2 năm 2022</p>
+                            <h1 className={cx('heading')}>{title}</h1>
+                            <p className={cx('update-at')}>Cập nhật gần nhất: {updatedAt}</p>
                         </header>
 
                         {/*<button className={cx('notes')}>Ghi chú</button>*/}
@@ -348,8 +392,8 @@ const Learning = () => {
 
                     <div className={cx('content-wrapper')}>
                         <p>Tham gia nhóm <a rel="noopener noreferrer nofollow" target="_blank"
-                               href="https://www.facebook.com/groups/f8official/">Học lập trình tại
-                                F8</a> trên Facebook để cùng nhau trao đổi trong quá trình học tập ❤️
+                                            href="https://www.facebook.com/groups/f8official/">Học lập trình tại
+                            F8</a> trên Facebook để cùng nhau trao đổi trong quá trình học tập ❤️
                         </p>
                         <p>Các bạn subscribe kênh Youtube <a rel="noopener noreferrer nofollow" target="_blank"
                                                              href="https://url.mycv.vn/f8_youtube?ref=lesson_desc">F8
@@ -384,7 +428,7 @@ const Learning = () => {
                 <div className={cx('toggle-wrap')}></div>
             </footer>
         </div>
-    )
+    );
 }
 
-export default Learning
+export default Learning;
