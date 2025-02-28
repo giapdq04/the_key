@@ -1,4 +1,4 @@
-import { createSlice, nanoid } from '@reduxjs/toolkit';
+import {createSlice, nanoid} from '@reduxjs/toolkit';
 
 const initialState = [
     {
@@ -258,23 +258,45 @@ const sectionSlice = createSlice({
         setActiveLesson: (state, action) => {
             const selectedLessonID = action.payload;
 
-            return state.map(section => ({
-                ...section,
-                lessons: section.lessons.map(lesson => {
+            state.forEach(section => {
+                section.lessons.forEach(lesson => {
                     if (lesson.status === 2) {
-                        return { ...lesson, status: 1 };
+                        lesson.status = 1;
                     }
+
                     if (lesson.id === selectedLessonID) {
-                        return { ...lesson, status: 2 };
+                        lesson.status = 2;
                     }
-                    return lesson;
-                })
-            }));
+                });
+            });
+        },
+
+        previousLesson: (state, action) => {
+            for (let i = 0; i < state.length; i++) {
+                const section = state[i];
+                for (let j = 0; j < section.lessons.length; j++) {
+                    const lesson = section.lessons[j];
+                    if (lesson.status === 2){
+                        lesson.status = 1;
+
+                        if (j > 0) {
+                            section.lessons[j - 1].status = 2;
+                        } else if (i > 0) {
+                            const prevSection = state[i - 1];
+                            prevSection.lessons[prevSection.lessons.length - 1].status = 2;
+                        }
+                    }
+                }
+            }
+        },
+
+        nextLesson: (state, action) => {
+            
         },
     },
 });
 
-const { actions, reducer } = sectionSlice;
+const {actions, reducer} = sectionSlice;
 
-export const { setActiveLesson } = actions;
+export const {setActiveLesson, nextLesson, previousLesson} = actions;
 export default reducer;
