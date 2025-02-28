@@ -10,286 +10,290 @@ import ReactPlayer from "react-player";
 import config from '../../config'
 import styles from './Learning.module.scss'
 import Section from './Section/Section'
+import {useSelector} from "react-redux";
 
 const cx = classNames.bind(styles)
 
-const SectionList = [
-    {
-        id: 1,
-        title: 'Bắt đầu',
-        lessons: [
-            {
-                id: 1,
-                title: 'Lời khuyên trước khóa học',
-                isCompleted: true,
-                status: 1, // 1: opened, 2: opening, 3: locked
-                duration: 484,
-                isDoc: false,
-                ytbVideoId: '4xTbZzXvAGg',
-                updatedAt: new Date('2022-02-01T09:19:11.864+00:00').toISOString()
-            },
-            {
-                id: 2,
-                title: 'HTTP protocol',
-                isCompleted: true,
-                status: 1,
-                duration: 817,
-                isDoc: false,
-                ytbVideoId: 'YbV__eQDgMQ',
-                updatedAt: new Date('2022-02-02T09:19:11.864+00:00').toISOString()
-            }
-        ]
-    },
-    {
-        id: 2,
-        title: 'Kiến thức cốt lõi',
-        lessons: [
-            {
-                id: 1,
-                title: 'Template engine (handlebars)',
-                isCompleted: true,
-                status: 1,
-                duration: 1632,
-                isDoc: false,
-                ytbVideoId: 'Hqmbo0ROBQw',
-                updatedAt: new Date('2022-02-03T09:19:11.864+00:00').toISOString()
-            },
-            {
-                id: 2,
-                title: 'Static file & SCSS',
-                isCompleted: false,
-                status: 2,
-                duration: 2261,
-                isDoc: false,
-                ytbVideoId: '7-HIBA-zOIQ',
-                updatedAt: new Date('2022-02-04T09:19:11.864+00:00').toISOString()
-            },
-            {
-                id: 3,
-                title: 'Thế nào là 1 câu điều kiện?',
-                isCompleted: false,
-                status: 3,
-                duration: 60,
-                isDoc: true,
-                ytbVideoId: 'SP_M-RezjHA',
-                updatedAt: new Date('2022-02-05T09:19:11.864+00:00').toISOString()
-            }
-        ]
-    },
-    {
-        id: 3,
-        title: 'Xây dựng website',
-        lessons: [
-            {
-                id: 1,
-                title: 'Mô hình MVC',
-                isCompleted: false,
-                status: 3,
-                duration: 328,
-                isDoc: false,
-                ytbVideoId: '3bPTUAFX1XI',
-                updatedAt: new Date('2022-02-06T09:19:11.864+00:00').toISOString()
-            },
-            {
-                id: 2,
-                title: '[MVC] Routes & Controllers',
-                isCompleted: false,
-                status: 3,
-                duration: 1261,
-                isDoc: false,
-                ytbVideoId: 'D-7VWOg5O_w',
-                updatedAt: new Date('2022-02-07T09:19:11.864+00:00').toISOString()
-            }
-        ]
-    },
-    // Thêm 10 section mới
-    {
-        id: 4,
-        title: 'Section 4',
-        lessons: [
-            {
-                id: 1,
-                title: 'Lesson 1',
-                isCompleted: false,
-                status: 3,
-                duration: 300,
-                isDoc: false,
-                ytbVideoId: 'Aj0t3CSPGPg',
-                updatedAt: new Date('2022-02-08T09:19:11.864+00:00').toISOString()
-            }
-        ]
-    },
-    {
-        id: 5,
-        title: 'Section 5',
-        lessons: [
-            {
-                id: 1,
-                title: 'Lesson 1',
-                isCompleted: false,
-                status: 3,
-                duration: 300,
-                isDoc: false,
-                ytbVideoId: 'jZgeidLTsdk',
-                updatedAt: new Date('2022-02-09T09:19:11.864+00:00').toISOString()
-            }
-        ]
-    },
-    {
-        id: 6,
-        title: 'Section 6',
-        lessons: [
-            {
-                id: 1,
-                title: 'Lesson 1',
-                isCompleted: false,
-                status: 3,
-                duration: 300,
-                isDoc: false,
-                ytbVideoId: 'js6JBdLzNn4',
-                updatedAt: new Date('2022-02-10T09:19:11.864+00:00').toISOString()
-            }
-        ]
-    },
-    {
-        id: 7,
-        title: 'Section 7',
-        lessons: [
-            {
-                id: 1,
-                title: 'Lesson 1',
-                isCompleted: false,
-                status: 3,
-                duration: 300,
-                isDoc: false,
-                ytbVideoId: 'Z3HLKC6g7SE',
-                updatedAt: new Date('2022-02-11T09:19:11.864+00:00').toISOString()
-            }
-        ]
-    },
-    {
-        id: 8,
-        title: 'Section 8',
-        lessons: [
-            {
-                id: 1,
-                title: 'Lesson 1',
-                isCompleted: false,
-                status: 3,
-                duration: 300,
-                isDoc: false,
-                ytbVideoId: 'KbCyP7AN6UI',
-                updatedAt: new Date('2022-02-12T09:19:11.864+00:00').toISOString()
-            }
-        ]
-    },
-    {
-        id: 9,
-        title: 'Section 9',
-        lessons: [
-            {
-                id: 1,
-                title: 'Lesson 1',
-                isCompleted: false,
-                status: 3,
-                duration: 300,
-                isDoc: false,
-                ytbVideoId: 'g8gYCuD36ok',
-                updatedAt: new Date('2022-02-13T09:19:11.864+00:00').toISOString()
-            }
-        ]
-    },
-    {
-        id: 10,
-        title: 'Section 10',
-        lessons: [
-            {
-                id: 1,
-                title: 'Lesson 1',
-                isCompleted: false,
-                status: 3,
-                duration: 300,
-                isDoc: false,
-                ytbVideoId: 'g8gYCuD36ok',
-                updatedAt: new Date('2022-02-14T09:19:11.864+00:00').toISOString()
-            }
-        ]
-    },
-    {
-        id: 11,
-        title: 'Section 11',
-        lessons: [
-            {
-                id: 1,
-                title: 'Lesson 1',
-                isCompleted: false,
-                status: 3,
-                duration: 300,
-                isDoc: false,
-                ytbVideoId: 'g8gYCuD36ok',
-                updatedAt: new Date('2022-02-15T09:19:11.864+00:00').toISOString()
-            }
-        ]
-    },
-    {
-        id: 12,
-        title: 'Section 12',
-        lessons: [
-            {
-                id: 1,
-                title: 'Lesson 1',
-                isCompleted: false,
-                status: 3,
-                duration: 300,
-                isDoc: false,
-                ytbVideoId: 'g8gYCuD36ok',
-                updatedAt: new Date('2022-02-16T09:19:11.864+00:00').toISOString()
-            }
-        ]
-    },
-    {
-        id: 13,
-        title: 'Section 13',
-        lessons: [
-            {
-                id: 1,
-                title: 'Lesson 1',
-                isCompleted: false,
-                status: 3,
-                duration: 300,
-                isDoc: false,
-                ytbVideoId: 'g8gYCuD36ok',
-                updatedAt: new Date('2022-02-17T09:19:11.864+00:00').toISOString()
-            }
-        ]
-    }
-];
+// const SectionList = [
+//     {
+//         id: 1,
+//         title: 'Bắt đầu',
+//         lessons: [
+//             {
+//                 id: 1,
+//                 title: 'Lời khuyên trước khóa học',
+//                 isCompleted: true,
+//                 status: 1, // 1: opened, 2: opening, 3: locked
+//                 duration: 484,
+//                 isDoc: false,
+//                 ytbVideoId: '4xTbZzXvAGg',
+//                 updatedAt: new Date('2022-02-01T09:19:11.864+00:00').toISOString()
+//             },
+//             {
+//                 id: 2,
+//                 title: 'HTTP protocol',
+//                 isCompleted: true,
+//                 status: 1,
+//                 duration: 817,
+//                 isDoc: false,
+//                 ytbVideoId: 'YbV__eQDgMQ',
+//                 updatedAt: new Date('2022-02-02T09:19:11.864+00:00').toISOString()
+//             }
+//         ]
+//     },
+//     {
+//         id: 2,
+//         title: 'Kiến thức cốt lõi',
+//         lessons: [
+//             {
+//                 id: 1,
+//                 title: 'Template engine (handlebars)',
+//                 isCompleted: true,
+//                 status: 1,
+//                 duration: 1632,
+//                 isDoc: false,
+//                 ytbVideoId: 'Hqmbo0ROBQw',
+//                 updatedAt: new Date('2022-02-03T09:19:11.864+00:00').toISOString()
+//             },
+//             {
+//                 id: 2,
+//                 title: 'Static file & SCSS',
+//                 isCompleted: false,
+//                 status: 2,
+//                 duration: 2261,
+//                 isDoc: false,
+//                 ytbVideoId: '7-HIBA-zOIQ',
+//                 updatedAt: new Date('2022-02-04T09:19:11.864+00:00').toISOString()
+//             },
+//             {
+//                 id: 3,
+//                 title: 'Thế nào là 1 câu điều kiện?',
+//                 isCompleted: false,
+//                 status: 3,
+//                 duration: 60,
+//                 isDoc: true,
+//                 ytbVideoId: 'SP_M-RezjHA',
+//                 updatedAt: new Date('2022-02-05T09:19:11.864+00:00').toISOString()
+//             }
+//         ]
+//     },
+//     {
+//         id: 3,
+//         title: 'Xây dựng website',
+//         lessons: [
+//             {
+//                 id: 1,
+//                 title: 'Mô hình MVC',
+//                 isCompleted: false,
+//                 status: 3,
+//                 duration: 328,
+//                 isDoc: false,
+//                 ytbVideoId: '3bPTUAFX1XI',
+//                 updatedAt: new Date('2022-02-06T09:19:11.864+00:00').toISOString()
+//             },
+//             {
+//                 id: 2,
+//                 title: '[MVC] Routes & Controllers',
+//                 isCompleted: false,
+//                 status: 3,
+//                 duration: 1261,
+//                 isDoc: false,
+//                 ytbVideoId: 'D-7VWOg5O_w',
+//                 updatedAt: new Date('2022-02-07T09:19:11.864+00:00').toISOString()
+//             }
+//         ]
+//     },
+//     // Thêm 10 section mới
+//     {
+//         id: 4,
+//         title: 'Section 4',
+//         lessons: [
+//             {
+//                 id: 1,
+//                 title: 'Lesson 1',
+//                 isCompleted: false,
+//                 status: 3,
+//                 duration: 300,
+//                 isDoc: false,
+//                 ytbVideoId: 'Aj0t3CSPGPg',
+//                 updatedAt: new Date('2022-02-08T09:19:11.864+00:00').toISOString()
+//             }
+//         ]
+//     },
+//     {
+//         id: 5,
+//         title: 'Section 5',
+//         lessons: [
+//             {
+//                 id: 1,
+//                 title: 'Lesson 1',
+//                 isCompleted: false,
+//                 status: 3,
+//                 duration: 300,
+//                 isDoc: false,
+//                 ytbVideoId: 'jZgeidLTsdk',
+//                 updatedAt: new Date('2022-02-09T09:19:11.864+00:00').toISOString()
+//             }
+//         ]
+//     },
+//     {
+//         id: 6,
+//         title: 'Section 6',
+//         lessons: [
+//             {
+//                 id: 1,
+//                 title: 'Lesson 1',
+//                 isCompleted: false,
+//                 status: 3,
+//                 duration: 300,
+//                 isDoc: false,
+//                 ytbVideoId: 'js6JBdLzNn4',
+//                 updatedAt: new Date('2022-02-10T09:19:11.864+00:00').toISOString()
+//             }
+//         ]
+//     },
+//     {
+//         id: 7,
+//         title: 'Section 7',
+//         lessons: [
+//             {
+//                 id: 1,
+//                 title: 'Lesson 1',
+//                 isCompleted: false,
+//                 status: 3,
+//                 duration: 300,
+//                 isDoc: false,
+//                 ytbVideoId: 'Z3HLKC6g7SE',
+//                 updatedAt: new Date('2022-02-11T09:19:11.864+00:00').toISOString()
+//             }
+//         ]
+//     },
+//     {
+//         id: 8,
+//         title: 'Section 8',
+//         lessons: [
+//             {
+//                 id: 1,
+//                 title: 'Lesson 1',
+//                 isCompleted: false,
+//                 status: 3,
+//                 duration: 300,
+//                 isDoc: false,
+//                 ytbVideoId: 'KbCyP7AN6UI',
+//                 updatedAt: new Date('2022-02-12T09:19:11.864+00:00').toISOString()
+//             }
+//         ]
+//     },
+//     {
+//         id: 9,
+//         title: 'Section 9',
+//         lessons: [
+//             {
+//                 id: 1,
+//                 title: 'Lesson 1',
+//                 isCompleted: false,
+//                 status: 3,
+//                 duration: 300,
+//                 isDoc: false,
+//                 ytbVideoId: 'g8gYCuD36ok',
+//                 updatedAt: new Date('2022-02-13T09:19:11.864+00:00').toISOString()
+//             }
+//         ]
+//     },
+//     {
+//         id: 10,
+//         title: 'Section 10',
+//         lessons: [
+//             {
+//                 id: 1,
+//                 title: 'Lesson 1',
+//                 isCompleted: false,
+//                 status: 3,
+//                 duration: 300,
+//                 isDoc: false,
+//                 ytbVideoId: 'g8gYCuD36ok',
+//                 updatedAt: new Date('2022-02-14T09:19:11.864+00:00').toISOString()
+//             }
+//         ]
+//     },
+//     {
+//         id: 11,
+//         title: 'Section 11',
+//         lessons: [
+//             {
+//                 id: 1,
+//                 title: 'Lesson 1',
+//                 isCompleted: false,
+//                 status: 3,
+//                 duration: 300,
+//                 isDoc: false,
+//                 ytbVideoId: 'g8gYCuD36ok',
+//                 updatedAt: new Date('2022-02-15T09:19:11.864+00:00').toISOString()
+//             }
+//         ]
+//     },
+//     {
+//         id: 12,
+//         title: 'Section 12',
+//         lessons: [
+//             {
+//                 id: 1,
+//                 title: 'Lesson 1',
+//                 isCompleted: false,
+//                 status: 3,
+//                 duration: 300,
+//                 isDoc: false,
+//                 ytbVideoId: 'g8gYCuD36ok',
+//                 updatedAt: new Date('2022-02-16T09:19:11.864+00:00').toISOString()
+//             }
+//         ]
+//     },
+//     {
+//         id: 13,
+//         title: 'Section 13',
+//         lessons: [
+//             {
+//                 id: 1,
+//                 title: 'Lesson 1',
+//                 isCompleted: false,
+//                 status: 3,
+//                 duration: 300,
+//                 isDoc: false,
+//                 ytbVideoId: 'g8gYCuD36ok',
+//                 updatedAt: new Date('2022-02-17T09:19:11.864+00:00').toISOString()
+//             }
+//         ]
+//     }
+// ];
 
 const Learning = () => {
 
     const [video, setVideo] = useState('7kVBp2B2N5M');
     const [title, setTitle] = useState();
     const [updatedAt, setUpdatedAt] = useState();
+    const SectionList = useSelector(state => state.section)
 
     useEffect(() => {
         let result = [];
         let output;
         let title = '';
         let updatedTime = '';
-
+    
         SectionList.forEach(section => {
             result = result.concat(section.lessons);
         });
         output = result.find(lesson => lesson.status === 2);
-
-        title = output.title;
-        updatedTime = new Date(output.updatedAt).toLocaleDateString('vi-VN', {timeZone: 'Asia/Ho_Chi_Minh'});
-
-        document.title = title;
-        setTitle(title);
-        setUpdatedAt(updatedTime);
-        setVideo(`https://www.youtube.com/watch?v=${output.ytbVideoId}`);
-    }, [video, SectionList]);
+    
+        if (output) {
+            title = output.title;
+            updatedTime = new Date(output.updatedAt).toLocaleDateString('vi-VN', {timeZone: 'Asia/Ho_Chi_Minh'});
+    
+            document.title = title;
+            setTitle(title);
+            setUpdatedAt(updatedTime);
+            setVideo(`https://www.youtube.com/watch?v=${output.ytbVideoId}`);
+        }
+    }, [SectionList]);
 
     const routeHome = config.routes.home;
 

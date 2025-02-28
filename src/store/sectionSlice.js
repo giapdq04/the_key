@@ -1,7 +1,6 @@
-import {createSlice, nanoid} from '@reduxjs/toolkit';
+import { createSlice, nanoid } from '@reduxjs/toolkit';
 
-const initialState = {
-  sections: [
+const initialState = [
     {
         id: nanoid(),
         title: 'Bắt đầu',
@@ -90,7 +89,6 @@ const initialState = {
             }
         ]
     },
-    // Thêm 10 section mới
     {
         id: nanoid(),
         title: 'Section 4',
@@ -251,28 +249,32 @@ const initialState = {
             }
         ]
     }
-],
-};
+];
 
 const sectionSlice = createSlice({
-  name: 'sections',
-  initialState,
-  reducers: {
-    setSections: (state, action) => {
-      state.sections = action.payload;
+    name: 'sections',
+    initialState,
+    reducers: {
+        setActiveLesson: (state, action) => {
+            const selectedLessonID = action.payload;
+
+            return state.map(section => ({
+                ...section,
+                lessons: section.lessons.map(lesson => {
+                    if (lesson.status === 2) {
+                        return { ...lesson, status: 1 };
+                    }
+                    if (lesson.id === selectedLessonID) {
+                        return { ...lesson, status: 2 };
+                    }
+                    return lesson;
+                })
+            }));
+        },
     },
-    setActiveLesson: (state, action) => {
-      const { sectionId, lessonId } = action.payload;
-      const section = state.sections.find((s) => s.id === sectionId);
-      if (section) {
-        state.sections = section.lessons.map((lesson) => {
-          lesson.status = lesson.id === lessonId ? 2 : 1;
-        });
-      }
-    },
-  },
 });
 
-export const { setSections, setActiveLesson } = sectionSlice.actions;
+const { actions, reducer } = sectionSlice;
 
-export default sectionSlice.reducer;
+export const { setActiveLesson } = actions;
+export default reducer;

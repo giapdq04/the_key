@@ -4,13 +4,22 @@ import classNames from "classnames/bind";
 import React from 'react';
 import convertTime from "../../../../utils/ConvertSeconds";
 import styles from './Lesson.module.scss';
+import {setActiveLesson} from "../../../../store/sectionSlice";
+import {useDispatch} from "react-redux";
 
 const cx = classNames.bind(styles)
 
 const Lesson = ({item, index}) => {
+    const dispatch = useDispatch()
+
+    const handleLessonClick = () => {
+        const action = setActiveLesson()
+        action.payload = item.id
+        dispatch(action)
+    }
 
     return (
-        <div onClick={() => handlePlayVideo(item)} className={cx('wrapper',
+        <div onClick={handleLessonClick} className={cx('wrapper',
             {locked: item.status === 3},
             {active: item.status === 2})}
         >
