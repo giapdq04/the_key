@@ -1,7 +1,7 @@
 import { faCircleCheck, faCirclePlay, faCompactDisc, faFileLines, faLock } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classNames from "classnames/bind";
-import React from 'react';
+import React, {memo} from 'react';
 import convertTime from "../../../../utils/ConvertSeconds";
 import styles from './Lesson.module.scss';
 import {setActiveLesson} from "../../../../store/sectionSlice";
@@ -57,4 +57,4 @@ const Lesson = ({item, index}) => {
     );
 };
 
-export default Lesson;
+export default memo(Lesson);

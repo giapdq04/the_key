@@ -1,14 +1,25 @@
 import classNames from "classnames/bind";
 import {useSelector} from "react-redux";
+import {useEffect, useRef, memo} from "react";
 
 import Section from "../Section/Section";
 import styles from "./Sidebar.module.scss";
-import {memo} from "react";
 
-const cx = classNames.bind(styles)
+const cx = classNames.bind(styles);
 
 const Sidebar = () => {
-    const SectionList = useSelector(state => state.section)
+    const SectionList = useSelector(state => state.section);
+    const sectionRefs = useRef([]);
+
+    useEffect(() => {
+        const activeSectionIndex = SectionList.findIndex(section =>
+            section.lessons.some(lesson => lesson.status === 2)
+        );
+
+        if (activeSectionIndex !== -1 && sectionRefs.current[activeSectionIndex]) {
+            sectionRefs.current[activeSectionIndex].scrollIntoView({behavior: 'smooth'});
+        }
+    }, [SectionList]);
 
     return (
         <div className={cx('side-bar')}>
@@ -18,16 +29,20 @@ const Sidebar = () => {
                 </header>
                 <div className={cx('body')}>
                     {SectionList.map((section, index) => (
-                        <Section
+                        <div
                             key={section.id}
-                            index={index}
-                            item={section}
-                        />
+                            ref={el => sectionRefs.current[index] = el}
+                        >
+                            <Section
+                                index={index}
+                                item={section}
+                            />
+                        </div>
                     ))}
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
-export default memo(Sidebar)
+export default memo(Sidebar);
