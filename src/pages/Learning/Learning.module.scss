@@ -115,6 +115,7 @@
     }
 
     .body {
+      overflow-y: auto;
       flex: 1;
       overscroll-behavior: contain;
     }

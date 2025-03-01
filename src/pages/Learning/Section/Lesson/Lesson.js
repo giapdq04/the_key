@@ -24,7 +24,9 @@ const Lesson = ({item, index}) => {
     return (
         <div onClick={handleLessonClick} className={cx('wrapper',
             {locked: item.status === 3},
-            {active: item.status === 2})}
+            {active: item.status === 2},
+            {wrapperHover: item.status === 1}
+        )}
         >
             <div className={cx('info')}>
                 <h3 className={cx('title')}>{item.lessonIndex}. {item.title}</h3>
