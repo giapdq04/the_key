@@ -2,7 +2,7 @@ import classNames from "classnames/bind";
 import {useSelector} from "react-redux";
 import {useEffect, useRef, memo} from "react";
 
-import Section from "../Section/Section";
+import Section from "./Section/Section";
 import styles from "./Sidebar.module.scss";
 
 const cx = classNames.bind(styles);

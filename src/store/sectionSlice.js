@@ -62,7 +62,8 @@ const initialState = [
                 status: 1,
                 duration: 60,
                 isDoc: true,
-                ytbVideoId: 'SP_M-RezjHA',
+                docUrl: 'https://www.w3schools.com/js/js_if_else.asp',
+                // ytbVideoId: 'SP_M-RezjHA',
                 updatedAt: new Date('2022-02-05T09:19:11.864+00:00').toISOString(),
                 lessonIndex: 5
             }

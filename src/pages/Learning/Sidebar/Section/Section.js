@@ -1,15 +1,15 @@
-import React, {memo, useEffect, useMemo, useState} from 'react';
+import React, { memo, useEffect, useMemo, useState } from 'react';
 import classNames from 'classnames/bind';
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faChevronDown, faChevronUp} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 
 import styles from './Section.module.scss';
 import Lesson from "./Lesson/Lesson";
-import convertTime from "../../../utils/ConvertSeconds";
+import convertTime from "../../../../utils/ConvertSeconds";
 
 const cx = classNames.bind(styles);
 
-const Section = ({item, index}) => {
+const Section = ({ item, index }) => {
 
     const [showSection, setShowSection] = useState(false);
 
@@ -48,8 +48,8 @@ const Section = ({item, index}) => {
                 <span className={cx('icon')}>
                     {
                         showSection
-                            ? <FontAwesomeIcon icon={faChevronUp}/>
-                            : <FontAwesomeIcon icon={faChevronDown}/>
+                            ? <FontAwesomeIcon icon={faChevronUp} />
+                            : <FontAwesomeIcon icon={faChevronDown} />
                     }
                 </span>
             </div>
@@ -61,8 +61,7 @@ const Section = ({item, index}) => {
                             return (
                                 <Lesson
                                     key={lesson.id}
-                                    index={index}
-                                    item={lesson}/>
+                                    item={lesson} />
                             );
                         })}
                     </div>
