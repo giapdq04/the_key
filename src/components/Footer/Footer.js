@@ -21,7 +21,7 @@ const Footer = () => {
                             <br />
                             <b>Địa chỉ: </b>Số 1, ngõ 41, Trần Duy Hưng, Cầu Giấy, Hà Nội
                         </div>
-                        <a href='#'>
+                        <a href='https://thekey.edu.vn/'>
                             <img className={cx('protected')} src={protectedImage} alt='' />
                         </a>
                     </div>

@@ -1,44 +1,57 @@
-import React, {useState} from 'react'
-import styles from './Section.module.scss'
-import classNames from 'classnames/bind'
+import React, {memo, useEffect, useMemo, useState} from 'react';
+import classNames from 'classnames/bind';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faChevronDown, faChevronUp} from "@fortawesome/free-solid-svg-icons";
+
+import styles from './Section.module.scss';
 import Lesson from "./Lesson/Lesson";
 import convertTime from "../../../utils/ConvertSeconds";
 
-const cx = classNames.bind(styles)
+const cx = classNames.bind(styles);
 
 const Section = ({item, index}) => {
 
-    const [showSection, setShowSection] = useState()
+    const [showSection, setShowSection] = useState(false);
 
-    const completedLessonsCount = item.lessons.filter(lesson => lesson.isCompleted).length
+    useEffect(() => {
+        const hasOpeningLesson = item.lessons.some(lesson => lesson.status === 2);
+        if (hasOpeningLesson) {
+            setShowSection(true);
+        }
+    }, [item.lessons]);
 
-    const totalLessonsCount = item.lessons.length
+    const completedLessonsCount = useMemo(() => {
+        return item.lessons.filter(lesson => lesson.isCompleted).length;
+    }, [item.lessons]);
 
-    const ConvertSeconds = () => {
+    const totalLessonsCount = useMemo(() => {
+        return item.lessons.length;
+    }, [item.lessons]);
 
-        const totalDuration = item.lessons.reduce((acc, lesson) => {
-            return acc + lesson.duration
-        }, 0)
+    const totalDuration = useMemo(() => {
+        return item.lessons.reduce((acc, lesson) => {
+            return acc + lesson.duration;
+        }, 0);
+    }, [item.lessons]);
 
-        return convertTime(totalDuration)
-    }
+    const formattedDuration = useMemo(() => {
+        return convertTime(totalDuration);
+    }, [totalDuration]);
 
     return (
         <div className={cx('wrapper')}>
             <div className={cx('section-wrapper')} onClick={() => setShowSection(!showSection)}>
                 <h3 className={cx('title')}>{index + 1}. {item.title}</h3>
                 <span className={cx('description')}>
-                {completedLessonsCount}/{totalLessonsCount} | <ConvertSeconds/>
-            </span>
+                    {completedLessonsCount}/{totalLessonsCount} | {formattedDuration}
+                </span>
                 <span className={cx('icon')}>
                     {
                         showSection
                             ? <FontAwesomeIcon icon={faChevronUp}/>
                             : <FontAwesomeIcon icon={faChevronDown}/>
                     }
-            </span>
+                </span>
             </div>
 
             {
@@ -50,13 +63,13 @@ const Section = ({item, index}) => {
                                     key={lesson.id}
                                     index={index}
                                     item={lesson}/>
-                            )
+                            );
                         })}
                     </div>
                 )
             }
         </div>
-    )
+    );
 }
 
-export default Section
+export default memo(Section)
