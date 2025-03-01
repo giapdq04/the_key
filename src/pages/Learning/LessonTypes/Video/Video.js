@@ -1,13 +1,20 @@
 import React, {memo} from 'react'
 import ReactPlayer from "react-player";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faHeart} from "@fortawesome/free-solid-svg-icons";
+import {faHeart, faPlay} from "@fortawesome/free-solid-svg-icons";
 import classNames from "classnames/bind";
 import styles from "./Video.module.scss";
 
 const cx = classNames.bind(styles)
 
 const Video = ({currentLesson}) => {
+    const PlayIcon = () => {
+        return (
+            <button className={cx('play-button')}>
+                <FontAwesomeIcon icon={faPlay}/>
+            </button>
+        )
+    }
     return (
         <div className={cx('main-content')}>
             <div className={cx('video-container')}>
@@ -18,6 +25,16 @@ const Video = ({currentLesson}) => {
                             height={'100%'}
                             controls
                             playsinline={true}
+                            fallback={
+                                <div className={cx('fallback')}>
+                                    <img
+                                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnKMnEffBBNeaHWy2zz34vKlBzaYvt3H9gyg&s"
+                                        alt=""/>
+                                </div>
+                            }
+                            playing={true}
+                            light={`https://img.youtube.com/vi/${currentLesson?.ytbVideoId}/maxresdefault.jpg`}
+                            playIcon={<PlayIcon/>}
                             url={`https://www.youtube.com/watch?v=${currentLesson?.ytbVideoId}`}
                         />
                     </div>

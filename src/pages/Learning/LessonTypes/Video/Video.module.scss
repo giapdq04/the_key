@@ -7,7 +7,6 @@
   margin-top: 50px;
   overflow-x: hidden;
   overscroll-behavior: contain;
-  background-color: red;
 
   .video-container {
     width: 100%;
@@ -29,6 +28,32 @@
         right: 0;
         bottom: 0;
         left: 0;
+
+        .fallback {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100%;
+        }
+
+        .play-button {
+          padding: 16px;
+          border-radius: 64px;
+          width: 64px;
+          height: 64px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: #d51202;
+          transition: ease .3s;
+          cursor: pointer;
+
+          svg {
+            color: white;
+            font-size: 2.4rem;
+            transform: translateX(10%);
+          }
+        }
       }
 
     }
