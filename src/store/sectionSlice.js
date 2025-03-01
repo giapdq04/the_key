@@ -1,4 +1,4 @@
-import {createSlice, nanoid} from '@reduxjs/toolkit';
+import { createSlice, nanoid } from '@reduxjs/toolkit';
 
 const initialState = [
     {
@@ -13,7 +13,8 @@ const initialState = [
                 duration: 484,
                 isDoc: false,
                 ytbVideoId: '4xTbZzXvAGg',
-                updatedAt: new Date('2022-02-01T09:19:11.864+00:00').toISOString()
+                updatedAt: new Date('2022-02-01T09:19:11.864+00:00').toISOString(),
+                lessonIndex: 1
             },
             {
                 id: nanoid(),
@@ -23,7 +24,8 @@ const initialState = [
                 duration: 817,
                 isDoc: false,
                 ytbVideoId: 'YbV__eQDgMQ',
-                updatedAt: new Date('2022-02-02T09:19:11.864+00:00').toISOString()
+                updatedAt: new Date('2022-02-02T09:19:11.864+00:00').toISOString(),
+                lessonIndex: 2
             }
         ]
     },
@@ -39,7 +41,8 @@ const initialState = [
                 duration: 1632,
                 isDoc: false,
                 ytbVideoId: 'Hqmbo0ROBQw',
-                updatedAt: new Date('2022-02-03T09:19:11.864+00:00').toISOString()
+                updatedAt: new Date('2022-02-03T09:19:11.864+00:00').toISOString(),
+                lessonIndex: 3
             },
             {
                 id: nanoid(),
@@ -49,7 +52,8 @@ const initialState = [
                 duration: 2261,
                 isDoc: false,
                 ytbVideoId: '7-HIBA-zOIQ',
-                updatedAt: new Date('2022-02-04T09:19:11.864+00:00').toISOString()
+                updatedAt: new Date('2022-02-04T09:19:11.864+00:00').toISOString(),
+                lessonIndex: 4
             },
             {
                 id: nanoid(),
@@ -59,7 +63,8 @@ const initialState = [
                 duration: 60,
                 isDoc: true,
                 ytbVideoId: 'SP_M-RezjHA',
-                updatedAt: new Date('2022-02-05T09:19:11.864+00:00').toISOString()
+                updatedAt: new Date('2022-02-05T09:19:11.864+00:00').toISOString(),
+                lessonIndex: 5
             }
         ]
     },
@@ -75,7 +80,8 @@ const initialState = [
                 duration: 328,
                 isDoc: false,
                 ytbVideoId: '3bPTUAFX1XI',
-                updatedAt: new Date('2022-02-06T09:19:11.864+00:00').toISOString()
+                updatedAt: new Date('2022-02-06T09:19:11.864+00:00').toISOString(),
+                lessonIndex: 6
             },
             {
                 id: nanoid(),
@@ -85,7 +91,8 @@ const initialState = [
                 duration: 1261,
                 isDoc: false,
                 ytbVideoId: 'D-7VWOg5O_w',
-                updatedAt: new Date('2022-02-07T09:19:11.864+00:00').toISOString()
+                updatedAt: new Date('2022-02-07T09:19:11.864+00:00').toISOString(),
+                lessonIndex: 7
             }
         ]
     },
@@ -101,7 +108,8 @@ const initialState = [
                 duration: 300,
                 isDoc: false,
                 ytbVideoId: 'Aj0t3CSPGPg',
-                updatedAt: new Date('2022-02-08T09:19:11.864+00:00').toISOString()
+                updatedAt: new Date('2022-02-08T09:19:11.864+00:00').toISOString(),
+                lessonIndex: 8
             }
         ]
     },
@@ -117,7 +125,8 @@ const initialState = [
                 duration: 300,
                 isDoc: false,
                 ytbVideoId: 'jZgeidLTsdk',
-                updatedAt: new Date('2022-02-09T09:19:11.864+00:00').toISOString()
+                updatedAt: new Date('2022-02-09T09:19:11.864+00:00').toISOString(),
+                lessonIndex: 9
             }
         ]
     },
@@ -133,7 +142,8 @@ const initialState = [
                 duration: 300,
                 isDoc: false,
                 ytbVideoId: 'js6JBdLzNn4',
-                updatedAt: new Date('2022-02-10T09:19:11.864+00:00').toISOString()
+                updatedAt: new Date('2022-02-10T09:19:11.864+00:00').toISOString(),
+                lessonIndex: 10
             }
         ]
     },
@@ -149,7 +159,8 @@ const initialState = [
                 duration: 300,
                 isDoc: false,
                 ytbVideoId: 'Z3HLKC6g7SE',
-                updatedAt: new Date('2022-02-11T09:19:11.864+00:00').toISOString()
+                updatedAt: new Date('2022-02-11T09:19:11.864+00:00').toISOString(),
+                lessonIndex: 11
             }
         ]
     },
@@ -165,7 +176,8 @@ const initialState = [
                 duration: 300,
                 isDoc: false,
                 ytbVideoId: 'KbCyP7AN6UI',
-                updatedAt: new Date('2022-02-12T09:19:11.864+00:00').toISOString()
+                updatedAt: new Date('2022-02-12T09:19:11.864+00:00').toISOString(),
+                lessonIndex: 12
             }
         ]
     },
@@ -181,7 +193,8 @@ const initialState = [
                 duration: 300,
                 isDoc: false,
                 ytbVideoId: 'g8gYCuD36ok',
-                updatedAt: new Date('2022-02-13T09:19:11.864+00:00').toISOString()
+                updatedAt: new Date('2022-02-13T09:19:11.864+00:00').toISOString(),
+                lessonIndex: 13
             }
         ]
     },
@@ -197,7 +210,8 @@ const initialState = [
                 duration: 300,
                 isDoc: false,
                 ytbVideoId: 'g8gYCuD36ok',
-                updatedAt: new Date('2022-02-14T09:19:11.864+00:00').toISOString()
+                updatedAt: new Date('2022-02-14T09:19:11.864+00:00').toISOString(),
+                lessonIndex: 14
             }
         ]
     },
@@ -213,7 +227,8 @@ const initialState = [
                 duration: 300,
                 isDoc: false,
                 ytbVideoId: 'g8gYCuD36ok',
-                updatedAt: new Date('2022-02-15T09:19:11.864+00:00').toISOString()
+                updatedAt: new Date('2022-02-15T09:19:11.864+00:00').toISOString(),
+                lessonIndex: 15
             }
         ]
     },
@@ -229,7 +244,8 @@ const initialState = [
                 duration: 300,
                 isDoc: false,
                 ytbVideoId: 'g8gYCuD36ok',
-                updatedAt: new Date('2022-02-16T09:19:11.864+00:00').toISOString()
+                updatedAt: new Date('2022-02-16T09:19:11.864+00:00').toISOString(),
+                lessonIndex: 16
             }
         ]
     },
@@ -245,7 +261,8 @@ const initialState = [
                 duration: 300,
                 isDoc: false,
                 ytbVideoId: 'g8gYCuD36ok',
-                updatedAt: new Date('2022-02-17T09:19:11.864+00:00').toISOString()
+                updatedAt: new Date('2022-02-17T09:19:11.864+00:00').toISOString(),
+                lessonIndex: 17
             }
         ]
     }
@@ -276,7 +293,10 @@ const sectionSlice = createSlice({
                 const section = state[i];
                 for (let j = 0; j < section.lessons.length; j++) {
                     const lesson = section.lessons[j];
-                    if (lesson.status === 2){
+                    if (lesson.status === 2) {
+                        if (lesson.id === state[0].lessons[0].id) {
+                            return
+                        }
                         lesson.status = 1;
 
                         if (j > 0) {
@@ -291,12 +311,40 @@ const sectionSlice = createSlice({
         },
 
         nextLesson: (state, action) => {
-            
-        },
+            for (let i = 0; i < state.length; i++) {
+                const section = state[i];
+                for (let j = 0; j < section.lessons.length; j++) {
+                    const lesson = section.lessons[j];
+                    if (lesson.status === 2) {
+                        // Đặt trạng thái của bài học hiện tại thành 1
+
+                        // Kiểm tra nếu bài học tiếp theo trong cùng một section
+                        if (j < section.lessons.length - 1) {
+                            if (section.lessons[j + 1].status !== 3) {
+                                lesson.status = 1;
+                                section.lessons[j + 1].status = 2;
+                            }
+                        } else {
+                            // Tìm bài học tiếp theo trong section tiếp theo
+                            for (let k = i + 1; k < state.length; k++) {
+                                const nextSection = state[k];
+                                const nextLesson = nextSection.lessons.find(lesson => lesson.status !== 3);
+                                if (nextLesson) {
+                                    lesson.status = 1;
+                                    nextLesson.status = 2;
+                                    return;
+                                }
+                            }
+                        }
+                        return;
+                    }
+                }
+            }
+        }
     },
 });
 
-const {actions, reducer} = sectionSlice;
+const { actions, reducer } = sectionSlice;
 
-export const {setActiveLesson, nextLesson, previousLesson} = actions;
+export const { setActiveLesson, nextLesson, previousLesson } = actions;
 export default reducer;

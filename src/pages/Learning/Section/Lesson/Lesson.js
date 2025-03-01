@@ -13,6 +13,9 @@ const Lesson = ({item, index}) => {
     const dispatch = useDispatch()
 
     const handleLessonClick = () => {
+
+        if (item.status === 2) return
+
         const action = setActiveLesson()
         action.payload = item.id
         dispatch(action)
@@ -24,7 +27,7 @@ const Lesson = ({item, index}) => {
             {active: item.status === 2})}
         >
             <div className={cx('info')}>
-                <h3 className={cx('title')}>{index + 1}. {item.title}</h3>
+                <h3 className={cx('title')}>{item.lessonIndex}. {item.title}</h3>
                 <p className={cx('description')}>
                     {
                         item.status === 2
