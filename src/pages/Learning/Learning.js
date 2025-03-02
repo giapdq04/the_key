@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind'
-import React, { useCallback, useEffect, useState } from 'react'
+import React, {useCallback, useEffect, useState} from 'react'
 import 'react-circular-progressbar/dist/styles.css'
-import { useSelector } from "react-redux"
+import {useSelector} from "react-redux"
 
 import Footer from "./Footer/Footer"
 import styles from './Learning.module.scss'
@@ -9,6 +9,7 @@ import Sidebar from "./Sidebar/Sidebar"
 import Header from "./Header/Header";
 import Video from "./LessonTypes/Video/Video";
 import Document from "./LessonTypes/Document/Document";
+import Exercise from "./LessonTypes/Exercise/Exercise";
 
 const cx = classNames.bind(styles)
 
@@ -24,7 +25,7 @@ const Learning = () => {
 
         if (output) {
             document.title = output.title;
-            const updatedTime = new Date(output.updatedAt).toLocaleDateString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' });
+            const updatedTime = new Date(output.updatedAt).toLocaleDateString('vi-VN', {timeZone: 'Asia/Ho_Chi_Minh'});
             const video = `https://www.youtube.com/watch?v=${output?.ytbVideoId}`;
 
             setCurrentLesson({
@@ -44,17 +45,21 @@ const Learning = () => {
             return <Document currentLesson={currentLesson}/>
         }
 
-        return <Video currentLesson={currentLesson} />
+        if (currentLesson?.isExercise) {
+            return <Exercise currentLesson={currentLesson}/>
+        }
+
+        return <Video currentLesson={currentLesson}/>
     }, [currentLesson])
 
     return (
         <div className={cx('wrapper')}>
-            <Header />
+            <Header/>
 
-            {showSection && <Sidebar />}
+            {showSection && <Sidebar/>}
 
-            <MainContent />
-            <Footer showSection={showSection} onToggleSection={handleToggleSections} />
+            <MainContent/>
+            <Footer showSection={showSection} onToggleSection={handleToggleSections}/>
         </div>
     );
 }

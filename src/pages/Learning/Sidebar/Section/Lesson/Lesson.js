@@ -1,4 +1,11 @@
-import { faCircleCheck, faCirclePlay, faCompactDisc, faFileLines, faLock } from "@fortawesome/free-solid-svg-icons";
+import {
+    faCircleCheck,
+    faCirclePlay,
+    faCompactDisc,
+    faFileLines,
+    faLock,
+    faPen
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classNames from "classnames/bind";
 import React, { memo } from 'react';
@@ -26,6 +33,10 @@ const Lesson = ({ item }) => {
 
         if (item.isDoc) {
             return <FontAwesomeIcon icon={faFileLines} />
+        }
+
+        if(item.isExercise){
+            return <FontAwesomeIcon icon={faPen} />
         }
 
         if (item.status === 2) {

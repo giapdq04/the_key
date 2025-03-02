@@ -78,20 +78,36 @@ const initialState = [
                 title: 'Mô hình MVC',
                 isCompleted: true,
                 status: 1,
-                duration: 328,
-                isDoc: false,
-                ytbVideoId: '3bPTUAFX1XI',
+                duration: 60,
+                isDoc: true,
+                fileID: '16U3Yq9tzIR6H2bmg9cM6vG0hEeTQ9RCXc7fhM1xlhmQ',
                 updatedAt: new Date('2022-02-06T09:19:11.864+00:00').toISOString(),
                 lessonIndex: 6
             },
             {
                 id: nanoid(),
-                title: '[MVC] Routes & Controllers',
+                title: 'Kiểm tra ngữ pháp',
                 isCompleted: true,
                 status: 1,
-                duration: 1261,
+                duration: 60,
                 isDoc: false,
-                ytbVideoId: 'D-7VWOg5O_w',
+                isExercise: true,
+                questions:[
+                    {
+                        id: nanoid(),
+                        text: 'Ngôn ngữ lập trình nào được sử dụng để xây dựng React?',
+                        type: 'multiple-choice',
+                        options: ['Python', 'JavaScript', 'Java', 'C++'],
+                        correctAnswer: 'JavaScript',
+                    },
+                    {
+                        id: nanoid(),
+                        text: 'Drinking___of fruit juice is a good way to get vitamins',
+                        type: 'multiple-choice',
+                        options: ['many', 'few', 'a lot', 'no'],
+                        correctAnswer: 'a lot',
+                    },
+                ],
                 updatedAt: new Date('2022-02-07T09:19:11.864+00:00').toISOString(),
                 lessonIndex: 7
             }
@@ -104,91 +120,6 @@ const initialState = [
             {
                 id: nanoid(),
                 title: 'Lesson 1',
-                isCompleted: true,
-                status: 1,
-                duration: 300,
-                isDoc: false,
-                ytbVideoId: 'Aj0t3CSPGPg',
-                updatedAt: new Date('2022-02-08T09:19:11.864+00:00').toISOString(),
-                lessonIndex: 8
-            }
-        ]
-    },
-    {
-        id: nanoid(),
-        title: 'Section 5',
-        lessons: [
-            {
-                id: nanoid(),
-                title: 'Lesson 1',
-                isCompleted: true,
-                status: 1,
-                duration: 300,
-                isDoc: false,
-                ytbVideoId: 'jZgeidLTsdk',
-                updatedAt: new Date('2022-02-09T09:19:11.864+00:00').toISOString(),
-                lessonIndex: 9
-            }
-        ]
-    },
-    {
-        id: nanoid(),
-        title: 'Section 6',
-        lessons: [
-            {
-                id: nanoid(),
-                title: 'Lesson 1',
-                isCompleted: true,
-                status: 1,
-                duration: 300,
-                isDoc: false,
-                ytbVideoId: 'js6JBdLzNn4',
-                updatedAt: new Date('2022-02-10T09:19:11.864+00:00').toISOString(),
-                lessonIndex: 10
-            }
-        ]
-    },
-    {
-        id: nanoid(),
-        title: 'Section 7',
-        lessons: [
-            {
-                id: nanoid(),
-                title: 'Lesson 1',
-                isCompleted: true,
-                status: 1,
-                duration: 300,
-                isDoc: false,
-                ytbVideoId: 'Z3HLKC6g7SE',
-                updatedAt: new Date('2022-02-11T09:19:11.864+00:00').toISOString(),
-                lessonIndex: 11
-            }
-        ]
-    },
-    {
-        id: nanoid(),
-        title: 'Section 8',
-        lessons: [
-            {
-                id: nanoid(),
-                title: 'Lesson 1',
-                isCompleted: true,
-                status: 1,
-                duration: 300,
-                isDoc: false,
-                ytbVideoId: 'KbCyP7AN6UI',
-                updatedAt: new Date('2022-02-12T09:19:11.864+00:00').toISOString(),
-                lessonIndex: 12
-            }
-        ]
-    },
-    {
-        id: nanoid(),
-        title: 'Section 9',
-        lessons: [
-            {
-                id: nanoid(),
-                title: 'Lesson 1',
                 isCompleted: false,
                 status: 2,
                 duration: 300,
@@ -196,74 +127,6 @@ const initialState = [
                 ytbVideoId: 'g8gYCuD36ok',
                 updatedAt: new Date('2022-02-13T09:19:11.864+00:00').toISOString(),
                 lessonIndex: 13
-            }
-        ]
-    },
-    {
-        id: nanoid(),
-        title: 'Section 10',
-        lessons: [
-            {
-                id: nanoid(),
-                title: 'Lesson 1',
-                isCompleted: false,
-                status: 3,
-                duration: 300,
-                isDoc: false,
-                ytbVideoId: 'g8gYCuD36ok',
-                updatedAt: new Date('2022-02-14T09:19:11.864+00:00').toISOString(),
-                lessonIndex: 14
-            }
-        ]
-    },
-    {
-        id: nanoid(),
-        title: 'Section 11',
-        lessons: [
-            {
-                id: nanoid(),
-                title: 'Lesson 1',
-                isCompleted: false,
-                status: 3,
-                duration: 300,
-                isDoc: false,
-                ytbVideoId: 'g8gYCuD36ok',
-                updatedAt: new Date('2022-02-15T09:19:11.864+00:00').toISOString(),
-                lessonIndex: 15
-            }
-        ]
-    },
-    {
-        id: nanoid(),
-        title: 'Section 12',
-        lessons: [
-            {
-                id: nanoid(),
-                title: 'Lesson 1',
-                isCompleted: false,
-                status: 3,
-                duration: 300,
-                isDoc: false,
-                ytbVideoId: 'g8gYCuD36ok',
-                updatedAt: new Date('2022-02-16T09:19:11.864+00:00').toISOString(),
-                lessonIndex: 16
-            }
-        ]
-    },
-    {
-        id: nanoid(),
-        title: 'Section 13',
-        lessons: [
-            {
-                id: nanoid(),
-                title: 'Lesson 1',
-                isCompleted: false,
-                status: 3,
-                duration: 300,
-                isDoc: false,
-                ytbVideoId: 'g8gYCuD36ok',
-                updatedAt: new Date('2022-02-17T09:19:11.864+00:00').toISOString(),
-                lessonIndex: 17
             }
         ]
     }
@@ -296,6 +159,7 @@ const sectionSlice = createSlice({
                     const lesson = section.lessons[j];
                     if (lesson.status === 2) {
                         if (lesson.id === state[0].lessons[0].id) {
+                            alert('Bạn đang ở bài học đầu tiên của khóa học');
                             return
                         }
                         lesson.status = 1;
