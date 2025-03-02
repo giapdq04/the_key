@@ -8,60 +8,9 @@
   overflow-x: hidden;
   overscroll-behavior: contain;
 
-  .video-container {
+  .doc-view {
     width: 100%;
-    position: relative;
-    background-color: var(--black);
-    padding: 0 8.5%;
-    user-select: none;
-
-    .video-player-container {
-      position: relative;
-      padding-top: 56.25%;
-
-      .video-player {
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-
-        .fallback {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          height: 100%;
-
-          img {
-            height: 100%;
-            width: auto;
-          }
-        }
-
-        .play-button {
-          padding: 16px;
-          border-radius: 64px;
-          width: 64px;
-          height: 64px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          background-color: var(--primary-color);
-          transition: ease .3s;
-          cursor: pointer;
-
-          svg {
-            color: white;
-            font-size: 2.4rem;
-            transform: translateX(10%);
-          }
-        }
-      }
-
-    }
+    height: 80%;
   }
 
   .content {
@@ -86,6 +35,27 @@
         .update-at {
           font-size: 1.3rem;
           margin-bottom: 36px;
+        }
+      }
+
+      .download {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 20px;
+        border-radius: 5px;
+        background-color: #ccc;
+        color: #333;
+        font-size: 1.6rem;
+        transition: all 0.3s ease;
+
+        &:hover {
+          background-color: var(--primary-color);
+          color: #fff;
+        }
+
+        svg {
+          margin-right: 10px;
         }
       }
     }

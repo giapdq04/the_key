@@ -12,7 +12,6 @@ import config from "../../../config";
 const cx = classNames.bind(styles);
 
 const Header = () => {
-    console.log('render Header')
     const routeHome = config.routes.home;
 
     const SectionList = useSelector(state => state.section);

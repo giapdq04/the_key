@@ -8,6 +8,7 @@ import styles from './Learning.module.scss'
 import Sidebar from "./Sidebar/Sidebar"
 import Header from "./Header/Header";
 import Video from "./LessonTypes/Video/Video";
+import Document from "./LessonTypes/Document/Document";
 
 const cx = classNames.bind(styles)
 
@@ -40,7 +41,7 @@ const Learning = () => {
 
     const MainContent = useCallback(() => {
         if (currentLesson?.isDoc) {
-            return <div>Doc</div>
+            return <Document currentLesson={currentLesson}/>
         }
 
         return <Video currentLesson={currentLesson} />
