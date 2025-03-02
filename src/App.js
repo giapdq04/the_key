@@ -2,11 +2,13 @@ import { BrowserRouter, Route, Routes } from "react-router";
 import DefaultLayout from "./layouts/DefaultLayout/DefaultLayout";
 import { publicRoutes } from './routes/routes';
 import { Fragment } from "react";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
     <BrowserRouter>
       <div className="App">
+        <ToastContainer />
         <Routes>
           {publicRoutes.map((route, index) => {
             const Page = route.component;

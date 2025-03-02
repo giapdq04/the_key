@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fireworks-js/react": "^2.10.8",
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
     "@fortawesome/free-regular-svg-icons": "^6.7.2",
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
@@ -11,6 +12,7 @@
     "@reduxjs/toolkit": "^2.6.0",
     "classnames": "^2.5.1",
     "cra-template": "1.2.0",
+    "fireworks-js": "^2.10.8",
     "react": "^19.0.0",
     "react-circular-progressbar": "^2.2.0",
     "react-dom": "^19.0.0",
@@ -19,6 +21,7 @@
     "react-router": "^7.1.5",
     "react-scripts": "5.0.1",
     "react-slideshow-image": "^4.3.2",
+    "react-toastify": "^11.0.5",
     "web-vitals": "^4.2.4"
   },
   "scripts": {

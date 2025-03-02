@@ -8,14 +8,34 @@
   overflow-x: hidden;
   overscroll-behavior: contain;
 
-  .doc-view {
-    width: 100%;
-    height: 80%;
-  }
-
   .content {
     padding: 0 8.5%;
     min-height: 400px;
+
+    .title {
+      padding: 10px 0;
+    }
+
+    .submit-wrapper {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+
+      .submit-btn {
+        padding: 10px 30px;
+        border-radius: 10px;
+        font-size: 1.4rem;
+        transition: all 0.2s ease-in-out;
+
+        &:hover {
+          background-color: var(--primary-color);
+          color: #fff;
+          cursor: pointer;
+        }
+      }
+    }
+
+
   }
 
   .content-footer {
@@ -36,5 +56,13 @@
       font-size: 1.4rem;
       text-align: center;
     }
+  }
+
+  .fire-worker {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
   }
 }
