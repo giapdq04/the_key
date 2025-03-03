@@ -39,7 +39,7 @@ const LearningPath = () => {
                 <h2 className={cx("title")}>Lộ trình học</h2>
                 <div className={cx("_desc_juuyp_1")}>
                     <p className={cx("description")}>
-                    Để bắt đầu một cách thuận lợi, bạn nên tập trung vào một lộ trình học. Ví dụ: Để đi làm với vị trí "Lập trình viên Front-end" bạn nên tập trung vào lộ trình "Front-end".
+                        Để bắt đầu một cách thuận lợi, bạn nên tập trung vào một lộ trình học. Ví dụ: Để đi làm với vị trí "Lập trình viên Front-end" bạn nên tập trung vào lộ trình "Front-end".
                     </p>
                 </div>
             </div>
