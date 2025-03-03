@@ -1,7 +1,7 @@
 import { faBell } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
-import React from 'react';
+import React, { useState } from 'react';
 
 import images from '../../assets/images';
 import Button from '../Button';
@@ -9,11 +9,19 @@ import Image from '../Image';
 import Search from '../Search';
 import styles from './Header.module.scss';
 import { Link } from 'react-router';
-
+import AvatarMenu from '../AvatarMenu/AvatarMenu';
+import NotificationDropdown from '../NotificationDropdown/NotificationDropdown'; // Import component thông báo
+import CourseDropdown from '../CourseDropdown/CourseDropdown';
 
 const cx = classNames.bind(styles);
 
 const Header = () => {
+    const [showNotifications, setShowNotifications] = useState(false);
+
+    const toggleNotifications = () => {
+        setShowNotifications(!showNotifications);
+    };
+
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
@@ -31,15 +39,20 @@ const Header = () => {
 
                 <div className={cx('actions')}>
 
-                    <Button text>Khóa học của tôi</Button>
+                    {/* <Button text>Khóa học của tôi</Button> */}
+                    <CourseDropdown/>
+                    {/* Nút chuông để mở thông báo */}
+                    <div className={cx('notification-wrapper')}>
+                        <button className={cx('action-btn')} onClick={toggleNotifications}>
+                            <FontAwesomeIcon icon={faBell} />
+                        </button>
 
-                    <button className={cx('action-btn')}>
-                        <FontAwesomeIcon icon={faBell} />
-                    </button>
+                        {/* Hiển thị danh sách thông báo khi click */}
+                        {showNotifications && <NotificationDropdown />}
+                    </div>
 
-                    <Image
-                        className={cx('user-avatar')}
-                        src="https://images2.thanhnien.vn/528068263637045248/2023/4/23/edit-truc-anh-16822518118551137084698.png" alt="avatar" />
+                    {/* Gọi AvatarMenu */}
+                    <AvatarMenu />
                 </div>
             </div>
         </header>

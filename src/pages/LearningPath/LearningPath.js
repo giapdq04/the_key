@@ -2,6 +2,12 @@ import React from "react";
 import classNames from "classnames/bind";
 import styles from "./LearningPath.module.scss";
 import ButtonSocial from "../../components/Button/ButtonSocial";
+import { Tooltip } from "react-tooltip";
+import { Link } from "react-router-dom";
+import config from "../../config";
+
+
+
 
 const cx = classNames.bind(styles);
 
@@ -53,18 +59,17 @@ const LearningPath = () => {
                                 <p className={cx("learning-path-desc")}>{path.description}</p>
                             </div>
                             <a className={cx("thum-round")}>
-                                <img src={path.image} alt={path.title} className={cx("learning-path-image")} />
+                                <img src={path.image} className={cx("learning-path-image")} />
                             </a>
                         </div>
 
                         <div className={cx("skill-list")}>
                             {path.skills.map((skill, index) => (
-                                <div key={index} className={cx("skill-item")} title={`${skill.progress}% - ${skill.name}`}>
+                                <div key={index} className={cx("skill-item")} data-tooltip-id="tooltip" data-tooltip-content={`${skill.progress}% - ${skill.name}`}>
+
                                     <div className={cx("progress-circle")}>
                                         <svg width="10" height="10" viewBox="0 0 40 40">
-                                            {/* Vòng tròn nền xám */}
                                             <circle cx="20" cy="20" r="16" stroke="#ddd" strokeWidth="3" fill="none" />
-                                            {/* Vòng tròn tiến độ */}
                                             <circle
                                                 cx="20"
                                                 cy="20"
@@ -87,25 +92,36 @@ const LearningPath = () => {
                                 </div>
                             ))}
                         </div>
+                        <Link to={config.routes.deiltaLearningPath}>
                         <div>
-                            <button className={cx("detail-button")}>XEM CHI TIẾT</button>
+                        <button className={cx("detail-button")}>XEM CHI TIẾT</button>
                         </div>
+                          
+                        </Link>
 
                     </div>
-
                 ))}
             </div>
 
+            <Tooltip id="tooltip" />
+
+
             <div className={cx("wrapper-social")}>
                 <div className={cx("info-social")}>
-                    <h2 className={cx("title")}>Tham gia cộng đồng học viên F8 trên Facebook</h2>
-                    <p className={cx("description")}>Hàng nghìn người khác đang học lộ trình giống như bạn. Hãy tham gia hỏi đáp, chia sẻ và hỗ trợ nhau trong quá trình học nhé.</p>
+                    <h2 className={cx("title")}>
+                        Tham gia cộng đồng học viên F8 trên Facebook
+                    </h2>
+                    <p className={cx("description")}>
+                        Hàng nghìn người khác đang học lộ trình giống như bạn. Hãy tham gia hỏi đáp, chia sẻ và hỗ trợ nhau trong quá trình học nhé.
+                    </p>
                     <ButtonSocial text="Tham gia ngay" href="https://www.facebook.com/groups/f8official" />
-
                 </div>
                 <div className={cx("image-social")}></div>
-                <img style={{ width: 420, height: 420 }} src="https://fullstack.edu.vn/assets/fb-group-cards-CAn_kGMe.png" alt="Mô tả ảnh" />
-
+                <img
+                    style={{ width: 420, height: 420 }}
+                    src="https://fullstack.edu.vn/assets/fb-group-cards-CAn_kGMe.png"
+                    alt="Mô tả ảnh"
+                />
             </div>
         </div>
     );
