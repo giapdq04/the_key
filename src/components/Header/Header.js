@@ -1,7 +1,7 @@
 import { faBell } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 
 import images from '../../assets/images';
 import Button from '../Button';
@@ -12,12 +12,14 @@ import { Link } from 'react-router';
 import AvatarMenu from '../AvatarMenu/AvatarMenu';
 import NotificationDropdown from '../NotificationDropdown/NotificationDropdown'; // Import component thông báo
 import CourseDropdown from '../CourseDropdown/CourseDropdown';
+import useClickOutside from '../../hooks/useClickOutside';
 
 const cx = classNames.bind(styles);
 
 const Header = () => {
     const [showNotifications, setShowNotifications] = useState(false);
-
+    const droprefnotification = useRef(null);
+    useClickOutside(droprefnotification, () => setShowNotifications(false));
     const toggleNotifications = () => {
         setShowNotifications(!showNotifications);
     };
@@ -42,7 +44,7 @@ const Header = () => {
                     {/* <Button text>Khóa học của tôi</Button> */}
                     <CourseDropdown/>
                     {/* Nút chuông để mở thông báo */}
-                    <div className={cx('notification-wrapper')}>
+                    <div className={cx('notification-wrapper')} ref={droprefnotification}>
                         <button className={cx('action-btn')} onClick={toggleNotifications}>
                             <FontAwesomeIcon icon={faBell} />
                         </button>

@@ -1,20 +1,23 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import classNames from "classnames/bind";
 import Image from "../Image";
 import styles from "./AvatarMenu.module.scss";
+import useClickOutside from "../../hooks/useClickOutside";
 
 const cx = classNames.bind(styles);
 
 const AvatarMenu = () => {
     const [showMenu, setShowMenu] = useState(false);
+    const droprefavatar = useRef(null);
 
+    useClickOutside(droprefavatar, () => setShowMenu(false));
     const toggleMenu = () => {
         setShowMenu(!showMenu);
     };
 
     return (
-        <div className={cx("avatar-container")}>
+        <div className={cx("avatar-container")} ref={droprefavatar}>
             {/* Avatar */}
             <Image
                 className={cx("user-avatar")}

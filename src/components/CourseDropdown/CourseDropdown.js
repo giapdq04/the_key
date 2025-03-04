@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import classNames from "classnames/bind";
 import styles from "./CourseDropdown.module.scss";
-import { Tooltip } from "react-tooltip"; // Import thư viện
+import { Tooltip } from "react-tooltip";
+import useClickOutside from "../../hooks/useClickOutside";
+
 
 const cx = classNames.bind(styles);
 
@@ -14,9 +16,13 @@ const courses = [
 
 const CourseDropdown = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const dropdownRef = useRef(null);
+
+    // Gọi hook để đóng dropdown khi click bên ngoài
+    useClickOutside(dropdownRef, () => setIsOpen(false));
 
     return (
-        <div className={cx("course-container")}>
+        <div className={cx("course-container")} ref={dropdownRef}>
             <button onClick={() => setIsOpen(!isOpen)} className={cx("course-button")}>
                 Khóa học của tôi
             </button>

@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { use, useRef, useState } from "react";
 import classNames from "classnames/bind";
 import styles from "./NotificationDropdown.module.scss";
+import useClickOutside from "../../hooks/useClickOutside";
 
 const cx = classNames.bind(styles);
 
@@ -14,7 +15,9 @@ const initialNotifications = [
 
 const NotificationDropdown = () => {
     const [notifications, setNotifications] = useState(initialNotifications);
-
+    const [isOpen, setisOpen] = useState(false)
+    const droprefnotification = useRef(null);
+    useClickOutside(droprefnotification, () => setisOpen(false));
     // Hàm xử lý khi nhấn vào một thông báo
     const handleNotificationClick = (id) => {
         setNotifications((prevNotifications) =>
@@ -25,12 +28,12 @@ const NotificationDropdown = () => {
     };
 
     return (
-        <div className={cx("notification-dropdown")}>
+        <div className={cx("notification-dropdown")} ref={droprefnotification}>
             <div className={cx("header")}>
                 <h4>Thông báo</h4>
                 <span className={cx("mark-read")}>Đánh dấu đã đọc</span>
             </div>
-
+            
             <ul className={cx("notification-list")}>
                 {notifications.map((item) => (
                     <li
