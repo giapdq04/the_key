@@ -4,6 +4,8 @@ import classNames from "classnames/bind";
 import Image from "../Image";
 import styles from "./AvatarMenu.module.scss";
 import useClickOutside from "../../hooks/useClickOutside";
+import { Link } from "react-router";
+import config from "../../config";
 
 const cx = classNames.bind(styles);
 
@@ -47,13 +49,17 @@ const AvatarMenu = () => {
                     </div>
                 </div>
                 <hr />
-                <p className={cx("menu-item")}>Trang cá nhân</p>
+              <Link to={config.routes.profile}>
+              <p className={cx("menu-item")}>Trang cá nhân</p>
+              </Link>
                 <hr class="_wrapper_qhx2q_1 hr"></hr>
                 <p className={cx("menu-item")}>Viết blog</p>
                 <p className={cx("menu-item")}>Bài viết của tôi</p>
                 <p className={cx("menu-item")}>Bài viết đã lưu</p>
                 <hr class="_wrapper_qhx2q_1 hr"></hr>
-                <p className={cx("menu-item")}>Cài đặt</p>
+               <Link to={config.routes.setting}>
+               <p className={cx("menu-item")}>Cài đặt</p>
+               </Link>
                 <p className={cx("menu-item")}>Đăng xuất</p>
             </motion.div>
         </div>
