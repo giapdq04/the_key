@@ -64,8 +64,8 @@ const LearningPath = () => {
                                 <h3 className={cx("learning-path-title")}>{path.title}</h3>
                                 <p className={cx("learning-path-desc")}>{path.description}</p>
                             </div>
-                            <a className={cx("thum-round")}>
-                                <img src={path.image} className={cx("learning-path-image")} />
+                            <a className={cx("thum-round")} href="https://www.youtube.com/">
+                                <img src={path.image} className={cx("learning-path-image")} alt="" />
                             </a>
                         </div>
 

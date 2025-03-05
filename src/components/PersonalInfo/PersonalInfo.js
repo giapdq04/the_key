@@ -12,7 +12,7 @@ const userInfo = [
     { label: "Họ và tên", value: "Việt ANH Phạm", modal: "name" },
     { label: "Tên người dùng", value: "phamvietanh4", modal: "username" },
     { label: "Giới thiệu", value: "Chưa cập nhật", modal: "introduce" },
-    { label: "Ảnh đại diện", value: <img src="" />, modal: "image" },
+    { label: "Ảnh đại diện", value: <img src="" alt="" />, modal: "image" },
 ];
 
 const PersonalInfo = () => {
@@ -81,7 +81,6 @@ const PersonalInfo = () => {
                     title={modalData.title}
                     value={modalData.value}
                     onSave={(val) => {
-                        console.log("Cập nhật họ và tên:", val);
                         closeModal();
                     }}
                 />
@@ -93,7 +92,6 @@ const PersonalInfo = () => {
                     title={modalData.title}
                     value={modalData.value}
                     onSave={(val) => {
-                        console.log("Cập nhật tên người dùng:", val);
                         closeModal();
                     }}
                 />
@@ -105,7 +103,6 @@ const PersonalInfo = () => {
                     title={modalData.title}
                     value={modalData.value}
                     onSave={(val) => {
-                        console.log("Cập nhật giới thiệu:", val);
                         closeModal();
                     }}
                 />
@@ -117,7 +114,6 @@ const PersonalInfo = () => {
                     title={modalData.title}
                     value={modalData.value}
                     onSave={(val) => {
-                        console.log("Cập nhật ảnh đại diện:", val);
                         closeModal();
                     }}
                 />

@@ -86,8 +86,8 @@ const Profile = () => {
                       className={cx("icon_img")}
                     />
                   </span>
-                  <a className={cx("_tab_12z60_8")}>Khóa học của tôi.</a>
-                  <a className={cx("_tab_12z60_8")}>{user.courses.length}.</a>
+                  <a className={cx("_tab_12z60_8")} href="https://www.youtube.com/">Khóa học của tôi.</a>
+                  <a className={cx("_tab_12z60_8")} href="https://www.youtube.com/">{user.courses.length}.</a>
                 </div>
 
                 {/* Kiểm tra nếu danh sách khóa học rỗng */}
@@ -110,7 +110,7 @@ const Profile = () => {
                           }}
                         >
                           <div className={cx("wrapper_item")}>
-                            <a className={cx("link_item")} href="#" title={course.title}>
+                            <a className={cx("link_item")} href="https://www.youtube.com/" title={course.title} >
                               <img className={cx("thumb")} src={course.image} alt={course.title} />
                             </a>
                             <div className={cx("content_wrapper")}>

@@ -8,7 +8,7 @@ const ButtonSocial = ({ text, href }) => {
     <a
       href={href}
       target="_blank"
-      rel="noopener"
+      rel="noreferrer"
       style={{
         display: "inline-block",
         color: isHovered ? "white" : "#292929",
