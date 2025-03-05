@@ -3,7 +3,7 @@ import classNames from "classnames/bind";
 import styles from "./LearningPath.module.scss";
 import ButtonSocial from "../../components/Button/ButtonSocial";
 import { Tooltip } from "react-tooltip";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import config from "../../config";
 
 
@@ -42,7 +42,7 @@ const LearningPath = () => {
     const first = useRef()
     useEffect(() => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
-}, [])
+    }, [])
 
 
     return (
@@ -99,10 +99,10 @@ const LearningPath = () => {
                             ))}
                         </div>
                         <Link to={config.routes.deiltaLearningPath}>
-                        <div>
-                        <button className={cx("detail-button")}>XEM CHI TIẾT</button>
-                        </div>
-                          
+                            <div>
+                                <button className={cx("detail-button")}>XEM CHI TIẾT</button>
+                            </div>
+
                         </Link>
 
                     </div>
