@@ -13,6 +13,7 @@ import AvatarMenu from '../AvatarMenu/AvatarMenu';
 import NotificationDropdown from '../NotificationDropdown/NotificationDropdown'; // Import component thông báo
 import CourseDropdown from '../CourseDropdown/CourseDropdown';
 import useClickOutside from '../../hooks/useClickOutside';
+import LoginModal from '../ModalAuthentication/LoginModal/LoginModal';
 
 const cx = classNames.bind(styles);
 
@@ -23,7 +24,16 @@ const Header = () => {
     const toggleNotifications = () => {
         setShowNotifications(!showNotifications);
     };
-
+    // Đăng nhập đăng kíkí
+    const [activeButton, setactiveButton] = useState('login')
+    const [showLoginModal, setshowLoginModal] = useState(false)
+    const handleLoginModal = ()=>{
+    setactiveButton('login');
+    setshowLoginModal(true);
+    }
+    const handleCloseLogin = () => {
+        setshowLoginModal(false); // Đóng modal
+    };
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
@@ -31,32 +41,49 @@ const Header = () => {
                     <Link to='/'>
                         <img src={images.logo} className={cx('logo')} alt='F8' />
                     </Link>
-                    
+
                     <Link to='/'>
                         <p className={cx('title')}>Học Lập Trình Để Đi Làm</p>
                     </Link>
                 </div>
 
+                <div className={cx('center-search')}>
                 <Search />
+                </div>
+                {/* Khi chưa đăng nhập sẽ hiển thị 2 nút đăng nhậpnhập */}
 
-                <div className={cx('actions')}>
+                <div className={cx('auth-buttons')}>
+                         <button
+                        className={cx('auth-btn', { active: activeButton === 'login' })}
+                        onClick={handleLoginModal}
+                    >
+                        Đăng nhập
+                    </button>
+                </div>
 
-                    {/* <Button text>Khóa học của tôi</Button> */}
+
+
+                {/* Khi đăng nhập thành công thì nó sẽ hiển thị khối nàynày */}
+
+                {/* <div className={cx('actions')}>
+
+                
                     <CourseDropdown/>
-                    {/* Nút chuông để mở thông báo */}
+                 
                     <div className={cx('notification-wrapper')} ref={droprefnotification}>
                         <button className={cx('action-btn')} onClick={toggleNotifications}>
                             <FontAwesomeIcon icon={faBell} />
                         </button>
 
-                        {/* Hiển thị danh sách thông báo khi click */}
                         {showNotifications && <NotificationDropdown />}
                     </div>
 
-                    {/* Gọi AvatarMenu */}
+                  
                     <AvatarMenu />
-                </div>
+                </div> */}
             </div>
+            {showLoginModal && <LoginModal isOpen={showLoginModal} onClose={handleCloseLogin} />}
+
         </header>
     );
 };

@@ -3,13 +3,13 @@ import React, { useState } from 'react'; // ✅ Đưa useState lên đầu
 import styles from './Setting.module.scss';
 import PersonalInfo from '../../components/PersonalInfo/PersonalInfo';
 import Security from '../../components/Security/Security';
-
+import { useNavigate } from 'react-router-dom';
 const cx = classNames.bind(styles);
 
 
 const Setting = () => {
     const [activeTab, setActiveTab] = useState('personal'); // Thêm state
-
+    const navigate = useNavigate();
     return (
         <div className={cx('container')}>
             <div className={cx('sidebar')}>
@@ -85,7 +85,7 @@ const Setting = () => {
             {/* Nội dung thay đổi theo tab */}
             <div className={cx('content')}>
                 <div>
-                    <button className={cx('close_btn')}>
+                    <button className={cx('close_btn')} onClick={() => navigate(-1)}>
                         <svg
                             aria-hidden="true"
                             focusable="false"

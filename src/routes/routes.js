@@ -8,6 +8,7 @@ import DeiltaLearningpath from '../pages/DeiltaLearningpath/DeiltaLearningPath';
 import Profile from '../pages/Profile/Profile';
 import Setting from '../pages/Setting/Setting';
 import { path } from 'framer-motion/client';
+import NoSideBarLayout from '../layouts/NoSideBarLayout/NoSideBarLayout';
 const publicRoutes = [
     { path: config.routes.home, component: Home },
     { path: config.routes.learningPath, component: LearningPath },
@@ -16,7 +17,7 @@ const publicRoutes = [
     { path: config.routes.learning, component: Learning , layout: null},
     {path: config.routes.deiltaLearningPath, component: DeiltaLearningpath},
     {path: config.routes.profile, component: Profile},
-    {path: config.routes.setting, component: Setting}
+    {path: config.routes.setting, component: Setting,layout:null}
 ];
 
 export { publicRoutes };

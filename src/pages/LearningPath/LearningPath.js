@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import classNames from "classnames/bind";
 import styles from "./LearningPath.module.scss";
 import ButtonSocial from "../../components/Button/ButtonSocial";
@@ -39,8 +39,14 @@ const learningPaths = [
 ];
 
 const LearningPath = () => {
+    const first = useRef()
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+}, [])
+
+
     return (
-        <div className={cx("wrapper")}>
+        <div className={cx("wrapper")} ref={first}>
             <div className={cx("container-top_content_1")}>
                 <h2 className={cx("title")}>Lộ trình học</h2>
                 <div className={cx("_desc_juuyp_1")}>
