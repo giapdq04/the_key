@@ -1,0 +1,252 @@
+.container_juuyp_1 {
+    padding: 8px 44px 0;
+    margin-bottom: 60px;
+    height: auto;
+}
+
+.wrapper_1 {
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+.row_container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: calc(var(--grid-gutter-y) * -1);
+    margin-left: calc(var(--grid-gutter-x) * -0.5);
+    margin-right: calc(var(--grid-gutter-x) * -0.5);
+    width: 100%;
+    margin-left: auto;
+}
+
+:root {
+    --grid-gutter-x: 24px;
+    --grid-gutter-y: 0;
+}
+
+.colo_1 {
+    flex: 0 0 auto;
+    width: 25%;
+}
+
+.wrapper_content {
+    line-height: 1.4;
+}
+
+.avatar_container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.avatar_nav {
+    background: transparent;
+    font-size: 24px;
+    border-radius: 50%;
+}
+
+.avatar_img {
+    width: 9em;
+    height: 9em;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.name_1 {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    font-size: 2.4rem;
+    font-weight: 700;
+}
+
+.user_name:hover {
+    cursor: pointer;
+    text-decoration: none;
+    outline: none;
+}
+
+.start_wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 20px;
+    font-size: 1.4rem;
+}
+
+.nav_start {
+    display: flex;
+    align-items: center;
+}
+
+.left_icon {
+    flex-shrink: 0;
+    width: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 8px;
+    color: #7c858b;
+}
+
+.svg_icon {
+    display: inline-block;
+    height: 1em;
+    overflow: visible;
+    vertical-align: -.125em;
+    fill: currentColor;
+}
+
+.icon_img {
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
+}
+
+// thong tin khoa hoc🙌
+.colo_2 {
+    flex: 0 0 auto;
+    width: 75%;
+}
+
+.wrapper_corner {
+    width: 100%;
+    padding-left: 50px;
+}
+
+.corner_1 {
+    display: flex;
+
+    width: 100%;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+._tab_12z60_8._active_12z60_23 {
+    opacity: 1;
+    text-shadow: 0 0 .1px #0000;
+    border-bottom: 3px solid #1b74e4;
+    cursor: pointer;
+}
+
+._tab_12z60_8 {
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+
+    padding: 10px;
+    margin-bottom: -1px;
+    font-size: 1.4rem;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    text-shadow: 0 0 .1px #0000;
+}
+
+.corner_2 {
+    margin-top: 40px;
+}
+
+.row_container2 {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: calc(var(--grid-gutter-y) * -1);
+    margin-left: calc(var(--grid-gutter-x) * .5* -1);
+    margin-right: calc(var(--grid-gutter-x) * .5 * -1);
+    width: 100%;
+    margin-left: auto;
+    gap: 10px;
+    cursor: pointer;
+}
+
+:root {
+    --grid-gutter-x: 24px;
+    --grid-gutter-y: 24px;
+}
+
+.corner_item_container {
+    flex: 0 0 auto;
+    width: 32%; /* Chia thành 3 cột (100% / 3 ≈ 32%) */
+  margin-bottom: 16px; /* Khoảng cách dọc giữa các hàng */
+  overflow: hidden;
+  transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+}
+
+.wrapper_item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #00000008;
+    transition: transform .2s, box-shadow .2s;
+}
+
+.link_item {
+    position: relative;
+    display: block;
+    width: 100%;
+    padding-top: 56.25%;
+    border-radius: 16px 16px 0 0;
+    object-fit: cover;
+    overflow: hidden;
+}
+
+.link_item .thumb {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.content_wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px 20px;
+}
+
+.title_head {
+    font-weight: 600;
+}
+
+.price_content {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 18px;
+}
+
+.main_price {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #f05123;
+}
+
+.more_content {
+    display: flex;
+    justify-content: space-between;
+    margin-top: auto;
+}
+._moreInfo_1cn8u_51 {
+    display: flex
+;
+    justify-content: space-between;
+    margin-top: auto;
+}
+.empty-container {
+    text-align: center;
+    margin-top: 30px;
+  }
+  
+  .lottie {
+    width: 250px;
+    height: 250px;
+    margin: 0 auto;
+  }
+  

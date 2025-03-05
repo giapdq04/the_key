@@ -42,6 +42,13 @@
   }
 }
 
+.center-search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 22%
+}
+
 .actions {
   display: flex;
   align-items: center;
@@ -69,4 +76,32 @@
   border-radius: 50%;
   margin-left: 12px;
   cursor: pointer;
+}
+
+.auth-buttons {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: auto;
+  justify-content: flex-end;
+  .auth-btn {
+      padding: 8px 16px;
+      border-radius: 99px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      background: transparent;
+      color: #333;
+      border: none;
+
+      &:hover {
+          color: #ff6b00;
+      }
+
+      &.active {
+          background: linear-gradient(45deg, #ff6b00, #ff8c42);
+          color: #fff;
+      }
+  }
 }
