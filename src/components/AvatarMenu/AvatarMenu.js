@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import classNames from "classnames/bind";
 import Image from "../Image";
@@ -12,10 +12,26 @@ const cx = classNames.bind(styles);
 const AvatarMenu = () => {
     const [showMenu, setShowMenu] = useState(false);
     const droprefavatar = useRef(null);
+    const [user, setUser] = useState(null);
 
     useClickOutside(droprefavatar, () => setShowMenu(false));
+
+    useEffect(() => {
+        // Lấy dữ liệu người dùng từ localStorage
+        const storedUser = localStorage.getItem("user");
+        if (storedUser) {
+            setUser(JSON.parse(storedUser));
+        }
+    }, []);
+
     const toggleMenu = () => {
         setShowMenu(!showMenu);
+    };
+
+    const handleLogout = () => {
+        localStorage.removeItem("user"); // Xóa thông tin người dùng
+        setUser(null); // Cập nhật lại state
+        window.location.reload(); // Reload lại trang
     };
 
     return (
@@ -23,7 +39,7 @@ const AvatarMenu = () => {
             {/* Avatar */}
             <Image
                 className={cx("user-avatar")}
-                src="https://images2.thanhnien.vn/528068263637045248/2023/4/23/edit-truc-anh-16822518118551137084698.png"
+                src={user ? user.photoURL : "https://cdn-icons-png.flaticon.com/512/847/847969.png"} // Avatar của người dùng hoặc ảnh mặc định
                 alt="avatar"
                 onClick={toggleMenu}
             />
@@ -36,31 +52,40 @@ const AvatarMenu = () => {
                 className={cx("menu-dropdown")}
                 style={{ display: showMenu ? "block" : "none" }}
             >
-                <div className={cx("_user_12z5x_6")}>
-                    <div className={cx("_avatarWrapper_12z5x_11")}>
-                        <Image
-                            className={cx("_avatar_a1a1")}
-                            src="https://images2.thanhnien.vn/528068263637045248/2023/4/23/edit-truc-anh-16822518118551137084698.png"
-                        />
-                    </div>
-                    <div style={{ marginLeft: 10 }}>
-                        <p className={cx("_name_12z5x_27")}>Việt Anh Phạm</p>
-                        <p className={cx("_username_12z5x_33 ")}>@phamvietanh4</p>
-                    </div>
-                </div>
-                <hr />
-              <Link to={config.routes.profile}>
-              <p className={cx("menu-item")}>Trang cá nhân</p>
-              </Link>
-                <hr class="_wrapper_qhx2q_1 hr"></hr>
-                <p className={cx("menu-item")}>Viết blog</p>
-                <p className={cx("menu-item")}>Bài viết của tôi</p>
-                <p className={cx("menu-item")}>Bài viết đã lưu</p>
-                <hr class="_wrapper_qhx2q_1 hr"></hr>
-               <Link to={config.routes.setting}>
-               <p className={cx("menu-item")}>Cài đặt</p>
-               </Link>
-                <p className={cx("menu-item")}>Đăng xuất</p>
+                {user ? (
+                    <>
+                        <div className={cx("_user_12z5x_6")}>
+                            <div className={cx("_avatarWrapper_12z5x_11")}>
+                                <Image className={cx("_avatar_a1a1")} src={user.photoURL} />
+                            </div>
+                            <div style={{ marginLeft: 10 }}>
+                                <p className={cx("_name_12z5x_27")}>{user.displayName}</p>
+                                <p className={cx("_username_12z5x_33")}>@{user.email}</p>
+                            </div>
+                        </div>
+                        <hr />
+                        <Link
+                            to={{
+                                pathname: config.routes.profile,
+                                state: { user: user }, // Truyền dữ liệu user
+                            }}
+                        >
+                            <p className={cx("menu-item")}>Trang cá nhân</p>
+                        </Link>
+
+                        <hr />
+                        <p className={cx("menu-item")}>Viết blog</p>
+                        <p className={cx("menu-item")}>Bài viết của tôi</p>
+                        <p className={cx("menu-item")}>Bài viết đã lưu</p>
+                        <hr />
+                        <Link to={config.routes.setting}>
+                            <p className={cx("menu-item")}>Cài đặt</p>
+                        </Link>
+                        <p className={cx("menu-item")} onClick={handleLogout}>Đăng xuất</p>
+                    </>
+                ) : (
+                    <p className={cx("menu-item")}>Bạn chưa đăng nhập</p>
+                )}
             </motion.div>
         </div>
     );

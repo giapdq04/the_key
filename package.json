@@ -12,6 +12,7 @@
     "@reduxjs/toolkit": "^2.6.0",
     "classnames": "^2.5.1",
     "cra-template": "1.2.0",
+    "firebase": "^11.4.0",
     "fireworks-js": "^2.10.8",
     "framer-motion": "^12.4.7",
     "lottie-react": "^2.4.1",
