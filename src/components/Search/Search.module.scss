@@ -4,54 +4,42 @@
 
 .search-wrapper {
   position: relative;
-}
-
-.search {
-  width: 361px;
+  width: 470px;
 }
 
 .search {
   position: relative;
   height: var(--search-height);
-  min-width: 420px;
+  width: 100%;
+  max-width: 420px;
   display: flex;
   background-color: transparent;
   border-radius: 20px;
   border: 2px solid #e8e8e8;
-  justify-content: center;
   align-items: center;
   transition: border-color 0.2s ease-in-out;
+  overflow: hidden; /* Đảm bảo không bị vỡ bố cục */
+}
 
-  .search-icon {
-    color: #7c7c7c;
-    padding: 10px 10px 10px 15px;
-    font-size: 1.7rem;
-  }
+.search-icon {
+  min-width: 40px; /* Giữ kích thước cố định */
+  text-align: center;
+  color: #7c7c7c;
+  font-size: 1.7rem;
+}
 
-  input {
-    flex: 1;
-    height: 100%;
-    padding-right: 40px;
-    color: #000;
-    font-size: 1.4rem;
-    caret-color: var(--primary);
-    background-color: transparent;
-    caret-color: #444;
-  }
-
-  &::after {
-    content: '';
-    position: absolute;
-    top: var(--search-top-spacer);
-    right: var(--search-button-width);
-    width: 1px;
-    height: calc(var(--search-height) - var(--search-top-spacer) * 2);
-    background-color: rgba(22, 24, 35, 0.12);
-  }
-
-  &:focus-within {
-    border-color: #444;
-  }
+input {
+  flex: 1;
+  height: 100%;
+  padding-left: 10px;
+  padding-right: 40px; /* Đảm bảo có chỗ cho icon clear */
+  color: #000;
+  font-size: 1.4rem;
+  background-color: transparent;
+  caret-color: #444;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .clear {
@@ -63,8 +51,7 @@
   background-color: transparent;
 }
 
-
-// search result
+// Search result
 .search-result {
   background-color: #fff;
   min-height: 100px;
@@ -76,4 +63,44 @@
   position: absolute;
   width: 100%;
   top: calc(var(--search-height) + 10px);
+}
+
+/* Responsive cho mobile */
+@media screen and (max-width: 768px) {
+  .search {
+    max-width: 70vw;
+  }
+  input {
+    font-size: 1.3rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .search {
+    max-width: 60vw;
+    height: 36px;
+  }
+  .search-icon {
+    font-size: 1.5rem;
+    min-width: 36px;
+  }
+  input {
+    font-size: 1.2rem;
+    padding-left: 8px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .search {
+    max-width: 50vw;
+    min-width: 140px;
+  }
+  .search-icon {
+    min-width: 32px;
+    font-size: 1.4rem;
+  }
+  input {
+    font-size: 1.1rem;
+    padding-left: 6px;
+  }
 }

@@ -74,9 +74,6 @@ const AvatarMenu = () => {
                         </Link>
 
                         <hr />
-                        <p className={cx("menu-item")}>Viết blog</p>
-                        <p className={cx("menu-item")}>Bài viết của tôi</p>
-                        <p className={cx("menu-item")}>Bài viết đã lưu</p>
                         <hr />
                         <Link to={config.routes.setting}>
                             <p className={cx("menu-item")}>Cài đặt</p>

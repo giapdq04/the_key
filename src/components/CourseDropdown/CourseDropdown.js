@@ -1,9 +1,8 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import classNames from "classnames/bind";
 import styles from "./CourseDropdown.module.scss";
 import { Tooltip } from "react-tooltip";
 import useClickOutside from "../../hooks/useClickOutside";
-
 
 const cx = classNames.bind(styles);
 
@@ -16,10 +15,18 @@ const courses = [
 
 const CourseDropdown = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
     const dropdownRef = useRef(null);
 
-    // Gọi hook để đóng dropdown khi click bên ngoài
     useClickOutside(dropdownRef, () => setIsOpen(false));
+
+    useEffect(() => {
+        const handleResize = () => setIsMobile(window.innerWidth <= 768);
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
+    if (isMobile) return null; // Ẩn hoàn toàn trên màn nhỏ
 
     return (
         <div className={cx("course-container")} ref={dropdownRef}>

@@ -63,11 +63,14 @@ const Header = () => {
 
                 {/* Nếu chưa đăng nhập, hiển thị nút đăng nhập */}
                 {!user ? (
-                    <div className={cx('auth-buttons')}>
-                        <button className={cx('auth-btn')} onClick={handleLoginModal}>
-                            Đăng nhập
-                        </button>
+                    <div className={cx('nav-button')}>
+                        <div className={cx('auth-buttons')}>
+                            <button className={cx('auth-btn')} onClick={handleLoginModal}>
+                                Đăng nhập
+                            </button>
+                        </div>
                     </div>
+
                 ) : (
                     // Nếu đã đăng nhập, hiển thị Avatar, khóa học, thông báo
                     <div className={cx('actions')}>

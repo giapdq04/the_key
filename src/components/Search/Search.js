@@ -4,7 +4,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import styles from './Search.module.scss';
 import SearchResult from './SearchResult';
 import useClickOutside from '../../hooks/useClickOutside';
@@ -14,6 +14,7 @@ const cx = classNames.bind(styles);
 const Search = () => {
     const [showResult, setShowResult] = useState(false);
     const [searchValue, setSearchValue] = useState('');
+    const [placeholder, setPlaceholder] = useState('Tìm kiếm khóa học, bài viết, video...');
     const searchRef = useRef(null);
 
     const handleChange = (value) => {
@@ -22,7 +23,27 @@ const Search = () => {
 
     const handleDeleteAllSearch = () => {
         setSearchValue('');
-    }
+    };
+
+    // Kiểm tra kích thước màn hình để thay đổi placeholder
+    useEffect(() => {
+        const updatePlaceholder = () => {
+            if (window.innerWidth <= 375) {
+                setPlaceholder('Tìm...');
+            } else if (window.innerWidth <= 480) {
+                setPlaceholder('Tìm kiếm...');
+            } else {
+                setPlaceholder('Tìm kiếm khóa học, bài viết, video...');
+            }
+        };
+
+        // Gọi hàm khi load và khi resize
+        updatePlaceholder();
+        window.addEventListener('resize', updatePlaceholder);
+
+        // Cleanup listener khi component unmount
+        return () => window.removeEventListener('resize', updatePlaceholder);
+    }, []);
 
     useClickOutside(searchRef, () => setShowResult(false));
 
@@ -35,7 +56,7 @@ const Search = () => {
                 <input
                     value={searchValue}
                     onChange={(e) => handleChange(e.target.value)}
-                    placeholder="Tìm kiếm khóa học, bài viết, video..."
+                    placeholder={placeholder}
                     spellCheck={false}
                     onFocus={() => setShowResult(true)}
                 />
