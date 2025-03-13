@@ -1,13 +1,32 @@
-import React, { useState } from "react";
-import Lottie from "lottie-react";
-import styles from "./Profile.module.scss";
 import classNames from "classnames/bind";
-import emptyAnimation from "../../assets/lottie/nocorner.json"; // Thay bằng file JSON Lottie của bạn
 import { motion } from "framer-motion";
+import Lottie from "lottie-react";
+import React from "react";
+import emptyAnimation from "../../assets/lottie/nocorner.json"; // Thay bằng file JSON Lottie của bạn
+import styles from "./Profile.module.scss";
 const cx = classNames.bind(styles);
 
 const Profile = () => {
-  const [user, setUser] = useState({
+  // const [user, setUser] = useState({
+  //   name: "Việt Anh đẹp trai",
+  //   username: "@vietanh19218",
+  //   followers: 10,
+  //   following: 0,
+  //   joined: "1 năm",
+  //   courses: [
+  //     // {
+  //     //   title: "HTML CSS từ Zero đến Hero",
+  //     //   price: "Miễn phí",
+  //     //   students: 207498,
+  //     //   lessons: 117,
+  //     //   duration: "29h5p",
+  //     //   image: "https://files.fullstack.edu.vn/f8-prod/courses/4/61a9e9e701506.png",
+  //     // },
+
+  //   ], // Đặt mảng rỗng để kiểm tra khi không có khóa học
+  // });
+
+  const user = {
     name: "Việt Anh đẹp trai",
     username: "@vietanh19218",
     followers: 10,
@@ -24,7 +43,7 @@ const Profile = () => {
       // },
 
     ], // Đặt mảng rỗng để kiểm tra khi không có khóa học
-  });
+  }
 
   return (
     <div className={cx("_container_juuyp_1")}>

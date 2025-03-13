@@ -2,19 +2,37 @@ import React from "react";
 import classNames from "classnames/bind";
 import styles from "./LoginModal.module.scss";
 import { auth, provider, signInWithPopup } from "../../../config/firebase"; // Đặt import Firebase lên đầu
+import axios from "axios";
+import Cookies from "js-cookie";
+import axiosClient from "../../../apis/axiosClient";
 
 const cx = classNames.bind(styles);
 
 const LoginModal = ({ isOpen, onClose }) => {
     if (!isOpen) return null;
+    
 
     const handleGoogleLogin = async () => {
         try {
+
             const result = await signInWithPopup(auth, provider);
             const user = result.user;
-            localStorage.setItem("user", JSON.stringify(user)); // Lưu thông tin người dùng
-            onClose(); // Đóng modal sau khi đăng nhập
-            window.location.reload(); // Reload để cập nhật giao diện
+
+            const signInResult = await axiosClient.post(`/auth/login`, {
+                username: user.displayName,
+                avatar: user.photoURL,
+                email: user.email,
+            })
+
+            if (signInResult.status === 200) {
+                const { userID, accessToken, refreshToken } = signInResult.data;
+                Cookies.set("userID", userID);
+                Cookies.set("accessToken", accessToken);
+                Cookies.set("refreshToken", refreshToken);
+            }
+
+            onClose();
+            // window.location.reload();
         } catch (error) {
             console.error("Lỗi đăng nhập Google:", error);
         }
