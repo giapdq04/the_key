@@ -12,6 +12,8 @@ import NotificationDropdown from '../NotificationDropdown/NotificationDropdown';
 import CourseDropdown from '../CourseDropdown/CourseDropdown';
 import useClickOutside from '../../hooks/useClickOutside';
 import LoginModal from '../ModalAuthentication/LoginModal/LoginModal';
+import { useSelector } from 'react-redux';
+import Cookies from 'js-cookie';
 
 const cx = classNames.bind(styles);
 
@@ -26,15 +28,16 @@ const Header = () => {
 
     // Trạng thái đăng nhập
     const [user, setUser] = useState(null);
+    const userState = useSelector(state => state.user)
     const [showLoginModal, setShowLoginModal] = useState(false);
 
     useEffect(() => {
         // Kiểm tra dữ liệu người dùng từ localStorage
-        const storedUser = localStorage.getItem("user");
-        if (storedUser) {
-            setUser(JSON.parse(storedUser));
+        const userID = Cookies.get('userID');
+        if (userID) {
+            setUser(userState);
         }
-    }, []);
+    }, [userState]);
 
     const handleLoginModal = () => {
         setShowLoginModal(true);
