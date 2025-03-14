@@ -34,7 +34,8 @@ const Header = () => {
     useEffect(() => {
         // Kiểm tra dữ liệu người dùng từ localStorage
         const userID = Cookies.get('userID');
-        if (userID) {
+        const accessToken = Cookies.get('accessToken');
+        if (userID && accessToken !== undefined) {
             setUser(userState);
         }
     }, [userState]);

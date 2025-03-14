@@ -26,8 +26,8 @@ const LoginModal = ({ isOpen, onClose }) => {
             if (signInResult.status === 200) {
                 const { userID, accessToken, refreshToken } = signInResult.data;
                 Cookies.set('userID', userID, { expires: 7 });
-Cookies.set('accessToken', accessToken, { expires: 7 });
-Cookies.set('refreshToken', refreshToken, { expires: 7 });
+                Cookies.set('accessToken', accessToken, { expires: 7 });
+                Cookies.set('refreshToken', refreshToken, { expires: 7 });
             }
 
             onClose();

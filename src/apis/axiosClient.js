@@ -28,26 +28,28 @@ axiosClient.interceptors.response.use(
         return res;
     },
     async (err) => {
-        const originnalRequest = err.config;
+        const originalRequest = err.config;
 
-        if (err.response.status === 401 && !originnalRequest._retry) {
-            originnalRequest._retry = true;
+        if (err.response.status === 401 && !originalRequest._retry) {
+            originalRequest._retry = true;
 
             const refreshToken = Cookies.get('refreshToken');
 
             if (!refreshToken) return Promise.reject(err);
 
             try {
-                const res = await axiosClient.post('/refresh-token', {
+                const res = await axiosClient.post('/user/refresh-token', {
                     token: refreshToken
                 });
 
+
                 const newAccessToken = res.data.accessToken;
-                Cookies.set('accessToken', newAccessToken);
 
-                originnalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
+                Cookies.set('accessToken', newAccessToken, { expires: 7 });
 
-                return axiosClient(originnalRequest);
+                originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
+
+                return axiosClient(originalRequest);
             } catch (error) {
                 Cookies.remove('accessToken');
                 Cookies.remove('refreshToken');

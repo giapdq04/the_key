@@ -14,10 +14,10 @@ function App() {
   useEffect(() => {
 
     const fetchUserInfo = async () => {
-      const userID = Cookies.get('userID');
-      const accessToken = Cookies.get('accessToken');
 
-      if (userID && accessToken) {
+      const userID = Cookies.get('userID');
+
+      if (userID) {
         try {
           const response = await axiosClient.get(`/user/user-info/${userID}`);
           dispatch(setUser(response.data));
@@ -28,7 +28,7 @@ function App() {
     };
 
     fetchUserInfo();
-  }, []);
+  }, [dispatch]);
   return (
     <BrowserRouter>
       <div className="App">
