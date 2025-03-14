@@ -53,7 +53,7 @@ const CourseItem = ({ item, isPro = false }) => {
                             className={cx('newPrice')}>{isPro ? converToNumberFormat(item.price * item.discount / 100) + 'đ' : 'Miễn phí'}</span>
                     </div>
 
-                    <div className={cx('more-info')}>
+                    {/* <div className={cx('more-info')}>
                         {isPro
                             ? <div className={cx('info-item')}>
                                 <img src={item.avtAuthor} alt={item.author} />
@@ -75,7 +75,7 @@ const CourseItem = ({ item, isPro = false }) => {
                             <FontAwesomeIcon icon={faClock} />
                             <span>{converToMinute(item.minute)}</span>
                         </div>
-                    </div>
+                    </div> */}
 
                 </div>
             </div>

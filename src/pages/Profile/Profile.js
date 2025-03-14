@@ -4,29 +4,13 @@ import Lottie from "lottie-react";
 import React from "react";
 import emptyAnimation from "../../assets/lottie/nocorner.json"; // Thay bằng file JSON Lottie của bạn
 import styles from "./Profile.module.scss";
+import { useSelector } from "react-redux";
 const cx = classNames.bind(styles);
 
 const Profile = () => {
-  // const [user, setUser] = useState({
-  //   name: "Việt Anh đẹp trai",
-  //   username: "@vietanh19218",
-  //   followers: 10,
-  //   following: 0,
-  //   joined: "1 năm",
-  //   courses: [
-  //     // {
-  //     //   title: "HTML CSS từ Zero đến Hero",
-  //     //   price: "Miễn phí",
-  //     //   students: 207498,
-  //     //   lessons: 117,
-  //     //   duration: "29h5p",
-  //     //   image: "https://files.fullstack.edu.vn/f8-prod/courses/4/61a9e9e701506.png",
-  //     // },
+  const user = useSelector(state => state.user)
 
-  //   ], // Đặt mảng rỗng để kiểm tra khi không có khóa học
-  // });
-
-  const user = {
+  const demodulieu = {
     name: "Việt Anh đẹp trai",
     username: "@vietanh19218",
     followers: 10,
@@ -41,30 +25,7 @@ const Profile = () => {
         duration: "29h5p",
         image: "https://files.fullstack.edu.vn/f8-prod/courses/4/61a9e9e701506.png",
       },
-      {
-        title: "HTML CSS từ Zero đến Hero",
-        price: "Miễn phí",
-        students: 207498,
-        lessons: 117,
-        duration: "29h5p",
-        image: "https://files.fullstack.edu.vn/f8-prod/courses/4/61a9e9e701506.png",
-      },
-      {
-        title: "HTML CSS từ Zero đến Hero",
-        price: "Miễn phí",
-        students: 207498,
-        lessons: 117,
-        duration: "29h5p",
-        image: "https://files.fullstack.edu.vn/f8-prod/courses/4/61a9e9e701506.png",
-      },
-      {
-        title: "HTML CSS từ Zero đến Hero",
-        price: "Miễn phí",
-        students: 207498,
-        lessons: 117,
-        duration: "29h5p",
-        image: "https://files.fullstack.edu.vn/f8-prod/courses/4/61a9e9e701506.png",
-      },
+     
 
     ], // Đặt mảng rỗng để kiểm tra khi không có khóa học
   }
@@ -81,13 +42,13 @@ const Profile = () => {
                   <div className={cx("avatar_nav")}>
                     <img
                       className={cx("avatar_img")}
-                      src="https://files.fullstack.edu.vn/f8-prod/user_photos/251432/63306175a2ba3.jpg"
+                      src={user.avatar}
                       alt="avatar"
                     />
                   </div>
                 </div>
-                <div className={cx("name_1")}>{user.name}</div>
-                <div className={cx("user_name")}>{user.username}</div>
+                <div className={cx("name_1")}>{user.username}</div>
+                <div className={cx("user_name")}>{user.email}</div>
                 <div className={cx("start_wrapper")}>
                   <div className={cx("nav_start")}>
                     <span className={cx("left_icon")}>
@@ -130,11 +91,11 @@ const Profile = () => {
                     />
                   </span>
                   <a className={cx("_tab_12z60_8")} href="https://www.youtube.com/">Khóa học của tôi.</a>
-                  <a className={cx("_tab_12z60_8")} href="https://www.youtube.com/">{user.courses.length}.</a>
+                  <a className={cx("_tab_12z60_8")} href="https://www.youtube.com/">{demodulieu.courses.length}.</a>
                 </div>
 
                 {/* Kiểm tra nếu danh sách khóa học rỗng */}
-                {user.courses.length === 0 ? (
+                {demodulieu.courses.length === 0 ? (
                   <div className={cx("empty-container")}>
                     <h2>Chưa có khóa học nào!</h2>
                     <Lottie animationData={emptyAnimation} loop={true} className={cx("lottie")} />
@@ -142,7 +103,7 @@ const Profile = () => {
                 ) : (
                   <div className={cx("corner_2")}>
                     <div className={cx("row_container2")}>
-                      {user.courses.map((course, index) => (
+                      {demodulieu.courses.map((course, index) => (
                         <motion.div
                           key={index}
                           className={cx("corner_item_container")}

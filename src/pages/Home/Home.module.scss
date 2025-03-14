@@ -1,4 +1,3 @@
-/* Styles cơ bản (mobile-first, áp dụng cho màn hình dưới 768px) */
 @import "react-slideshow-image/dist/styles.css";
 
 .wrapper {
@@ -6,13 +5,13 @@
   width: 100%;
   display: flex;
   align-items: center;
-  padding: 10px; /* Giảm padding cho mobile */
+  padding: 20px;
   flex-direction: column;
 }
 
 .container {
   width: 100%;
-  min-height: 200px; /* Giảm chiều cao tối thiểu cho mobile */
+  min-height: 300px;
 }
 
 .slide-container {
@@ -24,73 +23,10 @@
   align-items: center;
   justify-content: center;
   background-size: cover;
-  height: 180px; /* Giảm chiều cao slide cho mobile */
-  border-radius: 10px; /* Giảm bo góc cho mobile */
+  height: 270px;
+  border-radius: 20px;
 }
 
 .content-wrapper {
-  padding: 0 15px 30px; /* Giảm padding cho mobile */
-}
-
-/* Media Queries cho các kích thước màn hình */
-
-/* Màn hình nhỏ (375px trở lên) */
-@media (min-width: 375px) {
-  .wrapper {
-    padding: 15px; /* Tăng nhẹ padding cho màn hình lớn hơn */
-  }
-
-  .container {
-    min-height: 250px; /* Tăng nhẹ chiều cao tối thiểu */
-  }
-
-  .slide {
-    height: 220px; /* Tăng nhẹ chiều cao slide */
-    border-radius: 12px;
-  }
-
-  .content-wrapper {
-    padding: 0 20px 40px;
-  }
-}
-
-/* Màn hình tablet (768px trở lên, bao gồm iPad ở 820px) */
-@media (min-width: 768px) {
-  .wrapper {
-    padding: 20px; /* Khôi phục padding ban đầu */
-  }
-
-  .container {
-    width: 90%; /* Giới hạn chiều rộng cho layout cân đối */
-    min-height: 300px; /* Khôi phục chiều cao tối thiểu */
-    margin: 0 auto; /* Canh giữa container */
-  }
-
-  .slide-container {
-    width: 100%;
-  }
-
-  .slide {
-    height: 300px; /* Khôi phục chiều cao slide ban đầu */
-    border-radius: 20px; /* Khôi phục bo góc */
-  }
-
-  .content-wrapper {
-    padding: 0 44px 74px; /* Khôi phục padding ban đầu */
-  }
-}
-
-/* Màn hình desktop (1024px trở lên) */
-@media (min-width: 1024px) {
-  .container {
-    width: 80%; /* Giảm chiều rộng để tạo không gian thoáng hơn */
-  }
-
-  .slide {
-    height: 400px; /* Tăng chiều cao slide cho desktop */
-  }
-
-  .content-wrapper {
-    padding: 0 60px 100px; /* Tăng padding cho desktop */
-  }
+  padding: 0 44px 74px;
 }
