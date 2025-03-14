@@ -6,8 +6,8 @@ import { ToastContainer } from "react-toastify";
 import axiosClient from "./apis/axiosClient";
 import DefaultLayout from "./layouts/DefaultLayout/DefaultLayout";
 import { publicRoutes } from "./routes/routes";
+import { setCourses } from "./store/courseSlice";
 import { setUser } from "./store/userSlice";
-import { fetchCoursesStart, fetchCoursesSuccess, fetchCoursesFailure } from "./store/courseSlice";
 
 function App() {
   const dispatch = useDispatch();
@@ -29,24 +29,12 @@ function App() {
 
     // Fetch danh sách khóa học từ API
   const fetchCourses = async () => {
-    dispatch(fetchCoursesStart()); // Bắt đầu fetch, set loading = true
-    console.log("App.js - Fetching courses started"); // Log khi bắt đầu fetch
     try {
       const response = await axiosClient.get("/course/all-courses");
-      console.log("App.js - Courses API response:", response.data); // Log dữ liệu thô từ API
 
-      // Không ánh xạ toàn bộ, chỉ thêm thumbnail trực tiếp từ ytbVideoId
-      const coursesWithThumbnail = response.data.map((course) => ({
-        ...course, // Giữ nguyên tất cả các trường từ API
-        thumbnail: `https://img.youtube.com/vi/${course.ytbVideoId}/hqdefault.jpg`, // Gán thumbnail trực tiếp
-      }));
-
-      console.log("App.js - Courses with thumbnail:", coursesWithThumbnail); // Log dữ liệu sau khi thêm thumbnail
-      dispatch(fetchCoursesSuccess(coursesWithThumbnail)); // Thành công, lưu courses vào store
+      dispatch(setCourses(response.data));
     } catch (error) {
       console.error("Lỗi khi lấy danh sách khóa học:", error);
-      dispatch(fetchCoursesFailure(error.message)); // Thất bại, lưu lỗi
-      console.log("App.js - Fetch courses failed:", error.message); // Log lỗi
     }
   };
 

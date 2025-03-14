@@ -25,36 +25,8 @@ const slideImages = [
 
 const Home = () => {
   // Lấy dữ liệu từ Redux store
-  const { courses, loading, error } = useSelector((state) => state.courses);
-  console.log("Home.js - Redux state:", { courses, loading, error }); // Log toàn bộ state từ store
+  const courses = useSelector((state) => state.courses);
 
-  // Lọc các khóa học miễn phí
-  const freeCourses = courses.filter((course) => !course.price || course.price === 0);
-  console.log("Home.js - Free courses:", freeCourses); // Log danh sách khóa học miễn phí
-
-  if (loading) {
-    console.log("Home.js - Rendering loading state"); // Log khi hiển thị "đang tải"
-    return (
-      <div className={cx("wrapper")}>
-        <div className={cx("container")}>
-          <p>Đang tải dữ liệu khóa học...</p>
-        </div>
-      </div>
-    );
-  }
-
-  if (error) {
-    console.log("Home.js - Rendering error state:", error); // Log khi hiển thị lỗi
-    return (
-      <div className={cx("wrapper")}>
-        <div className={cx("container")}>
-          <p>Có lỗi xảy ra: {error}</p>
-        </div>
-      </div>
-    );
-  }
-
-  console.log("Home.js - Rendering main content"); // Log khi render giao diện chính
   return (
     <div className={cx("wrapper")}>
       <div className={cx("container")}>
@@ -74,7 +46,7 @@ const Home = () => {
         <div className={cx("content-wrapper")}>
           <List
             title="Khóa học miễn phí"
-            list={freeCourses}
+            list={courses}
             moreBtnTitle={"Xem lộ trình"}
             moreBtnTo={config.routes.learningPath}
             numPersonLearn={1000}

@@ -37,7 +37,7 @@ const List = ({ title, tag, list, isPro = false, isCourse = true,
             <div className={cx('course-list')}>
                 {list.map(item => isCourse
                     ?
-                    <CourseItem key={item.id} item={item} isPro={isPro} />
+                    <CourseItem key={item._id} item={item} isPro={isPro} />
                     :
                     <FeaturedItem key={item.id} item={item} />
                 )}

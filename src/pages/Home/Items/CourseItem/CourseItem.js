@@ -10,7 +10,7 @@ const cx = classNames.bind(styles);
 
 const CourseItem = ({ item, isPro = false }) => {
 
-    const isEnrolled = true
+    const isEnrolled = false
 
     const converToNumberFormat = (price) => {
         return price?.toLocaleString('vi-VN');
@@ -39,7 +39,7 @@ const CourseItem = ({ item, isPro = false }) => {
         >
             <div className={cx('item')}>
                 <div className={cx('thumbnail')}>
-                    <img src={item.thumbnail} alt={item.title} />
+                    <img src={`https://img.youtube.com/vi/${item.ytbVideoId}/maxresdefault.jpg`} alt={item.title} />
                     {isPro && <FontAwesomeIcon icon={faCrown} className={cx('crown')} />}
                 </div>
 
