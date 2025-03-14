@@ -1,157 +1,348 @@
+/* Styles cơ bản (mobile-first, áp dụng cho màn hình dưới 768px) */
 .container {
     display: flex;
     height: 100vh;
     background: linear-gradient(to right, #f8f9fa, #e9ecef);
-}
-
-/* Sidebar */
-.sidebar {
+    flex-direction: column; /* Chuyển thành cột trên mobile để sidebar và content xếp dọc */
+  }
+  
+  /* Sidebar */
+  .sidebar {
     background: linear-gradient(to right, #f8f9fa, #e9ecef);
-    border-right: 1px solid #dee3e9;
-    padding: 30px 40px 0 0;
-    height: 100%;
-    width:35% ;
-}
-
-.logo {
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
-}
-
-._content_bnj22_13 {
-    position: sticky;
-    top: 30px;
-}
-
-.sidebar h2 {
-    font-size: 18px;
-    margin-bottom: 10px;
-    width: 35%;
-}
-
-.sidebar p {
-    font-size: 14px;
+    border-right: none; /* Bỏ border trên mobile */
+    padding: 15px 10px 0 10px; /* Giảm padding cho mobile */
+    height: auto; /* Chiều cao tự động trên mobile */
+    width: 100%; /* Toàn bộ chiều rộng trên mobile */
+  }
+  
+  .logo {
+    width: 30px; /* Giảm kích thước logo cho mobile */
+    height: 30px;
+    border-radius: 8px;
+  }
+  
+  ._content_bnj22_13 {
+    position: relative; /* Bỏ sticky trên mobile */
+    top: 0;
+  }
+  
+  .sidebar h2 {
+    font-size: 1.4rem; /* Giảm font chữ cho mobile */
+    margin: 8px 0;
+    width: 100%; /* Toàn bộ chiều rộng trên mobile */
+    white-space: normal; /* Cho phép xuống dòng */
+  }
+  
+  .sidebar p {
+    font-size: 1rem; /* Giảm font chữ cho mobile */
     color: #666;
-}
-
-.menu {
+  }
+  
+  .menu {
     display: flex;
     flex-direction: column;
-    gap: 4px;
-    margin: 20px 0;
-}
-
-.menu button {
+    gap: 6px; /* Giảm khoảng cách giữa các button */
+    margin: 15px 0;
+  }
+  
+  .menu button {
     width: 100%;
-    padding: 10px;
+    padding: 8px; /* Giảm padding cho mobile */
     background: #f0f0f0;
     border: none;
     text-align: left;
     cursor: pointer;
-    font-size: 16px;
-}
-
-.menu button.active {
+    font-size: 1.2rem; /* Giảm font chữ cho mobile */
+  }
+  
+  .menu button.active {
     background: #333;
     color: #fff;
-}
-
-/* Nội dung chính */
-.content {
+  }
+  
+  /* Nội dung chính */
+  .content {
     flex: 1;
-    padding: 20px;
+    padding: 10px; /* Giảm padding cho mobile */
     background: #f1f5f9;
-}
-
-.content h2 {
-    font-size: 20px;
-}
-
-.content p {
-    font-size: 14px;
+    width: 100%; /* Toàn bộ chiều rộng trên mobile */
+  }
+  
+  .content h2 {
+    font-size: 1.6rem; /* Giảm font chữ cho mobile */
+  }
+  
+  .content p {
+    font-size: 1rem; /* Giảm font chữ cho mobile */
     color: #666;
-}
-
-.info-box {
-    margin-top: 20px;
+  }
+  
+  .info-box {
+    margin-top: 15px; /* Giảm margin cho mobile */
     background: #fff;
-    padding: 10px;
-    border-radius: 8px;
-}
-
-.info-item {
+    padding: 8px; /* Giảm padding cho mobile */
+    border-radius: 6px; /* Giảm bo góc cho mobile */
+  }
+  
+  .info-item {
     display: flex;
     justify-content: space-between;
-    padding: 10px;
+    padding: 8px; /* Giảm padding cho mobile */
     border-bottom: 1px solid #ddd;
-}
-
-.info-item:last-child {
+  }
+  
+  .info-item:last-child {
     border-bottom: none;
-}
-
-._link_bnj22_48 {
+  }
+  
+  ._link_bnj22_48 {
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 12px;
-    border-radius: 8px;
+    gap: 8px; /* Giảm khoảng cách giữa icon và text */
+    padding: 10px; /* Giảm padding cho mobile */
+    border-radius: 6px; /* Giảm bo góc cho mobile */
     background: #f0f0f0;
     border: none;
     text-align: left;
-    font-size: 16px;
+    font-size: 1.2rem; /* Giảm font chữ cho mobile */
     cursor: pointer;
     transition: background 0.2s ease-in-out;
-}
-
-._link_bnj22_48._active_bnj22_69 {
+  }
+  
+  ._link_bnj22_48._active_bnj22_69 {
     background: #344854;
     color: white;
-}
-
-._linkInner_bnj22_49 {
+  }
+  
+  ._linkInner_bnj22_49 {
     display: flex;
     align-items: center;
-    gap: 10px;
-}
-
-.left_icon {
+    gap: 8px;
+  }
+  
+  .left_icon {
     flex-shrink: 0;
-    width: 20px;
-    height: 20px;
+    width: 16px; /* Giảm kích thước icon cho mobile */
+    height: 16px;
     margin-right: 5px;
-}
-
-.icon_img {
+  }
+  
+  .icon_img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-}
-.close_btn{
+  }
+  
+  .close_btn {
     position: absolute;
-    top: 20px;
-    right: 34px;
+    top: 15px; /* Giảm khoảng cách từ trên xuống */
+    right: 15px; /* Giảm khoảng cách từ bên phải */
     z-index: 9;
-    width: 44px;
-    height: 44px;
+    width: 36px; /* Giảm kích thước nút close */
+    height: 36px;
     border-radius: 50%;
-    opacity: .7;
-    font-size: 2.4rem;
-    background-color:#dfe7ed;
-    margin-top: 57px;
-cursor: pointer;
-}
-.close_btn:hover {
-    background-color: 
-    #ced5db; /* Màu nền đậm hơn khi hover */
+    opacity: 0.7;
+    font-size: 1.8rem; /* Giảm kích thước font */
+    background-color: #dfe7ed;
+    cursor: pointer;
+  }
+  
+  .close_btn:hover {
+    background-color: #ced5db; /* Màu nền đậm hơn khi hover */
     color: #000; /* Màu chữ đậm hơn khi hover */
   }
-button {
+  
+  button {
     border: none;
     outline: none;
     box-shadow: none;
     display: block;
     padding: 0;
     color: inherit;
-}
+  }
+  
+  /* Media Queries cho các kích thước màn hình */
+  
+  /* Màn hình nhỏ (375px trở lên) */
+  @media (min-width: 375px) {
+    .container {
+      padding: 8px 15px 0; /* Tăng nhẹ padding cho màn hình lớn hơn */
+    }
+  
+    .sidebar {
+      padding: 20px 15px 0 15px;
+    }
+  
+    .logo {
+      width: 35px;
+      height: 35px;
+    }
+  
+    .sidebar h2 {
+      font-size: 1.6rem;
+      margin: 10px 0;
+    }
+  
+    .sidebar p {
+      font-size: 1.1rem;
+    }
+  
+    .menu {
+      gap: 8px;
+    }
+  
+    .menu button {
+      padding: 10px;
+      font-size: 1.3rem;
+    }
+  
+    .content {
+      padding: 15px;
+    }
+  
+    .content h2 {
+      font-size: 1.8rem;
+    }
+  
+    .content p {
+      font-size: 1.1rem;
+    }
+  
+    .info-box {
+      margin-top: 20px;
+      padding: 10px;
+      border-radius: 8px;
+    }
+  
+    .info-item {
+      padding: 10px;
+    }
+  
+    ._link_bnj22_48 {
+      gap: 10px;
+      padding: 12px;
+      font-size: 1.3rem;
+      border-radius: 8px;
+    }
+  
+    .left_icon {
+      width: 18px;
+      height: 18px;
+    }
+  
+    .close_btn {
+      top: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      font-size: 2rem;
+    }
+  }
+  
+  /* Màn hình tablet (768px trở lên, bao gồm iPad ở 820px) */
+  @media (min-width: 768px) {
+    .container {
+      flex-direction: row; /* Chuyển sang layout ngang */
+      padding: 20px 30px 0; /* Tăng padding cho tablet */
+    }
+  
+    .sidebar {
+      border-right: 1px solid #dee3e9; /* Khôi phục border */
+      padding: 30px 40px 0 0; /* Khôi phục padding ban đầu */
+      width: 35%; /* Khôi phục chiều rộng sidebar */
+      height: 100%;
+    }
+  
+    .logo {
+      width: 40px; /* Khôi phục kích thước logo */
+      height: 40px;
+    }
+  
+    ._content_bnj22_13 {
+      position: sticky; /* Khôi phục sticky cho sidebar */
+      top: 30px;
+    }
+  
+    .sidebar h2 {
+      font-size: 2.4rem; /* Khôi phục font chữ ban đầu */
+      margin: 10px 0;
+      width: 35%; /* Khôi phục chiều rộng */
+      white-space: nowrap; /* Không xuống dòng */
+    }
+  
+    .sidebar p {
+      font-size: 1.5rem; /* Khôi phục font chữ ban đầu */
+    }
+  
+    .menu {
+      gap: 4px; /* Khôi phục khoảng cách ban đầu */
+      margin: 20px 0;
+    }
+  
+    .menu button {
+      padding: 12px; /* Khôi phục padding */
+      font-size: 1.6rem; /* Khôi phục font chữ */
+    }
+  
+    .content {
+      padding: 20px; /* Khôi phục padding */
+      width: 65%; /* Chiều rộng content */
+    }
+  
+    .content h2 {
+      font-size: 2rem; /* Khôi phục font chữ */
+    }
+  
+    .content p {
+      font-size: 1.4rem; /* Khôi phục font chữ */
+    }
+  
+    .info-box {
+      margin-top: 20px;
+      padding: 10px;
+      border-radius: 8px;
+    }
+  
+    .info-item {
+      padding: 10px;
+    }
+  
+    ._link_bnj22_48 {
+      gap: 10px;
+      padding: 12px;
+      font-size: 1.6rem; /* Khôi phục font chữ */
+    }
+  
+    .left_icon {
+      width: 20px;
+      height: 20px;
+    }
+  
+    .close_btn {
+      top: 20px;
+      right: 34px;
+      width: 44px;
+      height: 44px;
+      font-size: 2.4rem; /* Khôi phục kích thước font */
+    }
+  }
+  
+  /* Màn hình desktop (1024px trở lên) */
+  @media (min-width: 1024px) {
+    .container {
+      padding: 20px 40px 0; /* Tăng padding cho desktop */
+    }
+  
+    .sidebar {
+      padding: 30px 40px 0 0;
+    }
+  
+    .content {
+      padding: 20px;
+    }
+  
+    .close_btn {
+      top: 20px;
+      right: 34px;
+    }
+  }

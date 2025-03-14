@@ -1,15 +1,15 @@
 .notification-dropdown {
     position: absolute;
     top: 70px;
-    right: 50px;
-    width: 350px;
+    right: 10px; /* Adjusted for smaller screens */
+    width: 300px; /* Default width for mobile */
     background: white;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 10px;
+    padding: 8px; /* Reduced padding for smaller screens */
     z-index: 100;
     max-height: 400px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Đổ bóng */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .header {
@@ -19,50 +19,48 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 10; /* Giữ header phía trên khi cuộn */
-    padding: 16px 20px;
+    z-index: 10;
+    padding: 12px 16px; /* Adjusted padding */
 }
 
-
 .header h4 {
-    font-size: 16px;
+    font-size: 14px; /* Smaller default for mobile */
     font-weight: bold;
 }
 
 .mark-read {
-    font-size: 14px;
+    font-size: 12px; /* Smaller default for mobile */
     color: #ff5722;
     cursor: pointer;
 }
 
 .notification-list {
     list-style: none;
-    padding: 10px 0; /* Thêm khoảng trống trên để tránh chạm vào header */
+    padding: 8px 0; /* Adjusted padding */
     margin: 0;
-    flex-grow: 1; /* Giúp danh sách mở rộng mà không đẩy header đi */
+    flex-grow: 1;
     overflow-y: auto;
-    max-height: 350px; /* Đảm bảo danh sách cuộn không bị tràn */
+    max-height: 350px;
 }
-
 
 .notification-item {
     display: flex;
     align-items: center;
-    padding: 10px;
+    padding: 8px; /* Reduced padding for mobile */
     border-bottom: 1px solid #eee;
     cursor: pointer;
-    border-radius: 8px; /* Bo góc cho mỗi item */
-    margin-bottom: 8px; /* Tạo khoảng cách giữa các item */
+    border-radius: 8px;
+    margin-bottom: 6px; /* Adjusted spacing */
     &:hover {
         background: #f5f5f5;
     }
 }
 
 .avatar {
-    width: 40px;
-    height: 40px;
+    width: 32px; /* Smaller avatar for mobile */
+    height: 32px;
     border-radius: 50%;
-    margin-right: 10px;
+    margin-right: 8px; /* Reduced margin */
 }
 
 .content {
@@ -70,22 +68,126 @@
 }
 
 .message {
-    font-size: 14px;
+    font-size: 13px; /* Smaller font for mobile */
     font-weight: bold;
-    margin-bottom: 5px;
+    margin-bottom: 4px; /* Reduced margin */
 }
 
 .time {
-    font-size: 12px;
+    font-size: 11px; /* Smaller font for mobile */
     color: gray;
 }
 
 .unread-dot {
-    width: 8px;
-    height: 8px;
+    width: 6px; /* Smaller dot for mobile */
+    height: 6px;
     background: #007bff;
     border-radius: 50%;
 }
+
 .notification-item.unread {
-    background-color: #fdede9; /* Màu nền cho thông báo chưa đọc */
-  }
+    background-color: #fdede9;
+}
+
+/* Media Queries for Responsiveness */
+
+/* Small screens (375px and up) */
+@media (min-width: 375px) {
+    .notification-dropdown {
+        width: 320px; /* Slightly wider for small screens */
+        right: 15px;
+    }
+    .header {
+        padding: 14px 18px;
+    }
+    .header h4 {
+        font-size: 15px;
+    }
+    .mark-read {
+        font-size: 13px;
+    }
+    .notification-item {
+        padding: 10px;
+    }
+    .avatar {
+        width: 36px;
+        height: 36px;
+    }
+    .message {
+        font-size: 14px;
+    }
+    .time {
+        font-size: 12px;
+    }
+    .unread-dot {
+        width: 7px;
+        height: 7px;
+    }
+}
+
+/* Medium screens (768px and up - Tablets) */
+@media (min-width: 768px) {
+    .notification-dropdown {
+        width: 350px; /* Default width from original design */
+        right: 30px;
+        padding: 10px;
+    }
+    .header {
+        padding: 16px 20px;
+    }
+    .header h4 {
+        font-size: 16px;
+    }
+    .mark-read {
+        font-size: 14px;
+    }
+    .notification-item {
+        padding: 10px;
+    }
+    .avatar {
+        width: 40px;
+        height: 40px;
+        margin-right: 10px;
+    }
+    .message {
+        font-size: 14px;
+    }
+    .time {
+        font-size: 12px;
+    }
+    .unread-dot {
+        width: 8px;
+        height: 8px;
+    }
+}
+
+/* Large screens (1024px and up - Desktop) */
+@media (min-width: 1024px) {
+    .notification-dropdown {
+        width: 400px; /* Slightly wider for desktop */
+        right: 50px; /* Original right positioning */
+    }
+    .header {
+        padding: 16px 20px;
+    }
+    .header h4 {
+        font-size: 16px;
+    }
+    .mark-read {
+        font-size: 14px;
+    }
+    .notification-item {
+        padding: 12px; /* Slightly more padding */
+        margin-bottom: 8px;
+    }
+    .avatar {
+        width: 40px;
+        height: 40px;
+    }
+    .message {
+        font-size: 14px;
+    }
+    .time {
+        font-size: 12px;
+    }
+}

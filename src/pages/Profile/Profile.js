@@ -33,14 +33,38 @@ const Profile = () => {
     following: 0,
     joined: "1 năm",
     courses: [
-      // {
-      //   title: "HTML CSS từ Zero đến Hero",
-      //   price: "Miễn phí",
-      //   students: 207498,
-      //   lessons: 117,
-      //   duration: "29h5p",
-      //   image: "https://files.fullstack.edu.vn/f8-prod/courses/4/61a9e9e701506.png",
-      // },
+      {
+        title: "HTML CSS từ Zero đến Hero",
+        price: "Miễn phí",
+        students: 207498,
+        lessons: 117,
+        duration: "29h5p",
+        image: "https://files.fullstack.edu.vn/f8-prod/courses/4/61a9e9e701506.png",
+      },
+      {
+        title: "HTML CSS từ Zero đến Hero",
+        price: "Miễn phí",
+        students: 207498,
+        lessons: 117,
+        duration: "29h5p",
+        image: "https://files.fullstack.edu.vn/f8-prod/courses/4/61a9e9e701506.png",
+      },
+      {
+        title: "HTML CSS từ Zero đến Hero",
+        price: "Miễn phí",
+        students: 207498,
+        lessons: 117,
+        duration: "29h5p",
+        image: "https://files.fullstack.edu.vn/f8-prod/courses/4/61a9e9e701506.png",
+      },
+      {
+        title: "HTML CSS từ Zero đến Hero",
+        price: "Miễn phí",
+        students: 207498,
+        lessons: 117,
+        duration: "29h5p",
+        image: "https://files.fullstack.edu.vn/f8-prod/courses/4/61a9e9e701506.png",
+      },
 
     ], // Đặt mảng rỗng để kiểm tra khi không có khóa học
   }

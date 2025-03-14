@@ -4,7 +4,7 @@
   width: 100%;
   min-height: var(--default-layout-footer-height);
   z-index: 1;
-  padding: 68px 150px 40px;
+  padding: 30px 15px; /* Reduced padding for mobile */
 }
 
 .container {
@@ -15,17 +15,18 @@
 
 .top-row {
   display: flex;
+  flex-direction: column; /* Stack columns vertically on mobile */
+  gap: 20px; /* Space between columns */
 }
 
 .col {
-  width: 25%;
+  width: 100%; /* Full width on mobile */
   display: flex;
-  //justify-content: center;
   flex-direction: column;
-  padding: 0 12px;
+  padding: 0 10px; /* Reduced padding for mobile */
 
   &.col_bw {
-    flex: 1;
+    flex: unset; /* Reset flex for mobile */
   }
 }
 
@@ -34,14 +35,14 @@
   align-items: center;
 
   .logo {
-    width: 38px;
-    height: 38px;
-    margin-right: 10px;
-    border-radius: 8px;
+    width: 32px; /* Smaller logo for mobile */
+    height: 32px;
+    margin-right: 8px; /* Reduced margin */
+    border-radius: 6px;
   }
 
   .slogan {
-    font-size: 1.6rem;
+    font-size: 1.4rem; /* Smaller default for mobile */
     font-weight: 700;
     color: #fff;
   }
@@ -49,43 +50,47 @@
 
 .contact-list {
   position: relative;
-  margin-top: 20px;
-  font-size: 1.4rem;
-  line-height: 2.2rem;
+  margin-top: 15px; /* Reduced margin for mobile */
+  font-size: 1.2rem; /* Smaller default for mobile */
+  line-height: 1.8rem; /* Tighter line height */
 }
 
 .introduct-list {
   list-style-type: none;
+  padding: 0; /* Ensure no default padding */
 
   li {
     position: relative;
-    font-size: 1.4rem;
-    line-height: 2.2rem;
-    margin-bottom: 8px;
+    font-size: 1.2rem; /* Match contact-list */
+    line-height: 1.8rem;
+    margin-bottom: 6px; /* Reduced margin */
   }
 }
 
 .company-info {
   position: relative;
-  font-size: 1.4rem;
-  line-height: 2.2rem;
-  margin-bottom: 8px;
+  font-size: 1.2rem; /* Match contact-list */
+  line-height: 1.8rem;
+  margin-bottom: 6px; /* Reduced margin */
 }
 
 .protected {
-  margin-top: 20px;
+  margin-top: 15px; /* Reduced margin for mobile */
+  width: 120px; /* Smaller default size */
 }
 
 .bottom-row {
   display: flex;
+  flex-direction: column; /* Stack vertically on mobile */
   align-items: center;
-  justify-content: space-between;
-  margin-top: 48px;
+  margin-top: 30px; /* Reduced margin for mobile */
+  text-align: center; /* Center text on mobile */
+  gap: 15px; /* Space between elements */
+}
 
-  .copyright {
-    line-height: 1.5;
-    font-size: 1.4rem;
-  }
+.copyright {
+  line-height: 1.5;
+  font-size: 1.2rem; /* Smaller default for mobile */
 }
 
 .social-list {
@@ -96,11 +101,153 @@
   .social-icon {
     display: flex;
     align-items: center;
-    padding: 12px;
+    padding: 8px; /* Reduced padding for mobile */
 
     img {
-      width: 32px;
+      width: 24px; /* Smaller icons for mobile */
       object-fit: cover;
     }
+  }
+}
+
+/* Media Queries for Responsiveness */
+
+/* Small screens (375px and up) */
+@media (min-width: 375px) {
+  .wrapper {
+    padding: 40px 20px;
+    margin-bottom: 50px;
+  }
+  .column-top {
+    .logo {
+      width: 36px;
+      height: 36px;
+      margin-right: 10px;
+    }
+    .slogan {
+      font-size: 1.5rem;
+    }
+  }
+  .contact-list {
+    margin-top: 18px;
+    font-size: 1.3rem;
+    line-height: 2rem;
+  }
+  .introduct-list {
+    li {
+      font-size: 1.3rem;
+      line-height: 2rem;
+      margin-bottom: 8px;
+    }
+  }
+  .company-info {
+    font-size: 1.3rem;
+    line-height: 2rem;
+    margin-bottom: 8px;
+  }
+  .protected {
+    width: 140px;
+  }
+  .bottom-row {
+    margin-top: 35px;
+  }
+  .copyright {
+    font-size: 1.3rem;
+  }
+  .social-list {
+    .social-icon {
+      padding: 10px;
+      img {
+        width: 28px;
+      }
+    }
+  }
+}
+
+/* Medium screens (768px and up - Tablets, including iPad at 820px) */
+@media (min-width: 768px) {
+  .wrapper {
+    padding: 50px 40px;
+  }
+  .top-row {
+    flex-direction: row; /* Horizontal layout for tablets */
+    flex-wrap: wrap; /* Allow wrapping to create two columns per row */
+    gap: 30px; /* Space between columns */
+  }
+  .col {
+    width: calc(50% - 15px); /* Two columns per row with gap adjustment */
+    padding: 0 15px;
+    &.col_bw {
+      flex: unset; /* Ensure consistent width */
+    }
+  }
+  .column-top {
+    .logo {
+      width: 38px;
+      height: 38px;
+    }
+    .slogan {
+      font-size: 1.6rem;
+    }
+  }
+  .contact-list {
+    margin-top: 20px;
+    font-size: 1.4rem;
+    line-height: 2.2rem;
+  }
+  .introduct-list {
+    li {
+      font-size: 1.4rem;
+      line-height: 2.2rem;
+    }
+  }
+  .company-info {
+    font-size: 1.4rem;
+    line-height: 2.2rem;
+  }
+  .protected {
+    width: 160px;
+  }
+  .bottom-row {
+    flex-direction: row; /* Horizontal layout */
+    justify-content: space-between;
+    margin-top: 40px;
+    text-align: left; /* Restore left alignment */
+  }
+  .copyright {
+    font-size: 1.4rem;
+  }
+  .social-list {
+    .social-icon {
+      padding: 12px;
+      img {
+        width: 32px;
+      }
+    }
+  }
+}
+
+/* Large screens (1024px and up - Desktop) */
+@media (min-width: 1024px) {
+  .wrapper {
+    padding: 68px 150px 40px; /* Original padding */
+  }
+  .top-row {
+    flex-wrap: nowrap; /* No wrapping on desktop */
+    gap: 0; /* Remove gap for fixed widths */
+  }
+  .col {
+    width: 25%; /* Four columns as per original design */
+    padding: 0 12px;
+    &.col_bw {
+      flex: 1; /* Restore flex for even spacing */
+    }
+  }
+  .protected {
+    margin-top: 20px;
+    width: 180px; /* Slightly larger for desktop */
+  }
+  .bottom-row {
+    margin-top: 48px;
   }
 }
