@@ -15,15 +15,15 @@ const Footer = () => {
                             <h2 className={cx('slogan')}>Học Lập Trình Để Đi Làm</h2>
                         </div>
                         <div className={cx('contact-list')}>
-                            <b>Điện thoại: </b><a href='tel:0346220536'>0346 220 536</a>
+                            <b>Điện thoại: </b><a href='tel:0346220536'>0387.956.345</a>
                             <br />
-                            <b>Email: </b><a href="mailto:quanggiap04@gmail.com">quanggiap04@gmail.com</a>
+                            <b>Email: </b><a href="mailto:quanggiap04@gmail.com">thekey.edu.vn@gmail.com</a>
                             <br />
-                            <b>Địa chỉ: </b>Số 1, ngõ 41, Trần Duy Hưng, Cầu Giấy, Hà Nội
+                            <b>Địa chỉ: </b>Lớp Học Thầy Nam, Cống Sông Bùng, Phùng Xá, Thạch Thất, Hà Nội
                         </div>
-                        <a href='https://thekey.edu.vn/'>
+                        {/* <a href='https://thekey.edu.vn/'>
                             <img className={cx('protected')} src={protectedImage} alt='' />
-                        </a>
+                        </a> */}
                     </div>
                     <div className={cx('col', 'col_bw')}>
                         <div className={cx('column-top')}>
@@ -76,22 +76,22 @@ const Footer = () => {
                             <div className={cx('company-info')}><b>Mã số thuế: </b>0109922901</div>
                             <div className={cx('company-info')}><b>Ngày thành lập: </b>04/03/2022</div>
                             <div className={cx('company-info')}><b>Lĩnh vực hoạt động: </b>Giáo dục, công nghệ - lập trình. Chúng tôi tập trung xây dựng
-                            và phát triển các sản phẩm mang lại giá trị cho cộng đồng lập trình viên Việt Nam.</div>
+                                và phát triển các sản phẩm mang lại giá trị cho cộng đồng lập trình viên Việt Nam.</div>
                         </div>
                     </div>
                 </div>
                 <div className={cx('bottom-row')}>
-                    <p className={cx('copyright')}>© 2018 - 2025  F8. Nền tảng học lập trình hàng đầu Việt Nam</p>
+                    <p className={cx('copyright')}>© 2025  Made by TheKey</p>
                     <div className={cx('social-list')}>
-                        <a className={cx('social-icon')} href='https://www.youtube.com/'>
+                        <a className={cx('social-icon')} target="_blank" href='https://www.youtube.com/'>
                             <img src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png" alt="youtube" />
                         </a>
 
-                        <a className={cx('social-icon')} href='https://www.youtube.com/'>
+                        <a className={cx('social-icon')} target="_blank" href='https://www.facebook.com/thekey.edu.vn'>
                             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Facebook_Logo_%282019%29.png/768px-Facebook_Logo_%282019%29.png" alt="youtube" />
                         </a>
 
-                        <a className={cx('social-icon')} href='https://www.youtube.com/'>
+                        <a className={cx('social-icon')} target="_blank" href='https://www.tiktok.com/@thekeytienganh'>
                             <img src="https://cdn.pixabay.com/photo/2021/06/15/12/28/tiktok-6338432_960_720.png" alt="youtube" />
                         </a>
                     </div>

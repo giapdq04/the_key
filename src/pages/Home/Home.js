@@ -271,7 +271,7 @@ const Home = () => {
                     <Slideshow>
                         {slideImages.map((slideImage, index) => (
                             <div key={index}>
-                                <div className={cx('slide')} style={{'backgroundImage': `url(${slideImage.url})`}}>
+                                <div className={cx('slide')} style={{ 'backgroundImage': `url(${slideImage.url})` }}>
                                     {/*nội dung bên trong slide*/}
                                 </div>
                             </div>
@@ -281,12 +281,12 @@ const Home = () => {
 
                 <div className={cx('content-wrapper')}>
 
-                    <List
+                    {/* <List
                         title='Khóa học Pro'
                         list={proList}
                         tag={'MỚI'}
                         isPro={true}
-                    />
+                    /> */}
 
 
                     <List
@@ -296,13 +296,13 @@ const Home = () => {
                         moreBtnTo={config.routes.learningPath}
                         numPersonLearn={1000}
                     />
-                    <List
+                    {/* <List
                         title='Bài viết nổi bật'
                         list={postList}
                         isCourse={false}
                         moreBtnTitle={'Xem tất cả'}
                         moreBtnTo={config.routes.learningPath}
-                    />
+                    /> */}
                 </div>
             </div>
 

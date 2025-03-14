@@ -6,32 +6,39 @@ import styles from "./AvatarMenu.module.scss";
 import useClickOutside from "../../hooks/useClickOutside";
 import { Link } from "react-router";
 import config from "../../config";
+import { useDispatch, useSelector } from "react-redux";
+import { setUser } from "../../store/userSlice";
+import Cookies from "js-cookie";
 
 const cx = classNames.bind(styles);
 
 const AvatarMenu = () => {
     const [showMenu, setShowMenu] = useState(false);
     const droprefavatar = useRef(null);
-    const [user, setUser] = useState(null);
+    // const [user, setUser] = useState(null);
+    const user = useSelector(state => state.user)
+    const dispatch = useDispatch();
 
     useClickOutside(droprefavatar, () => setShowMenu(false));
 
-    useEffect(() => {
-        // Lấy dữ liệu người dùng từ localStorage
-        const storedUser = localStorage.getItem("user");
-        if (storedUser) {
-            setUser(JSON.parse(storedUser));
-        }
-    }, []);
+    // useEffect(() => {
+    //     // Lấy dữ liệu người dùng từ localStorage
+    //     const storedUser = localStorage.getItem("user");
+    //     if (storedUser) {
+    //         setUser(JSON.parse(storedUser));
+    //     }
+    // }, []);
 
     const toggleMenu = () => {
         setShowMenu(!showMenu);
     };
 
     const handleLogout = () => {
-        localStorage.removeItem("user"); // Xóa thông tin người dùng
-        setUser(null); // Cập nhật lại state
-        window.location.reload(); // Reload lại trang
+        Cookies.remove("userID");
+        Cookies.remove("accessToken");
+        Cookies.remove("refreshToken");
+        dispatch(setUser(null))
+        window.location.reload();
     };
 
     return (
@@ -39,7 +46,7 @@ const AvatarMenu = () => {
             {/* Avatar */}
             <Image
                 className={cx("user-avatar")}
-                src={user ? user.photoURL : "https://cdn-icons-png.flaticon.com/512/847/847969.png"} // Avatar của người dùng hoặc ảnh mặc định
+                src={user ? user.avatar : "https://cdn-icons-png.flaticon.com/512/847/847969.png"} // Avatar của người dùng hoặc ảnh mặc định
                 alt="avatar"
                 onClick={toggleMenu}
             />
@@ -56,10 +63,10 @@ const AvatarMenu = () => {
                     <>
                         <div className={cx("_user_12z5x_6")}>
                             <div className={cx("_avatarWrapper_12z5x_11")}>
-                                <Image className={cx("_avatar_a1a1")} src={user.photoURL} />
+                                <Image className={cx("_avatar_a1a1")} src={user.avatar} />
                             </div>
                             <div style={{ marginLeft: 10 }}>
-                                <p className={cx("_name_12z5x_27")}>{user.displayName}</p>
+                                <p className={cx("_name_12z5x_27")}>{user.username}</p>
                                 <p className={cx("_username_12z5x_33")}>@{user.email}</p>
                             </div>
                         </div>
