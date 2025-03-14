@@ -6,7 +6,9 @@ import styles from "./AvatarMenu.module.scss";
 import useClickOutside from "../../hooks/useClickOutside";
 import { Link } from "react-router";
 import config from "../../config";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setUser } from "../../store/userSlice";
+import Cookies from "js-cookie";
 
 const cx = classNames.bind(styles);
 
@@ -15,6 +17,7 @@ const AvatarMenu = () => {
     const droprefavatar = useRef(null);
     // const [user, setUser] = useState(null);
     const user = useSelector(state => state.user)
+    const dispatch = useDispatch();
 
     useClickOutside(droprefavatar, () => setShowMenu(false));
 
@@ -31,9 +34,11 @@ const AvatarMenu = () => {
     };
 
     const handleLogout = () => {
-        // localStorage.removeItem("user"); // Xóa thông tin người dùng
-        // setUser(null); // Cập nhật lại state
-        // window.location.reload(); // Reload lại trang
+        Cookies.remove("userID");
+        Cookies.remove("accessToken");
+        Cookies.remove("refreshToken");
+        dispatch(setUser(null))
+        window.location.reload();
     };
 
     return (

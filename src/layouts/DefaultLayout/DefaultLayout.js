@@ -11,11 +11,11 @@ import Modal from "../../components/Modal/Modal";
 const cx = classNames.bind(styles);
 
 const DefaultLayout = ({ children }) => {
-    const [isShowModal, setIsShowModal] = useState(false)
+    // const [isShowModal, setIsShowModal] = useState(false)
 
-    const handleOpenModal = () => {
-        setIsShowModal(true)
-    }
+    // const handleOpenModal = () => {
+    //     setIsShowModal(true)
+    // }
     return (
         <div className={cx('wrapper')}>
             <Header />
@@ -25,16 +25,16 @@ const DefaultLayout = ({ children }) => {
                 <div className={cx('content')}>
                     {children}
                 </div>
-                <button className={cx('announcement')} onClick={handleOpenModal}>
+                {/* <button className={cx('announcement')} onClick={handleOpenModal}>
                     <FontAwesomeIcon icon={faBullhorn} />
-                </button>
+                </button> */}
             </div>
 
             <Footer />
 
-            <Modal isShow={isShowModal} onClose={() => setIsShowModal(false)}>
+            {/* <Modal isShow={isShowModal} onClose={() => setIsShowModal(false)}>
                 <h1>Modal Content</h1>
-            </Modal>
+            </Modal> */}
         </div>
     )
 }

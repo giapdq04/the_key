@@ -57,7 +57,7 @@ const Header = () => {
                     </Link>
 
                     <Link to='/'>
-                        <p className={cx('title')}>Học Lập Trình Để Đi Làm</p>
+                        <p className={cx('title')}>TheKey</p>
                     </Link>
                 </div>
 
