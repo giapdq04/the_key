@@ -12,7 +12,7 @@ const userInfo = [
     { label: "Họ và tên", value: "Việt ANH Phạm", modal: "name" },
     { label: "Tên người dùng", value: "phamvietanh4", modal: "username" },
     { label: "Giới thiệu", value: "Chưa cập nhật", modal: "introduce" },
-    { label: "Ảnh đại diện", value: <img src="" alt="" />, modal: "image" },
+    { label: "Ảnh đại diện", value: <img loading="lazy" src="" alt="" />, modal: "image" },
 ];
 
 const PersonalInfo = () => {

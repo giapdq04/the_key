@@ -53,7 +53,7 @@ const Header = () => {
             <div className={cx('inner')}>
                 <div className={cx('left-header')}>
                     <Link to='/'>
-                        <img src={images.logo} className={cx('logo')} alt='F8' />
+                        <img loading="lazy" src={images.logo} className={cx('logo')} alt='F8' />
                     </Link>
 
                     <Link to='/'>

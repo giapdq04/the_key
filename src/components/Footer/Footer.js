@@ -11,7 +11,7 @@ const Footer = () => {
                 <div className={cx('top-row')}>
                     <div className={cx('col')}>
                         <div className={cx('column-top')}>
-                            <img className={cx('logo')} src='https://fullstack.edu.vn/assets/f8-icon-lV2rGpF0.png' alt='logo' />
+                            <img loading="lazy" className={cx('logo')} src='https://fullstack.edu.vn/assets/f8-icon-lV2rGpF0.png' alt='logo' />
                             <h2 className={cx('slogan')}>Học Lập Trình Để Đi Làm</h2>
                         </div>
                         <div className={cx('contact-list')}>
@@ -22,7 +22,7 @@ const Footer = () => {
                             <b>Địa chỉ: </b>Lớp Học Thầy Nam, Cống Sông Bùng, Phùng Xá, Thạch Thất, Hà Nội
                         </div>
                         {/* <a href='https://thekey.edu.vn/'>
-                            <img className={cx('protected')} src={protectedImage} alt='' />
+                            <img loading="lazy" className={cx('protected')} src={protectedImage} alt='' />
                         </a> */}
                     </div>
                     <div className={cx('col', 'col_bw')}>
@@ -84,15 +84,15 @@ const Footer = () => {
                     <p className={cx('copyright')}>© 2025  Made by TheKey</p>
                     <div className={cx('social-list')}>
                         <a className={cx('social-icon')} target="_blank" href='https://www.youtube.com/'>
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png" alt="youtube" />
+                            <img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png" alt="youtube" />
                         </a>
 
                         <a className={cx('social-icon')} target="_blank" href='https://www.facebook.com/thekey.edu.vn'>
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Facebook_Logo_%282019%29.png/768px-Facebook_Logo_%282019%29.png" alt="youtube" />
+                            <img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Facebook_Logo_%282019%29.png/768px-Facebook_Logo_%282019%29.png" alt="youtube" />
                         </a>
 
                         <a className={cx('social-icon')} target="_blank" href='https://www.tiktok.com/@thekeytienganh'>
-                            <img src="https://cdn.pixabay.com/photo/2021/06/15/12/28/tiktok-6338432_960_720.png" alt="youtube" />
+                            <img loading="lazy" src="https://cdn.pixabay.com/photo/2021/06/15/12/28/tiktok-6338432_960_720.png" alt="youtube" />
                         </a>
                     </div>
                 </div>

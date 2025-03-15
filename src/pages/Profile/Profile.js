@@ -40,7 +40,7 @@ const Profile = () => {
               <div className={cx("wrapper_content")}>
                 <div className={cx("avatar_container")}>
                   <div className={cx("avatar_nav")}>
-                    <img
+                    <img loading="lazy"
                       className={cx("avatar_img")}
                       src={user.avatar}
                       alt="avatar"
@@ -52,7 +52,7 @@ const Profile = () => {
                 <div className={cx("start_wrapper")}>
                   <div className={cx("nav_start")}>
                     <span className={cx("left_icon")}>
-                      <img
+                      <img loading="lazy"
                         src="https://cdn0.iconfinder.com/data/icons/cryptocurrency-137/128/1_profile_user_avatar_account_person-132-1024.png"
                         alt="icon"
                         className={cx("icon_img")}
@@ -65,7 +65,7 @@ const Profile = () => {
                   </div>
                   <div className={cx("nav_start")}>
                     <span className={cx("left_icon")}>
-                      <img
+                      <img loading="lazy"
                         src="https://cdn0.iconfinder.com/data/icons/headhunting-3/64/time_managment_person_clock_deadline_working_hours-1024.png"
                         alt="icon"
                         className={cx("icon_img")}
@@ -84,7 +84,7 @@ const Profile = () => {
               <div className={cx("wrapper_corner")}>
                 <div className={cx("corner_1")}>
                   <span className={cx("left_icon")}>
-                    <img
+                    <img loading="lazy"
                       src="https://cdn0.iconfinder.com/data/icons/font-awesome-solid-vol-1/512/book-1024.png"
                       alt="icon"
                       className={cx("icon_img")}
@@ -115,7 +115,7 @@ const Profile = () => {
                         >
                           <div className={cx("wrapper_item")}>
                             <a className={cx("link_item")} href="https://www.youtube.com/" title={course.title} >
-                              <img className={cx("thumb")} src={course.image} alt={course.title} />
+                              <img loading="lazy" className={cx("thumb")} src={course.image} alt={course.title} />
                             </a>
                             <div className={cx("content_wrapper")}>
                               <h3 className={cx("title_head")}>{course.title}</h3>
@@ -125,7 +125,7 @@ const Profile = () => {
                               <div className={cx("more_content")}>
                                 <div className={cx("_moreInfo_1cn8u_51")}>
                                   <span className={cx("left_icon")}>
-                                    <img
+                                    <img loading="lazy"
                                       src="https://cdn0.iconfinder.com/data/icons/education-340/100/Tilda_Icons_1ed_group-1024.png"
                                       alt="so nguoi dang ki"
                                       className={cx("icon_img")}

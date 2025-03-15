@@ -41,7 +41,7 @@ const NotificationDropdown = () => {
                         className={cx("notification-item", { unread: item.unread })}
                         onClick={() => handleNotificationClick(item.id)}
                     >
-                        <img
+                        <img loading="lazy"
                             src="https://fullstack.edu.vn/assets/images/f8_avatar.png"
                             alt="F8"
                             className={cx("avatar")}

@@ -14,7 +14,7 @@ const Setting = () => {
         <div className={cx('container')}>
             <div className={cx('sidebar')}>
                 <div className={cx('_content_bnj22_13')}>
-                    <img src='https://accounts.fullstack.edu.vn/assets/logo-lV2rGpF0.png' className={cx("logo")} alt='' />
+                    <img loading="lazy" src='https://accounts.fullstack.edu.vn/assets/logo-lV2rGpF0.png' className={cx("logo")} alt='' />
                     <h2 style={{ fontSize: '2.4rem', margin: '10px 0', whiteSpace: 'nowrap' }}>Cài đặt tài khoản</h2>
                     <p style={{ fontSize: '1.5rem', opacity: 0.9 }}>
                         Quản lý cài đặt tài khoản của bạn như thông tin cá nhân, cài đặt bảo mật, quản lý thông báo, v.v.

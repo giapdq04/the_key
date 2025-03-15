@@ -65,7 +65,7 @@ const LearningPath = () => {
                                 <p className={cx("learning-path-desc")}>{path.description}</p>
                             </div>
                             <a className={cx("thum-round")} href="https://www.youtube.com/">
-                                <img src={path.image} className={cx("learning-path-image")} alt="" />
+                                <img loading="lazy" src={path.image} className={cx("learning-path-image")} alt="" />
                             </a>
                         </div>
 
@@ -89,7 +89,7 @@ const LearningPath = () => {
                                                 style={{ transition: "stroke-dashoffset 0.5s ease-in-out" }}
                                             />
                                         </svg>
-                                        <img
+                                        <img loading="lazy"
                                             src={skill.icon}
                                             alt={skill.name}
                                             className={cx("skill-icon", { "gray-icon": skill.progress === 0 })}
@@ -123,7 +123,7 @@ const LearningPath = () => {
                     <ButtonSocial text="Tham gia ngay" href="https://www.facebook.com/groups/f8official" />
                 </div>
                 <div className={cx("image-social")}></div>
-                <img
+                <img loading="lazy"
                     style={{ width: 420, height: 420 }}
                     src="https://fullstack.edu.vn/assets/fb-group-cards-CAn_kGMe.png"
                     alt="Mô tả ảnh"

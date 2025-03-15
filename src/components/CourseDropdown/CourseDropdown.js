@@ -44,7 +44,7 @@ const CourseDropdown = () => {
                     <ul className={cx("course-list")}>
                         {courses.map((course) => (
                             <li key={course.id} className={cx("course-item")}>
-                                <img src={course.image} alt={course.title} className={cx("course-image")} />
+                                <img loading="lazy" src={course.image} alt={course.title} className={cx("course-image")} />
                                 <div className={cx("content")}>
                                     <p className={cx("title")}>{course.title}</p>
                                     <span className={cx("last-learned")}>{course.lastLearned}</span>

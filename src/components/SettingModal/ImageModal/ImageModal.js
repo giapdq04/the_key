@@ -29,7 +29,7 @@ const ImageModal = ({ isOpen, onClose }) => {
 
                 {/* Hiển thị ảnh đại diện */}
                 <div className={cx("avatar-container")}>
-                    <img src={avatar} alt="Avatar" className={cx("avatar")} />
+                    <img loading="lazy" src={avatar} alt="Avatar" className={cx("avatar")} />
                 </div>
 
                 {/* Nút tải ảnh lên */}

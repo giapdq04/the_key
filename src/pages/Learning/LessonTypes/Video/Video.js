@@ -27,7 +27,7 @@ const Video = ({currentLesson}) => {
                             playsinline={true}
                             fallback={
                                 <div className={cx('fallback')}>
-                                    <img
+                                    <img loading="lazy"
                                         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnKMnEffBBNeaHWy2zz34vKlBzaYvt3H9gyg&s"
                                         alt=""/>
                                 </div>

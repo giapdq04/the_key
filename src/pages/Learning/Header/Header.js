@@ -42,7 +42,7 @@ const Header = () => {
             </Link>
 
             <Link className={cx('logo')} to={routeHome}>
-                <img src='https://fullstack.edu.vn/assets/f8-icon-lV2rGpF0.png' alt='logo' />
+                <img loading="lazy" src='https://fullstack.edu.vn/assets/f8-icon-lV2rGpF0.png' alt='logo' />
             </Link>
 
             <div className={cx('course-title')}>Lập Trình JavaScript Cơ Bản</div>

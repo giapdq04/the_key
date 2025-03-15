@@ -1,46 +1,71 @@
 import React from 'react';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCirclePlay, faClock, faCrown, faUsers } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faCirclePlay, faClock, faCrown, faUsers} from "@fortawesome/free-solid-svg-icons";
+import {Link} from "react-router";
 import classNames from "classnames/bind";
 import styles from "./CourseItem.module.scss";
 import config from "../../../../config";
+import axiosClient from "../../../../apis/axiosClient";
+import {useNavigate} from "react-router-dom";
+import Cookies from "js-cookie";
 
 const cx = classNames.bind(styles);
 
-const CourseItem = ({ item, isPro = false }) => {
+const CourseItem = ({item, isPro = false}) => {
 
-    const isEnrolled = false
+    const isEnrolled = true
+
+    const navigate = useNavigate();
 
     const converToNumberFormat = (price) => {
         return price?.toLocaleString('vi-VN');
     }
 
-    const converToMinute = (minute) => {
-        if (minute < 60) {
-            return `${minute}p`;
-        }
+    // const converToMinute = (minute) => {
+    //     if (minute < 60) {
+    //         return `${minute}p`;
+    //     }
+    //
+    //     if (minute % 60 === 0) {
+    //         return `${minute / 60}g`;
+    //     }
+    //
+    //     if (minute % 60 !== 0) {
+    //         return `${Math.floor(minute / 60)}g${minute % 60}p`;
+    //     }
+    // }
 
-        if (minute % 60 === 0) {
-            return `${minute / 60}g`;
-        }
+    const handleCourseClick = async (e) => {
+        e.preventDefault(); // Ngăn chặn hành vi chuyển trang mặc định của Link
 
-        if (minute % 60 !== 0) {
-            return `${Math.floor(minute / 60)}g${minute % 60}p`;
+        try {
+            const userID = Cookies.get('userID');
+
+            // Gọi API để kiểm tra hoặc xử lý trước khi chuyển trang
+            await axiosClient.post('/course/enroll', {
+                courseID: item._id,
+                userID
+            });
+
+            const targetRoute = isEnrolled
+                ? config.routes.learning.replace(':slug', item.slug)
+                : config.routes.courses.replace(':slug', item.slug);
+
+            navigate(targetRoute);
+        } catch (error) {
+            console.error('Error viewing course:', error);
+            // Xử lý lỗi - ví dụ: hiển thị thông báo lỗi
         }
-    }
+    };
 
     return (
-        <Link to={
-            isEnrolled
-                ? config.routes.learning.replace(':slug', item.slug)
-                : config.routes.courses.replace(':slug', item.slug)
-        }
+        <Link to='#'
+              onClick={handleCourseClick}
         >
             <div className={cx('item')}>
                 <div className={cx('thumbnail')}>
-                    <img src={`https://img.youtube.com/vi/${item.ytbVideoId}/maxresdefault.jpg`} alt={item.title} />
-                    {isPro && <FontAwesomeIcon icon={faCrown} className={cx('crown')} />}
+                    <img loading="lazy" src={`https://img.youtube.com/vi/${item.ytbVideoId}/maxresdefault.jpg`} alt={item.title}/>
+                    {isPro && <FontAwesomeIcon icon={faCrown} className={cx('crown')}/>}
                 </div>
 
                 <div className={cx('item-content')}>
@@ -56,7 +81,7 @@ const CourseItem = ({ item, isPro = false }) => {
                     {/* <div className={cx('more-info')}>
                         {isPro
                             ? <div className={cx('info-item')}>
-                                <img src={item.avtAuthor} alt={item.author} />
+                                <img loading="lazy" src={item.avtAuthor} alt={item.author} />
                                 <span>{item.author}</span>
                             </div>
                             :

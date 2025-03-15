@@ -43,13 +43,13 @@ const LoginModal = ({ isOpen, onClose }) => {
                 <button className={cx("close-icon")} onClick={onClose}>
                     &times;
                 </button>
-                <img src="https://accounts.fullstack.edu.vn/assets/logo-lV2rGpF0.png" alt="F8" className={cx("logo")} />
+                <img loading="lazy" src="https://accounts.fullstack.edu.vn/assets/logo-lV2rGpF0.png" alt="F8" className={cx("logo")} />
                 <h2 className={cx("modal-title")}>Đăng nhập vào F8</h2>
                 <p className={cx("modal-desc")}>
                     Mỗi người nên sử dụng riêng một tài khoản, tài khoản nhiều người sử dụng chung sẽ bị khóa.
                 </p>
                 <button className={cx("login-btn")} onClick={handleGoogleLogin}>
-                    <img
+                    <img loading="lazy"
                         src="https://cdn3.iconfinder.com/data/icons/logos-brands-3/24/logo_brand_brands_logos_google-1024.png"
                         alt="Google"
                         className={cx("icon")}
