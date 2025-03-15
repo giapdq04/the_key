@@ -11,11 +11,12 @@ import config from "../../../config";
 
 const cx = classNames.bind(styles);
 
-const Header = () => {
+const Header = ({courseTitle}) => {
     const routeHome = config.routes.home;
 
     const SectionList = useSelector(state => state.section);
 
+        
     const countLearnedLesson = useMemo(() => {
         return SectionList.reduce((result, section) => {
             const countLearnedLessonInaSection = section.lessons.filter(lesson => lesson.isCompleted).length;
@@ -45,7 +46,7 @@ const Header = () => {
                 <img loading="lazy" src='https://fullstack.edu.vn/assets/f8-icon-lV2rGpF0.png' alt='logo' />
             </Link>
 
-            <div className={cx('course-title')}>Lập Trình JavaScript Cơ Bản</div>
+            <div className={cx('course-title')}>{courseTitle}</div>
 
             <div className={cx('action')}>
                 <div className={cx('progress-bar')}>

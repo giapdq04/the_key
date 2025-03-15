@@ -62,7 +62,7 @@ const Header = () => {
                 </div>
 
                 <div className={cx('center-search')}>
-                    <Search />
+                    {/* <Search /> */}
                 </div>
 
                 {/* Nếu chưa đăng nhập, hiển thị nút đăng nhập */}
@@ -78,14 +78,14 @@ const Header = () => {
                 ) : (
                     // Nếu đã đăng nhập, hiển thị Avatar, khóa học, thông báo
                     <div className={cx('actions')}>
-                        <CourseDropdown />
-
+                        {/* <CourseDropdown /> */}
+{/* 
                         <div className={cx('notification-wrapper')} ref={droprefnotification}>
                             <button className={cx('action-btn')} onClick={toggleNotifications}>
                                 <FontAwesomeIcon icon={faBell} />
                             </button>
                             {showNotifications && <NotificationDropdown />}
-                        </div>
+                        </div> */}
 
                         <AvatarMenu />
                     </div>

@@ -1,9 +1,21 @@
 /* Styles cơ bản (mobile-first, áp dụng cho màn hình dưới 768px) */
+html, body {
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+#root, .container_juuyp_1 {
+  overflow-x: hidden;
+  width: 100%;
+}
 .container_juuyp_1 {
-    padding: 8px 12px 0; /* Giảm padding cho mobile để tiết kiệm không gian */
-    margin-bottom: 60px; /* Đảm bảo khoảng cách dưới cho thanh điều hướng mobile */
-    height: auto;
-  }
+  padding: 8px 12px 0;
+  margin-bottom: 60px;
+  height: auto;
+  width: 100%;
+}
   
   .wrapper_1 {
     margin-top: 15px; /* Giảm margin trên cho mobile */
