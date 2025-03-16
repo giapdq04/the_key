@@ -4,7 +4,6 @@
   width: 100%;
   min-height: var(--default-layout-footer-height);
   z-index: 1;
-  padding: 30px 15px; /* Reduced padding for mobile */
 }
 
 .container {
@@ -116,7 +115,7 @@
 @media (min-width: 375px) {
   .wrapper {
     padding: 40px 20px;
-    margin-bottom: 50px;
+    margin-bottom: 10px;
   }
   .column-top {
     .logo {
@@ -168,6 +167,7 @@
 @media (min-width: 768px) {
   .wrapper {
     padding: 50px 40px;
+    margin-bottom: 0;
   }
   .top-row {
     flex-direction: row; /* Horizontal layout for tablets */
@@ -230,7 +230,7 @@
 /* Large screens (1024px and up - Desktop) */
 @media (min-width: 1024px) {
   .wrapper {
-    padding: 68px 150px 40px; /* Original padding */
+    margin-bottom: 0;
   }
   .top-row {
     flex-wrap: nowrap; /* No wrapping on desktop */
