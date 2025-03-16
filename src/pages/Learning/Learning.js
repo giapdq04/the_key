@@ -31,6 +31,7 @@ const Learning = () => {
     // Lấy dữ liệu từ Redux
     const courses = useSelector(state => state.courses);
     const user = useSelector(state => state.user);
+    console.log("Courses:", courses.id);
     
     // Lấy courseId từ URL params
     const { courseId } = useParams(); // Giả sử URL có dạng /learning/:courseId
@@ -167,6 +168,7 @@ const Learning = () => {
         }
         
         if (currentLesson.isExercise) {
+            console.log("Dữ liệu bài tập:", currentLesson.questions);
             return <Exercise currentLesson={currentLesson}/>;
         }
         

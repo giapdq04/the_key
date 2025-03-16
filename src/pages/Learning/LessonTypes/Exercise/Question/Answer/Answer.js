@@ -1,20 +1,20 @@
-import classNames from "classnames/bind";
-import styles from "./Answer.module.scss";
+import React from 'react';
+import classNames from 'classnames/bind';
+import styles from './Answer.module.scss';
 
-const cx = classNames.bind(styles)
+const cx = classNames.bind(styles);
 
-const Answer = ({answer, userAnswer, onChooseOption, questionId}) => {
+const Answer = ({ questionId, answer, onChooseOption, userAnswer }) => {
     return (
-        <label className={cx('wrapper')}>
+        <label className={cx('answer-item')}>
             <input
-                className={cx('radio')}
                 type="radio"
-                name={questionId}
-                value={answer}
-                checked={userAnswer === answer}
+                name={`question-${questionId}`} // Đảm bảo các radio trong cùng câu hỏi không xung đột
+                value={answer} // Truyền text của đáp án tạm thời
                 onChange={onChooseOption}
+                checked={userAnswer === answer} // So sánh với text
             />
-            <p className={cx('answer')}>{answer}</p>
+            <span>{answer}</span> {/* Hiển thị text của đáp án */}
         </label>
     );
 };

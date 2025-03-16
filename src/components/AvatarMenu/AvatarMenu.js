@@ -21,13 +21,7 @@ const AvatarMenu = () => {
 
     useClickOutside(droprefavatar, () => setShowMenu(false));
 
-    // useEffect(() => {
-    //     // Lấy dữ liệu người dùng từ localStorage
-    //     const storedUser = localStorage.getItem("user");
-    //     if (storedUser) {
-    //         setUser(JSON.parse(storedUser));
-    //     }
-    // }, []);
+  
 
     const toggleMenu = () => {
         setShowMenu(!showMenu);
