@@ -15,13 +15,13 @@ const Question = ({question, onChooseAnswer, index}) => {
 
     useEffect(() => {
         if (userAnswer !== '') {
-            onChooseAnswer(question.id, userAnswer)
+            onChooseAnswer(userAnswer)
         }
     }, [userAnswer]);
 
     return (
         <div>
-            <h4>{index + 1}. {question.text}</h4>
+            <h4>{index + 1}. {question.question}</h4>
             <div className={cx('answers-wrapper')}>
                 {
                     question.options.map((option, index) => (

@@ -1,6 +1,6 @@
 import classNames from "classnames/bind";
-import {useSelector} from "react-redux";
-import {useEffect, useRef, memo} from "react";
+import { useSelector } from "react-redux";
+import { useEffect, useRef, memo } from "react";
 
 import Section from "./Section/Section";
 import styles from "./Sidebar.module.scss";
@@ -9,17 +9,18 @@ const cx = classNames.bind(styles);
 
 const Sidebar = () => {
     const SectionList = useSelector(state => state.section);
-    const sectionRefs = useRef([]);
+    const currentCourse = useSelector(state => state.currentCourse)
+    // const sectionRefs = useRef([]);
 
-    useEffect(() => {
-        const activeSectionIndex = SectionList.findIndex(section =>
-            section.lessons.some(lesson => lesson.status === 2)
-        );
-
-        if (activeSectionIndex !== -1 && sectionRefs.current[activeSectionIndex]) {
-            sectionRefs.current[activeSectionIndex].scrollIntoView({behavior: 'smooth'});
-        }
-    }, [SectionList]);
+    // useEffect(() => {
+    //     const activeSectionIndex = SectionList.findIndex(section =>
+    //         section.lessons.some(lesson => lesson.status === 2)
+    //     );
+    //
+    //     if (activeSectionIndex !== -1 && sectionRefs.current[activeSectionIndex]) {
+    //         sectionRefs.current[activeSectionIndex].scrollIntoView({behavior: 'smooth'});
+    //     }
+    // }, [SectionList]);
 
     return (
         <div className={cx('side-bar')}>
@@ -28,10 +29,10 @@ const Sidebar = () => {
                     <h1 className={cx('heading')}>Nội dung khóa học</h1>
                 </header>
                 <div className={cx('body')}>
-                    {SectionList.map((section, index) => (
+                    {currentCourse?.sections?.map((section, index) => (
                         <div
-                            key={section.id}
-                            ref={el => sectionRefs.current[index] = el}
+                            key={section._id}
+                        // ref={el => sectionRefs.current[index] = el}
                         >
                             <Section
                                 index={index}

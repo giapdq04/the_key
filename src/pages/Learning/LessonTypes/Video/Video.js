@@ -4,10 +4,17 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faHeart, faPlay} from "@fortawesome/free-solid-svg-icons";
 import classNames from "classnames/bind";
 import styles from "./Video.module.scss";
+import axiosClient from "../../../../apis/axiosClient";
+import Cookies from "js-cookie";
+import {useParams} from "react-router";
 
 const cx = classNames.bind(styles)
 
 const Video = ({currentLesson}) => {
+
+    const userID = Cookies.get("userID");
+    const {slug} = useParams()
+
     const PlayIcon = () => {
         return (
             <button className={cx('play-button')}>
@@ -15,12 +22,27 @@ const Video = ({currentLesson}) => {
             </button>
         )
     }
+
+    const handleProgress = async (state) => {
+        if (state.played >= 0.5) {
+            try {
+                await axiosClient.post('/lesson/finish-lesson', {
+                    userID,
+                    slug,
+                    lessonID: currentLesson._id
+                })
+            } catch (e) {
+                console.log(e)
+            }
+        }
+    }
     return (
         <div className={cx('main-content')}>
             <div className={cx('video-container')}>
                 <div className={cx('video-player-container')}>
                     <div className={cx('video-player')}>
                         <ReactPlayer
+                            onProgress={handleProgress}
                             width={'100%'}
                             height={'100%'}
                             controls
@@ -28,14 +50,14 @@ const Video = ({currentLesson}) => {
                             fallback={
                                 <div className={cx('fallback')}>
                                     <img loading="lazy"
-                                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnKMnEffBBNeaHWy2zz34vKlBzaYvt3H9gyg&s"
-                                        alt=""/>
+                                         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnKMnEffBBNeaHWy2zz34vKlBzaYvt3H9gyg&s"
+                                         alt=""/>
                                 </div>
                             }
                             playing={true}
-                            light={`https://img.youtube.com/vi/${currentLesson?.ytbVideoId}/maxresdefault.jpg`}
+                            light={`https://img.youtube.com/vi/${currentLesson?.ytbVideoID}/maxresdefault.jpg`}
                             playIcon={<PlayIcon/>}
-                            url={`https://www.youtube.com/watch?v=${currentLesson?.ytbVideoId}`}
+                            url={`https://www.youtube.com/watch?v=${currentLesson?.ytbVideoID}`}
                         />
                     </div>
                 </div>

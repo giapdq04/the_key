@@ -6,7 +6,7 @@ import { ToastContainer } from "react-toastify";
 import axiosClient from "./apis/axiosClient";
 import DefaultLayout from "./layouts/DefaultLayout/DefaultLayout";
 import { publicRoutes } from "./routes/routes";
-import { setCourses } from "./store/courseSlice";
+import { setCourses } from "./store/coursesSlice";
 import { setUser } from "./store/userSlice";
 
 function App() {

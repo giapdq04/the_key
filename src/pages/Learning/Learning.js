@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind'
-import React, {useCallback, useEffect, useState} from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import 'react-circular-progressbar/dist/styles.css'
-import {useSelector} from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 
 import Footer from "./Footer/Footer"
 import styles from './Learning.module.scss'
@@ -10,56 +10,59 @@ import Header from "./Header/Header";
 import Video from "./LessonTypes/Video/Video";
 import Document from "./LessonTypes/Document/Document";
 import Exercise from "./LessonTypes/Exercise/Exercise";
+import axiosClient from "../../apis/axiosClient";
+import { useParams } from "react-router";
+import Cookies from "js-cookie";
+import { setCurrentCourse } from "../../store/courseSlice";
+import {setSelectedLesson} from "../../store/selectedLessonSlice";
 
 const cx = classNames.bind(styles)
 
 const Learning = () => {
 
-    const [currentLesson, setCurrentLesson] = useState()
+
     const [showSection, setShowSection] = useState(true)
-    const SectionList = useSelector(state => state.section)
+    const currentLesson = useSelector(state => state.selectedLesson)
+
+    const dispatch = useDispatch()
+
+    const { slug } = useParams()
+
+    const userID = Cookies.get("userID")
 
     useEffect(() => {
-        const result = SectionList.reduce((acc, section) => acc.concat(section.lessons), []);
-        const output = result.find(lesson => lesson.status === 2);
-
-        if (output) {
-            document.title = output.title;
-            const updatedTime = new Date(output.updatedAt).toLocaleDateString('vi-VN', {timeZone: 'Asia/Ho_Chi_Minh'});
-            const video = `https://www.youtube.com/watch?v=${output?.ytbVideoId}`;
-
-            setCurrentLesson({
-                ...output,
-                updatedAt: updatedTime,
-                video
-            });
+        const fetchCourse = async () => {
+            const result = await axiosClient.get(`/course/${slug}/${userID}`)
+            dispatch(setCurrentCourse(result.data))
+            dispatch(setSelectedLesson(result.data.sections[0].lessons[0]))
         }
-    }, [SectionList]);
+        fetchCourse()
+    }, [dispatch, slug, userID]);
 
     const handleToggleSections = () => {
         setShowSection(!showSection);
     }
 
     const MainContent = useCallback(() => {
-        if (currentLesson?.isDoc) {
-            return <Document currentLesson={currentLesson}/>
+        if (currentLesson?.docID) {
+            return <Document currentLesson={currentLesson} />
         }
 
-        if (currentLesson?.isExercise) {
-            return <Exercise currentLesson={currentLesson}/>
+        if (currentLesson?.questions) {
+            return <Exercise currentLesson={currentLesson} />
         }
 
-        return <Video currentLesson={currentLesson}/>
+        return <Video currentLesson={currentLesson} />
     }, [currentLesson])
 
     return (
         <div className={cx('wrapper')}>
-            <Header/>
+            <Header />
 
-            {showSection && <Sidebar/>}
+            {showSection && <Sidebar />}
 
-            <MainContent/>
-            <Footer showSection={showSection} onToggleSection={handleToggleSections}/>
+             <MainContent />
+            <Footer showSection={showSection} onToggleSection={handleToggleSections} />
         </div>
     );
 }

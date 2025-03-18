@@ -13,12 +13,12 @@ const Section = ({ item, index }) => {
 
     const [showSection, setShowSection] = useState(false);
 
-    useEffect(() => {
-        const hasOpeningLesson = item.lessons.some(lesson => lesson.status === 2);
-        if (hasOpeningLesson) {
-            setShowSection(true);
-        }
-    }, [item.lessons]);
+    // useEffect(() => {
+    //     const hasOpeningLesson = item.lessons.some(lesson => lesson.status === 2);
+    //     if (hasOpeningLesson) {
+    //         setShowSection(true);
+    //     }
+    // }, [item.lessons]);
 
     const completedLessonsCount = useMemo(() => {
         return item.lessons.filter(lesson => lesson.isCompleted).length;
@@ -43,7 +43,8 @@ const Section = ({ item, index }) => {
             <div className={cx('section-wrapper')} onClick={() => setShowSection(!showSection)}>
                 <h3 className={cx('title')}>{index + 1}. {item.title}</h3>
                 <span className={cx('description')}>
-                    {completedLessonsCount}/{totalLessonsCount} | {formattedDuration}
+                    {completedLessonsCount}/{totalLessonsCount}
+                    {/*| {formattedDuration}*/}
                 </span>
                 <span className={cx('icon')}>
                     {
@@ -60,7 +61,8 @@ const Section = ({ item, index }) => {
                         {item.lessons.map((lesson, index) => {
                             return (
                                 <Lesson
-                                    key={lesson.id}
+                                    key={lesson._id}
+                                    index={index}
                                     item={lesson} />
                             );
                         })}
