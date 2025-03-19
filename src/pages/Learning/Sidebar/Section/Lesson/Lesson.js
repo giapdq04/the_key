@@ -29,7 +29,6 @@ const Lesson = ({ item, index }) => {
         // If this is the first incomplete lesson, unlock it
         if (incompleteLessons.length > 0 && incompleteLessons[0]._id === item._id) {
             setDisable(false);
-            dispatch(setSelectedLesson(item))
         }
 
         if (item.isCompleted) {

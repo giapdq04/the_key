@@ -1,11 +1,11 @@
-import React, { memo } from 'react'
+import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRight, faBars, faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import classNames from "classnames/bind";
+import React, { memo } from 'react';
 import { useDispatch } from "react-redux";
 
-import styles from "./Footer.module.scss";
 import { nextLesson, previousLesson } from "../../../store/sectionSlice";
+import styles from "./Footer.module.scss";
 
 const cx = classNames.bind(styles)
 
@@ -46,7 +46,7 @@ const Footer = ({ showSection, onToggleSection }) => {
                     </span>
                 </button>
             </div>
-            <div className={cx('toggle-wrap')} onClick={onToggleSection}>
+            {/* <div className={cx('toggle-wrap')} onClick={onToggleSection}>
                 <h3 className={cx('track-title')}>1. Giới thiệu</h3>
                 <button className={cx('toggle-btn')}>
                     {
@@ -56,7 +56,7 @@ const Footer = ({ showSection, onToggleSection }) => {
                     }
 
                 </button>
-            </div>
+            </div> */}
         </footer>
     )
 }

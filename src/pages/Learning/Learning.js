@@ -32,11 +32,35 @@ const Learning = () => {
 
     useEffect(() => {
         const fetchCourse = async () => {
-            const result = await axiosClient.get(`/course/${slug}/${userID}`)
-            dispatch(setCurrentCourse(result.data))
-            dispatch(setSelectedLesson(result.data.sections[0].lessons[0]))
+            try {
+                const result = await axiosClient.get(`/course/${slug}/${userID}`)
+                dispatch(setCurrentCourse(result.data))
+                
+                // Tìm bài học đầu tiên có isCompleted = false
+                let firstIncompleteLesson = null;
+                
+                // Duyệt qua tất cả các sections để tìm bài học chưa hoàn thành đầu tiên
+                for (const section of result.data.sections) {
+                    for (const lesson of section.lessons) {
+                        if (!lesson.isCompleted) {
+                            firstIncompleteLesson = lesson;
+                            break;
+                        }
+                    }
+                    if (firstIncompleteLesson) break;
+                }
+                
+                // Nếu tìm thấy bài học chưa hoàn thành, chọn nó
+                // Nếu không tìm thấy, mặc định chọn bài học đầu tiên
+                dispatch(setSelectedLesson(firstIncompleteLesson || result.data.sections[0].lessons[0]));
+            } catch (error) {
+                console.error("Error fetching course:", error);
+            }
         }
-        fetchCourse()
+        
+        if (slug && userID) {
+            fetchCourse()
+        }
     }, [dispatch, slug, userID]);
 
     const handleToggleSections = () => {

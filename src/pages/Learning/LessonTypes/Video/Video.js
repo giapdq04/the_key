@@ -7,6 +7,9 @@ import styles from "./Video.module.scss";
 import axiosClient from "../../../../apis/axiosClient";
 import Cookies from "js-cookie";
 import {useParams} from "react-router";
+import {setCurrentCourse} from "../../../../store/courseSlice";
+import {setSelectedLesson} from "../../../../store/selectedLessonSlice";
+import {useDispatch} from "react-redux";
 
 const cx = classNames.bind(styles)
 
@@ -14,6 +17,7 @@ const Video = ({currentLesson}) => {
 
     const userID = Cookies.get("userID");
     const {slug} = useParams()
+    const dispatch = useDispatch()
 
     const PlayIcon = () => {
         return (
@@ -24,13 +28,22 @@ const Video = ({currentLesson}) => {
     }
 
     const handleProgress = async (state) => {
-        if (state.played >= 0.5) {
+        let called = false
+        if (!currentLesson.isCompleted && state.played >= 0.5 && !called) {
             try {
                 await axiosClient.post('/lesson/finish-lesson', {
                     userID,
                     slug,
                     lessonID: currentLesson._id
                 })
+                called = true
+
+                const fetchCourse = async () => {
+                    const result = await axiosClient.get(`/course/${slug}/${userID}`)
+                    dispatch(setCurrentCourse(result.data))
+                    dispatch(setSelectedLesson(result.data.sections[0].lessons[0]))
+                }
+                fetchCourse()
             } catch (e) {
                 console.log(e)
             }
@@ -67,7 +80,7 @@ const Video = ({currentLesson}) => {
                 <div className={cx('content-top')}>
                     <header className={cx('description-wrapper')}>
                         <h1 className={cx('heading')}>{currentLesson?.title}</h1>
-                        <p className={cx('update-at')}>Cập nhật gần nhất: {currentLesson?.updatedAt}</p>
+                        {/* <p className={cx('update-at')}>Cập nhật gần nhất: {currentLesson?.updatedAt}</p> */}
                     </header>
 
                     {/*<button className={cx('notes')}>Ghi chú</button>*/}
