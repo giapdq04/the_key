@@ -53,6 +53,8 @@ axiosClient.interceptors.response.use(
             } catch (error) {
                 Cookies.remove('accessToken');
                 Cookies.remove('refreshToken');
+                Cookies.remove('userID');
+                window.location.reload();
 
                 return Promise.reject(error);
             }

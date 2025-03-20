@@ -52,13 +52,13 @@ const Header = () => {
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
                 <div className={cx('left-header')}>
-                    <Link to='/'>
+                    <a href='/'>
                         <img loading="lazy" src={images.logo} className={cx('logo')} alt='F8' />
-                    </Link>
+                    </a>
 
-                    <Link to='/'>
+                    <a href='/'>
                         <p className={cx('title')}>TheKey</p>
-                    </Link>
+                    </a>
                 </div>
 
                 {/* <div className={cx('center-search')}>
