@@ -1,6 +1,7 @@
 import {
     faCircleCheck,
     faCirclePlay,
+    faCompactDisc,
     faFileLines,
     faLock,
     faPen
@@ -18,6 +19,7 @@ const cx = classNames.bind(styles)
 const Lesson = ({ item, index }) => {
     const dispatch = useDispatch()
     const currentCourse = useSelector(state => state.currentCourse)
+    const selectedLesson = useSelector(state => state.selectedLesson)
     const [disable, setDisable] = useState(true)
 
     useEffect(() => {
@@ -56,9 +58,9 @@ const Lesson = ({ item, index }) => {
             return <FontAwesomeIcon icon={faPen} />
         }
 
-        // if (item.status === 2) {
-        //     return <FontAwesomeIcon className={cx('disc-icon')} icon={faCompactDisc} />
-        // }
+        if (selectedLesson._id === item._id) {
+            return <FontAwesomeIcon className={cx('disc-icon')} icon={faCompactDisc} />
+        }
 
         return <FontAwesomeIcon icon={faCirclePlay} />
     }
@@ -66,15 +68,15 @@ const Lesson = ({ item, index }) => {
     return (
         <div onClick={handleLessonClick} className={cx('wrapper',
             { locked: disable ? item.isCompleted === false : false },
-            // { active: item.status === 2 },
-            // { wrapperHover: item.status === 1 }
+            { active: selectedLesson._id === item._id },
+            { wrapperHover: selectedLesson._id !== item._id }
         )}
         >
             <div className={cx('info')}>
                 <h3 className={cx('title')}>{index + 1}. {item.title}</h3>
                 <p className={cx('description')}>
                     <LessonIcon />
-                    <span>1:00</span>
+                    {item.ytbVideoID && <span>{item.duration}</span>}
                 </p>
             </div>
             <div className={cx('icon-box')}>

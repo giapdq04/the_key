@@ -2,24 +2,23 @@ import classNames from 'classnames/bind'
 import React, { useCallback, useEffect, useState } from 'react'
 import 'react-circular-progressbar/dist/styles.css'
 import { useDispatch, useSelector } from "react-redux"
+import Cookies from "js-cookie"
+import { useParams } from "react-router"
 
+import axiosClient from "../../apis/axiosClient"
+import { setCurrentCourse } from "../../store/courseSlice"
+import { setSelectedLesson } from "../../store/selectedLessonSlice"
 import Footer from "./Footer/Footer"
+import Header from "./Header/Header"
 import styles from './Learning.module.scss'
+import Document from "./LessonTypes/Document/Document"
+import Exercise from "./LessonTypes/Exercise/Exercise"
+import Video from "./LessonTypes/Video/Video"
 import Sidebar from "./Sidebar/Sidebar"
-import Header from "./Header/Header";
-import Video from "./LessonTypes/Video/Video";
-import Document from "./LessonTypes/Document/Document";
-import Exercise from "./LessonTypes/Exercise/Exercise";
-import axiosClient from "../../apis/axiosClient";
-import { useParams } from "react-router";
-import Cookies from "js-cookie";
-import { setCurrentCourse } from "../../store/courseSlice";
-import {setSelectedLesson} from "../../store/selectedLessonSlice";
 
 const cx = classNames.bind(styles)
 
 const Learning = () => {
-
 
     const [showSection, setShowSection] = useState(true)
     const currentLesson = useSelector(state => state.selectedLesson)

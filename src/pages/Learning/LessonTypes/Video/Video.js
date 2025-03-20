@@ -1,15 +1,15 @@
-import React, {memo} from 'react'
-import ReactPlayer from "react-player";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faHeart, faPlay} from "@fortawesome/free-solid-svg-icons";
+import { faHeart, faPlay } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classNames from "classnames/bind";
-import styles from "./Video.module.scss";
-import axiosClient from "../../../../apis/axiosClient";
 import Cookies from "js-cookie";
-import {useParams} from "react-router";
-import {setCurrentCourse} from "../../../../store/courseSlice";
-import {setSelectedLesson} from "../../../../store/selectedLessonSlice";
-import {useDispatch} from "react-redux";
+import React, { memo } from 'react';
+import ReactPlayer from "react-player";
+import { useDispatch } from "react-redux";
+import { useParams } from "react-router";
+import axiosClient from "../../../../apis/axiosClient";
+import { setCurrentCourse } from "../../../../store/courseSlice";
+import { setSelectedLesson } from "../../../../store/selectedLessonSlice";
+import styles from "./Video.module.scss";
 
 const cx = classNames.bind(styles)
 
@@ -18,6 +18,10 @@ const Video = ({currentLesson}) => {
     const userID = Cookies.get("userID");
     const {slug} = useParams()
     const dispatch = useDispatch()
+    
+    // Di chuyển biến called ra ngoài hàm handleProgress
+    // và sử dụng useRef để lưu trạng thái giữa các lần render
+    const calledRef = React.useRef(false);
 
     const PlayIcon = () => {
         return (
@@ -28,20 +32,19 @@ const Video = ({currentLesson}) => {
     }
 
     const handleProgress = async (state) => {
-        let called = false
-        if (!currentLesson.isCompleted && state.played >= 0.5 && !called) {
+        if (!currentLesson.isCompleted && state.played >= 0.5 && !calledRef.current) {
             try {
+                
                 await axiosClient.post('/lesson/finish-lesson', {
                     userID,
                     slug,
                     lessonID: currentLesson._id
                 })
-                called = true
+                calledRef.current = true;
 
                 const fetchCourse = async () => {
                     const result = await axiosClient.get(`/course/${slug}/${userID}`)
                     dispatch(setCurrentCourse(result.data))
-                    dispatch(setSelectedLesson(result.data.sections[0].lessons[0]))
                 }
                 fetchCourse()
             } catch (e) {
@@ -104,4 +107,7 @@ const Video = ({currentLesson}) => {
     )
 }
 
-export default memo(Video)
+export default memo(Video, (prevProps, nextProps) => {
+    return prevProps.currentLesson._id === nextProps.currentLesson._id && 
+           prevProps.currentLesson.isCompleted === nextProps.currentLesson.isCompleted;
+})
