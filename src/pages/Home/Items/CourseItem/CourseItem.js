@@ -1,17 +1,17 @@
 import React from 'react';
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faCirclePlay, faClock, faCrown, faUsers} from "@fortawesome/free-solid-svg-icons";
-import {Link} from "react-router";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCirclePlay, faClock, faCrown, faUsers } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router";
 import classNames from "classnames/bind";
 import styles from "./CourseItem.module.scss";
 import config from "../../../../config";
 import axiosClient from "../../../../apis/axiosClient";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router";
 import Cookies from "js-cookie";
 
 const cx = classNames.bind(styles);
 
-const CourseItem = ({item, isPro = false}) => {
+const CourseItem = ({ item, isPro = false }) => {
 
     const isEnrolled = true
 
@@ -60,22 +60,25 @@ const CourseItem = ({item, isPro = false}) => {
 
     return (
         <Link to='#'
-              onClick={handleCourseClick}
+            onClick={handleCourseClick}
         >
             <div className={cx('item')}>
                 <div className={cx('thumbnail')}>
-                    <img loading="lazy" src={`https://img.youtube.com/vi/${item.ytbVideoId}/maxresdefault.jpg`} alt={item.title}/>
-                    {isPro && <FontAwesomeIcon icon={faCrown} className={cx('crown')}/>}
+                    <img loading="lazy" src={`https://img.youtube.com/vi/${item.ytbVideoId}/maxresdefault.jpg`} alt={item.title} />
+                    {isPro && <FontAwesomeIcon icon={faCrown} className={cx('crown')} />}
                 </div>
 
                 <div className={cx('item-content')}>
                     <span className={cx('item-title')}>{item.title}</span>
                     <div className={cx('item-price')}>
-                        {isPro && <span className={cx('price')}>
-                            {converToNumberFormat(item.price)}đ
-                        </span>}
+                        {isPro &&
+                            <span className={cx('price')}>
+                                {converToNumberFormat(item.price)}đ
+                            </span>}
                         <span
-                            className={cx('newPrice')}>{isPro ? converToNumberFormat(item.price * item.discount / 100) + 'đ' : 'Miễn phí'}</span>
+                            className={cx('newPrice')}>
+                            {isPro ? converToNumberFormat(item.price * item.discount / 100) + 'đ' : 'Miễn phí'}
+                        </span>
                     </div>
 
                     {/* <div className={cx('more-info')}>

@@ -17,7 +17,7 @@ const Footer = () => {
                         <div className={cx('contact-list')}>
                             <b>Điện thoại: </b><a href='tel:0346220536'>0387.956.345</a>
                             <br />
-                            <b>Email: </b><a href="mailto:quanggiap04@gmail.com">thekey.edu.vn@gmail.com</a>
+                            <b>Email: </b><a href="mailto:thekey.edu.vn@gmail.com">thekey.edu.vn@gmail.com</a>
                             <br />
                             <b>Địa chỉ: </b>Lớp Học Thầy Nam, Cống Sông Bùng, Phùng Xá, Thạch Thất, Hà Nội
                         </div>

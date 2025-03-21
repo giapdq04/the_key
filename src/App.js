@@ -1,7 +1,7 @@
 import Cookies from "js-cookie";
 import { Fragment, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { BrowserRouter, Route, Routes } from "react-router-dom"; // Sửa "react-router" thành "react-router-dom"
+import { BrowserRouter, Route, Routes } from "react-router"; // Sửa "react-router" thành "react-router"
 import { ToastContainer } from "react-toastify";
 import axiosClient from "./apis/axiosClient";
 import DefaultLayout from "./layouts/DefaultLayout/DefaultLayout";
