@@ -1,6 +1,5 @@
 import classNames from "classnames/bind";
 import React from 'react';
-import protectedImage from '../../assets/images/protected.png';
 import styles from './Footer.module.scss';
 
 const cx = classNames.bind(styles);
@@ -21,11 +20,8 @@ const Footer = () => {
                             <br />
                             <b>Địa chỉ: </b>Lớp Học Thầy Nam, Cống Sông Bùng, Phùng Xá, Thạch Thất, Hà Nội
                         </div>
-                        {/* <a href='https://thekey.edu.vn/'>
-                            <img loading="lazy" className={cx('protected')} src={protectedImage} alt='' />
-                        </a> */}
                     </div>
-                    <div className={cx('col', 'col_bw')}>
+                    <div className={cx('col')}>
                         <div className={cx('column-top')}>
                             <h2 className={cx('slogan')}>VỀ F8</h2>
                         </div>
@@ -38,7 +34,7 @@ const Footer = () => {
                             </ul>
                         </div>
                     </div>
-                    <div className={cx('col', 'col_bw')}>
+                    {/* <div className={cx('col', 'col_bw')}>
                         <div className={cx('column-top')}>
                             <h2 className={cx('slogan')}>SẢN PHẨM</h2>
                         </div>
@@ -52,8 +48,8 @@ const Footer = () => {
                                 <li><a href='https://www.youtube.com/watch?v=KKc_RMln5UY'>Game Scoops</a></li>
                             </ul>
                         </div>
-                    </div>
-                    <div className={cx('col', 'col_bw')}>
+                    </div> */}
+                    {/* <div className={cx('col', 'col_bw')}>
                         <div className={cx('column-top')}>
                             <h2 className={cx('slogan')}>CÔNG CỤ</h2>
                         </div>
@@ -67,8 +63,8 @@ const Footer = () => {
                                 <li><a href='https://www.youtube.com/watch?v=KKc_RMln5UY'>Cảnh báo sờ tay lên mặt</a></li>
                             </ul>
                         </div>
-                    </div>
-                    <div className={cx('col')}>
+                    </div> */}
+                    {/* <div className={cx('col')}>
                         <div className={cx('column-top')}>
                             <h2 className={cx('slogan')}>CÔNG TY CỔ PHẦN CÔNG NGHỆ GIÁO DỤC F8</h2>
                         </div>
@@ -78,7 +74,7 @@ const Footer = () => {
                             <div className={cx('company-info')}><b>Lĩnh vực hoạt động: </b>Giáo dục, công nghệ - lập trình. Chúng tôi tập trung xây dựng
                                 và phát triển các sản phẩm mang lại giá trị cho cộng đồng lập trình viên Việt Nam.</div>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
                 <div className={cx('bottom-row')}>
                     <p className={cx('copyright')}>© 2025  Made by TheKey</p>
