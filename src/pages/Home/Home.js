@@ -1,14 +1,13 @@
+import React, { memo } from "react";
 import classNames from "classnames/bind";
-import React from "react";
 import { useSelector } from "react-redux";
 import Slideshow from "../../components/Slider/Slider";
-import styles from "./Home.module.scss";
 import List from "./List/List";
 import config from "../../config";
+import styles from "./Home.module.scss";
 
-const cx = classNames.bind(styles);
-
-const slideImages = [
+// Constants
+const SLIDE_IMAGES = [
   {
     url: "https://images.unsplash.com/photo-1509721434272-b79147e0e708?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80",
     caption: "Slide 1",
@@ -23,8 +22,27 @@ const slideImages = [
   },
 ];
 
-const Home = () => {
-  // Lấy dữ liệu từ Redux store
+const LIST_CONFIG = {
+  title: "Khóa học miễn phí",
+  moreBtnTitle: "Xem lộ trình",
+  moreBtnTo: config.routes.learningPath,
+  numPersonLearn: 1000,
+};
+
+const cx = classNames.bind(styles);
+
+// Component con cho Slide Item - Memo hóa
+const SlideItem = memo(({ slideImage }) => (
+  <div>
+    <div
+      className={cx("slide")}
+      style={{ backgroundImage: `url(${slideImage.url})` }}
+    />
+  </div>
+));
+
+// Component chính - Memo hóa
+const Home = memo(() => {
   const courses = useSelector((state) => state.courses);
 
   return (
@@ -32,29 +50,24 @@ const Home = () => {
       <div className={cx("container")}>
         <div className={cx("slide-container")}>
           <Slideshow>
-            {slideImages.map((slideImage, index) => (
-              <div key={index}>
-                <div
-                  className={cx("slide")}
-                  style={{ backgroundImage: `url(${slideImage.url})` }}
-                />
-              </div>
+            {SLIDE_IMAGES.map((slideImage, index) => (
+              <SlideItem key={index} slideImage={slideImage} />
             ))}
           </Slideshow>
         </div>
 
         <div className={cx("content-wrapper")}>
           <List
-            title="Khóa học miễn phí"
+            title={LIST_CONFIG.title}
             list={courses}
-            moreBtnTitle={"Xem lộ trình"}
-            moreBtnTo={config.routes.learningPath}
-            numPersonLearn={1000}
+            moreBtnTitle={LIST_CONFIG.moreBtnTitle}
+            moreBtnTo={LIST_CONFIG.moreBtnTo}
+            numPersonLearn={LIST_CONFIG.numPersonLearn}
           />
         </div>
       </div>
     </div>
   );
-};
+});
 
 export default Home;

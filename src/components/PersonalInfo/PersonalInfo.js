@@ -5,19 +5,34 @@ import ReusableModal from "../SettingModal/ReusableModal/ReusableModal";
 import UserNameModal from "../SettingModal/UserNameModal/UserNameModal";
 import IntroduceModal from "../SettingModal/IntroduceModal/IntroduceModal";
 import ImageModal from "../SettingModal/ImageModal/ImageModal";
+import { useSelector } from "react-redux";
 
 const cx = classNames.bind(styles);
-
-const userInfo = [
-    { label: "Họ và tên", value: "Việt ANH Phạm", modal: "name" },
-    { label: "Tên người dùng", value: "phamvietanh4", modal: "username" },
-    { label: "Giới thiệu", value: "Chưa cập nhật", modal: "introduce" },
-    { label: "Ảnh đại diện", value: <img loading="lazy" src="" alt="" />, modal: "image" },
-];
 
 const PersonalInfo = () => {
     const [activeModal, setActiveModal] = useState(null);
     const [modalData, setModalData] = useState({ title: "", value: "" });
+    const user = useSelector(state => state.user || {});
+
+    const userInfo = [
+        { 
+            label: "Họ và tên", 
+            value: user.username || "Chưa cập nhật", 
+            modal: "name" 
+        },
+        { 
+            label: "Email người dùng", 
+            value: user.email || "Chưa cập nhật", 
+            modal: "email" 
+        },
+        { 
+            label: "Ảnh đại diện", 
+            value: user.avatar ? (
+                <img loading="lazy" src={user.avatar} alt="Avatar" />
+            ) : "Chưa cập nhật", 
+            modal: "image" 
+        },
+    ];
 
     const openModal = (modalType, title, value) => {
         setActiveModal(modalType);
@@ -42,7 +57,7 @@ const PersonalInfo = () => {
                             <div
                                 key={index}
                                 className={cx("info-item")}
-                                onClick={() => openModal(item.modal, `Chỉnh sửa ${item.label}`, item.value)}
+                              
                             >
                                 <div className={cx("info-text")}>
                                     <span className={cx("info-label")}>{item.label}</span>
@@ -73,7 +88,6 @@ const PersonalInfo = () => {
                 </div>
             </div>
 
-            {/* Hiển thị modal tương ứng */}
             {activeModal === "name" && (
                 <ReusableModal
                     isOpen={true}

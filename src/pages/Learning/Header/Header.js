@@ -4,7 +4,7 @@ import classNames from "classnames/bind";
 import React, { memo } from 'react';
 import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
 import { useSelector } from "react-redux";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router-dom";
 
 import config from "../../../config";
 import styles from "./Header.module.scss";
@@ -14,8 +14,12 @@ const cx = classNames.bind(styles);
 const Header = () => {
     const routeHome = config.routes.home;
     const currentCourse = useSelector(state => state.currentCourse)
+    const navigate = useNavigate(); // Sử dụng useNavigate để điều hướng
 
-
+    const handleBack = () => {
+        navigate(-1); // Quay lại trang trước đó
+    };
+   
     // const countLearnedLesson = useMemo(() => {
     //     return SectionList.reduce((result, section) => {
     //         const countLearnedLessonInaSection = section.lessons.filter(lesson => lesson.isCompleted).length;
@@ -36,7 +40,7 @@ const Header = () => {
     return (
         <header className={cx('header')}>
             <Link to={routeHome}>
-                <div className={cx('back-icon')} title='Rời khỏi đây'>
+                <div className={cx('back-icon')} title='Rời khỏi đây' onClick={handleBack}>
                     <FontAwesomeIcon icon={faChevronLeft} />
                 </div>
             </Link>

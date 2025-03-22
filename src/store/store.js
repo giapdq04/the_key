@@ -4,6 +4,7 @@ import userReducer from './userSlice';
 import courseReducer from "./courseSlice";
 import coursesReducer from "./coursesSlice";
 import selectedLessonReducer from "./selectedLessonSlice";
+import enrolledCoursesReducer from "./enrolledCoursesSlice";
 const store = configureStore({
   reducer: {
     section: sectionReducer,
@@ -11,6 +12,7 @@ const store = configureStore({
     courses: coursesReducer,
     currentCourse: courseReducer,
     selectedLesson: selectedLessonReducer,
+    enrolledCourses: enrolledCoursesReducer, // Thêm vào store
   },
   devTools: process.env.NODE_ENV !== 'production',
 });

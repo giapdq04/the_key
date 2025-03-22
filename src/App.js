@@ -8,24 +8,33 @@ import DefaultLayout from "./layouts/DefaultLayout/DefaultLayout";
 import { publicRoutes } from "./routes/routes";
 import { setCourses } from "./store/coursesSlice";
 import { setUser } from "./store/userSlice";
+import { setEnrolledCourses } from "./store/enrolledCoursesSlice";
 
 function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
     // Fetch thông tin user
-    const fetchUserInfo = async () => {
-      const userID = Cookies.get("userID");
+  // Fetch thông tin user và danh sách khóa học đã đăng ký
+  const fetchUserInfo = async () => {
+    const userID = Cookies.get("userID");
 
-      if (userID) {
-        try {
-          const response = await axiosClient.get(`/user/user-info/${userID}`);
-          dispatch(setUser(response.data));
-        } catch (error) {
-          console.error("Lỗi khi lấy thông tin người dùng:", error);
-        }
+    if (userID) {
+      try {
+        // Lấy thông tin user
+        const userResponse = await axiosClient.get(`/user/user-info/${userID}`);
+        dispatch(setUser(userResponse.data));
+
+        // Lấy danh sách khóa học đã đăng ký
+        const enrolledCoursesResponse = await axiosClient.get(
+          `course/enrolled-courses/${userID}`
+        );
+        dispatch(setEnrolledCourses(enrolledCoursesResponse.data));
+      } catch (error) {
+        console.error("Lỗi khi lấy dữ liệu:", error);
       }
-    };
+    }
+  };
 
     // Fetch danh sách khóa học từ API
   const fetchCourses = async () => {
