@@ -1,49 +1,56 @@
-import React, {useEffect, useState} from 'react';
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faHeart} from "@fortawesome/free-solid-svg-icons";
+import React, { useEffect, useState } from 'react';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import classNames from "classnames/bind";
 import Fireworks from '@fireworks-js/react';
 
 import styles from "./Exercise.module.scss";
 import Question from "./Question/Question";
-import {Bounce, toast} from "react-toastify";
+import { Bounce, toast } from "react-toastify";
 import axiosClient from "../../../../apis/axiosClient";
 import Cookies from "js-cookie";
-import {useParams} from "react-router";
+import { useParams } from "react-router";
 
 const cx = classNames.bind(styles)
 
-const Exercise = ({currentLesson}) => {
-    const [answer, setAnswer] = useState()
+const Exercise = ({ currentLesson }) => {
+    const [answer, setAnswer] = useState({})
     const [showFireworks, setShowFireworks] = useState(false);
     const [questions, setQuestions] = useState(null)
 
-    const {slug} = useParams()
+    const { slug } = useParams()
 
     useEffect(() => {
         setQuestions(JSON.parse(currentLesson.questions))
     }, [currentLesson.questions])
 
 
-    const handleChooseAnswer = (answer) => {
-        setAnswer(answer)
-    }
+    const handleChooseAnswer = (selectedOption, index) => {
+        setAnswer((prevAnswers) => ({
+            ...prevAnswers,
+            [index]: selectedOption, // Lưu câu trả lời theo chỉ số câu hỏi
+        }));
+    };
 
     const handleSubmit = async () => {
-        if (answer === undefined) {
-            alert('Bạn chưa hoàn thành!')
-            return
+        if (Object.keys(answer).length !== questions.length) {
+            alert('Bạn chưa hoàn thành tất cả các câu hỏi!');
+            return;
         }
 
-        let score = 0
+        let score = 0;
 
-        questions.forEach(question => {
-            if (question.options.indexOf(answer) === question.correctAnswer) {
-                score++
+        questions.forEach((question, index) => {
+            // console.log(question);
+            console.log(answer[index], question.options[question.correctAnswer]);
+            if (answer[index] === question.options[question.correctAnswer]) {
+
+                score++;
             }
-        })
+        });
 
-        const result = score / questions.length * 10
+
+        const result = (score / questions.length) * 10;
 
         if (result >= 8) {
             setShowFireworks(true);
@@ -63,16 +70,17 @@ const Exercise = ({currentLesson}) => {
                 await axiosClient.post('/lesson/finish-lesson', {
                     userID,
                     slug,
-                    lessonID: currentLesson._id
-                })
+                    lessonID: currentLesson._id,
+                });
             } catch (e) {
-                console.log(e)
+                console.log(e);
             }
         } else {
-            alert(`Bạn cần xem lại bài làm của mình! Điểm của bạn là ${result}`)
+            alert(`Bạn cần xem lại bài làm của mình! Điểm của bạn là ${result}`);
             setShowFireworks(false);
         }
-    }
+    };
+
 
     return (
         <div className={cx('main-content')}>
@@ -83,7 +91,7 @@ const Exercise = ({currentLesson}) => {
                     {
                         questions && questions.map((question, index) => (
                             <Question
-                                key={question}
+                                key={index}
                                 index={index}
                                 question={question}
                                 onChooseAnswer={handleChooseAnswer}
@@ -98,10 +106,10 @@ const Exercise = ({currentLesson}) => {
             </div>
 
             <div className={cx('content-footer')}>
-                Made with <FontAwesomeIcon icon={faHeart}/> <span className={cx('dot')}>·</span> Powered by TheKey
+                Made with <FontAwesomeIcon icon={faHeart} /> <span className={cx('dot')}>·</span> Powered by TheKey
             </div>
             {showFireworks && (
-                <Fireworks className={cx('fire-worker')}/>
+                <Fireworks className={cx('fire-worker')} />
             )}
         </div>
     );

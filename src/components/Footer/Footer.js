@@ -11,7 +11,7 @@ const Footer = () => {
                     <div className={cx('col')}>
                         <div className={cx('column-top')}>
                             <img loading="lazy" className={cx('logo')} src='https://fullstack.edu.vn/assets/f8-icon-lV2rGpF0.png' alt='logo' />
-                            <h2 className={cx('slogan')}>Học Lập Trình Để Đi Làm</h2>
+                            <h2 className={cx('slogan')}>Chìa khóa vàng để thành công</h2>
                         </div>
                         <div className={cx('contact-list')}>
                             <b>Điện thoại: </b><a href='tel:0346220536'>0387.956.345</a>
@@ -23,7 +23,7 @@ const Footer = () => {
                     </div>
                     <div className={cx('col')}>
                         <div className={cx('column-top')}>
-                            <h2 className={cx('slogan')}>VỀ F8</h2>
+                            <h2 className={cx('slogan')}>VỀ THEKEY</h2>
                         </div>
                         <div className={cx('contact-list')}>
                             <ul className={cx('introduct-list')}>

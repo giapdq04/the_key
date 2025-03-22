@@ -1,11 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import Answer from "./Answer/Answer";
 import classNames from "classnames/bind";
 import styles from "./Question.module.scss";
 
 const cx = classNames.bind(styles)
 
-const Question = ({question, onChooseAnswer, index}) => {
+const Question = ({ question, onChooseAnswer, index }) => {
 
     const [userAnswer, setUserAnswer] = useState('')
 
@@ -15,7 +15,7 @@ const Question = ({question, onChooseAnswer, index}) => {
 
     useEffect(() => {
         if (userAnswer !== '') {
-            onChooseAnswer(userAnswer)
+            onChooseAnswer(userAnswer, index)
         }
     }, [userAnswer]);
 
@@ -30,7 +30,7 @@ const Question = ({question, onChooseAnswer, index}) => {
                             questionId={question.id}
                             answer={option}
                             onChooseOption={handleChooseOption}
-                            userAnswer={userAnswer}/>
+                            userAnswer={userAnswer} />
                     ))
                 }
             </div>

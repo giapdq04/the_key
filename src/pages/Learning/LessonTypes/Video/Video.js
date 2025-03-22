@@ -107,7 +107,4 @@ const Video = ({currentLesson}) => {
     )
 }
 
-export default memo(Video, (prevProps, nextProps) => {
-    return prevProps.currentLesson._id === nextProps.currentLesson._id && 
-           prevProps.currentLesson.isCompleted === nextProps.currentLesson.isCompleted;
-})
+export default memo(Video)

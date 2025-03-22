@@ -15,6 +15,7 @@ import Document from "./LessonTypes/Document/Document"
 import Exercise from "./LessonTypes/Exercise/Exercise"
 import Video from "./LessonTypes/Video/Video"
 import Sidebar from "./Sidebar/Sidebar"
+import useResponsive from "../../hooks/useResponsive";
 
 const cx = classNames.bind(styles)
 
@@ -28,6 +29,7 @@ const Learning = () => {
     const { slug } = useParams()
 
     const userID = Cookies.get("userID")
+    const isMobile = useResponsive()
 
     useEffect(() => {
         const fetchCourse = async () => {
@@ -82,7 +84,10 @@ const Learning = () => {
         <div className={cx('wrapper')}>
             <Header />
 
-            {showSection && <Sidebar />}
+            {
+                !isMobile &&
+                showSection && <Sidebar />
+            }
 
              <MainContent />
             <Footer showSection={showSection} onToggleSection={handleToggleSections} />

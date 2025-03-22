@@ -8,6 +8,10 @@
   overflow-x: hidden;
   overscroll-behavior: contain;
 
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
+
   .video-container {
     width: 100%;
     position: relative;
@@ -129,4 +133,5 @@
       text-align: center;
     }
   }
+
 }
