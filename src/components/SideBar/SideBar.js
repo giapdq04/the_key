@@ -1,7 +1,7 @@
 import styles from './SideBar.module.scss'
 import classNames from 'classnames/bind'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHouse, faNewspaper, faRoad } from '@fortawesome/free-solid-svg-icons'
+import { faHouse, faRoad } from '@fortawesome/free-solid-svg-icons'
 import ListItem from "./ListItem";
 import config from "../../config";
 

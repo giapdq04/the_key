@@ -78,7 +78,7 @@ const Header = () => {
                 ) : (
                     // Nếu đã đăng nhập, hiển thị Avatar, khóa học, thông báo
                     <div className={cx('actions')}>
-                        {/* <CourseDropdown /> */}
+                        <CourseDropdown />
 
                         {/* <div className={cx('notification-wrapper')} ref={droprefnotification}>
                             <button className={cx('action-btn')} onClick={toggleNotifications}>

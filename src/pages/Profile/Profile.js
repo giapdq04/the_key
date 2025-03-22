@@ -2,9 +2,9 @@ import { memo } from "react";
 import classNames from "classnames/bind";
 import { motion } from "framer-motion";
 import Lottie from "lottie-react";
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom"; // Đảm bảo đúng thư viện
+import { Link } from "react-router-dom";
 import emptyAnimation from "../../assets/lottie/nocorner.json";
 import styles from "./Profile.module.scss";
 import { CircularProgressbar } from "react-circular-progressbar";
@@ -15,44 +15,55 @@ const ICONS = {
   courses: "https://cdn0.iconfinder.com/data/icons/font-awesome-solid-vol-1/512/book-1024.png",
 };
 
+// Ảnh đại diện mặc định được khai báo ở đây
+const DEFAULT_AVATAR = "https://cdn4.iconfinder.com/data/icons/avatars-2-12/512/Avatar_2-17-1024.png";
+
 const cx = classNames.bind(styles);
 
-const UserInfo = memo(({ user }) => (
-  <div className={cx("colo_1")}>
-    <div className={cx("wrapper_content")}>
-      <div className={cx("avatar_container")}>
-        <div className={cx("avatar_nav")}>
-          <img loading="lazy" className={cx("avatar_img")} src={user?.avatar || ""} alt="avatar" />
+const UserInfo = memo(({ user }) => {
+  return (
+    <div className={cx("colo_1")}>
+      <div className={cx("wrapper_content")}>
+        <div className={cx("avatar_container")}>
+          <div className={cx("avatar_nav")}>
+            <img
+              loading="lazy"
+              className={cx("avatar_img")}
+              src={user?.avatar || DEFAULT_AVATAR} // Sử dụng ảnh mặc định nếu không có avatar
+              alt="avatar"
+              onError={(e) => (e.target.src = DEFAULT_AVATAR)} // Nếu ảnh lỗi, dùng ảnh mặc định
+            />
+          </div>
         </div>
-      </div>
-      <div className={cx("name_1")}>{user?.username || "Unknown"}</div>
-      <div className={cx("user_name")}>{user?.email || ""}</div>
-      <div className={cx("start_wrapper")}>
-        <div className={cx("nav_start")}>
-          <span className={cx("left_icon")}>
-            <img loading="lazy" src={ICONS.followers} alt="followers" className={cx("icon_img")} />
-          </span>
-          <span>
-            <strong>{user?.followers || 0}</strong> người theo dõi · <strong>{user?.following || 0}</strong> đang theo dõi
-          </span>
-        </div>
-        <div className={cx("nav_start")}>
-          <span className={cx("left_icon")}>
-            <img loading="lazy" src={ICONS.joined} alt="joined" className={cx("icon_img")} />
-          </span>
-          <span>
-            <strong>Tham gia F8 từ {user?.joined || "N/A"}</strong>
-          </span>
+        <div className={cx("name_1")}>{user?.username || "Unknown"}</div>
+        <div className={cx("user_name")}>{user?.email || ""}</div>
+        <div className={cx("start_wrapper")}>
+          <div className={cx("nav_start")}>
+            <span className={cx("left_icon")}>
+              <img loading="lazy" src={ICONS.followers} alt="followers" className={cx("icon_img")} />
+            </span>
+            <span>
+              <strong>{user?.followers || 0}</strong> người theo dõi · <strong>{user?.following || 0}</strong> đang theo dõi
+            </span>
+          </div>
+          <div className={cx("nav_start")}>
+            <span className={cx("left_icon")}>
+              <img loading="lazy" src={ICONS.joined} alt="joined" className={cx("icon_img")} />
+            </span>
+            <span>
+              <strong>Tham gia F8 từ {user?.joined || "N/A"}</strong>
+            </span>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-));
+  );
+});
 
 const CourseItem = memo(({ course }) => {
   const getYouTubeThumbnail = (ytbVideoId) => `https://img.youtube.com/vi/${ytbVideoId || ""}/hqdefault.jpg`;
 
-  return (  
+  return (
     <motion.div
       className={cx("corner_item_container")}
       whileHover={{
@@ -73,7 +84,6 @@ const CourseItem = memo(({ course }) => {
           </span>
           <div className={cx("content_wrapper")}>
             <h2 className={cx("title_head")}>{course?.title || "Untitled"}</h2>
-            {/* Thêm vòng tròn tiến độ */}
             <div className={cx("progress-container")}>
               <CircularProgressbar
                 value={course?.progressPercentage || 0}
@@ -89,8 +99,10 @@ const CourseItem = memo(({ course }) => {
 });
 
 const Profile = memo(() => {
-  const user = useSelector((state) => state.user);
-  const enrolledCourses = useSelector((state) => state.enrolledCourses?.enrolledCourses || []);
+  const user = useSelector((state) => state.user || {});
+  const enrolledCourses = useSelector((state) =>
+    Array.isArray(state.enrolledCourses?.enrolledCourses) ? state.enrolledCourses.enrolledCourses : []
+  );
   const containerRef = useRef();
 
   useEffect(() => {
@@ -123,7 +135,7 @@ const Profile = memo(() => {
                   <div className={cx("corner_2")}>
                     <div className={cx("row_container2")}>
                       {enrolledCourses.map((course, index) => (
-                        <CourseItem key={index} course={course} />
+                        <CourseItem key={course.id || index} course={course} />
                       ))}
                     </div>
                   </div>
