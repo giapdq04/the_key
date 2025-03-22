@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom"; // Đảm bảo đúng thư viện
 import emptyAnimation from "../../assets/lottie/nocorner.json";
 import styles from "./Profile.module.scss";
+import { CircularProgressbar } from "react-circular-progressbar";
 
 const ICONS = {
   followers: "https://cdn0.iconfinder.com/data/icons/cryptocurrency-137/128/1_profile_user_avatar_account_person-132-1024.png",
@@ -51,7 +52,7 @@ const UserInfo = memo(({ user }) => (
 const CourseItem = memo(({ course }) => {
   const getYouTubeThumbnail = (ytbVideoId) => `https://img.youtube.com/vi/${ytbVideoId || ""}/hqdefault.jpg`;
 
-  return (
+  return (  
     <motion.div
       className={cx("corner_item_container")}
       whileHover={{
@@ -72,6 +73,14 @@ const CourseItem = memo(({ course }) => {
           </span>
           <div className={cx("content_wrapper")}>
             <h2 className={cx("title_head")}>{course?.title || "Untitled"}</h2>
+            {/* Thêm vòng tròn tiến độ */}
+            <div className={cx("progress-container")}>
+              <CircularProgressbar
+                value={course?.progressPercentage || 0}
+                text={`${course?.progressPercentage || 0}%`}
+                className={cx("custom-progressbar")}
+              />
+            </div>
           </div>
         </Link>
       </div>

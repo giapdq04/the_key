@@ -1,8 +1,11 @@
 /* Styles cơ bản (mobile-first, áp dụng cho màn hình dưới 768px) */
 .container_juuyp_1 {
-    padding: 8px 12px 0; /* Giảm padding cho mobile để tiết kiệm không gian */
-    margin-bottom: 60px; /* Đảm bảo khoảng cách dưới cho thanh điều hướng mobile */
-    height: auto;
+  padding: 0; // Bỏ padding vì đã có padding từ .content trong DefaultLayout
+  margin-bottom: 60px;
+  height: auto;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   }
   
   .wrapper_1 {
@@ -17,7 +20,7 @@
     margin-left: calc(var(--grid-gutter-x) * -0.5);
     margin-right: calc(var(--grid-gutter-x) * -0.5);
     width: 100%;
-    margin-left: auto;
+    // margin-left: auto;
   }
   
   :root {
@@ -535,9 +538,65 @@
   @media (min-width: 1024px) {
     .container_juuyp_1 {
       padding: 8px 44px 0; /* Khôi phục padding ban đầu */
+      max-width: 100%; // Đảm bảo không vượt quá màn hình
     }
   
     .corner_item_container {
       width: calc(33.33% - 8px); /* Giữ 3 khóa học mỗi hàng */
+    }
+    .name_1 {
+      justify-content: center;
+    }
+    .start_wrapper{
+      align-items: center;  
+    }
+    .user_name{
+      margin-left: 20%;
+    }
+  }
+  // Profile.module.scss
+
+  .progress-container {
+    margin-top: 8px;
+    display: flex;
+   
+  }
+  
+  // Tùy chỉnh CircularProgressbar
+  .custom-progressbar {
+    width: 40px; // Kích thước vòng tròn
+    height: 40px;
+  
+    // Đường nền (trail)
+    .CircularProgressbar-trail {
+      stroke: #e0e0e0; // Màu xám nhạt
+    }
+  
+    // Đường tiến độ (path) với gradient linear
+    .CircularProgressbar-path {
+      stroke: url(#progressGradient); // Sử dụng gradient được định nghĩa
+      stroke-linecap: round; // Bo tròn đầu đường
+    }
+  
+    // Văn bản phần trăm
+    .CircularProgressbar-text {
+      fill: #333; // Màu chữ
+      font-size: 16px; // Kích thước chữ
+      dominant-baseline: middle;
+      text-anchor: middle;
+    }
+  }
+  
+  // Định nghĩa gradient linear trong SVG
+  :global(svg) {
+    defs {
+      linearGradient#progressGradient {
+        stop[offset="0%"] {
+          stop-color: #4caf50; // Màu bắt đầu (xanh lá)
+        }
+        stop[offset="100%"] {
+          stop-color: #2196f3; // Màu kết thúc (xanh dương)
+        }
+      }
     }
   }
