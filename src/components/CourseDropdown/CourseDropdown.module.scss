@@ -23,6 +23,20 @@
     overflow: hidden;
     z-index: 100;
     width: 400px;
+    opacity: 0;
+    transform: translateY(-10px);
+    animation: dropdownFade 0.3s ease forwards;
+}
+
+@keyframes dropdownFade {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .header {
@@ -89,21 +103,21 @@
     background: #ddd;
     border-radius: 5px;
     margin-top: 5px;
-    overflow: hidden; /* Ngăn tràn ra ngoài */
+    overflow: hidden;
 }
 
 .progress {
     height: 100%;
-    background: 
-    #f05123;
+    background: #f05123;
     border-radius: 2px;
-    max-width: 100%; /* Đảm bảo không tràn */
+    max-width: 100%;
 }
+
 .start-learning {
     font-size: 1.2rem;
     color: #f05123;
     font-weight: bold;
     cursor: pointer;
     display: block;
-    margin-top: 4px; /* Tạo khoảng cách với dòng trên */
+    margin-top: 4px;
 }

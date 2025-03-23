@@ -9,7 +9,6 @@
     "@fortawesome/free-regular-svg-icons": "^6.7.2",
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
-    
     "@reduxjs/toolkit": "^2.6.0",
     "axios": "^1.8.3",
     "classnames": "^2.5.1",
@@ -20,6 +19,7 @@
     "framer-motion": "^12.4.7",
     "js-cookie": "^3.0.5",
     "lottie-react": "^2.4.1",
+    "lucide-react": "^0.483.0",
     "react": "^19.0.0",
     "react-circular-progressbar": "^2.2.0",
     "react-dom": "^19.0.0",

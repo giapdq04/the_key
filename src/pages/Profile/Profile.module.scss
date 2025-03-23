@@ -1,602 +1,247 @@
-/* Styles cơ bản (mobile-first, áp dụng cho màn hình dưới 768px) */
+/* Base styles */
 .container_juuyp_1 {
-  padding: 0; // Bỏ padding vì đã có padding từ .content trong DefaultLayout
-  margin-bottom: 60px;
-  height: auto;
+  padding: 1rem;
+  margin-bottom: 2rem;
   width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
-  }
-  
-  .wrapper_1 {
-    margin-top: 15px; /* Giảm margin trên cho mobile */
-    margin-bottom: 20px; /* Giảm margin dưới cho mobile */
-  }
-  
-  .row_container {
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: calc(var(--grid-gutter-y) * -1);
-    margin-left: calc(var(--grid-gutter-x) * -0.5);
-    margin-right: calc(var(--grid-gutter-x) * -0.5);
-    width: 100%;
-    // margin-left: auto;
-  }
-  
-  :root {
-    --grid-gutter-x: 8px; /* Giảm khoảng cách giữa các phần tử cho mobile */
-    --grid-gutter-y: 0;
-  }
-  
-  .colo_1 {
-    flex: 0 0 auto;
-    width: 100%; /* Toàn bộ chiều rộng trên mobile */
-    margin-bottom: 15px; /* Khoảng cách giữa các section trên mobile */
-  }
-  
-  .wrapper_content {
-    line-height: 1.4;
-    text-align: center; /* Canh giữa nội dung trên mobile */
-  }
-  
-  .avatar_container {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-  }
-  
-  .avatar_nav {
-    background: transparent;
-    font-size: 18px; /* Giảm kích thước font cho mobile */
-    border-radius: 50%;
-  }
-  
-  .avatar_img {
-    width: 6em; /* Giảm kích thước avatar cho mobile */
-    height: 6em;
-    object-fit: cover;
-    border-radius: 50%;
-  }
-  
-  .name_1 {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    margin-top: 6px; /* Giảm margin trên cho mobile */
-    font-size: 1.6rem; /* Giảm font chữ cho mobile */
-    font-weight: 700;
-    justify-content: center; /* Canh giữa trên mobile */
-  }
-  
-  .user_name {
-    font-size: 1.2rem; /* Giảm font chữ cho mobile */
-  }
-  
-  .user_name:hover {
-    cursor: pointer;
-    text-decoration: none;
-    outline: none;
-  }
-  
-  .start_wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 10px; /* Giảm khoảng cách giữa các phần tử cho mobile */
-    margin-top: 12px; /* Giảm margin trên cho mobile */
-    font-size: 1.1rem; /* Giảm font chữ cho mobile */
-    justify-content: center; /* Canh giữa trên mobile */
-  }
-  
-  .nav_start {
-    display: flex;
-    align-items: center;
-    justify-content: center; /* Canh giữa trên mobile */
-  }
-  
-  .left_icon {
-    flex-shrink: 0;
-    width: 14px; /* Giảm kích thước icon cho mobile */
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 5px; /* Giảm khoảng cách cho mobile */
-    color: #7c858b;
-  }
-  
-  .icon_img {
-    width: 14px; /* Giảm kích thước icon cho mobile */
-    height: 14px;
-    object-fit: cover;
-  }
-  
-  /* Phần thông tin khóa học - Tối ưu cho mobile */
-  .colo_2 {
-    flex: 0 0 auto;
-    width: 100%; /* Toàn bộ chiều rộng trên mobile */
-    
-  }
-  
-  .wrapper_corner {
-    width: 100%;
-    padding-left: 0; /* Bỏ padding bên trái để tiết kiệm không gian */
-  }
-  
-  .corner_1 {
-    display: flex;
-    width: 100%;
-    border-bottom: 1px solid #e0e0e0;
-    justify-content: center; /* Canh giữa tabs trên mobile */
-    flex-wrap: wrap; /* Cho phép wrap nếu tabs quá dài */
-  }
-  
-  ._tab_12z60_8._active_12z60_23 {
-    opacity: 1;
-    text-shadow: 0 0 0.1px #0000;
-    border-bottom: 3px solid #1b74e4;
-    cursor: pointer;
-  }
-  
-  ._tab_12z60_8 {
-    display: flex;
-    cursor: pointer;
-    align-items: center;
-    padding: 5px; /* Giảm padding cho mobile */
-    margin-bottom: -1px;
-    font-size: 1rem; /* Giảm font chữ để tránh tràn */
-    font-weight: 600;
-    text-shadow: 0 0 0.1px #0000;
-    margin-right: 8px; /* Khoảng cách giữa các tab */
-  }
-  
-  .corner_2 {
-    margin-top: 10px; /* Giảm margin trên cho mobile */
-  }
-  
-  .row_container2 {
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: calc(var(--grid-gutter-y) * -1);
-    margin-left: calc(var(--grid-gutter-x) * 0.5 * -1);
-    margin-right: calc(var(--grid-gutter-x) * 0.5 * -1);
-    width: 100%;
-    margin-left: auto;
-    gap: 8px; /* Giảm khoảng cách giữa các khóa học */
-    cursor: pointer;
-  }
-  
-  :root {
-    --grid-gutter-x: 8px; /* Giảm khoảng cách giữa các phần tử cho mobile */
-    --grid-gutter-y: 8px;
-  }
-  
-  .corner_item_container {
-    flex: 0 0 auto;
-    width: calc(50% - 4px); /* 2 khóa học mỗi hàng (50% - nửa khoảng cách giữa các phần tử) */
-    margin-bottom: 8px; /* Giảm khoảng cách dọc giữa các hàng */
-    overflow: hidden;
-    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
-  }
-  
-  .wrapper_item {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    border-radius: 8px; /* Giảm bo góc cho mobile */
-    overflow: hidden;
-    background: #00000008;
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-  
-  .link_item {
-    position: relative;
-    display: block;
-    width: 100%;
-    padding-top: 50%; /* Giảm tỷ lệ khung hình để hình ảnh nhỏ hơn (2:1) */
-    border-radius: 8px 8px 0 0; /* Đồng bộ bo góc với wrapper_item */
-    object-fit: cover;
-    overflow: hidden;
-  }
-  
-  .link_item .thumb {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    max-height: 100px; /* Giới hạn chiều cao hình ảnh để tránh quá lớn */
-  }
-  
-  .content_wrapper {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 4px; /* Giảm khoảng cách giữa các phần tử trong khóa học */
-    padding: 8px 10px; /* Giảm padding để tiết kiệm không gian */
-    word-break: break-word; /* Đảm bảo văn bản tự động xuống dòng */
-  }
-  
-  .title_head {
-    font-weight: 600;
-    font-size: 1rem; /* Giảm font chữ để vừa với layout */
-    line-height: 1.2; /* Giảm khoảng cách dòng */
-    margin: 0; /* Bỏ margin mặc định */
-  }
-  
-  .price_content {
-    display: flex;
-    align-items: center;
-    gap: 3px; /* Giảm khoảng cách giữa giá và các phần tử khác */
-    margin-bottom: 6px; /* Giảm margin dưới */
-  }
-  
-  .main_price {
-    font-size: 1rem; /* Giảm font chữ cho mobile */
-    font-weight: 600;
-    color: #f05123;
-  }
-  
-  .more_content {
-    display: flex;
-    flex-wrap: wrap; /* Cho phép xuống dòng nếu nội dung quá dài */
-    justify-content: space-between;
-    margin-top: auto;
-    font-size: 0.9rem; /* Giảm font chữ cho mobile */
-  }
-  
-  ._moreInfo_1cn8u_51 {
-    display: flex;
-    align-items: center;
-    margin-right: 5px; /* Khoảng cách giữa các thông tin bổ sung */
-    margin-top: 3px; /* Giảm margin trên */
-  }
-  
-  .empty-container {
-    text-align: center;
-    margin-top: 10px; /* Giảm margin trên cho mobile */
-  }
-  
-  .empty-container h2 {
-    font-size: 1.2rem; /* Giảm font chữ cho mobile */
-  }
-  
-  .lottie {
-    width: 150px; /* Giảm kích thước Lottie animation cho mobile */
-    height: 150px;
-    margin: 0 auto;
-  }
-  
-  /* Media Queries cho các kích thước màn hình */
-  
-  /* Màn hình nhỏ (375px trở lên) */
-  @media (min-width: 375px) {
-    .container_juuyp_1 {
-      padding: 8px 15px 0; /* Tăng nhẹ padding cho màn hình lớn hơn */
-      margin-bottom: 60px; /* Giữ khoảng cách cho thanh điều hướng */
-    }
-  
-    .wrapper_1 {
-      margin-top: 20px;
-      margin-bottom: 25px;
-    }
-  
-    :root {
-      --grid-gutter-x: 10px; /* Tăng nhẹ khoảng cách giữa các phần tử */
-      --grid-gutter-y: 0;
-    }
-  
-    .avatar_img {
-      width: 7em; /* Tăng nhẹ kích thước avatar */
-      height: 7em;
-    }
-  
-    .name_1 {
-      font-size: 1.8rem; /* Tăng nhẹ font chữ */
-      margin-top: 8px;
-    }
-  
-    .user_name {
-      font-size: 1.3rem;
-    }
-  
-    .start_wrapper {
-      gap: 12px;
-      margin-top: 15px;
-      font-size: 1.2rem;
-    }
-  
-    .left_icon {
-      width: 16px;
-      margin-right: 6px;
-    }
-  
-    .icon_img {
-      width: 16px;
-      height: 16px;
-    }
-  
-    ._tab_12z60_8 {
-      padding: 6px;
-      font-size: 1.1rem;
-    }
-  
-    .corner_2 {
-      margin-top: 15px;
-    }
-  
-    .row_container2 {
-      gap: 10px;
-    }
-  
-    :root {
-      --grid-gutter-x: 10px;
-      --grid-gutter-y: 10px;
-    }
-  
-    .corner_item_container {
-      width: calc(50% - 5px); /* 2 khóa học mỗi hàng, điều chỉnh khoảng cách */
-      margin-bottom: 10px;
-    }
-  
-    .wrapper_item {
-      border-radius: 10px;
-    }
-  
-    .link_item {
-      padding-top: 55%; /* Tăng nhẹ tỷ lệ khung hình */
-      border-radius: 10px 10px 0 0;
-    }
-  
-    .link_item .thumb {
-      max-height: 120px; /* Tăng nhẹ chiều cao hình ảnh */
-    }
-  
-    .content_wrapper {
-      gap: 6px;
-      padding: 10px 12px;
-    }
-  
-    .title_head {
-      font-size: 1.2rem;
-    }
-  
-    .price_content {
-      gap: 4px;
-      margin-bottom: 8px;
-    }
-  
-    .main_price {
-      font-size: 1.2rem;
-    }
-  
-    .more_content {
-      font-size: 1rem;
-    }
-  
-    .empty-container {
-      margin-top: 15px;
-    }
-  
-    .empty-container h2 {
-      font-size: 1.4rem;
-    }
-  
-    .lottie {
-      width: 180px;
-      height: 180px;
-    }
-  }
-  
-  /* Màn hình tablet (768px trở lên, bao gồm iPad ở 820px) */
-  @media (min-width: 768px) {
-    .container_juuyp_1 {
-      padding: 8px 30px 0; /* Tăng padding cho tablet */
-      margin-bottom: 0; /* Bỏ khoảng cách dưới vì không có thanh điều hướng */
-    }
-  
-    .wrapper_1 {
-      margin-top: 30px; /* Khôi phục margin ban đầu */
-      margin-bottom: 50px;
-    }
-  
-    .row_container {
-      flex-wrap: nowrap; /* Tạo layout 2 cột (profile và khóa học) */
-    }
-  
-    :root {
-      --grid-gutter-x: 24px; /* Khôi phục khoảng cách ban đầu */
-      --grid-gutter-y: 0;
-    }
-  
-    .colo_1 {
-      width: 25%; /* 25% cho phần thông tin cá nhân */
-      margin-bottom: 0; /* Bỏ margin dưới vì layout nằm ngang */
-    }
-  
-    .wrapper_content {
-      text-align: left; /* Canh trái cho tablet */
-    }
-  
-    .avatar_img {
-      width: 9em; /* Khôi phục kích thước ban đầu */
-      height: 9em;
-    }
-  
-    .name_1 {
-      font-size: 2.4rem; /* Khôi phục font chữ ban đầu */
-      justify-content: flex-start; /* Canh trái */
-    }
-  
-    .user_name {
-      font-size: 1.6rem;
-    }
-  
-    .start_wrapper {
-      gap: 16px;
-      margin-top: 20px;
-      font-size: 1.4rem;
-      justify-content: flex-start; /* Canh trái */
-    }
-  
-    .nav_start {
-      justify-content: flex-start; /* Canh trái */
-    }
-  
-    .left_icon {
-      width: 20px;
-      margin-right: 8px;
-    }
-  
-    .icon_img {
-      width: 20px;
-      height: 20px;
-    }
-  
-    .colo_2 {
-      width: 75%; /* 75% cho phần khóa học */
-    }
-  
-    .wrapper_corner {
-      padding-left: 50px; /* Khôi phục padding ban đầu */
-    }
-  
-    .corner_1 {
-      justify-content: flex-start; /* Canh trái cho tablet */
-      flex-wrap: nowrap; /* Không cho phép xuống dòng */
-    }
-  
-    ._tab_12z60_8 {
-      padding: 10px;
-      font-size: 1.4rem;
-    }
-  
-    .corner_2 {
-      margin-top: 40px; /* Khôi phục margin ban đầu */
-    }
-  
-    .row_container2 {
-      gap: 12px;
-    }
-  
-    :root {
-      --grid-gutter-x: 24px;
-      --grid-gutter-y: 24px;
-    }
-  
-    .corner_item_container {
-      width: calc(33.33% - 8px); /* 3 khóa học mỗi hàng (100% / 3) */
-      margin-bottom: 16px;
-    }
-  
-    .wrapper_item {
-      border-radius: 16px;
-    }
-  
-    .link_item {
-      padding-top: 56.25%; /* Khôi phục tỷ lệ khung hình 16:9 */
-      border-radius: 16px 16px 0 0;
-    }
-  
-    .link_item .thumb {
-      max-height: none; /* Bỏ giới hạn chiều cao hình ảnh */
-    }
-  
-    .content_wrapper {
-      gap: 12px;
-      padding: 16px 20px;
-    }
-  
-    .title_head {
-      font-size: 1.6rem;
-    }
-  
-    .main_price {
-      font-size: 1.6rem;
-    }
-  
-    .more_content {
-      font-size: 1.4rem;
-      flex-wrap: nowrap; /* Không cho phép xuống dòng trên tablet */
-    }
-  
-    .empty-container {
-      margin-top: 30px;
-    }
-  
-    .empty-container h2 {
-      font-size: 2rem;
-    }
-  
-    .lottie {
-      width: 250px;
-      height: 250px;
-    }
-  }
-  
-  /* Màn hình desktop (1024px trở lên) */
-  @media (min-width: 1024px) {
-    .container_juuyp_1 {
-      padding: 8px 44px 0; /* Khôi phục padding ban đầu */
-      max-width: 100%; // Đảm bảo không vượt quá màn hình
-    }
-  
-    .corner_item_container {
-      width: calc(33.33% - 8px); /* Giữ 3 khóa học mỗi hàng */
-    }
-    .name_1 {
-      justify-content: center;
-    }
-    .start_wrapper{
-      align-items: center;  
-    }
-    .user_name{
-      margin-left: 20%;
-    }
-  }
-  // Profile.module.scss
+  max-width: 1400px;
+  margin: 0 auto;
+  background: #f8f9fa;
+}
 
-  .progress-container {
-    margin-top: 8px;
-    display: flex;
-   
+.wrapper_1 {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.row_container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  
+  @media (min-width: 768px) {
+    flex-direction: row;
+    gap: 3rem;
   }
+}
+
+/* User Info Section */
+.colo_1 {
+  flex: 1;
+  min-width: 280px;
+  background: white;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   
-  // Tùy chỉnh CircularProgressbar
-  .custom-progressbar {
-    width: 40px; // Kích thước vòng tròn
-    height: 40px;
-  
-    // Đường nền (trail)
-    .CircularProgressbar-trail {
-      stroke: #e0e0e0; // Màu xám nhạt
-    }
-  
-    // Đường tiến độ (path) với gradient linear
-    .CircularProgressbar-path {
-      stroke: url(#progressGradient); // Sử dụng gradient được định nghĩa
-      stroke-linecap: round; // Bo tròn đầu đường
-    }
-  
-    // Văn bản phần trăm
-    .CircularProgressbar-text {
-      fill: #333; // Màu chữ
-      font-size: 16px; // Kích thước chữ
-      dominant-baseline: middle;
-      text-anchor: middle;
-    }
+  @media (min-width: 768px) {
+    max-width: 320px;
   }
+}
+
+.wrapper_content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.avatar_container {
+  margin-bottom: 1.5rem;
+}
+
+.avatar_nav {
+  position: relative;
+  border-radius: 50%;
+  padding: 3px;
+  background: linear-gradient(45deg, #3e98c7, #45b7d1);
+}
+
+.avatar_img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid white;
   
-  // Định nghĩa gradient linear trong SVG
-  :global(svg) {
-    defs {
-      linearGradient#progressGradient {
-        stop[offset="0%"] {
-          stop-color: #4caf50; // Màu bắt đầu (xanh lá)
-        }
-        stop[offset="100%"] {
-          stop-color: #2196f3; // Màu kết thúc (xanh dương)
-        }
-      }
-    }
+  @media (min-width: 768px) {
+    width: 150px;
+    height: 150px;
   }
+}
+
+.name_1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #2d3748;
+  margin-bottom: 0.5rem;
+  
+  @media (min-width: 768px) {
+    font-size: 1.8rem;
+  }
+}
+
+.user_name {
+  color: #718096;
+  margin-bottom: 1.5rem;
+}
+
+.start_wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.nav_start {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #4a5568;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.2s;
+  
+  &:hover {
+    background-color: #f7fafc;
+  }
+}
+
+.left_icon {
+  display: flex;
+  align-items: center;
+}
+
+.icon_img {
+  width: 20px;
+  height: 20px;
+}
+
+/* Courses Section */
+.colo_2 {
+  flex: 3;
+}
+
+.wrapper_corner {
+  background: white;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.corner_1 {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #e2e8f0;
+  margin-bottom: 2rem;
+}
+
+._tab_12z60_8 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #2d3748;
+}
+
+.course_count {
+  background: #3e98c7;
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.875rem;
+}
+
+.row_container2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.corner_item_container {
+  position: relative;
+  border-radius: 1rem;
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+  &:hover {
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.wrapper_item {
+  height: 100%;
+}
+
+.link_item {
+  position: relative;
+  display: block;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+}
+
+.thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.progress_overlay {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 50px;
+  height: 50px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  padding: 5px;
+  
+  :global(.CircularProgressbar) {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.content_wrapper {
+  padding: 1.5rem;
+}
+
+.title_head {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #2d3748;
+  margin: 0;
+  line-height: 1.4;
+  
+  @media (min-width: 768px) {
+    font-size: 1.25rem;
+  }
+}
+
+/* Empty State */
+.empty-container {
+  text-align: center;
+  padding: 3rem 1rem;
+  
+  h2 {
+    font-size: 1.5rem;
+    color: #2d3748;
+    margin-bottom: 2rem;
+  }
+}
+
+.lottie {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+  
+  @media (min-width: 768px) {
+    width: 250px;
+    height: 250px;
+  }
+}

@@ -11,11 +11,14 @@
 
 .container {
   width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
   min-height: 300px;
 }
 
 .slide-container {
   width: 100%;
+  margin-bottom: 2rem;
 }
 
 .slide {
@@ -23,14 +26,24 @@
   align-items: center;
   justify-content: center;
   background-size: cover;
-  height: 270px;
+  background-position: center;
+  height: 400px;
   border-radius: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  
+  @media screen and (max-width: 768px) {
+    height: 270px;
+  }
 }
 
 .content-wrapper {
   padding: 0 44px 74px;
 
+  @media screen and (max-width: 1024px) {
+    padding: 0 24px 74px;
+  }
+
   @media screen and (max-width: 768px) {
-    padding: 0 5px 74px;
+    padding: 0 16px 74px;
   }
 }

@@ -1,5 +1,4 @@
-import { memo } from "react";
-import classNames from "classnames/bind";
+import React, { memo } from "react";
 import { motion } from "framer-motion";
 import Lottie from "lottie-react";
 import { useEffect, useRef } from "react";
@@ -7,7 +6,8 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import emptyAnimation from "../../assets/lottie/nocorner.json";
 import styles from "./Profile.module.scss";
-import { CircularProgressbar } from "react-circular-progressbar";
+import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
 
 const ICONS = {
   followers: "https://cdn0.iconfinder.com/data/icons/cryptocurrency-137/128/1_profile_user_avatar_account_person-132-1024.png",
@@ -15,45 +15,59 @@ const ICONS = {
   courses: "https://cdn0.iconfinder.com/data/icons/font-awesome-solid-vol-1/512/book-1024.png",
 };
 
-// Ảnh đại diện mặc định được khai báo ở đây
 const DEFAULT_AVATAR = "https://cdn4.iconfinder.com/data/icons/avatars-2-12/512/Avatar_2-17-1024.png";
-
-const cx = classNames.bind(styles);
 
 const UserInfo = memo(({ user }) => {
   return (
-    <div className={cx("colo_1")}>
-      <div className={cx("wrapper_content")}>
-        <div className={cx("avatar_container")}>
-          <div className={cx("avatar_nav")}>
+    <div className={styles.colo_1}>
+      <div className={styles.wrapper_content}>
+        <div className={styles.avatar_container}>
+          <motion.div 
+            className={styles.avatar_nav}
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 300 }}
+          >
             <img
               loading="lazy"
-              className={cx("avatar_img")}
-              src={user?.avatar || DEFAULT_AVATAR} // Sử dụng ảnh mặc định nếu không có avatar
+              className={styles.avatar_img}
+              src={user?.avatar || DEFAULT_AVATAR}
               alt="avatar"
-              onError={(e) => (e.target.src = DEFAULT_AVATAR)} // Nếu ảnh lỗi, dùng ảnh mặc định
+              onError={(e) => (e.target.src = DEFAULT_AVATAR)}
             />
-          </div>
+          </motion.div>
         </div>
-        <div className={cx("name_1")}>{user?.username || "Unknown"}</div>
-        <div className={cx("user_name")}>{user?.email || ""}</div>
-        <div className={cx("start_wrapper")}>
-          <div className={cx("nav_start")}>
-            <span className={cx("left_icon")}>
-              <img loading="lazy" src={ICONS.followers} alt="followers" className={cx("icon_img")} />
+        <motion.div 
+          className={styles.name_1}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          {user?.username || "Unknown"}
+        </motion.div>
+        <div className={styles.user_name}>{user?.email || ""}</div>
+        <div className={styles.start_wrapper}>
+          <motion.div 
+            className={styles.nav_start}
+            whileHover={{ x: 5 }}
+          >
+            <span className={styles.left_icon}>
+              <img loading="lazy" src={ICONS.followers} alt="followers" className={styles.icon_img} />
             </span>
             <span>
-              <strong>{user?.followers || 0}</strong> người theo dõi · <strong>{user?.following || 0}</strong> đang theo dõi
+              <strong>{user?.followers || 0}</strong> followers · <strong>{user?.following || 0}</strong> following
             </span>
-          </div>
-          <div className={cx("nav_start")}>
-            <span className={cx("left_icon")}>
-              <img loading="lazy" src={ICONS.joined} alt="joined" className={cx("icon_img")} />
+          </motion.div>
+          <motion.div 
+            className={styles.nav_start}
+            whileHover={{ x: 5 }}
+          >
+            <span className={styles.left_icon}>
+              <img loading="lazy" src={ICONS.joined} alt="joined" className={styles.icon_img} />
             </span>
             <span>
-              <strong>Tham gia F8 từ {user?.joined || "N/A"}</strong>
+              <strong>Joined {user?.joined || "N/A"}</strong>
             </span>
-          </div>
+          </motion.div>
         </div>
       </div>
     </div>
@@ -61,36 +75,38 @@ const UserInfo = memo(({ user }) => {
 });
 
 const CourseItem = memo(({ course }) => {
-
-
   return (
     <motion.div
-      className={cx("corner_item_container")}
+      className={styles.corner_item_container}
       whileHover={{
-        y: -5,
-        boxShadow: "0px 10px 20px rgba(0, 0, 0, 0.15)",
+        y: -8,
         transition: { duration: 0.3, ease: "easeOut" },
       }}
     >
-      <div className={cx("wrapper_item")}>
+      <div className={styles.wrapper_item}>
         <Link to={`/learning/${course?.slug || ""}`}>
-          <span className={cx("link_item")} title={course?.title || ""}>
+          <span className={styles.link_item} title={course?.title || ""}>
             <img
               loading="lazy"
-              className={cx("thumb")}
+              className={styles.thumb}
               src={course.thumbnail}
               alt={course?.title || ""}
             />
-          </span>
-          <div className={cx("content_wrapper")}>
-            <h2 className={cx("title_head")}>{course?.title || "Untitled"}</h2>
-            <div className={cx("progress-container")}>
+            <div className={styles.progress_overlay}>
               <CircularProgressbar
                 value={course?.progressPercentage || 0}
                 text={`${course?.progressPercentage || 0}%`}
-                className={cx("custom-progressbar")}
+                styles={buildStyles({
+                  pathColor: `rgba(62, 152, 199, ${course?.progressPercentage / 100})`,
+                  textColor: '#ffffff',
+                  trailColor: 'rgba(255,255,255,0.3)',
+                  backgroundColor: '#3e98c7',
+                })}
               />
             </div>
+          </span>
+          <div className={styles.content_wrapper}>
+            <h2 className={styles.title_head}>{course?.title || "Untitled"}</h2>
           </div>
         </Link>
       </div>
@@ -109,31 +125,39 @@ const Profile = memo(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
-  console.log("Profile rendered", { user, enrolledCourses });
-
   return (
-    <div className={cx("_container_juuyp_1")} ref={containerRef}>
-      <div className={cx("container_body")}>
-        <div className={cx("wrapper_1")}>
-          <div className={cx("row_container")}>
+    <div className={styles.container_juuyp_1} ref={containerRef}>
+      <div className={styles.container_body}>
+        <div className={styles.wrapper_1}>
+          <div className={styles.row_container}>
             <UserInfo user={user} />
-            <div className={cx("colo_2")}>
-              <div className={cx("wrapper_corner")}>
-                <div className={cx("corner_1")}>
-                  <span className={cx("left_icon")}>
-                    <img loading="lazy" src={ICONS.courses} alt="courses" className={cx("icon_img")} />
+            <div className={styles.colo_2}>
+              <div className={styles.wrapper_corner}>
+                <motion.div 
+                  className={styles.corner_1}
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <span className={styles.left_icon}>
+                    <img loading="lazy" src={ICONS.courses} alt="courses" className={styles.icon_img} />
                   </span>
-                  <span className={cx("_tab_12z60_8")}>Khóa học của tôi.</span>
-                  <span className={cx("_tab_12z60_8")}>{enrolledCourses.length}.</span>
-                </div>
+                  <span className={styles._tab_12z60_8}>Khóa học của tôi:</span>
+                  <span className={styles.course_count}>{enrolledCourses.length}</span>
+                </motion.div>
                 {enrolledCourses.length === 0 ? (
-                  <div className={cx("empty-container")}>
-                    <h2>Chưa có khóa học nào!</h2>
-                    <Lottie animationData={emptyAnimation} loop className={cx("lottie")} />
-                  </div>
+                  <motion.div 
+                    className={styles["empty-container"]}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.3 }}
+                  >
+                    <h2>No courses yet!</h2>
+                    <Lottie animationData={emptyAnimation} loop className={styles.lottie} />
+                  </motion.div>
                 ) : (
-                  <div className={cx("corner_2")}>
-                    <div className={cx("row_container2")}>
+                  <div className={styles.corner_2}>
+                    <div className={styles.row_container2}>
                       {enrolledCourses.map((course, index) => (
                         <CourseItem key={course.id || index} course={course} />
                       ))}

@@ -1,41 +1,29 @@
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classNames from "classnames/bind";
-import React, { memo } from 'react';
+import React, { memo, useState } from 'react';
 import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-
 import config from "../../../config";
 import styles from "./Header.module.scss";
+import MobileProgress from "./../../../components/MobileProgress/MobileProgress";
 
 const cx = classNames.bind(styles);
 
 const Header = () => {
     const routeHome = config.routes.home;
     const currentCourse = useSelector(state => state.currentCourse)
-    const navigate = useNavigate(); // Sử dụng useNavigate để điều hướng
+    const navigate = useNavigate();
+    const [showMobileProgress, setShowMobileProgress] = useState(false);
 
     const handleBack = () => {
-        navigate(-1); // Quay lại trang trước đó
+        navigate(-1);
     };
-   
-    // const countLearnedLesson = useMemo(() => {
-    //     return SectionList.reduce((result, section) => {
-    //         const countLearnedLessonInaSection = section.lessons.filter(lesson => lesson.isCompleted).length;
-    //         return result + countLearnedLessonInaSection;
-    //     }, 0);
-    // }, [SectionList]);
 
-    // const totalLesson = useMemo(() => {
-    //     return SectionList.reduce((result, section) => {
-    //         return result + section.lessons.length;
-    //     }, 0);
-    // }, [SectionList]);
-
-    // const courseProgess = useMemo(() => {
-    //     return Math.floor(countLearnedLesson / totalLesson * 100);
-    // }, [countLearnedLesson, totalLesson]);
+    const toggleMobileProgress = () => {
+        setShowMobileProgress(!showMobileProgress);
+    };
 
     return (
         <header className={cx('header')}>
@@ -52,7 +40,7 @@ const Header = () => {
             <div className={cx('course-title')}>{currentCourse?.course?.title}</div>
 
             <div className={cx('action')}>
-                <div className={cx('progress-bar')}>
+                <div className={cx('progress-bar')} onClick={toggleMobileProgress}>
                     <div className={cx('progress')}>
                         <CircularProgressbar
                             value={currentCourse?.progress?.progressPercentage ?? 0}
@@ -74,11 +62,9 @@ const Header = () => {
                         bài học
                     </p>
                 </div>
-
-                {/*<div className={cx('note-action-btn')}></div>*/}
-
-                {/*<div className={cx('help-btn')}></div>*/}
             </div>
+
+            <MobileProgress isVisible={showMobileProgress} onClose={toggleMobileProgress} />
         </header>
     );
 }
