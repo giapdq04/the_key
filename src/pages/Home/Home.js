@@ -10,15 +10,15 @@ const cx = classNames.bind(styles);
 
 const slideImages = [
   {
-    url: "https://images.unsplash.com/photo-1509721434272-b79147e0e708?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80",
+    url: "https://res.cloudinary.com/dlmsjy3jd/image/upload/v1742716042/slides/dmfkc9xqkj3xs8eumx2j.png",
     caption: "Slide 1",
   },
   {
-    url: "https://images.unsplash.com/photo-1506710507565-203b9f24669b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1536&q=80",
+    url: "https://res.cloudinary.com/dlmsjy3jd/image/upload/v1742716041/slides/s0qqnxmhcxd8teyyr2gq.png",
     caption: "Slide 2",
   },
   {
-    url: "https://images.unsplash.com/photo-1536987333706-fc9adfb10d91?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80",
+    url: "https://res.cloudinary.com/dlmsjy3jd/image/upload/v1742716041/slides/zciript8vwdzzdt3nq6e.png",
     caption: "Slide 3",
   },
 ];
