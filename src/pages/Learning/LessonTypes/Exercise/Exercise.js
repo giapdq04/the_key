@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import classNames from "classnames/bind";
@@ -25,12 +25,12 @@ const Exercise = ({ currentLesson }) => {
     }, [currentLesson.questions])
 
 
-    const handleChooseAnswer = (selectedOption, index) => {
+    const handleChooseAnswer = useCallback((selectedOption, index) => {
         setAnswer((prevAnswers) => ({
             ...prevAnswers,
             [index]: selectedOption, // Lưu câu trả lời theo chỉ số câu hỏi
         }));
-    };
+    }, []);  // Empty dependency array to ensure stable reference
 
     const handleSubmit = async () => {
         if (Object.keys(answer).length !== questions.length) {
@@ -41,10 +41,7 @@ const Exercise = ({ currentLesson }) => {
         let score = 0;
 
         questions.forEach((question, index) => {
-            // console.log(question);
-            console.log(answer[index], question.options[question.correctAnswer]);
             if (answer[index] === question.options[question.correctAnswer]) {
-
                 score++;
             }
         });
@@ -72,6 +69,11 @@ const Exercise = ({ currentLesson }) => {
                     slug,
                     lessonID: currentLesson._id,
                 });
+
+                setTimeout(() => {
+                    setShowFireworks(false);
+                }, 3000);
+
             } catch (e) {
                 console.log(e);
             }

@@ -8,6 +8,14 @@
   margin-top: var(--wrapper-height);
   border-left: 1px solid #e7e7e7;
 
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    bottom: 0;
+    margin-top: 0;
+    border-left: none;
+    border-top: 1px solid #e7e7e7;
+  }
+
   .container {
     width: 100%;
     height: 100%;

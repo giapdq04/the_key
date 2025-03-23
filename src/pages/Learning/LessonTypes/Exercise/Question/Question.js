@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import Answer from "./Answer/Answer";
 import classNames from "classnames/bind";
 import styles from "./Question.module.scss";
@@ -17,7 +17,7 @@ const Question = ({ question, onChooseAnswer, index }) => {
         if (userAnswer !== '') {
             onChooseAnswer(userAnswer, index)
         }
-    }, [userAnswer]);
+    }, [index, onChooseAnswer, userAnswer]);
 
     return (
         <div>
@@ -38,4 +38,4 @@ const Question = ({ question, onChooseAnswer, index }) => {
     );
 };
 
-export default Question;
+export default memo(Question);

@@ -1,13 +1,12 @@
-import React, { memo, useEffect, useMemo, useState } from 'react';
-import classNames from 'classnames/bind';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import classNames from 'classnames/bind';
+import React, { lazy, memo, Suspense, useMemo, useState } from 'react';
 
 import styles from './Section.module.scss';
-import Lesson from "./Lesson/Lesson";
-import convertTime from "../../../../utils/ConvertSeconds";
 
 const cx = classNames.bind(styles);
+const Lesson = lazy(() => import('./Lesson/Lesson'));
 
 const Section = ({ item, index }) => {
 
@@ -28,15 +27,15 @@ const Section = ({ item, index }) => {
         return item.lessons.length;
     }, [item.lessons]);
 
-    const totalDuration = useMemo(() => {
-        return item.lessons.reduce((acc, lesson) => {
-            return acc + lesson.duration;
-        }, 0);
-    }, [item.lessons]);
+    // const totalDuration = useMemo(() => {
+    //     return item.lessons.reduce((acc, lesson) => {
+    //         return acc + lesson.duration;
+    //     }, 0);
+    // }, [item.lessons]);
 
-    const formattedDuration = useMemo(() => {
-        return convertTime(totalDuration);
-    }, [totalDuration]);
+    // const formattedDuration = useMemo(() => {
+    //     return convertTime(totalDuration);
+    // }, [totalDuration]);
 
     return (
         <div className={cx('wrapper')}>
@@ -58,14 +57,16 @@ const Section = ({ item, index }) => {
             {
                 showSection && (
                     <div className={cx('track-step-list')}>
-                        {item.lessons.map((lesson, index) => {
-                            return (
-                                <Lesson
-                                    key={lesson._id}
-                                    index={index}
-                                    item={lesson} />
-                            );
-                        })}
+                        <Suspense>
+                            {item.lessons.map((lesson, index) => {
+                                return (
+                                    <Lesson
+                                        key={lesson._id}
+                                        index={index}
+                                        item={lesson} />
+                                );
+                            })}
+                        </Suspense>
                     </div>
                 )
             }

@@ -1,14 +1,13 @@
 import classNames from "classnames/bind";
 import { useSelector } from "react-redux";
-import { useEffect, useRef, memo } from "react";
+import { lazy, memo, Suspense } from "react";
 
-import Section from "./Section/Section";
 import styles from "./Sidebar.module.scss";
 
 const cx = classNames.bind(styles);
+const Section = lazy(() => import('./Section/Section'));
 
 const Sidebar = () => {
-    const SectionList = useSelector(state => state.section);
     const currentCourse = useSelector(state => state.currentCourse)
     // const sectionRefs = useRef([]);
 
@@ -34,10 +33,12 @@ const Sidebar = () => {
                             key={section._id}
                         // ref={el => sectionRefs.current[index] = el}
                         >
-                            <Section
-                                index={index}
-                                item={section}
-                            />
+                            <Suspense>
+                                <Section
+                                    index={index}
+                                    item={section}
+                                />
+                            </Suspense>
                         </div>
                     ))}
                 </div>
