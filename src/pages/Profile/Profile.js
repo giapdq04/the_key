@@ -61,7 +61,7 @@ const UserInfo = memo(({ user }) => {
 });
 
 const CourseItem = memo(({ course }) => {
-  const getYouTubeThumbnail = (ytbVideoId) => `https://img.youtube.com/vi/${ytbVideoId || ""}/hqdefault.jpg`;
+
 
   return (
     <motion.div
@@ -78,7 +78,7 @@ const CourseItem = memo(({ course }) => {
             <img
               loading="lazy"
               className={cx("thumb")}
-              src={getYouTubeThumbnail(course?.ytbVideoId)}
+              src={course.thumbnail}
               alt={course?.title || ""}
             />
           </span>

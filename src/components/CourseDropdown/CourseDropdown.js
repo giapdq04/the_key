@@ -29,7 +29,6 @@ const CourseDropdown = () => {
   if (isMobile) return null; // Ẩn hoàn toàn trên màn nhỏ
 
   // Hàm tạo thumbnail từ ytbVideoId (tương tự Profile)
-  const getYouTubeThumbnail = (ytbVideoId) => `https://img.youtube.com/vi/${ytbVideoId || ""}/hqdefault.jpg`;
 
   // Giả lập lastLearned nếu không có trong dữ liệu Redux
   const getLastLearned = (progressPercentage) => {
@@ -64,7 +63,7 @@ const CourseDropdown = () => {
               >
                   <img
                     loading="lazy"
-                    src={getYouTubeThumbnail(course.ytbVideoId)} // Dùng thumbnail từ ytbVideoId
+                    src={course.thumbnail} // Dùng thumbnail từ ytbVideoId
                     alt={course.title || "Untitled"}
                     className={cx("course-image")}
                   />
