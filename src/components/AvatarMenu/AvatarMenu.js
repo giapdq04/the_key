@@ -4,6 +4,8 @@ import { LogOut, Settings, User } from "lucide-react";
 import { useCallback, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import Cookies from "js-cookie";
+import { setUser } from "../../store/userSlice";
 import config from "../../config";
 import useClickOutside from "../../hooks/useClickOutside";
 import Image from "../Image";
@@ -94,19 +96,12 @@ const AvatarMenu = () => {
   const closeMenu = useCallback(() => setShowMenu(false), []);
 
   const handleLogout = useCallback(() => {
-    // Xóa token authentication
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    
-    // Đặt lại trạng thái người dùng trong Redux
-    dispatch({ type: 'LOGOUT' });
-    
-    // Đóng menu
-    closeMenu();
-    
-    // Chuyển hướng về trang chủ nếu cần
-    // navigate('/');
-  }, [dispatch, closeMenu]);
+    Cookies.remove("userID");
+    Cookies.remove("accessToken");
+    Cookies.remove("refreshToken");
+    dispatch(setUser(null));
+    window.location.reload();
+  }, [dispatch]);
 
   useClickOutside(dropRefAvatar, closeMenu);
 

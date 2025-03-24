@@ -91,6 +91,11 @@
           border-radius: 5px;
         }
 
+        @media (max-width: 768px) {
+          background-color: var(--primary-color);
+          color: #fff;
+        }
+
         &:hover {
           background-color: var(--primary-color);
           color: #fff;
