@@ -20,20 +20,6 @@ const CourseItem = ({ item, isPro = false }) => {
         return price?.toLocaleString('vi-VN');
     }
 
-    // const converToMinute = (minute) => {
-    //     if (minute < 60) {
-    //         return `${minute}p`;
-    //     }
-    //
-    //     if (minute % 60 === 0) {
-    //         return `${minute / 60}g`;
-    //     }
-    //
-    //     if (minute % 60 !== 0) {
-    //         return `${Math.floor(minute / 60)}g${minute % 60}p`;
-    //     }
-    // }
-
     const handleCourseClick = async (e) => {
         e.preventDefault(); // Ngăn chặn hành vi chuyển trang mặc định của Link
 
@@ -63,7 +49,7 @@ const CourseItem = ({ item, isPro = false }) => {
         >
             <div className={cx('item')}>
                 <div className={cx('thumbnail')}>
-                    <img loading="lazy" src={`https://img.youtube.com/vi/${item.ytbVideoId}/maxresdefault.jpg`} alt={item.title} />
+                    <img loading="lazy" src={item.thumbnail} alt={item.title} />
                     {isPro && <FontAwesomeIcon icon={faCrown} className={cx('crown')} />}
                 </div>
 

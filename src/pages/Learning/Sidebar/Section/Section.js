@@ -1,9 +1,7 @@
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classNames from 'classnames/bind';
-import React, { memo, useMemo, useState } from 'react';
-
-import Lesson from "./Lesson/Lesson";
+import React, { memo, useMemo, useState, lazy, Suspense } from 'react';
 import styles from './Section.module.scss';
 
 const cx = classNames.bind(styles);

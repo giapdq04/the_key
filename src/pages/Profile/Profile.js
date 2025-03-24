@@ -1,8 +1,9 @@
-import React, { memo } from "react";
+import React, { memo, useEffect, useRef } from "react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import Lottie from "lottie-react";
-import React from "react";
-import emptyAnimation from "../../assets/lottie/nocorner.json"; // Thay bằng file JSON Lottie của bạn
+import emptyAnimation from "../../assets/lottie/nocorner.json"; 
 import styles from "./Profile.module.scss";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";

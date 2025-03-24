@@ -1,5 +1,5 @@
 import classNames from "classnames/bind";
-import { memo } from "react";
+import { memo, lazy, Suspense } from "react";
 import { useSelector } from "react-redux";
 
 import styles from "./Sidebar.module.scss";

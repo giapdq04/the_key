@@ -86,21 +86,27 @@ const MenuItem = ({ icon: Icon, children, onClick, delay = 0 }) => (
 
 const AvatarMenu = () => {
     const [showMenu, setShowMenu] = useState(false);
-    const droprefavatar = useRef(null);
-    // const [user, setUser] = useState(null);
+    const dropRefAvatar = useRef(null);
     const user = useSelector(state => state.user)
     const dispatch = useDispatch();
 
   const toggleMenu = useCallback(() => setShowMenu((prev) => !prev), []);
   const closeMenu = useCallback(() => setShowMenu(false), []);
 
-    // useEffect(() => {
-    //     // Lấy dữ liệu người dùng từ localStorage
-    //     const storedUser = localStorage.getItem("user");
-    //     if (storedUser) {
-    //         setUser(JSON.parse(storedUser));
-    //     }
-    // }, []);
+  const handleLogout = useCallback(() => {
+    // Xóa token authentication
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    
+    // Đặt lại trạng thái người dùng trong Redux
+    dispatch({ type: 'LOGOUT' });
+    
+    // Đóng menu
+    closeMenu();
+    
+    // Chuyển hướng về trang chủ nếu cần
+    // navigate('/');
+  }, [dispatch, closeMenu]);
 
   useClickOutside(dropRefAvatar, closeMenu);
 
