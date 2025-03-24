@@ -6,15 +6,12 @@ import {
     faLock,
     faPen
 } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import classNames from "classnames/bind";
-import React, { memo, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from "react-redux";
-
-import { toggleCourseListMobile } from "../../../../../store/CourseListMobileSlice";
-import { setSelectedLesson } from "../../../../../store/selectedLessonSlice";
+import React, {memo, useEffect, useState} from 'react';
+import {useDispatch, useSelector} from "react-redux";
+import {setSelectedLesson} from "../../../../../store/selectedLessonSlice";
 import styles from './Lesson.module.scss';
-import useResponsive from "../../../../../hooks/useResponsive";
 
 const cx = classNames.bind(styles)
 
@@ -23,8 +20,6 @@ const Lesson = ({ item, index }) => {
     const currentCourse = useSelector(state => state.currentCourse)
     const selectedLesson = useSelector(state => state.selectedLesson)
     const [disable, setDisable] = useState(true)
-
-    const isMobile = useResponsive()
 
     useEffect(() => {
         // Find all incomplete lessons
@@ -47,9 +42,6 @@ const Lesson = ({ item, index }) => {
         if (disable) {
             console.log('disable lesson')
             return
-        }
-        if (isMobile) {
-            dispatch(toggleCourseListMobile())
         }
         dispatch(setSelectedLesson(item))
     }

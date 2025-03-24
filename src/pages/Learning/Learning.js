@@ -1,18 +1,17 @@
 import classNames from 'classnames/bind'
-import React, { lazy, Suspense, useCallback, useEffect, useState } from 'react'
+import React, {lazy, Suspense, useCallback, useEffect} from 'react'
 import 'react-circular-progressbar/dist/styles.css'
-import { useDispatch, useSelector } from "react-redux"
+import {useDispatch, useSelector} from "react-redux"
 import Cookies from "js-cookie"
-import { useParams } from "react-router"
+import {useParams} from "react-router"
 
 import axiosClient from "../../apis/axiosClient"
-import { setCurrentCourse } from "../../store/courseSlice"
-import { setSelectedLesson } from "../../store/selectedLessonSlice"
+import {setCurrentCourse} from "../../store/courseSlice"
+import {setSelectedLesson} from "../../store/selectedLessonSlice"
 import Footer from "./Footer/Footer"
 import Header from "./Header/Header"
 import styles from './Learning.module.scss'
 import useResponsive from "../../hooks/useResponsive";
-import { toggleCourseListMobile } from '../../store/CourseListMobileSlice'
 
 const cx = classNames.bind(styles)
 
@@ -23,8 +22,6 @@ const Sidebar = lazy(() => import('./Sidebar/Sidebar'))
 
 const Learning = () => {
     const currentLesson = useSelector(state => state.selectedLesson)
-    // const [showListMobile, setShowListMobile] = useState(false)
-    const showListMobile = useSelector(state => state.courseListMobile)
 
     const dispatch = useDispatch()
 
@@ -64,10 +61,6 @@ const Learning = () => {
         }
     }, [dispatch, slug, userID]);
 
-    const handleToggleListMobile = () => {
-        dispatch(toggleCourseListMobile())
-    }
-
     const MainContent = useCallback(() => {
         if (currentLesson?.docID) {
             return <Document currentLesson={currentLesson} />
@@ -84,22 +77,14 @@ const Learning = () => {
         <div className={cx('wrapper')}>
             <Header />
 
-            {
-                isMobile ? (
-                    showListMobile &&
-                    <Suspense>
-                        <Sidebar />
-                    </Suspense>
-                ) :
-                    <Suspense>
-                        <Sidebar />
-                    </Suspense>
-            }
+            <Suspense>
+                <Sidebar />
+            </Suspense>
 
             <Suspense>
                 <MainContent />
             </Suspense>
-            <Footer onToggleList={handleToggleListMobile} />
+            <Footer />
         </div>
     );
 }

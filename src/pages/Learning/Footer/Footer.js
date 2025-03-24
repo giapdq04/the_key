@@ -1,20 +1,17 @@
-import {faChevronLeft, faChevronRight, faList} from "@fortawesome/free-solid-svg-icons";
+import {faChevronLeft, faChevronRight} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import classNames from "classnames/bind";
 import React, {memo} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import styles from "./Footer.module.scss";
 import {setSelectedLesson} from "../../../store/selectedLessonSlice";
-import useResponsive from "../../../hooks/useResponsive";
 
 const cx = classNames.bind(styles)
 
-const Footer = ({onToggleList}) => {
+const Footer = () => {
     const dispatch = useDispatch()
     const currentCourse = useSelector(state => state.currentCourse)
     const selectedLesson = useSelector(state => state.selectedLesson)
-
-    const isMobile = useResponsive()
 
 
     const handlePrevLesson = () => {
@@ -47,11 +44,6 @@ const Footer = ({onToggleList}) => {
     return (
         <footer className={cx('footer')}>
             <div className={cx('btn-group')}>
-                {
-                    isMobile && <button className={cx('list-btn')} onClick={onToggleList}>
-                        <FontAwesomeIcon icon={faList}/>
-                    </button>
-                }
                 <button className={cx('btn', 'previous-lesson')}
                         onClick={handlePrevLesson}
                 >
@@ -74,17 +66,6 @@ const Footer = ({onToggleList}) => {
                     </span>
                 </button>
             </div>
-            {/* <div className={cx('toggle-wrap')} onClick={onToggleSection}>
-                <h3 className={cx('track-title')}>1. Giới thiệu</h3>
-                <button className={cx('toggle-btn')}>
-                    {
-                        showSection
-                            ? <FontAwesomeIcon icon={faArrowRight} />
-                            : <FontAwesomeIcon icon={faBars} />
-                    }
-
-                </button>
-            </div> */}
         </footer>
     )
 }
