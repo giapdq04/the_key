@@ -3,12 +3,10 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const slidesSlice = createSlice({
   name: 'slides',
-  initialState: {
-    slides: [],
-  },
+  initialState: [],
   reducers: {
     setSlides: (state, action) => {
-      state.slides = action.payload;
+      return action.payload;
     },
   },
 });

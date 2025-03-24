@@ -46,7 +46,6 @@ function App() {
     const fetchSlides = async () => {
       try {
         const response = await axiosClient.get("/slide");
-        console.log("API Slides Response:", response.data); // Kiểm tra dữ liệu từ API
         if (Array.isArray(response.data)) {
           dispatch(setSlides(response.data));
         } else {

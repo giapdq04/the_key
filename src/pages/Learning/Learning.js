@@ -11,7 +11,6 @@ import {setSelectedLesson} from "../../store/selectedLessonSlice"
 import Footer from "./Footer/Footer"
 import Header from "./Header/Header"
 import styles from './Learning.module.scss'
-import useResponsive from "../../hooks/useResponsive";
 
 const cx = classNames.bind(styles)
 
@@ -28,7 +27,6 @@ const Learning = () => {
     const { slug } = useParams()
 
     const userID = Cookies.get("userID")
-    const isMobile = useResponsive()
 
     useEffect(() => {
         const fetchCourse = async () => {
