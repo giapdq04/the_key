@@ -1,15 +1,15 @@
-import {faChevronLeft, faChevronRight, faList} from "@fortawesome/free-solid-svg-icons";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import { faChevronLeft, faChevronRight, faList } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classNames from "classnames/bind";
-import React, {memo} from 'react';
-import {useDispatch, useSelector} from "react-redux";
+import React, { memo } from 'react';
+import { useDispatch, useSelector } from "react-redux";
 import styles from "./Footer.module.scss";
-import {setSelectedLesson} from "../../../store/selectedLessonSlice";
+import { setSelectedLesson } from "../../../store/selectedLessonSlice";
 import useResponsive from "../../../hooks/useResponsive";
 
 const cx = classNames.bind(styles)
 
-const Footer = ({onToggleList}) => {
+const Footer = ({ onToggleList }) => {
     const dispatch = useDispatch()
     const currentCourse = useSelector(state => state.currentCourse)
     const selectedLesson = useSelector(state => state.selectedLesson)
@@ -41,7 +41,12 @@ const Footer = ({onToggleList}) => {
         if (currentIndex !== -1 && currentIndex < allLessons.length - 1) {
             // Nếu có, chuyển đến bài học tiếp theo
             const nextLesson = allLessons[currentIndex + 1];
-            dispatch(setSelectedLesson(nextLesson));
+
+            if (nextLesson.isCompleted) {
+                dispatch(setSelectedLesson(nextLesson));
+            } else {
+                alert('Bạn cần hoàn thành bài học trước')
+            }
         }
     }
     return (
@@ -49,14 +54,14 @@ const Footer = ({onToggleList}) => {
             <div className={cx('btn-group')}>
                 {
                     isMobile && <button className={cx('list-btn')} onClick={onToggleList}>
-                        <FontAwesomeIcon icon={faList}/>
+                        <FontAwesomeIcon icon={faList} />
                     </button>
                 }
                 <button className={cx('btn', 'previous-lesson')}
-                        onClick={handlePrevLesson}
+                    onClick={handlePrevLesson}
                 >
                     <span className={cx('inner', 'pre-btn-inner')}>
-                        <FontAwesomeIcon icon={faChevronLeft}/>
+                        <FontAwesomeIcon icon={faChevronLeft} />
                         <span className={cx('btn-title')}>
                             BÀI TRƯỚC
                         </span>
@@ -64,13 +69,13 @@ const Footer = ({onToggleList}) => {
 
                 </button>
                 <button className={cx('btn', 'next-lesson')}
-                        onClick={handleNextLesson}
+                    onClick={handleNextLesson}
                 >
                     <span className={cx('inner', 'next-btn-inner')}>
                         <span className={cx('btn-title')}>
                             BÀI TIẾP THEO
                         </span>
-                        <FontAwesomeIcon icon={faChevronRight}/>
+                        <FontAwesomeIcon icon={faChevronRight} />
                     </span>
                 </button>
             </div>
