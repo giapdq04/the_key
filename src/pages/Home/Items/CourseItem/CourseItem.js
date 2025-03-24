@@ -1,13 +1,12 @@
-import React from 'react';
+import { faCrown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCirclePlay, faClock, faCrown, faUsers } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router";
 import classNames from "classnames/bind";
-import styles from "./CourseItem.module.scss";
-import config from "../../../../config";
-import axiosClient from "../../../../apis/axiosClient";
-import { useNavigate } from "react-router";
 import Cookies from "js-cookie";
+import React from 'react';
+import { Link, useNavigate } from "react-router";
+import axiosClient from "../../../../apis/axiosClient";
+import config from "../../../../config";
+import styles from "./CourseItem.module.scss";
 
 const cx = classNames.bind(styles);
 

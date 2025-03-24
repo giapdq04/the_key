@@ -1,54 +1,6 @@
-@import "react-slideshow-image/dist/styles.css";
-
-.slide-container {
-  width: 100%;
-  position: relative;
-  border-radius: 20px;
-  overflow: hidden;
-  /* Fixed aspect ratio based on 5550x884 */
-  padding-bottom: 15.93%; /* 884/5550 = 0.1593 */
-}
-
-.slide-show {
+.slide-show{
   border-radius: 20px;
   width: 100%;
-  position: absolute !important;
-  top: 0;
-  left: 0;
-  height: 100% !important;
-}
-
-.each-slide {
-  height: 100%;
-  width: 100%;
-}
-
-.slide-image {
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  animation: zoomEffect 10s infinite alternate;
-}
-
-@keyframes zoomEffect {
-  0% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(1.05);
-  }
-}
-
-.no-slides {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  background-color: #f5f5f5;
-  color: #666;
-  font-size: 1.2rem;
 }
 
 .arrow {
@@ -58,95 +10,37 @@
   transform: translateY(-50%);
   cursor: pointer;
   background-color: white;
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-  z-index: 10;
-  opacity: 0.8;
-  transition: all 0.3s ease;
-  border: none;
-  
-  &:hover {
-    opacity: 1;
-    transform: translateY(-50%) scale(1.1);
-  }
+  box-shadow: 0 3px 6px #00000029;
 
   &.left {
-    left: 20px;
+    left: 0;
+    transform: translateX(-50%) translateY(-50%);
   }
 
   &.right {
-    right: 20px;
+    right: 0;
+    transform: translateX(50%) translateY(-50%);
   }
-  
-  @media screen and (max-width: 768px) {
-    width: 32px;
-    height: 32px;
-    font-size: 1rem;
-    
-    &.left {
-      left: 10px;
-    }
-    
-    &.right {
-      right: 10px;
-    }
-  }
+
 }
 
 .indicator {
-  margin: 0 5px;
+  margin: 10px;
   width: 32px;
   height: 8px;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: #dce0e3;
   border-radius: 4px;
   cursor: pointer;
-  transition: all 0.3s ease;
-  display: inline-block;
+  transition: width .3s linear, background-color .3s linear;
 
   &.active {
-    background-color: white;
+    background-color: #b4bdc3;
     width: 50px;
   }
-  
-  &:hover {
-    background-color: rgba(255, 255, 255, 0.8);
-  }
 }
-
-/* Fix for react-slideshow-image library */
-:global(.react-slideshow-container) {
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-}
-
-:global(.react-slideshow-wrapper) {
-  height: 100% !important;
-}
-
-:global(.images-wrap) {
-  height: 100% !important;
-}
-
-:global(.react-slideshow-container + ul) {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10;
-}
-
-/* Responsive adjustments */
-@media screen and (max-width: 768px) {
-  .slide-container {
-    padding-bottom: 30%; /* Increase height proportion on mobile */
-  }
-}
-
