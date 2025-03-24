@@ -1,6 +1,6 @@
 import classNames from "classnames/bind";
+import { memo } from "react";
 import { useSelector } from "react-redux";
-import { lazy, memo, Suspense } from "react";
 
 import styles from "./Sidebar.module.scss";
 
@@ -9,17 +9,6 @@ const Section = lazy(() => import('./Section/Section'));
 
 const Sidebar = () => {
     const currentCourse = useSelector(state => state.currentCourse)
-    // const sectionRefs = useRef([]);
-
-    // useEffect(() => {
-    //     const activeSectionIndex = SectionList.findIndex(section =>
-    //         section.lessons.some(lesson => lesson.status === 2)
-    //     );
-    //
-    //     if (activeSectionIndex !== -1 && sectionRefs.current[activeSectionIndex]) {
-    //         sectionRefs.current[activeSectionIndex].scrollIntoView({behavior: 'smooth'});
-    //     }
-    // }, [SectionList]);
 
     return (
         <div className={cx('side-bar')}>
@@ -31,7 +20,6 @@ const Sidebar = () => {
                     {currentCourse?.sections?.map((section, index) => (
                         <div
                             key={section._id}
-                        // ref={el => sectionRefs.current[index] = el}
                         >
                             <Suspense>
                                 <Section

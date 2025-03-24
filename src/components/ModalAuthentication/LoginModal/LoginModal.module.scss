@@ -4,165 +4,326 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.6);
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 1000;
+    backdrop-filter: blur(5px);
 }
 
 .modal {
     position: relative;
     background: #fff;
-    padding: 30px;
     border-radius: 12px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-    width: 400px;
-    text-align: center;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
+    width: 900px;
+    max-width: 95vw;
+    overflow: hidden;
+    animation: modalFadeIn 0.3s ease-out;
 }
 
-.icon {
-    width: 20px;
-    height: 20px;
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-.close-icon {
+.modal-container {
+    display: flex;
+    min-height: 550px;
+}
+
+.illustration-side {
+    flex: 1.1;
+    background-color: #f8f9fa;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
+.logo-container {
     position: absolute;
-    top: 12px;
-    right: 12px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 20px;
-    color: #888;
-    transition: color 0.2s;
-
-    &:hover {
-        color: #333;
-    }
-
-    svg {
-        width: 20px;
-        height: 20px;
-    }
+    top: 20px;
+    left: 20px;
+    z-index: 2;
 }
 
 .logo {
-    height: 40px;
-    width: 40px;
+    height: 44px;
+    width: 44px;
     object-fit: cover;
     border-radius: 8px;
-    margin-bottom: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.modal-title {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 8px;
+.study-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
 }
 
-.modal-desc {
-    font-size: 14px;
-    color: #f33a58;
-    margin-bottom: 16px;
+.slogan-container {
+    position: absolute;
+    bottom: 40px;
+    left: 0;
+    width: 100%;
+    padding: 0 20px;
+    z-index: 2;
 }
 
-.auth-buttons {
+.slogan-animation {
+    position: relative;
+    height: 60px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 8px;
+    padding: 15px;
+    overflow: hidden;
+}
+
+.slogan {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    padding: 0 15px;
+    
+    &.active {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.content-side {
+    flex: 1;
+    padding: 40px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
-
-    .auth-btn {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        justify-content: center;
-        background: #f5f5f5;
-        border: none;
-        padding: 12px;
-        font-size: 14px;
-        border-radius: 20px;
-        cursor: pointer;
-        transition: background 0.3s;
-        font-weight: 500;
-
-
-        &:hover {
-            background: #e0e0e0;
-        }
-
-        img {
-            width: 18px;
-            height: 18px;
-        }
-    }
+    position: relative;
+    background-color: white;
 }
 
-.register-link {
+.signup-link {
+    position: absolute;
+    top: 20px;
+    right: 20px;
     font-size: 14px;
-    margin-top: 16px;
-
+    
     a {
-        color: #007bff;
+        color: #f05123;
+        font-weight: 600;
         text-decoration: none;
-        font-weight: bold;
-        transition: color 0.2s;
-
-        &:hover {
-            color: #0056b3;
-        }
-    }
-}
-
-.terms {
-    font-size: 12px;
-    color: #777;
-    margin-top: 10px;
-
-    a {
-        color: #007bff;
-        text-decoration: none;
-
+        
         &:hover {
             text-decoration: underline;
         }
     }
 }
 
-.login-btn {
-    position: relative;
+.login-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.title {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #292929;
+}
+
+.subtitle {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 32px;
+}
+
+.auth-buttons {
+    margin-bottom: 32px;
+}
+
+.google-btn {
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 10px;
     width: 100%;
-    height: 44px;
-    padding-left: 16px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    border: 2px solid rgb(220, 224, 227);
-    border-radius: 44px;
-    background-color: rgb(255, 255, 255);
-    text-align: center;
-    cursor: pointer;
-    transition: background-color 0.2s;
+    padding: 12px 16px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: white;
+    font-size: 16px;
     font-weight: 500;
-    font-size: 14px;
-    color: #333;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
     
     &:hover {
-        background-color: rgb(240, 240, 240);
+        background-color: #f8f9fa;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transform: translateY(-1px);
     }
-
-    .icon {
-        position: absolute;
-        left: 16px;
+    
+    img {
         width: 20px;
         height: 20px;
     }
-
+    
     span {
-        flex: 1;
-        text-align: center;
-        font-weight: bold;
+        font-weight: 500;
     }
 }
+
+.close-icon {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #666;
+    z-index: 10;
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    &:hover {
+        color: #333;
+        background-color: white;
+    }
+}
+
+.modal-desc {
+    font-size: 14px;
+    color: #f33a58;
+    margin-top: 24px;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .modal {
+        width: 95%;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+    
+    .modal-container {
+        flex-direction: column;
+        min-height: auto;
+    }
+    
+    .illustration-side {
+        height: 220px;
+    }
+    
+    .slogan-container {
+        bottom: 20px;
+    }
+    
+    .slogan-animation {
+        height: 50px;
+        padding: 10px;
+    }
+    
+    .slogan {
+        font-size: 14px;
+    }
+    
+    .content-side {
+        padding: 30px 20px 40px;
+    }
+    
+    .title {
+        font-size: 24px;
+        text-align: center;
+    }
+    
+    .subtitle {
+        font-size: 14px;
+        text-align: center;
+        margin-bottom: 24px;
+    }
+    
+    .google-btn {
+        padding: 14px;
+        font-size: 15px;
+    }
+    
+    .signup-link {
+        position: relative;
+        top: 0;
+        right: 0;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    
+    .modal-desc {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 480px) {
+    .modal {
+        width: 100%;
+        max-width: 100%;
+        height: 100%;
+        border-radius: 0;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .modal-container {
+        flex: 1;
+    }
+    
+    .illustration-side {
+        height: 180px;
+    }
+    
+    .content-side {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    
+    .close-icon {
+        top: 12px;
+        right: 12px;
+        z-index: 100;
+    }
+    
+    .google-btn {
+        height: 50px;
+    }
+}
+
