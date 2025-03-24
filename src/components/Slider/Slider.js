@@ -1,61 +1,81 @@
+// components/Slider/Slider.js
 import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classNames from "classnames/bind";
-import React, { useState } from 'react';
-import { Slide } from 'react-slideshow-image';
-import 'react-slideshow-image/dist/styles.css';
-import styles from './Slider.module.scss';
+import React, { useState } from "react";
+import { Slide } from "react-slideshow-image";
+import "react-slideshow-image/dist/styles.css";
+import styles from "./Slider.module.scss";
+import { useSelector } from "react-redux";
 
 const cx = classNames.bind(styles);
 
 const Slideshow = ({
-    children,
-    autoplay = true,
-    infinite = true,
-    pauseOnHover = true,
-    duration = 5000,
-    easing = 'ease',
-    nextArrowCustom,
-    prevArrowCustom,
+  autoplay = true,
+  infinite = true,
+  pauseOnHover = true,
+  duration = 5000,
+  easing = "ease",
+  nextArrowCustom,
+  prevArrowCustom,
 }) => {
-    const [currentIndex, setCurrentIndex] = useState(0)
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const slides = useSelector((state) => state.slides.slides); // Lấy slides từ store
+  console.log("Slides in Slideshow:", slides); // Kiểm tra slides trong component
 
-    const nextArrow = (
-        <button className={cx('arrow', 'right')}>
-            <FontAwesomeIcon icon={faChevronRight} />
-        </button>
-    )
+  const nextArrow = (
+    <button className={cx("arrow", "right")}>
+      <FontAwesomeIcon icon={faChevronRight} />
+    </button>
+  );
 
-    const prevArrow = (
-        <button className={cx('arrow', 'left')}>
-            <FontAwesomeIcon icon={faChevronLeft} />
-        </button>
-    )
-    return (
-        <div className="slide-container">
-            <Slide
-                cssClass={cx('slide-show')}
+  const prevArrow = (
+    <button className={cx("arrow", "left")}>
+      <FontAwesomeIcon icon={faChevronLeft} />
+    </button>
+  );
 
-                onChange={(from, to) => {
-                    setCurrentIndex(to)
+  return (
+    <div className="slide-container">
+      <Slide
+        cssClass={cx("slide-show")}
+        onChange={(from, to) => {
+          setCurrentIndex(to);
+        }}
+        arrows={true}
+        nextArrow={nextArrowCustom ?? nextArrow}
+        prevArrow={prevArrowCustom ?? prevArrow}
+        indicators={(index) => (
+          <span
+            className={cx("indicator", { active: currentIndex === index })}
+          ></span>
+        )}
+        autoplay={autoplay}
+        infinite={infinite}
+        duration={duration}
+        pauseOnHover={pauseOnHover}
+        easing={easing}
+        transitionDuration={700}
+      >
+        {slides && slides.length > 0 ? (
+          slides.map((slide) => (
+            <div key={slide._id} className="each-slide">
+              <div
+                style={{
+                  backgroundImage: `url(${slide.imageUrl})`,
+                  height: "400px", // Đảm bảo chiều cao cố định
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
                 }}
-
-                arrows={true}
-                nextArrow={nextArrowCustom ?? nextArrow}
-                prevArrow={prevArrowCustom ?? prevArrow}
-
-                indicators={((index) => (
-                    <span className={cx('indicator', { active: currentIndex === index ? true : false })}
-                    ></span>
-                ))}
-
-                autoplay={autoplay} infinite={infinite} duration={duration} pauseOnHover={pauseOnHover} easing={easing}
-                transitionDuration={700}
-            >
-                {children}
-            </Slide>
-        </div>
-    )
-}
+              />
+            </div>
+          ))
+        ) : (
+          <div>Không có slide để hiển thị</div>
+        )}
+      </Slide>
+    </div>
+  );
+};
 
 export default Slideshow;

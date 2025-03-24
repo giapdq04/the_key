@@ -7,10 +7,10 @@ import { Bounce, toast } from "react-toastify";
 import Fireworks from "@fireworks-js/react";
 import Cookies from "js-cookie";
 import axiosClient from "../../../../apis/axiosClient";
-import Question from "./Question/Question";
 import styles from "./Exercise.module.scss";
 
-// Constants
+const cx = classNames.bind(styles);
+
 const PASSING_SCORE = 8;
 const TOAST_CONFIG = {
   position: "top-center",
@@ -21,21 +21,16 @@ const TOAST_CONFIG = {
   transition: Bounce,
 };
 
-const cx = classNames.bind(styles);
-
-// Component Exercise - Memo hóa
 const Exercise = memo(({ currentLesson }) => {
   const [answer, setAnswer] = useState({});
   const [showFireworks, setShowFireworks] = useState(false);
   const [questions, setQuestions] = useState(null);
   const { slug } = useParams();
 
-  // Parse danh sách câu hỏi từ currentLesson
   useEffect(() => {
     setQuestions(JSON.parse(currentLesson.questions));
   }, [currentLesson.questions]);
 
-  // Xử lý khi người dùng chọn đáp án
   const handleChooseAnswer = (selectedOption, index) => {
     setAnswer((prevAnswers) => ({
       ...prevAnswers,
@@ -43,10 +38,9 @@ const Exercise = memo(({ currentLesson }) => {
     }));
   };
 
-  // Xử lý nộp bài
   const handleSubmit = async () => {
     if (!questions || Object.keys(answer).length !== questions.length) {
-      alert("Bạn chưa hoàn thành tất cả các câu hỏi!");
+      toast.error("Vui lòng trả lời tất cả câu hỏi!", TOAST_CONFIG);
       return;
     }
 
@@ -58,12 +52,11 @@ const Exercise = memo(({ currentLesson }) => {
 
     if (result >= PASSING_SCORE) {
       setShowFireworks(true);
-      toast.success(`Chúc mừng bạn đã đạt được ${result} điểm!`, TOAST_CONFIG);
+      toast.success(`Chúc mừng! Bạn đạt ${result.toFixed(1)} điểm`, TOAST_CONFIG);
 
-      const userID = Cookies.get("userID");
       try {
         await axiosClient.post("/lesson/finish-lesson", {
-          userID,
+          userID: Cookies.get("userID"),
           slug,
           lessonID: currentLesson._id,
         });
@@ -71,7 +64,7 @@ const Exercise = memo(({ currentLesson }) => {
         console.error("Error finishing lesson:", error);
       }
     } else {
-      alert(`Bạn cần xem lại bài làm của mình! Điểm của bạn là ${result}`);
+      toast.error(`Bạn đạt ${result.toFixed(1)} điểm. Hãy thử lại!`, TOAST_CONFIG);
       setShowFireworks(false);
     }
   };
@@ -80,16 +73,28 @@ const Exercise = memo(({ currentLesson }) => {
     <div className={cx("main-content")}>
       <div className={cx("content")}>
         <h1 className={cx("title")}>{currentLesson.title}</h1>
+        
         <div className={cx("questions")}>
-          {questions &&
-            questions.map((question, index) => (
-              <Question
-                key={index}
-                index={index}
-                question={question}
-                onChooseAnswer={handleChooseAnswer}
-              />
-            ))}
+          {questions?.map((question, qIndex) => (
+            <div key={qIndex} className="question-item">
+              <div className="question-text">
+                {qIndex + 1}. {question.question}
+              </div>
+              <div className="options-grid">
+                {question.options.map((option, oIndex) => (
+                  <div
+                    key={oIndex}
+                    className={`option-card ${answer[qIndex] === option ? 'selected' : ''}`}
+                    onClick={() => handleChooseAnswer(option, qIndex)}
+                  >
+                    <div className="option-content">
+                      <div className="option-text">{option}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
 
         <div className={cx("submit-wrapper")}>
@@ -97,11 +102,11 @@ const Exercise = memo(({ currentLesson }) => {
             Hoàn thành
           </button>
         </div>
-      </div>
 
-      <div className={cx("content-footer")}>
-        Made with <FontAwesomeIcon icon={faHeart} />{" "}
-        <span className={cx("dot")}>·</span> Powered by TheKey
+        <div className={cx("navigation")}>
+          <button className="nav-btn prev">Bài trước</button>
+          <button className="nav-btn next">Bài tiếp theo</button>
+        </div>
       </div>
 
       {showFireworks && <Fireworks className={cx("fire-worker")} />}
