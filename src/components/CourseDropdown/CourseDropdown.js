@@ -31,11 +31,11 @@ const CourseDropdown = () => {
   // Hàm tạo thumbnail từ ytbVideoId (tương tự Profile)
 
   // Giả lập lastLearned nếu không có trong dữ liệu Redux
-  const getLastLearned = (progressPercentage) => {
-    if (progressPercentage === 0) return "Bạn chưa học khóa này";
-    if (progressPercentage < 50) return "Học cách đây một giờ trước";
-    return "Học cách đây 2 ngày trước"; // Có thể thay đổi logic theo nhu cầu
-  };
+  // const getLastLearned = (progressPercentage) => {
+  //   if (progressPercentage === 0) return "Bạn chưa học khóa này";
+  //   if (progressPercentage < 50) return "Học cách đây một giờ trước";
+  //   return "Học cách đây 2 ngày trước"; // Có thể thay đổi logic theo nhu cầu
+  // };
 
   return (
     <div className={cx("course-container")} ref={dropdownRef}>
@@ -69,9 +69,9 @@ const CourseDropdown = () => {
                   />
                   <div className={cx("content")}>
                     <p className={cx("title")}>{course.title || "Untitled"}</p>
-                    <span className={cx("last-learned")}>
-                      {getLastLearned(course.progressPercentage)}
-                    </span>
+                    {/*<span className={cx("last-learned")}>*/}
+                    {/*  {getLastLearned(course.progressPercentage)}*/}
+                    {/*</span>*/}
 
                     {course.progressPercentage > 0 ? (
                       <div className={cx("progress-bar")}>

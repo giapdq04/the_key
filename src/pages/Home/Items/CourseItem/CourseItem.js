@@ -7,12 +7,15 @@ import { Link, useNavigate } from "react-router";
 import axiosClient from "../../../../apis/axiosClient";
 import config from "../../../../config";
 import styles from "./CourseItem.module.scss";
+import {useDispatch} from "react-redux";
+import {setShowLoginModal} from "../../../../store/showLoginModal";
 
 const cx = classNames.bind(styles);
 
 const CourseItem = ({ item, isPro = false }) => {
 
     const isEnrolled = true
+    const dispatch = useDispatch();
 
     const navigate = useNavigate();
 
@@ -25,6 +28,10 @@ const CourseItem = ({ item, isPro = false }) => {
 
         try {
             const userID = Cookies.get('userID');
+            if (!userID) {
+                dispatch(setShowLoginModal(true));
+                return
+            }
 
             // Gọi API để kiểm tra hoặc xử lý trước khi chuyển trang
             await axiosClient.post('/course/enroll', {

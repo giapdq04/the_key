@@ -1,35 +1,25 @@
-import { faBell } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
-import React, { useEffect, useRef, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 
 import images from '../../assets/images';
-import Search from '../Search';
 import styles from './Header.module.scss';
-import { Link } from 'react-router';
 import AvatarMenu from '../AvatarMenu/AvatarMenu';
-import NotificationDropdown from '../NotificationDropdown/NotificationDropdown';
 import CourseDropdown from '../CourseDropdown/CourseDropdown';
-import useClickOutside from '../../hooks/useClickOutside';
 import LoginModal from '../ModalAuthentication/LoginModal/LoginModal';
-import { useSelector } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
+import {setShowLoginModal} from '../../store/showLoginModal';
 import Cookies from 'js-cookie';
 
 const cx = classNames.bind(styles);
 
 const Header = () => {
-    const [showNotifications, setShowNotifications] = useState(false);
-    const droprefnotification = useRef(null);
-    useClickOutside(droprefnotification, () => setShowNotifications(false));
-
-    const toggleNotifications = () => {
-        setShowNotifications(!showNotifications);
-    };
 
     // Trạng thái đăng nhập
     const [user, setUser] = useState(null);
     const userState = useSelector(state => state.user)
-    const [showLoginModal, setShowLoginModal] = useState(false);
+    // const [showLoginModal, setShowLoginModal] = useState(false);
+    const showLoginModal = useSelector(state => state.showLoginModal)
+    const dispatch = useDispatch();
 
     useEffect(() => {
         const userID = Cookies.get('userID');
@@ -40,11 +30,7 @@ const Header = () => {
     }, [userState]);
 
     const handleLoginModal = () => {
-        setShowLoginModal(true);
-    };
-
-    const handleCloseLogin = () => {
-        setShowLoginModal(false);
+        dispatch(setShowLoginModal(true));
     };
 
     return (
@@ -52,7 +38,7 @@ const Header = () => {
             <div className={cx('inner')}>
                 <div className={cx('left-header')}>
                     <a href='/'>
-                        <img loading="lazy" src={images.logo} className={cx('logo')} alt='F8' />
+                        <img loading="lazy" src={images.logo} className={cx('logo')} alt='F8'/>
                     </a>
 
                     <a href='/'>
@@ -77,7 +63,7 @@ const Header = () => {
                 ) : (
                     // Nếu đã đăng nhập, hiển thị Avatar, khóa học, thông báo
                     <div className={cx('actions')}>
-                        <CourseDropdown />
+                        <CourseDropdown/>
 
                         {/* <div className={cx('notification-wrapper')} ref={droprefnotification}>
                             <button className={cx('action-btn')} onClick={toggleNotifications}>
@@ -86,12 +72,10 @@ const Header = () => {
                             {showNotifications && <NotificationDropdown />}
                         </div> */}
 
-                        <AvatarMenu />
+                        <AvatarMenu/>
                     </div>
                 )}
             </div>
-
-            {showLoginModal && <LoginModal isOpen={showLoginModal} onClose={handleCloseLogin} />}
         </header>
     );
 };

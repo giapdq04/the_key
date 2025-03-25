@@ -5,6 +5,7 @@ import coursesReducer from "./coursesSlice";
 import selectedLessonReducer from "./selectedLessonSlice";
 import enrolledCoursesReducer from './enrolledCoursesSlice';
 import slidesReducer from './slidesSlice';
+import showLoginModalReducer from './showLoginModal';
 
 const store = configureStore({
   reducer: {
@@ -13,7 +14,8 @@ const store = configureStore({
     currentCourse: courseReducer,
     selectedLesson: selectedLessonReducer,
     enrolledCourses: enrolledCoursesReducer,
-    slides: slidesReducer
+    slides: slidesReducer,
+    showLoginModal: showLoginModalReducer
   },
   devTools: process.env.NODE_ENV !== 'production',
 })
