@@ -1,14 +1,14 @@
-import React, { memo, useState } from 'react';
-import { useNavigate } from 'react-router';
-import { User, Shield, X } from 'lucide-react';
+import React, {memo, useState} from 'react';
+import {useNavigate} from 'react-router';
+import {Shield, User, X} from 'lucide-react';
 import classNames from 'classnames/bind';
 import PersonalInfo from '../../components/PersonalInfo/PersonalInfo';
 import Security from '../../components/Security/Security';
 import styles from './Setting.module.scss';
+import images from "../../assets/images";
 
 const cx = classNames.bind(styles);
 
-const LOGO_URL = 'https://accounts.fullstack.edu.vn/assets/logo-lV2rGpF0.png';
 const TABS = {
   PERSONAL: 'personal',
   SECURITY: 'security',
@@ -38,7 +38,7 @@ const Setting = memo(() => {
     <div className={cx('container')}>
       <div className={cx('sidebar')}>
         <div className={cx('sidebar-content')}>
-          <img src={LOGO_URL} className={cx('logo')} alt="Logo" />
+          <img src={images.logo} className={cx('logo')} alt="Logo" />
           <h2 className={cx('title')}>Account Settings</h2>
           <p className={cx('description')}>
             Manage your account settings including personal information, security, and notifications.

@@ -5,7 +5,6 @@ import images from '../../assets/images';
 import styles from './Header.module.scss';
 import AvatarMenu from '../AvatarMenu/AvatarMenu';
 import CourseDropdown from '../CourseDropdown/CourseDropdown';
-import LoginModal from '../ModalAuthentication/LoginModal/LoginModal';
 import {useDispatch, useSelector} from 'react-redux';
 import {setShowLoginModal} from '../../store/showLoginModal';
 import Cookies from 'js-cookie';
@@ -17,8 +16,6 @@ const Header = () => {
     // Trạng thái đăng nhập
     const [user, setUser] = useState(null);
     const userState = useSelector(state => state.user)
-    // const [showLoginModal, setShowLoginModal] = useState(false);
-    const showLoginModal = useSelector(state => state.showLoginModal)
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -41,9 +38,12 @@ const Header = () => {
                         <img loading="lazy" src={images.logo} className={cx('logo')} alt='F8'/>
                     </a>
 
+                    <span className={cx('beta-tag')}>BETA</span> 
+
                     <a href='/'>
                         <p className={cx('title')}>TheKey</p>
                     </a>
+                    
                 </div>
 
                 {/* <div className={cx('center-search')}>

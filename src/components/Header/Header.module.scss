@@ -29,7 +29,6 @@
     height: 38px;
     flex-shrink: 0;
     object-fit: contain;
-    border-radius: 8px;
     cursor: pointer;
   }
 
@@ -265,5 +264,42 @@
       padding: 4px 8px;
       font-size: 11px;
     }
+  }
+}
+
+.beta-tag {
+  display: inline-block;
+  background: linear-gradient(45deg, #ff6b00, #ff2f00);
+  color: white;
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-left: 8px;
+  position: relative;
+  top: -10px;
+  box-shadow: 0 2px 4px rgba(255, 107, 0, 0.3);
+  letter-spacing: 0.5px;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  .beta-tag {
+    font-size: 0.6rem;
+    padding: 1px 4px;
+    margin-left: 4px;
   }
 }

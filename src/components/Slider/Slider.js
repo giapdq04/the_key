@@ -54,7 +54,10 @@ const Slideshow = ({
                 {slides && slides.length > 0 ? (
                     slides.map((slide) => (
                         <div key={slide._id} className={cx("each-slide")}>
-                            <img loading={"lazy"} className={cx('slide-image')} src={slide.imageUrl} alt={slide.title}/>
+                            <a href={slide.link} target="_blank" rel="noopener noreferrer">
+                                <img loading={"lazy"} className={cx('slide-image')} src={slide.imageUrl}
+                                     alt={slide.title}/>
+                            </a>
                         </div>
                     ))
                 ) : (

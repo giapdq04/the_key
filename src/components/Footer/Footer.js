@@ -1,6 +1,7 @@
 import classNames from "classnames/bind";
 import React from 'react';
 import styles from './Footer.module.scss';
+import images from "../../assets/images";
 
 const cx = classNames.bind(styles);
 const Footer = () => {
@@ -10,7 +11,7 @@ const Footer = () => {
                 <div className={cx('top-row')}>
                     <div className={cx('col')}>
                         <div className={cx('column-top')}>
-                            <img loading="lazy" className={cx('logo')} src='https://fullstack.edu.vn/assets/f8-icon-lV2rGpF0.png' alt='logo' />
+                            <img loading="lazy" className={cx('logo')} src={images.logo} alt='logo' />
                             <h2 className={cx('slogan')}>Chìa khóa vàng để thành công</h2>
                         </div>
                         <div className={cx('contact-list')}>
@@ -79,15 +80,15 @@ const Footer = () => {
                 <div className={cx('bottom-row')}>
                     <p className={cx('copyright')}>© 2025  Made by TheKey</p>
                     <div className={cx('social-list')}>
-                        <a className={cx('social-icon')} target="_blank" href='https://www.youtube.com/'>
+                        <a className={cx('social-icon')} target="_blank" rel="noreferrer" href='https://www.youtube.com/'>
                             <img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png" alt="youtube" />
                         </a>
 
-                        <a className={cx('social-icon')} target="_blank" href='https://www.facebook.com/thekey.edu.vn'>
+                        <a className={cx('social-icon')} target="_blank" rel="noreferrer" href='https://www.facebook.com/thekey.edu.vn'>
                             <img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Facebook_Logo_%282019%29.png/768px-Facebook_Logo_%282019%29.png" alt="youtube" />
                         </a>
 
-                        <a className={cx('social-icon')} target="_blank" href='https://www.tiktok.com/@thekeytienganh'>
+                        <a className={cx('social-icon')} target="_blank" rel="noreferrer" href='https://www.tiktok.com/@thekeytienganh'>
                             <img loading="lazy" src="https://cdn.pixabay.com/photo/2021/06/15/12/28/tiktok-6338432_960_720.png" alt="youtube" />
                         </a>
                     </div>

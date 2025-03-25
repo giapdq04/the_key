@@ -29,7 +29,7 @@ const LoginModal = () => {
         }, 3000)
 
         return () => clearInterval(interval)
-    }, [showLoginModal])
+    }, [showLoginModal, slogans.length])
 
     if (!showLoginModal) return null
 
