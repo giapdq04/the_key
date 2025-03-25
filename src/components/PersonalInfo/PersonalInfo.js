@@ -1,32 +1,31 @@
-import React, { useState } from "react";
+import React from "react";
 import classNames from "classnames/bind";
 import styles from "./PersonalInfo.module.scss";
-import ReusableModal from "../SettingModal/ReusableModal/ReusableModal";
-import UserNameModal from "../SettingModal/UserNameModal/UserNameModal";
-import IntroduceModal from "../SettingModal/IntroduceModal/IntroduceModal";
-import ImageModal from "../SettingModal/ImageModal/ImageModal";
+import {useSelector} from "react-redux";
 
 const cx = classNames.bind(styles);
 
-const userInfo = [
-    { label: "Họ và tên", value: "Việt ANH Phạm", modal: "name" },
-    { label: "Tên người dùng", value: "phamvietanh4", modal: "username" },
-    { label: "Giới thiệu", value: "Chưa cập nhật", modal: "introduce" },
-    { label: "Ảnh đại diện", value: <img loading="lazy" src="" alt="" />, modal: "image" },
-];
 
 const PersonalInfo = () => {
-    const [activeModal, setActiveModal] = useState(null);
-    const [modalData, setModalData] = useState({ title: "", value: "" });
+    // const [activeModal, setActiveModal] = useState(null);
+    const user = useSelector((state) => state.user);
+    // const [modalData, setModalData] = useState({title: "", value: ""});
 
-    const openModal = (modalType, title, value) => {
-        setActiveModal(modalType);
-        setModalData({ title, value });
-    };
+    const userInfo = [
+        {label: "Email", value: user.email, modal: "name"},
+        {label: "Tên người dùng", value: user.username, modal: "username"},
+        // {label: "Giới thiệu", value: "Chưa cập nhật", modal: "introduce"},
+        {label: "Ảnh đại diện", value: <img loading="lazy" src={user.avatar} alt=""/>, modal: "image"},
+    ];
 
-    const closeModal = () => {
-        setActiveModal(null);
-    };
+    // const openModal = (modalType, title, value) => {
+    //     setActiveModal(modalType);
+    //     setModalData({title, value});
+    // };
+    //
+    // const closeModal = () => {
+    //     setActiveModal(null);
+    // };
 
     return (
         <div className={cx("content")}>
@@ -42,7 +41,7 @@ const PersonalInfo = () => {
                             <div
                                 key={index}
                                 className={cx("info-item")}
-                                onClick={() => openModal(item.modal, `Chỉnh sửa ${item.label}`, item.value)}
+                                // onClick={() => openModal(item.modal, `Chỉnh sửa ${item.label}`, item.value)}
                             >
                                 <div className={cx("info-text")}>
                                     <span className={cx("info-label")}>{item.label}</span>
@@ -74,50 +73,50 @@ const PersonalInfo = () => {
             </div>
 
             {/* Hiển thị modal tương ứng */}
-            {activeModal === "name" && (
-                <ReusableModal
-                    isOpen={true}
-                    onClose={closeModal}
-                    title={modalData.title}
-                    value={modalData.value}
-                    onSave={(val) => {
-                        closeModal();
-                    }}
-                />
-            )}
-            {activeModal === "username" && (
-                <UserNameModal
-                    isOpen={true}
-                    onClose={closeModal}
-                    title={modalData.title}
-                    value={modalData.value}
-                    onSave={(val) => {
-                        closeModal();
-                    }}
-                />
-            )}
-            {activeModal === "introduce" && (
-                <IntroduceModal
-                    isOpen={true}
-                    onClose={closeModal}
-                    title={modalData.title}
-                    value={modalData.value}
-                    onSave={(val) => {
-                        closeModal();
-                    }}
-                />
-            )}
-            {activeModal === "image" && (
-                <ImageModal
-                    isOpen={true}
-                    onClose={closeModal}
-                    title={modalData.title}
-                    value={modalData.value}
-                    onSave={(val) => {
-                        closeModal();
-                    }}
-                />
-            )}
+            {/*{activeModal === "name" && (*/}
+            {/*    <ReusableModal*/}
+            {/*        isOpen={true}*/}
+            {/*        // onClose={closeModal}*/}
+            {/*        title={modalData.title}*/}
+            {/*        value={modalData.value}*/}
+            {/*        // onSave={(val) => {*/}
+            {/*        //     closeModal();*/}
+            {/*        // }}*/}
+            {/*    />*/}
+            {/*)}*/}
+            {/*{activeModal === "username" && (*/}
+            {/*    <UserNameModal*/}
+            {/*        isOpen={true}*/}
+            {/*        // onClose={closeModal}*/}
+            {/*        title={modalData.title}*/}
+            {/*        value={modalData.value}*/}
+            {/*        // onSave={(val) => {*/}
+            {/*        //     closeModal();*/}
+            {/*        // }}*/}
+            {/*    />*/}
+            {/*)}*/}
+            {/*{activeModal === "introduce" && (*/}
+            {/*    <IntroduceModal*/}
+            {/*        isOpen={true}*/}
+            {/*        // onClose={closeModal}*/}
+            {/*        title={modalData.title}*/}
+            {/*        value={modalData.value}*/}
+            {/*        // onSave={(val) => {*/}
+            {/*        //     closeModal();*/}
+            {/*        // }}*/}
+            {/*    />*/}
+            {/*)}*/}
+            {/*{activeModal === "image" && (*/}
+            {/*    <ImageModal*/}
+            {/*        isOpen={true}*/}
+            {/*        // onClose={closeModal}*/}
+            {/*        title={modalData.title}*/}
+            {/*        value={modalData.value}*/}
+            {/*        // onSave={(val) => {*/}
+            {/*        //     closeModal();*/}
+            {/*        // }}*/}
+            {/*    />*/}
+            {/*)}*/}
         </div>
     );
 };
