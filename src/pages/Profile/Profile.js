@@ -1,12 +1,13 @@
-import React, { memo, useEffect, useRef } from "react";
-import { useSelector } from "react-redux";
-import { Link } from "react-router";
-import { motion } from "framer-motion";
+import React, {memo, useEffect, useRef} from "react";
+import {useSelector} from "react-redux";
+import {Link} from "react-router";
+import {motion} from "framer-motion";
 import Lottie from "lottie-react";
-import emptyAnimation from "../../assets/lottie/nocorner.json"; 
+import emptyAnimation from "../../assets/lottie/nocorner.json";
 import styles from "./Profile.module.scss";
-import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
+import {buildStyles, CircularProgressbar} from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+import convertDate from "../../utils/ConvertDate";
 
 const ICONS = {
   followers: "https://cdn0.iconfinder.com/data/icons/cryptocurrency-137/128/1_profile_user_avatar_account_person-132-1024.png",
@@ -64,7 +65,9 @@ const UserInfo = memo(({ user }) => {
               <img loading="lazy" src={ICONS.joined} alt="joined" className={styles.icon_img} />
             </span>
             <span>
-              <strong>Joined {user?.joined || "N/A"}</strong>
+              <strong>
+                Tham gia ngày {user?.createdAt ? convertDate(user.createdAt) : "N/A"}
+              </strong>
             </span>
           </motion.div>
         </div>

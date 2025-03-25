@@ -8,6 +8,7 @@ import {Link} from "react-router";
 import config from "../../../config";
 import styles from "./Header.module.scss";
 import MobileProgress from "./../../../components/MobileProgress/MobileProgress";
+import images from "../../../assets/images";
 
 const cx = classNames.bind(styles);
 
@@ -29,7 +30,7 @@ const Header = () => {
             </Link>
 
             <Link className={cx('logo')} to={routeHome}>
-                <img loading="lazy" src='https://fullstack.edu.vn/assets/f8-icon-lV2rGpF0.png' alt='logo' />
+                <img loading="lazy" src={images.logo} alt='logo' />
             </Link>
 
             <div className={cx('course-title')}>{currentCourse?.course?.title}</div>
