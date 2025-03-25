@@ -3,74 +3,99 @@ import classNames from "classnames/bind";
 import styles from "./CourseDropdown.module.scss";
 import { Tooltip } from "react-tooltip";
 import useClickOutside from "../../hooks/useClickOutside";
+import { useSelector } from "react-redux";
+import { Link } from "react-router";
 
 const cx = classNames.bind(styles);
 
-const courses = [
-    { id: 1, title: "HTML CSS từ Zero đến Hero", progress: 30, image: "https://files.fullstack.edu.vn/f8-prod/courses/2.png", lastLearned: "Học cách đây một giờ trước"},
-    { id: 2, title: "Lập Trình JavaScript Cơ Bản", progress: 20, image: "https://files.fullstack.edu.vn/f8-prod/courses/2.png", lastLearned: "Học cách đây một giờ trước" },
-    { id: 3, title: "Responsive Với Grid System", progress: 40, image: "https://files.fullstack.edu.vn/f8-prod/courses/2.png", lastLearned: "Học cách đây 2 năm trước" },
-    { id: 4, title: "Xây Dựng Website với ReactJS", progress: 0, image: "https://files.fullstack.edu.vn/f8-prod/courses/2.png", lastLearned: "Bạn chưa học khóa này" },
-];
-
 const CourseDropdown = () => {
-    const [isOpen, setIsOpen] = useState(false);
-    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
-    const dropdownRef = useRef(null);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const dropdownRef = useRef(null);
 
-    useClickOutside(dropdownRef, () => setIsOpen(false));
+  // Lấy dữ liệu khóa học từ Redux
+  const enrolledCourses = useSelector((state) =>
+    Array.isArray(state.enrolledCourses?.enrolledCourses) ? state.enrolledCourses.enrolledCourses : []
+  );
 
-    useEffect(() => {
-        const handleResize = () => setIsMobile(window.innerWidth <= 768);
-        window.addEventListener("resize", handleResize);
-        return () => window.removeEventListener("resize", handleResize);
-    }, []);
+  useClickOutside(dropdownRef, () => setIsOpen(false));
 
-    if (isMobile) return null; // Ẩn hoàn toàn trên màn nhỏ
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
-    return (
-        <div className={cx("course-container")} ref={dropdownRef}>
-            <button onClick={() => setIsOpen(!isOpen)} className={cx("course-button")}>
-                Khóa học của tôi
-            </button>
+  if (isMobile) return null; // Ẩn hoàn toàn trên màn nhỏ
 
-            {isOpen && (
-                <div className={cx("dropdown")}>
-                    <div className={cx("header")}>
-                        <h4>Khóa học của tôi</h4>
-                        <span className={cx("view-all")}>Xem tất cả</span>
-                    </div>
+  // Hàm tạo thumbnail từ ytbVideoId (tương tự Profile)
 
-                    <ul className={cx("course-list")}>
-                        {courses.map((course) => (
-                            <li key={course.id} className={cx("course-item")}>
-                                <img loading="lazy" src={course.image} alt={course.title} className={cx("course-image")} />
-                                <div className={cx("content")}>
-                                    <p className={cx("title")}>{course.title}</p>
-                                    <span className={cx("last-learned")}>{course.lastLearned}</span>
-                                    
-                                    {course.progress > 0 ? (
-                                        <div className={cx("progress-bar")}>
-                                            <div 
-                                                className={cx("progress")} 
-                                                style={{ width: `${course.progress}%` }} 
-                                                data-tooltip-id={`tooltip-${course.id}`} 
-                                            ></div>
-                                            <Tooltip id={`tooltip-${course.id}`} place="top">
-                                                {course.progress}%
-                                            </Tooltip>
-                                        </div>
-                                    ) : (
-                                        <span className={cx("start-learning")}>Bắt đầu học</span>
-                                    )}
-                                </div>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
+  // Giả lập lastLearned nếu không có trong dữ liệu Redux
+  const getLastLearned = (progressPercentage) => {
+    if (progressPercentage === 0) return "Bạn chưa học khóa này";
+    if (progressPercentage < 50) return "Học cách đây một giờ trước";
+    return "Học cách đây 2 ngày trước"; // Có thể thay đổi logic theo nhu cầu
+  };
+
+  return (
+    <div className={cx("course-container")} ref={dropdownRef}>
+      <button onClick={() => setIsOpen(!isOpen)} className={cx("course-button")}>
+        Khóa học của tôi
+      </button>
+
+      {isOpen && (
+        <div className={cx("dropdown")}>
+          <div className={cx("header")}>
+            <h4>Khóa học của tôi</h4>
+            <span className={cx("view-all")}>Xem tất cả</span>
+          </div>
+
+          <ul className={cx("course-list")}>
+            {enrolledCourses.length === 0 ? (
+              <li className={cx("course-item")}>
+                <p>Chưa có khóa học nào!</p>
+              </li>
+            ) : (
+              enrolledCourses.map((course) => (
+                <Link
+                to={`/learning/${course?.slug || ""}`}
+                className={cx("course-item")} // Chuyển className từ li sang Link
+              >
+                  <img
+                    loading="lazy"
+                    src={course.thumbnail} // Dùng thumbnail từ ytbVideoId
+                    alt={course.title || "Untitled"}
+                    className={cx("course-image")}
+                  />
+                  <div className={cx("content")}>
+                    <p className={cx("title")}>{course.title || "Untitled"}</p>
+                    <span className={cx("last-learned")}>
+                      {getLastLearned(course.progressPercentage)}
+                    </span>
+
+                    {course.progressPercentage > 0 ? (
+                      <div className={cx("progress-bar")}>
+                        <div
+                          className={cx("progress")}
+                          style={{ width: `${course.progressPercentage}%` }}
+                          data-tooltip-id={`tooltip-${course.id || course.slug}`}
+                        ></div>
+                        <Tooltip id={`tooltip-${course.id || course.slug}`} place="top">
+                          {course.progressPercentage}%
+                        </Tooltip>
+                      </div>
+                    ) : (
+                      <span className={cx("start-learning")}>Bắt đầu học</span>
+                    )}
+                  </div>
+                </Link>
+              ))
             )}
+          </ul>
         </div>
-    );
+      )}
+    </div>
+  );
 };
 
 export default CourseDropdown;
