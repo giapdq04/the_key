@@ -1,6 +1,6 @@
 import React, { memo, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import { motion } from "framer-motion";
 import Lottie from "lottie-react";
 import emptyAnimation from "../../assets/lottie/nocorner.json"; 

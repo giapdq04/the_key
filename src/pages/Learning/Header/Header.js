@@ -1,10 +1,10 @@
-import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {faChevronLeft} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import classNames from "classnames/bind";
-import React, { memo, useState } from 'react';
-import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
-import { useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import React, {memo, useState} from 'react';
+import {buildStyles, CircularProgressbar} from "react-circular-progressbar";
+import {useSelector} from "react-redux";
+import {Link} from "react-router";
 import config from "../../../config";
 import styles from "./Header.module.scss";
 import MobileProgress from "./../../../components/MobileProgress/MobileProgress";
@@ -14,12 +14,7 @@ const cx = classNames.bind(styles);
 const Header = () => {
     const routeHome = config.routes.home;
     const currentCourse = useSelector(state => state.currentCourse)
-    const navigate = useNavigate();
     const [showMobileProgress, setShowMobileProgress] = useState(false);
-
-    const handleBack = () => {
-        navigate(-1);
-    };
 
     const toggleMobileProgress = () => {
         setShowMobileProgress(!showMobileProgress);

@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { LogOut, Settings, User } from "lucide-react";
 import { useCallback, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import Cookies from "js-cookie";
 import { setUser } from "../../store/userSlice";
 import config from "../../config";

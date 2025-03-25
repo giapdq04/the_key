@@ -1,13 +1,11 @@
-"use client"
-
-import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import {faChevronLeft, faChevronRight} from "@fortawesome/free-solid-svg-icons"
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import classNames from "classnames/bind"
-import { useState } from "react"
-import { Slide } from "react-slideshow-image"
+import {memo, useState} from "react"
+import {Slide} from "react-slideshow-image"
 import "react-slideshow-image/dist/styles.css"
 import styles from "./Slider.module.scss"
-import { useSelector } from "react-redux"
+import {useSelector} from "react-redux"
 
 const cx = classNames.bind(styles)
 
@@ -22,17 +20,16 @@ const Slideshow = ({
                    }) => {
     const [currentIndex, setCurrentIndex] = useState(0)
     const slides = useSelector((state) => state.slides) // Lấy slides từ store
-    console.log("Slides in Slideshow:", slides) // Kiểm tra slides trong component
 
     const nextArrow = (
         <button className={cx("arrow", "right")}>
-            <FontAwesomeIcon icon={faChevronRight} />
+            <FontAwesomeIcon icon={faChevronRight}/>
         </button>
     )
 
     const prevArrow = (
         <button className={cx("arrow", "left")}>
-            <FontAwesomeIcon icon={faChevronLeft} />
+            <FontAwesomeIcon icon={faChevronLeft}/>
         </button>
     )
 
@@ -46,7 +43,7 @@ const Slideshow = ({
                 arrows={true}
                 nextArrow={nextArrowCustom ?? nextArrow}
                 prevArrow={prevArrowCustom ?? prevArrow}
-                indicators={(index) => <span className={cx("indicator", { active: currentIndex === index })}></span>}
+                indicators={(index) => <span className={cx("indicator", {active: currentIndex === index})}></span>}
                 autoplay={autoplay}
                 infinite={infinite}
                 duration={duration}
@@ -57,12 +54,7 @@ const Slideshow = ({
                 {slides && slides.length > 0 ? (
                     slides.map((slide) => (
                         <div key={slide._id} className={cx("each-slide")}>
-                            <div
-                                className={cx("slide-image")}
-                                style={{
-                                    backgroundImage: `url(${slide.imageUrl})`,
-                                }}
-                            ></div>
+                            <img loading={"lazy"} className={cx('slide-image')} src={slide.imageUrl} alt={slide.title}/>
                         </div>
                     ))
                 ) : (
@@ -73,5 +65,5 @@ const Slideshow = ({
     )
 }
 
-export default Slideshow
+export default memo(Slideshow)
 

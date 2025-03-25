@@ -1,12 +1,13 @@
 import classNames from "classnames/bind";
-import React from "react";
+import React, {lazy, Suspense} from "react";
 import {useSelector} from "react-redux";
-import Slideshow from "../../components/Slider/Slider";
 import styles from "./Home.module.scss";
 import List from "./List/List";
 import config from "../../config";
 
 const cx = classNames.bind(styles)
+
+const SlideShow = lazy(() => import("../../components/Slider/Slider"));
 
 const Home = () => {
     // Lấy dữ liệu từ Redux store
@@ -16,7 +17,9 @@ const Home = () => {
         <div className={cx("wrapper")}>
             <div className={cx("container")}>
                 <div className={cx("slide-container")}>
-                    <Slideshow/>
+                    <Suspense>
+                        <SlideShow/>
+                    </Suspense>
                 </div>
 
                 <div className={cx("content-wrapper")}>

@@ -2,7 +2,7 @@ import Fireworks from "@fireworks-js/react";
 import classNames from "classnames/bind";
 import Cookies from "js-cookie";
 import React, { useEffect, useState, memo } from 'react';
-import { useParams } from "react-router-dom";
+import { useParams } from "react-router";
 import { Bounce, toast } from "react-toastify";
 import axiosClient from "../../../../apis/axiosClient";
 import styles from "./Exercise.module.scss";
