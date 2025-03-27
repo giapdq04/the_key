@@ -1,72 +1,72 @@
-import {faChevronLeft, faChevronRight} from "@fortawesome/free-solid-svg-icons"
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
-import classNames from "classnames/bind"
-import {memo, useState} from "react"
-import {Slide} from "react-slideshow-image"
-import "react-slideshow-image/dist/styles.css"
-import styles from "./Slider.module.scss"
-import {useSelector} from "react-redux"
+import {faChevronLeft, faChevronRight} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import classNames from "classnames/bind";
+import React, {memo, useState} from 'react';
+import {Slide} from 'react-slideshow-image';
+import 'react-slideshow-image/dist/styles.css';
+import styles from './Slider.module.scss';
+import {useSelector} from "react-redux";
 
-const cx = classNames.bind(styles)
+const cx = classNames.bind(styles);
 
 const Slideshow = ({
+                       children,
                        autoplay = true,
                        infinite = true,
                        pauseOnHover = true,
                        duration = 5000,
-                       easing = "ease",
+                       easing = 'ease',
                        nextArrowCustom,
                        prevArrowCustom,
                    }) => {
     const [currentIndex, setCurrentIndex] = useState(0)
-    const slides = useSelector((state) => state.slides) // Lấy slides từ store
+    const slideImages = useSelector(state => state.slides);
+    console.log(slideImages)
 
     const nextArrow = (
-        <button className={cx("arrow", "right")}>
+        <button className={cx('arrow', 'right')}>
             <FontAwesomeIcon icon={faChevronRight}/>
         </button>
     )
 
     const prevArrow = (
-        <button className={cx("arrow", "left")}>
+        <button className={cx('arrow', 'left')}>
             <FontAwesomeIcon icon={faChevronLeft}/>
         </button>
     )
-
     return (
-        <div className={cx("slide-container")}>
+        <div className="slide-container">
             <Slide
-                cssClass={cx("slide-show")}
+                cssClass={cx('slide-show')}
+
                 onChange={(from, to) => {
                     setCurrentIndex(to)
                 }}
+
                 arrows={true}
                 nextArrow={nextArrowCustom ?? nextArrow}
                 prevArrow={prevArrowCustom ?? prevArrow}
-                indicators={(index) => <span className={cx("indicator", {active: currentIndex === index})}></span>}
-                autoplay={autoplay}
-                infinite={infinite}
-                duration={duration}
-                pauseOnHover={pauseOnHover}
-                easing={easing}
+
+                indicators={((index) => (
+                    <span className={cx('indicator', {active: currentIndex === index})}
+                    ></span>
+                ))}
+
+                autoplay={autoplay} infinite={infinite} duration={duration} pauseOnHover={pauseOnHover} easing={easing}
                 transitionDuration={700}
             >
-                {slides && slides.length > 0 ? (
-                    slides.map((slide) => (
-                        <div key={slide._id} className={cx("each-slide")}>
-                            <a href={slide.link} target="_blank" rel="noopener noreferrer">
-                                <img loading={"lazy"} className={cx('slide-image')} src={slide.imageUrl}
-                                     alt={slide.title}/>
-                            </a>
-                        </div>
-                    ))
-                ) : (
-                    <div className={cx("no-slides")}>Không có slide để hiển thị</div>
-                )}
+                {slideImages.map((slideImage) => (
+                    <a href={slideImage.link} key={slideImage._id}>
+                        <img
+                            src={slideImage.imageUrl}
+                            className={cx("slide")}
+                            alt={slideImage.title}
+                        />
+                    </a>
+                ))}
             </Slide>
         </div>
     )
 }
 
-export default memo(Slideshow)
-
+export default memo(Slideshow);
