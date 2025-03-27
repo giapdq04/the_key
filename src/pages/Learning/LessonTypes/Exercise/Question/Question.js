@@ -1,7 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import Answer from "./Answer/Answer";
+import classNames from "classnames/bind";
+import styles from "./Question.module.scss";
 
-const Question = ({question, onChooseAnswer}) => {
+const cx = classNames.bind(styles)
+
+const Question = ({ question, onChooseAnswer, index }) => {
 
     const [userAnswer, setUserAnswer] = useState('')
 
@@ -11,25 +15,27 @@ const Question = ({question, onChooseAnswer}) => {
 
     useEffect(() => {
         if (userAnswer !== '') {
-            onChooseAnswer(question.id, userAnswer)
+            onChooseAnswer(userAnswer, index)
         }
-    }, [userAnswer]);
+    }, [index, onChooseAnswer, userAnswer]);
 
     return (
         <div>
-            <h4>{question.text}</h4>
-            {
-                question.options.map((option, index) => (
-                    <Answer
-                        key={index}
-                        questionId={question.id}
-                        answer={option}
-                        onChooseOption={handleChooseOption}
-                        userAnswer={userAnswer}/>
-                ))
-            }
+            <h4>{index + 1}. {question.question}</h4>
+            <div className={cx('answers-wrapper')}>
+                {
+                    question.options.map((option, index) => (
+                        <Answer
+                            key={index}
+                            questionId={question.id}
+                            answer={option}
+                            onChooseOption={handleChooseOption}
+                            userAnswer={userAnswer} />
+                    ))
+                }
+            </div>
         </div>
     );
 };
 
-export default Question;
+export default memo(Question);

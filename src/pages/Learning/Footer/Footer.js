@@ -1,34 +1,54 @@
-import React, { memo } from 'react'
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRight, faBars, faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import {faChevronLeft, faChevronRight} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import classNames from "classnames/bind";
-import { useDispatch } from "react-redux";
-
+import React, {memo} from 'react';
+import {useDispatch, useSelector} from "react-redux";
 import styles from "./Footer.module.scss";
-import { nextLesson, previousLesson } from "../../../store/sectionSlice";
+import {setSelectedLesson} from "../../../store/selectedLessonSlice";
 
 const cx = classNames.bind(styles)
 
-const Footer = ({ showSection, onToggleSection }) => {
+const Footer = () => {
     const dispatch = useDispatch()
+    const currentCourse = useSelector(state => state.currentCourse)
+    const selectedLesson = useSelector(state => state.selectedLesson)
+
 
     const handlePrevLesson = () => {
-        const action = previousLesson()
-        dispatch(action)
+        const allLessons = currentCourse.sections.flatMap(section => section.lessons);
+
+        // Tìm index của bài học hiện tại trong mảng allLessons
+        const currentIndex = allLessons.findIndex(lesson => lesson._id === selectedLesson._id);
+
+        // Kiểm tra xem có bài học tiếp theo không
+        if (currentIndex !== -1 && currentIndex > 0) {
+            // Nếu có, chuyển đến bài học tiếp theo
+            const nextLesson = allLessons[currentIndex - 1];
+            dispatch(setSelectedLesson(nextLesson));
+        }
     }
 
     const handleNextLesson = () => {
-        const action = nextLesson()
-        dispatch(action)
+        const allLessons = currentCourse.sections.flatMap(section => section.lessons);
+
+        // Tìm index của bài học hiện tại trong mảng allLessons
+        const currentIndex = allLessons.findIndex(lesson => lesson._id === selectedLesson._id);
+
+        // Kiểm tra xem có bài học tiếp theo không
+        if (currentIndex !== -1 && currentIndex < allLessons.length - 1) {
+            // Nếu có, chuyển đến bài học tiếp theo
+            const nextLesson = allLessons[currentIndex + 1];
+            dispatch(setSelectedLesson(nextLesson));
+        }
     }
     return (
         <footer className={cx('footer')}>
             <div className={cx('btn-group')}>
                 <button className={cx('btn', 'previous-lesson')}
-                    onClick={handlePrevLesson}
+                        onClick={handlePrevLesson}
                 >
                     <span className={cx('inner', 'pre-btn-inner')}>
-                        <FontAwesomeIcon icon={faChevronLeft} />
+                        <FontAwesomeIcon icon={faChevronLeft}/>
                         <span className={cx('btn-title')}>
                             BÀI TRƯỚC
                         </span>
@@ -36,25 +56,14 @@ const Footer = ({ showSection, onToggleSection }) => {
 
                 </button>
                 <button className={cx('btn', 'next-lesson')}
-                    onClick={handleNextLesson}
+                        onClick={handleNextLesson}
                 >
                     <span className={cx('inner', 'next-btn-inner')}>
                         <span className={cx('btn-title')}>
                             BÀI TIẾP THEO
                         </span>
-                        <FontAwesomeIcon icon={faChevronRight} />
+                        <FontAwesomeIcon icon={faChevronRight}/>
                     </span>
-                </button>
-            </div>
-            <div className={cx('toggle-wrap')} onClick={onToggleSection}>
-                <h3 className={cx('track-title')}>1. Giới thiệu</h3>
-                <button className={cx('toggle-btn')}>
-                    {
-                        showSection
-                            ? <FontAwesomeIcon icon={faArrowRight} />
-                            : <FontAwesomeIcon icon={faBars} />
-                    }
-
                 </button>
             </div>
         </footer>

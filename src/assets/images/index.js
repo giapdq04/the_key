@@ -1,5 +1,5 @@
 const images = {
-    logo: require('./f8Logo.webp'),
+    logo: require('./thekey_logo.webp'),
     noImage: require('./no_image.png'),
 }
 

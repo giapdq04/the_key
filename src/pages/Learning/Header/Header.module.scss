@@ -1,36 +1,52 @@
 .header {
   height: var(--wrapper-height);
-  background-color: #29303b;
+  background: linear-gradient(to right, #1a1a1a, #2d2d2d);
   display: flex;
   align-items: center;
-  z-index: 1;
-  position: relative;
+  z-index: 10;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
 
   .back-icon {
     width: 60px;
     height: var(--wrapper-height);
     display: flex;
     cursor: pointer;
-    transition: background-color linear .2s;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: rgba(255,255,255,0.1);
+    }
 
     svg {
-      overflow: visible;
-      box-sizing: content-box;
       margin: auto;
       color: var(--white);
+      font-size: 1.2rem;
+      transition: transform 0.3s ease;
+    }
+
+    &:hover svg {
+      transform: translateX(-3px);
     }
   }
 
   .logo {
     position: relative;
-    top: 1px;
     margin-left: 8px;
-    -webkit-tap-highlight-color: transparent;
     height: 32px;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.05);
+    }
 
     img {
       height: 30px;
-      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
   }
 
@@ -40,37 +56,67 @@
     margin-left: 16px;
     color: var(--white);
     overflow: hidden;
-    word-wrap: break-word;
-  }
-}
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 40%;
+    opacity: 0.9;
+    transition: opacity 0.3s ease;
 
-.action {
-  display: flex;
-  margin-left: auto;
-  align-items: center;
-
-  .progress-bar {
-    display: flex;
-    align-items: center;
-    margin-right: 24px;
-
-    .progress {
-      width: 34px;
-      height: 34px;
+    &:hover {
+      opacity: 1;
     }
+  }
 
-    .completed-lesson {
-      color: var(--white);
-      font-size: 1.3rem;
-      margin-left: 6px;
+  .action {
+    display: flex;
+    margin-left: auto;
+    align-items: center;
+    padding-right: 16px;
 
-      strong {
-        font-weight: 600;
+    .progress-bar {
+      display: flex;
+      align-items: center;
+      margin-right: 24px;
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: scale(1.05);
       }
 
-      .num {
-        font-size: 1.2rem;
-        font-variant-numeric: tabular-nums;
+      .progress {
+        width: 34px;
+        height: 34px;
+      }
+
+      .completed-lesson {
+        color: var(--white);
+        font-size: 1.3rem;
+        margin-left: 12px;
+        opacity: 0.9;
+
+        strong {
+          font-weight: 600;
+        }
+
+        .num {
+          font-size: 1.2rem;
+          font-variant-numeric: tabular-nums;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .course-title {
+      font-size: 1.2rem;
+      max-width: 30%;
+    }
+
+    .action .progress-bar {
+      margin-right: 12px;
+      
+      .completed-lesson {
+        display: none;
       }
     }
   }

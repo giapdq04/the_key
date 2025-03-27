@@ -1,0 +1,121 @@
+.content {
+    animation: slideIn 0.3s ease;
+  }
+  
+  .wrapper_info {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    margin-top: 2rem;
+  }
+  
+  h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 0.5rem;
+  }
+  
+  h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 0.5rem;
+  }
+  
+  p {
+    color: #666;
+    line-height: 1.5;
+  }
+  
+  .info-container {
+    margin-top: 1.5rem;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  
+  .info-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  
+    &:last-child {
+      border-bottom: none;
+    }
+  
+    &:hover {
+      background: rgba(0, 0, 0, 0.02);
+  
+      .icon {
+        transform: translateX(4px);
+        color: #1a1a1a;
+      }
+    }
+  }
+  
+  .info-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  
+  .info-label {
+    font-weight: 600;
+    color: #1a1a1a;
+  }
+  
+  .info-value {
+    color: #666;
+    font-size: 0.95rem;
+  
+    img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid white;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s ease;
+  
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+  
+  .icon {
+    color: #999;
+    transition: all 0.2s ease;
+  }
+  
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateX(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .wrapper_info {
+      padding: 1.5rem;
+      margin-top: 1.5rem;
+    }
+  
+    h2 {
+      font-size: 1.5rem;
+    }
+  
+    .info-item {
+      padding: 0.875rem 1rem;
+    }
+  }

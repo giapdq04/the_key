@@ -3,134 +3,107 @@
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 2;
+  z-index: 10;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 50px;
-  background-color: #f0f0f0;
-  box-shadow: #0000001a 0 -2px 3px;
+  height: var(--wrapper-height);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
 
   .btn-group {
     display: flex;
     gap: 16px;
+    padding: 0 16px;
+
+    .list-btn {
+      background-color: #f3f3f3;
+      padding: 10px;
+      border-radius: 50%;
+    }
 
     .btn {
       border-radius: 99px;
-      display: inline-block;
-      min-width: 148px;
-      height: 32px;
-      font-size: 14px;
-      font-weight: 700;
-      line-height: 1.8;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      white-space: nowrap;
-      overflow: hidden;
-      background: linear-gradient(#5ebbff80 40%, #a174ff80);
-      transition: opacity .2s;
-      outline: none;
-      border: none;
-      user-select: none;
-      padding: 0;
-      cursor: pointer;
-      box-shadow: none;
-      color: inherit;
-    }
-
-    .inner {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 5px;
-      width: 100%;
-      height: 100%;
-      padding: 4px 16px;
-      border-radius: inherit;
-      border: 1px solid transparent;
-      background-color: #fff;
-      background-clip: padding-box;
-    }
-
-    .pre-btn-inner {
-
-      svg {
-        overflow: visible;
-        box-sizing: content-box;
-        color: #5ebbff;
-        display: inline-block;
-        height: 1em;
-        vertical-align: -.125em;
-        fill: currentColor;
-      }
-
-      .btn-title {
-        color: transparent;
-        background: linear-gradient(to bottom right, #5ebbff, #a174ff);
-        background-clip: text;
-        line-height: 32px; // Đặt line-height bằng với chiều cao của phần tử
-        height: 32px;
-        text-align: center; // Căn giữa theo chiều ngang
-      }
-    }
-
-    .next-btn-inner {
+      min-width: 148px;
+      height: 36px;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      white-space: nowrap;
+      overflow: hidden;
+      background: linear-gradient(135deg, #5ebbff 0%, #a174ff 100%);
+      transition: all 0.3s ease;
       border: none;
-      background-color: #0093fc;
+      cursor: pointer;
+      color: white;
 
-      .btn-title {
-        background-image: none;
-        background-color: #fff;
-        color: transparent;
-        //background: linear-gradient(to bottom right, #5ebbff, #a174ff);
-        background-clip: text;
-        line-height: 32px; // Đặt line-height bằng với chiều cao của phần tử
-        height: 32px;
-        text-align: center; // Căn giữa theo chiều ngang
+      &:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(94, 187, 255, 0.2);
+      }
+
+      &:active {
+        transform: translateY(0);
+      }
+
+      .inner {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        width: 100%;
+        height: 100%;
+        padding: 0 20px;
+        transition: all 0.3s ease;
+      }
+
+      &.previous-lesson {
+        background: white;
+        border: 2px solid #5ebbff;
+
+        .inner {
+          color: #5ebbff;
+        }
+
+        &:hover {
+          background: rgba(94, 187, 255, 0.05);
+        }
       }
 
       svg {
-        color: #fff;
-        overflow: visible;
-        box-sizing: content-box;
-        display: inline-block;
-        height: 1em;
-        vertical-align: -.125em;
-        fill: currentColor;
-        overflow-clip-margin: content-box;
+        font-size: 1.2rem;
+        transition: transform 0.3s ease;
+      }
+
+      &.previous-lesson:hover svg {
+        transform: translateX(-3px);
+      }
+
+      &.next-lesson:hover svg {
+        transform: translateX(3px);
       }
     }
   }
 
-  .toggle-wrap {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    width: 30%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    cursor: pointer;
+  @media (max-width: 768px) {
+    .btn-group {
+      width: 100%;
+      justify-content: space-between;
 
-    .track-title {
-      font-size: 1.4rem;
-      overflow: hidden;
-      word-wrap: break-word;
-    }
+      .btn {
+        min-width: 120px;
+        font-size: 12px;
 
-    .toggle-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      font-size: 1.6rem;
-      background-color: #fff;
-      margin: 0 8px;
-      cursor: pointer;
+        .inner {
+          padding: 0 12px;
+        }
+      }
     }
   }
 }

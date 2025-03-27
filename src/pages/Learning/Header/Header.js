@@ -1,37 +1,25 @@
-import React, { memo, useMemo } from 'react';
-import { Link } from "react-router";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
-import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
+import {faChevronLeft} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import classNames from "classnames/bind";
-import { useSelector } from "react-redux";
-
-import styles from "./Header.module.scss";
+import React, {memo, useState} from 'react';
+import {buildStyles, CircularProgressbar} from "react-circular-progressbar";
+import {useSelector} from "react-redux";
+import {Link} from "react-router";
 import config from "../../../config";
+import styles from "./Header.module.scss";
+import MobileProgress from "./../../../components/MobileProgress/MobileProgress";
+import images from "../../../assets/images";
 
 const cx = classNames.bind(styles);
 
 const Header = () => {
     const routeHome = config.routes.home;
+    const currentCourse = useSelector(state => state.currentCourse)
+    const [showMobileProgress, setShowMobileProgress] = useState(false);
 
-    const SectionList = useSelector(state => state.section);
-
-    const countLearnedLesson = useMemo(() => {
-        return SectionList.reduce((result, section) => {
-            const countLearnedLessonInaSection = section.lessons.filter(lesson => lesson.isCompleted).length;
-            return result + countLearnedLessonInaSection;
-        }, 0);
-    }, [SectionList]);
-
-    const totalLesson = useMemo(() => {
-        return SectionList.reduce((result, section) => {
-            return result + section.lessons.length;
-        }, 0);
-    }, [SectionList]);
-
-    const courseProgess = useMemo(() => {
-        return Math.floor(countLearnedLesson / totalLesson * 100);
-    }, [countLearnedLesson, totalLesson]);
+    const toggleMobileProgress = () => {
+        setShowMobileProgress(!showMobileProgress);
+    };
 
     return (
         <header className={cx('header')}>
@@ -42,17 +30,17 @@ const Header = () => {
             </Link>
 
             <Link className={cx('logo')} to={routeHome}>
-                <img src='https://fullstack.edu.vn/assets/f8-icon-lV2rGpF0.png' alt='logo' />
+                <img loading="lazy" src={images.logo} alt='logo' />
             </Link>
 
-            <div className={cx('course-title')}>Lập Trình JavaScript Cơ Bản</div>
+            <div className={cx('course-title')}>{currentCourse?.course?.title}</div>
 
             <div className={cx('action')}>
-                <div className={cx('progress-bar')}>
+                <div className={cx('progress-bar')} onClick={toggleMobileProgress}>
                     <div className={cx('progress')}>
                         <CircularProgressbar
-                            value={courseProgess}
-                            text={`${courseProgess}%`}
+                            value={currentCourse?.progress?.progressPercentage ?? 0}
+                            text={`${currentCourse?.progress?.progressPercentage ?? 0}%`}
                             strokeWidth={6}
                             styles={buildStyles({
                                 pathColor: '#f05123',
@@ -64,17 +52,15 @@ const Header = () => {
                     </div>
                     <p className={cx('completed-lesson')}>
                         <strong>
-                            <span className={cx('num')}>{countLearnedLesson}</span>/
-                            <span className={cx('num')}>{totalLesson} </span>
+                            <span className={cx('num')}>{currentCourse?.progress?.completedLessons ?? 0}</span>/
+                            <span className={cx('num')}>{currentCourse?.progress?.totalLessons ?? 0} </span>
                         </strong>
                         bài học
                     </p>
                 </div>
-
-                {/*<div className={cx('note-action-btn')}></div>*/}
-
-                {/*<div className={cx('help-btn')}></div>*/}
             </div>
+
+            <MobileProgress isVisible={showMobileProgress} onClose={toggleMobileProgress} />
         </header>
     );
 }

@@ -11,7 +11,7 @@ const Image = forwardRef(({ src, alt, className, errorImage = '', ...props }, re
         setFallback(image.noImage);
     }
     return (
-        <img className={classNames(styles.wrapper, className)} ref={ref} src={fallback || src} alt={alt} {...props} onError={handleError} />
+        <img loading="lazy" className={classNames(styles.wrapper, className)} ref={ref} src={fallback || src} alt={alt} {...props} onError={handleError} />
     )
 })
 

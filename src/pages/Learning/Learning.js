@@ -1,65 +1,88 @@
 import classNames from 'classnames/bind'
-import React, {useCallback, useEffect, useState} from 'react'
+import React, {lazy, Suspense, useCallback, useEffect} from 'react'
 import 'react-circular-progressbar/dist/styles.css'
-import {useSelector} from "react-redux"
+import {useDispatch, useSelector} from "react-redux"
+import Cookies from "js-cookie"
+import {useParams} from "react-router"
 
+import axiosClient from "../../apis/axiosClient"
+import {setCurrentCourse} from "../../store/courseSlice"
+import {setSelectedLesson} from "../../store/selectedLessonSlice"
 import Footer from "./Footer/Footer"
+import Header from "./Header/Header"
 import styles from './Learning.module.scss'
-import Sidebar from "./Sidebar/Sidebar"
-import Header from "./Header/Header";
-import Video from "./LessonTypes/Video/Video";
-import Document from "./LessonTypes/Document/Document";
-import Exercise from "./LessonTypes/Exercise/Exercise";
 
 const cx = classNames.bind(styles)
 
-const Learning = () => {
+const Video = lazy(() => import('./LessonTypes/Video/Video'))
+const Document = lazy(() => import('./LessonTypes/Document/Document'))
+const Exercise = lazy(() => import('./LessonTypes/Exercise/Exercise'))
+const Sidebar = lazy(() => import('./Sidebar/Sidebar'))
 
-    const [currentLesson, setCurrentLesson] = useState()
-    const [showSection, setShowSection] = useState(true)
-    const SectionList = useSelector(state => state.section)
+const Learning = () => {
+    const currentLesson = useSelector(state => state.selectedLesson)
+
+    const dispatch = useDispatch()
+
+    const { slug } = useParams()
+
+    const userID = Cookies.get("userID")
 
     useEffect(() => {
-        const result = SectionList.reduce((acc, section) => acc.concat(section.lessons), []);
-        const output = result.find(lesson => lesson.status === 2);
+        const fetchCourse = async () => {
+            try {
+                const result = await axiosClient.get(`/course/${slug}/${userID}`)
+                dispatch(setCurrentCourse(result.data))
 
-        if (output) {
-            document.title = output.title;
-            const updatedTime = new Date(output.updatedAt).toLocaleDateString('vi-VN', {timeZone: 'Asia/Ho_Chi_Minh'});
-            const video = `https://www.youtube.com/watch?v=${output?.ytbVideoId}`;
+                // Tìm bài học đầu tiên có isCompleted = false
+                let firstIncompleteLesson = null;
 
-            setCurrentLesson({
-                ...output,
-                updatedAt: updatedTime,
-                video
-            });
+                // Duyệt qua tất cả các sections để tìm bài học chưa hoàn thành đầu tiên
+                for (const section of result.data.sections) {
+                    for (const lesson of section.lessons) {
+                        if (!lesson.isCompleted) {
+                            firstIncompleteLesson = lesson;
+                            break;
+                        }
+                    }
+                    if (firstIncompleteLesson) break;
+                }
+
+                dispatch(setSelectedLesson(firstIncompleteLesson || result.data.sections[0].lessons[0]));
+            } catch (error) {
+                console.error("Error fetching course:", error);
+            }
         }
-    }, [SectionList]);
 
-    const handleToggleSections = () => {
-        setShowSection(!showSection);
-    }
+        if (slug && userID) {
+            fetchCourse()
+        }
+    }, [dispatch, slug, userID]);
 
     const MainContent = useCallback(() => {
-        if (currentLesson?.isDoc) {
-            return <Document currentLesson={currentLesson}/>
+        if (currentLesson?.docID) {
+            return <Document currentLesson={currentLesson} />
         }
 
-        if (currentLesson?.isExercise) {
-            return <Exercise currentLesson={currentLesson}/>
+        if (currentLesson?.questions) {
+            return <Exercise currentLesson={currentLesson} />
         }
 
-        return <Video currentLesson={currentLesson}/>
+        return <Video currentLesson={currentLesson} />
     }, [currentLesson])
 
     return (
         <div className={cx('wrapper')}>
-            <Header/>
+            <Header />
 
-            {showSection && <Sidebar/>}
+            <Suspense>
+                <Sidebar />
+            </Suspense>
 
-            <MainContent/>
-            <Footer showSection={showSection} onToggleSection={handleToggleSections}/>
+            <Suspense>
+                <MainContent />
+            </Suspense>
+            <Footer />
         </div>
     );
 }

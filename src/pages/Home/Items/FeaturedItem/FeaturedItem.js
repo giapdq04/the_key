@@ -11,7 +11,7 @@ const FeaturedItem = ({item}) => {
         <Link to={'#'}>
             <div className={cx('item')}>
                 <div className={cx('thumbnail')}>
-                    <img src={item.thumbnail} alt={item.title}/>
+                    <img loading="lazy" src={item.thumbnail} alt={item.title}/>
                 </div>
 
                 <div className={cx('item-content')}>
@@ -19,7 +19,7 @@ const FeaturedItem = ({item}) => {
 
                     <div className={cx('more-info')}>
                         <div className={cx('info-item')}>
-                            <img src={item.avtAuthor} alt={item.author}/>
+                            <img loading="lazy" src={item.avtAuthor} alt={item.author}/>
                             <span>{item.author}</span>
                         </div>
 

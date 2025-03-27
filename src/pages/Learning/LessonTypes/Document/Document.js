@@ -3,17 +3,46 @@ import { faDownload, faHeart } from "@fortawesome/free-solid-svg-icons";
 import classNames from "classnames/bind";
 
 import styles from "./Document.module.scss";
-import React, { memo } from "react";
+import React, { memo, useEffect } from "react";
+import axiosClient from "../../../../apis/axiosClient";
+import Cookies from "js-cookie";
+import { useParams } from "react-router";
 
 const cx = classNames.bind(styles)
 
 const Document = ({ currentLesson }) => {
+    const userID = Cookies.get("userID");
+    const { slug } = useParams()
+
+    useEffect(() => {
+        const finishLesson = async () => {
+            try {
+                await axiosClient.post('/lesson/finish-lesson', {
+                    userID,
+                    slug,
+                    lessonID: currentLesson._id
+                })
+            } catch (e) {
+                console.log(e)
+            }
+        }
+
+        let time
+
+        if (!currentLesson.isCompleted) {
+            time = setTimeout(() => {
+                finishLesson()
+            }, 10000)
+        }
+
+        return () => clearTimeout(time)
+    }, [currentLesson._id, slug, userID]);
 
     const DocumentViewer = () => (
         <iframe
             title={'document-viewer'}
             className={cx('doc-view')}
-            src={`https://docs.google.com/document/d/${currentLesson.fileID}/preview`}
+            src={`https://docs.google.com/document/d/${currentLesson.docID}/preview`}
         />
     )
 
@@ -25,13 +54,13 @@ const Document = ({ currentLesson }) => {
                 <div className={cx('content-top')}>
                     <header className={cx('description-wrapper')}>
                         <h1 className={cx('heading')}>{currentLesson?.title}</h1>
-                        <p className={cx('update-at')}>Cập nhật gần nhất: {currentLesson?.updatedAt}</p>
+                        {/* <p className={cx('update-at')}>Cập nhật gần nhất: {currentLesson?.updatedAt}</p> */}
 
                     </header>
 
                     <a
                         className={cx('download')}
-                        href={`https://drive.google.com/file/d/${currentLesson.fileID}/view`}
+                        href={`https://drive.google.com/file/d/${currentLesson.docID}/view`}
                         target={'_blank'}
                         rel="noreferrer">
                         <FontAwesomeIcon icon={faDownload} />Tải xuống

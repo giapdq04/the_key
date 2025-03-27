@@ -6,40 +6,57 @@ import {
     faLock,
     faPen
 } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import classNames from "classnames/bind";
-import React, { memo } from 'react';
-import { useDispatch } from "react-redux";
-
-import convertTime from "../../../../../utils/ConvertSeconds";
+import React, {memo, useEffect, useState} from 'react';
+import {useDispatch, useSelector} from "react-redux";
+import {setSelectedLesson} from "../../../../../store/selectedLessonSlice";
 import styles from './Lesson.module.scss';
-import { setActiveLesson } from "../../../../../store/sectionSlice";
 
 const cx = classNames.bind(styles)
 
-const Lesson = ({ item }) => {
+const Lesson = ({ item, index }) => {
     const dispatch = useDispatch()
+    const currentCourse = useSelector(state => state.currentCourse)
+    const selectedLesson = useSelector(state => state.selectedLesson)
+    const [disable, setDisable] = useState(true)
+
+    useEffect(() => {
+        // Find all incomplete lessons
+        const incompleteLessons = currentCourse.sections.flatMap(section =>
+            section.lessons.filter(lesson => !lesson.isCompleted)
+        );
+
+        // If this is the first incomplete lesson, unlock it
+        if (incompleteLessons.length > 0 && incompleteLessons[0]._id === item._id) {
+            setDisable(false);
+        }
+
+        if (item.isCompleted) {
+            setDisable(false);
+        }
+    }, [currentCourse, item, dispatch])
+
 
     const handleLessonClick = () => {
-
-        if (item.status === 2) return
-
-        const action = setActiveLesson()
-        action.payload = item.id
-        dispatch(action)
+        if (disable) {
+            console.log('disable lesson')
+            return
+        }
+        dispatch(setSelectedLesson(item))
     }
 
     const LessonIcon = () => {
 
-        if (item.isDoc) {
+        if (item.docID) {
             return <FontAwesomeIcon icon={faFileLines} />
         }
 
-        if(item.isExercise){
+        if (item.questions) {
             return <FontAwesomeIcon icon={faPen} />
         }
 
-        if (item.status === 2) {
+        if (selectedLesson._id === item._id) {
             return <FontAwesomeIcon className={cx('disc-icon')} icon={faCompactDisc} />
         }
 
@@ -48,16 +65,16 @@ const Lesson = ({ item }) => {
 
     return (
         <div onClick={handleLessonClick} className={cx('wrapper',
-            { locked: item.status === 3 },
-            { active: item.status === 2 },
-            { wrapperHover: item.status === 1 }
+            { locked: disable ? item.isCompleted === false : false },
+            { active: selectedLesson._id === item._id },
+            { wrapperHover: selectedLesson._id !== item._id }
         )}
         >
             <div className={cx('info')}>
-                <h3 className={cx('title')}>{item.lessonIndex}. {item.title}</h3>
+                <h3 className={cx('title')}>{index + 1}. {item.title}</h3>
                 <p className={cx('description')}>
                     <LessonIcon />
-                    <span>{convertTime(item.duration)}</span>
+                    {item.ytbVideoID && <span>{item.duration}</span>}
                 </p>
             </div>
             <div className={cx('icon-box')}>
@@ -67,8 +84,8 @@ const Lesson = ({ item }) => {
                             className={cx('circle-check')}
                             icon={faCircleCheck}
                         />
-                        : (
-                            item.status === 3 &&
+                        : disable && (
+                            // item.status === 3 &&
                             <FontAwesomeIcon className={cx('lock-icon')} icon={faLock} />
                         )
                 }

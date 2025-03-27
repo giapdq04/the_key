@@ -1,0 +1,25 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  border-radius: 20px;
+  transition: all 0.3s ease-in-out;
+
+
+  &:hover {
+    cursor: pointer;
+    background-color: rgba(240, 81, 35, 0.2);
+  }
+
+  .radio {
+    margin-right: 10px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .answer {
+    display: inline;
+  }
+}

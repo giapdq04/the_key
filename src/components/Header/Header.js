@@ -1,46 +1,80 @@
-import { faBell } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 
 import images from '../../assets/images';
-import Button from '../Button';
-import Image from '../Image';
-import Search from '../Search';
 import styles from './Header.module.scss';
-import { Link } from 'react-router';
-
+import AvatarMenu from '../AvatarMenu/AvatarMenu';
+import CourseDropdown from '../CourseDropdown/CourseDropdown';
+import {useDispatch, useSelector} from 'react-redux';
+import {setShowLoginModal} from '../../store/showLoginModal';
+import Cookies from 'js-cookie';
 
 const cx = classNames.bind(styles);
 
 const Header = () => {
+
+    // Trạng thái đăng nhập
+    const [user, setUser] = useState(null);
+    const userState = useSelector(state => state.user)
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        const userID = Cookies.get('userID');
+        const accessToken = Cookies.get('accessToken');
+        if (userID && accessToken !== undefined) {
+            setUser(userState);
+        }
+    }, [userState]);
+
+    const handleLoginModal = () => {
+        dispatch(setShowLoginModal(true));
+    };
+
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
                 <div className={cx('left-header')}>
-                    <Link to='/'>
-                        <img src={images.logo} className={cx('logo')} alt='F8' />
-                    </Link>
+                    <a href='/'>
+                        <img loading="lazy" src={images.logo} className={cx('logo')} alt='F8'/>
+                    </a>
+
+                    <span className={cx('beta-tag')}>BETA</span> 
+
+                    <a href='/'>
+                        <p className={cx('title')}>TheKey</p>
+                    </a>
                     
-                    <Link to='/'>
-                        <p className={cx('title')}>Học Lập Trình Để Đi Làm</p>
-                    </Link>
                 </div>
 
-                <Search />
+                {/* <div className={cx('center-search')}>
+                    <Search />
+                </div> */}
 
-                <div className={cx('actions')}>
+                {/* Nếu chưa đăng nhập, hiển thị nút đăng nhập */}
+                {!user ? (
+                    <div className={cx('nav-button')}>
+                        <div className={cx('auth-buttons')}>
+                            <button className={cx('auth-btn')} onClick={handleLoginModal}>
+                                Đăng nhập
+                            </button>
+                        </div>
+                    </div>
 
-                    <Button text>Khóa học của tôi</Button>
+                ) : (
+                    // Nếu đã đăng nhập, hiển thị Avatar, khóa học, thông báo
+                    <div className={cx('actions')}>
+                        <CourseDropdown/>
 
-                    <button className={cx('action-btn')}>
-                        <FontAwesomeIcon icon={faBell} />
-                    </button>
+                        {/* <div className={cx('notification-wrapper')} ref={droprefnotification}>
+                            <button className={cx('action-btn')} onClick={toggleNotifications}>
+                                <FontAwesomeIcon icon={faBell} />
+                            </button>
+                            {showNotifications && <NotificationDropdown />}
+                        </div> */}
 
-                    <Image
-                        className={cx('user-avatar')}
-                        src="https://images2.thanhnien.vn/528068263637045248/2023/4/23/edit-truc-anh-16822518118551137084698.png" alt="avatar" />
-                </div>
+                        <AvatarMenu/>
+                    </div>
+                )}
             </div>
         </header>
     );

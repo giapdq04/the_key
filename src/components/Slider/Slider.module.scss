@@ -1,6 +1,15 @@
-.slide-show{
+.slide-show {
   border-radius: 20px;
   width: 100%;
+}
+
+.slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  height: 270px;
+  border-radius: 20px;
 }
 
 .arrow {

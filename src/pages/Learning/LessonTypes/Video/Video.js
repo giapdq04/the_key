@@ -1,13 +1,28 @@
-import React, {memo} from 'react'
-import ReactPlayer from "react-player";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faHeart, faPlay} from "@fortawesome/free-solid-svg-icons";
+import { faHeart, faPlay } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classNames from "classnames/bind";
+import Cookies from "js-cookie";
+import React, { memo } from 'react';
+import ReactPlayer from "react-player";
+import { useDispatch } from "react-redux";
+import { useParams } from "react-router";
+import axiosClient from "../../../../apis/axiosClient";
+import { setCurrentCourse } from "../../../../store/courseSlice";
+import { setSelectedLesson } from "../../../../store/selectedLessonSlice";
 import styles from "./Video.module.scss";
 
 const cx = classNames.bind(styles)
 
 const Video = ({currentLesson}) => {
+
+    const userID = Cookies.get("userID");
+    const {slug} = useParams()
+    const dispatch = useDispatch()
+    
+    // Di chuyển biến called ra ngoài hàm handleProgress
+    // và sử dụng useRef để lưu trạng thái giữa các lần render
+    const calledRef = React.useRef(false);
+
     const PlayIcon = () => {
         return (
             <button className={cx('play-button')}>
@@ -15,27 +30,50 @@ const Video = ({currentLesson}) => {
             </button>
         )
     }
+
+    const handleProgress = async (state) => {
+        if (!currentLesson.isCompleted && state.played >= 0.5 && !calledRef.current) {
+            try {
+                
+                await axiosClient.post('/lesson/finish-lesson', {
+                    userID,
+                    slug,
+                    lessonID: currentLesson._id
+                })
+                calledRef.current = true;
+
+                const fetchCourse = async () => {
+                    const result = await axiosClient.get(`/course/${slug}/${userID}`)
+                    dispatch(setCurrentCourse(result.data))
+                }
+                fetchCourse()
+            } catch (e) {
+                console.log(e)
+            }
+        }
+    }
     return (
         <div className={cx('main-content')}>
             <div className={cx('video-container')}>
                 <div className={cx('video-player-container')}>
                     <div className={cx('video-player')}>
                         <ReactPlayer
+                            onProgress={handleProgress}
                             width={'100%'}
                             height={'100%'}
                             controls
                             playsinline={true}
                             fallback={
                                 <div className={cx('fallback')}>
-                                    <img
-                                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnKMnEffBBNeaHWy2zz34vKlBzaYvt3H9gyg&s"
-                                        alt=""/>
+                                    <img loading="lazy"
+                                         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnKMnEffBBNeaHWy2zz34vKlBzaYvt3H9gyg&s"
+                                         alt=""/>
                                 </div>
                             }
                             playing={true}
-                            light={`https://img.youtube.com/vi/${currentLesson?.ytbVideoId}/maxresdefault.jpg`}
+                            light={`https://img.youtube.com/vi/${currentLesson?.ytbVideoID}/maxresdefault.jpg`}
                             playIcon={<PlayIcon/>}
-                            url={`https://www.youtube.com/watch?v=${currentLesson?.ytbVideoId}`}
+                            url={`https://www.youtube.com/watch?v=${currentLesson?.ytbVideoID}`}
                         />
                     </div>
                 </div>
@@ -45,7 +83,7 @@ const Video = ({currentLesson}) => {
                 <div className={cx('content-top')}>
                     <header className={cx('description-wrapper')}>
                         <h1 className={cx('heading')}>{currentLesson?.title}</h1>
-                        <p className={cx('update-at')}>Cập nhật gần nhất: {currentLesson?.updatedAt}</p>
+                        {/* <p className={cx('update-at')}>Cập nhật gần nhất: {currentLesson?.updatedAt}</p> */}
                     </header>
 
                     {/*<button className={cx('notes')}>Ghi chú</button>*/}

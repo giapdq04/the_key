@@ -29,7 +29,6 @@
     height: 38px;
     flex-shrink: 0;
     object-fit: contain;
-    border-radius: 8px;
     cursor: pointer;
   }
 
@@ -40,6 +39,12 @@
     font-size: 1.4rem;
     cursor: pointer;
   }
+}
+
+.center-search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .actions {
@@ -69,4 +74,232 @@
   border-radius: 50%;
   margin-left: 12px;
   cursor: pointer;
+}
+
+.auth-buttons {
+  display: flex;
+  align-items: center;
+
+  margin-left: auto;
+
+
+  .auth-btn {
+    padding: 8px 16px;
+    border-radius: 99px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: red;
+    color: #fff;
+    border: none;
+
+    &.active {
+      background: linear-gradient(45deg, #ff6b00, #ff8c42);
+      color: #fff;
+    }
+  }
+}
+@media screen and (max-width: 1024px) {
+  .title {
+    display: none; // Ẩn dòng chữ trên màn hình nhỏ hơn 1024px
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .center-search {
+    flex: 1;
+    justify-content: center;
+  }
+
+  .actions {
+    .course-dropdown {
+      display: none; // Ẩn dropdown khóa học
+    }
+  }
+
+  .title {
+    display: none; // Ẩn dòng chữ
+  }
+}
+
+
+/* CSS gốc giữ nguyên, chỉ cập nhật từ 480px trở xuống */
+
+/* Breakpoint 480px */
+@media screen and (max-width: 480px) {
+  .inner {
+    padding: 0 16px;
+    justify-content: space-between; /* Giữ layout cân bằng */
+  }
+
+  .center-search {
+    flex: none; /* Bỏ flex: 1 để kiểm soát kích thước */
+    width: 60%; /* Thu nhỏ chiều rộng, có thể điều chỉnh */
+    max-width: 200px; /* Giới hạn tối đa, tùy thuộc thiết kế */
+    margin: 0 auto; /* Căn giữa */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .actions {
+    .course-dropdown {
+      display: none;
+    }
+    .action-btn {
+      font-size: 2rem;
+      padding: 4px 8px;
+    }
+  }
+
+  .user-avatar {
+    width: 30px;
+    height: 30px;
+    margin-left: 8px;
+    display: block;
+  }
+
+  .notification-wrapper {
+    margin-right: 8px;
+    display: block;
+  }
+
+  .auth-buttons {
+    .auth-btn {
+      padding: 6px 12px;
+      font-size: 13px;
+    }
+  }
+}
+
+/* Breakpoint cho iPhone 12 (410px) */
+@media screen and (max-width: 410px) {
+  .inner {
+    padding: 0 12px;
+  }
+
+  .logo {
+    width: 32px;
+    height: 32px;
+  }
+
+  .center-search {
+    width: 55%; /* Thu nhỏ thêm */
+    max-width: 180px; /* Giảm kích thước tối đa */
+    margin: 0 auto; /* Căn giữa */
+  }
+
+  .actions {
+    .action-btn {
+      font-size: 1.8rem;
+      padding: 2px 6px;
+    }
+  }
+
+  .user-avatar {
+    width: 28px;
+    height: 28px;
+    margin-left: 6px;
+    display: block;
+  }
+
+  .notification-wrapper {
+    margin-right: 4px;
+    display: block;
+  }
+  .center-search {
+    width: 60vw; /* Đồng bộ với .search */
+    margin: 0 auto;
+  }
+  .auth-buttons {
+    .auth-btn {
+      padding: 5px 10px;
+      font-size: 12px;
+    }
+  }
+}
+
+/* Breakpoint cho iPhone SE (375px) */
+@media screen and (max-width: 375px) {
+  .inner {
+    padding: 0 8px;
+  }
+  .center-search {
+    width: 50vw; /* Đồng bộ với .search */
+    margin: 0 auto;
+  }
+  .logo {
+    width: 28px;
+    height: 28px;
+  }
+
+  .center-search {
+    width: 50%; /* Thu nhỏ thêm cho màn hình nhỏ hơn */
+    max-width: 160px; /* Giảm kích thước tối đa */
+    margin: 0 auto; /* Căn giữa */
+  }
+
+  .actions {
+    .action-btn {
+      font-size: 1.6rem;
+      padding: 2px 4px;
+    }
+  }
+
+  .user-avatar {
+    width: 24px;
+    height: 24px;
+    margin-left: 4px;
+    display: block;
+  }
+
+  .notification-wrapper {
+    margin-right: 4px;
+    display: block;
+  }
+
+  .auth-buttons {
+    .auth-btn {
+      padding: 4px 8px;
+      font-size: 11px;
+    }
+  }
+}
+
+.beta-tag {
+  display: inline-block;
+  background: linear-gradient(45deg, #ff6b00, #ff2f00);
+  color: white;
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-left: 8px;
+  position: relative;
+  top: -10px;
+  box-shadow: 0 2px 4px rgba(255, 107, 0, 0.3);
+  letter-spacing: 0.5px;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  .beta-tag {
+    font-size: 0.6rem;
+    padding: 1px 4px;
+    margin-left: 4px;
+  }
 }

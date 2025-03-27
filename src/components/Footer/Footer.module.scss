@@ -5,6 +5,14 @@
   min-height: var(--default-layout-footer-height);
   z-index: 1;
   padding: 68px 150px 40px;
+
+  @media screen and (max-width: 768px) {
+    padding: 68px 100px;
+  }
+
+  @media screen and (max-width: 418px) {
+    padding: 68px 20px;
+  }
 }
 
 .container {
@@ -15,17 +23,26 @@
 
 .top-row {
   display: flex;
+  justify-content: space-between;
+
+  @media screen and (max-width: 487px) {
+    display: block;
+  }
 }
 
 .col {
   width: 25%;
   display: flex;
-  //justify-content: center;
   flex-direction: column;
   padding: 0 12px;
 
   &.col_bw {
     flex: 1;
+  }
+
+  @media screen and (max-width: 750px) {
+    width: 100%;
+    margin-bottom: 30px;
   }
 }
 
@@ -38,6 +55,8 @@
     height: 38px;
     margin-right: 10px;
     border-radius: 8px;
+    background-color: #fff;
+    padding: 3px;
   }
 
   .slogan {
@@ -58,7 +77,6 @@
   list-style-type: none;
 
   li {
-    position: relative;
     font-size: 1.4rem;
     line-height: 2.2rem;
     margin-bottom: 8px;
@@ -70,10 +88,6 @@
   font-size: 1.4rem;
   line-height: 2.2rem;
   margin-bottom: 8px;
-}
-
-.protected {
-  margin-top: 20px;
 }
 
 .bottom-row {

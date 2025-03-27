@@ -1,4 +1,4 @@
-.list-container{
+.list-container {
   margin-top: 50px;
 }
 
@@ -11,6 +11,7 @@
     font-weight: 600;
   }
 }
+
 .list-title {
   display: flex;
   justify-content: space-between;
@@ -25,6 +26,10 @@
 .section {
   font-size: 2.6rem;
   font-weight: 800;
+
+  @media screen and (max-width: 414px) {
+    font-size: 2.4rem;
+  }
 }
 
 .tag {
@@ -48,11 +53,25 @@
   .more-icon {
     font-size: 1.2rem;
   }
+
+
 }
+
+.more-for-mobile {
+  background-color: #f3f3f3;
+  border-radius: 50px;
+  width: 30px;
+  height: 30px;
+}
+
 
 .course-list {
   display: flex;
   flex-wrap: wrap;
   gap: 40px 25px;
   margin-top: 20px;
+
+  @media screen and (max-width: 768px) {
+    gap: 20px 3px;
+  }
 }
