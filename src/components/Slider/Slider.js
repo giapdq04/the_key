@@ -13,13 +13,12 @@ const cx = classNames.bind(styles);
 
 // Mảng ảnh cứng cho mobile
 const staticSlides = [
-    { _id: 1, imageUrl: Slide1, link: "#", title: "Slide 1" },
-    { _id: 2, imageUrl: Slide2, link: "#", title: "Slide 2" },
-    { _id: 3, imageUrl: Slide3, link: "#", title: "Slide 3" },
+    { _id: 1, imageUrl: Slide1, link: "https://thekey.edu.vn", title: "Slide 1" },
+    { _id: 2, imageUrl: Slide2, link: "https://thekey.edu.vn", title: "Slide 2" },
+    { _id: 3, imageUrl: Slide3, link: "https://thekey.edu.vn", title: "Slide 3" },
 ];
 
 const Slideshow = ({
-    children,
     autoplay = true,
     infinite = true,
     pauseOnHover = true,
@@ -86,7 +85,7 @@ const Slideshow = ({
                 transitionDuration={700}
             >
                 {slidesToShow.map((slideImage) => (
-                    <a href={slideImage.link} key={slideImage._id}>
+                    <a href={slideImage.link} key={slideImage._id} target="_blank" rel="noopener noreferrer">
                         <img
                             src={slideImage.imageUrl}
                             className={cx("slide")}
