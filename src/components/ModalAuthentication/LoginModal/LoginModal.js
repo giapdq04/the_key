@@ -101,7 +101,7 @@ const LoginModal = () => {
                             </div>
                         </div>
                         <img
-                            src={require('../../../assets/images/Cover website.png')}
+                            src={require('../../../assets/images/Cover website.webp')}
                             alt="Study illustration"
                             className={cx("study-image")}
                         />

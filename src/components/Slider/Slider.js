@@ -6,9 +6,9 @@ import { Slide } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css';
 import styles from './Slider.module.scss';
 import { useSelector } from "react-redux";
-import Slide1 from '../../assets/images/Slide 1.jpg'; // Đổi tên file thành Slide1.jpg
-import Slide2 from '../../assets/images/3.jpg'; // Đổi tên file thành Slide2.jpg (thay vì 3.jpg)
-import Slide3 from '../../assets/images/Slide 3.jpg'; // Đổi tên file thành Slide3.jpg
+import Slide1 from '../../assets/images/Slide 1.webp'; // Đổi tên file thành Slide1.jpg
+import Slide2 from '../../assets/images/3.webp'; // Đổi tên file thành Slide2.jpg (thay vì 3.jpg)
+import Slide3 from '../../assets/images/Slide 3.webp'; // Đổi tên file thành Slide3.jpg
 const cx = classNames.bind(styles);
 
 // Mảng ảnh cứng cho mobile
