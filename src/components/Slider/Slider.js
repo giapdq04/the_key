@@ -39,7 +39,7 @@ const Slideshow = ({
 
         // Gọi ngay khi component mount
         handleResize();
-            
+
         // Lắng nghe sự kiện resize
         window.addEventListener('resize', handleResize);
 
@@ -87,6 +87,7 @@ const Slideshow = ({
                 {slidesToShow.map((slideImage) => (
                     <a href={slideImage.link} key={slideImage._id} target="_blank" rel="noopener noreferrer">
                         <img
+                            loading="lazy"
                             src={slideImage.imageUrl}
                             className={cx("slide")}
                             alt={slideImage.title}

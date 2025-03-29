@@ -1,9 +1,9 @@
-import styles from './SideBar.module.scss'
-import classNames from 'classnames/bind'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHouse, faNewspaper, faRoad } from '@fortawesome/free-solid-svg-icons'
-import ListItem from "./ListItem";
+import { faHouse, faRoad } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import classNames from 'classnames/bind';
 import config from "../../config";
+import ListItem from "./ListItem";
+import styles from './SideBar.module.scss';
 
 const cx = classNames.bind(styles)
 

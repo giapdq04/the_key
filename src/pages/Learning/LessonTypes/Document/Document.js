@@ -36,7 +36,7 @@ const Document = ({ currentLesson }) => {
         }
 
         return () => clearTimeout(time)
-    }, [currentLesson._id, slug, userID]);
+    }, [currentLesson, slug, userID]);
 
     const DocumentViewer = () => (
         <iframe

@@ -8,7 +8,6 @@ import { useDispatch } from "react-redux";
 import { useParams } from "react-router";
 import axiosClient from "../../../../apis/axiosClient";
 import { setCurrentCourse } from "../../../../store/courseSlice";
-import { setSelectedLesson } from "../../../../store/selectedLessonSlice";
 import styles from "./Video.module.scss";
 
 const cx = classNames.bind(styles)
