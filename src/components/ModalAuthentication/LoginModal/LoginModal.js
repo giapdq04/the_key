@@ -14,11 +14,10 @@ const LoginModal = () => {
     const dispatch = useDispatch();
     const showLoginModal = useSelector(state => state.showLoginModal)
     const slogans = [
-        "Học tiếng Anh - Mở cánh cửa tương lai",
-        "Ngôn ngữ mới - Cơ hội mới",
-        "Tiếng Anh là chìa khóa cho sự nghiệp toàn cầu",
-        "Đầu tư học tập - Đầu tư tương lai",
-        "Học cùng TheKey ngay hôm nay"
+        " Better language, Better Life",
+        "Giỏi ngôn ngữ, sáng tương lai",
+        "Học sinh nỗ lực, phụ huynh đồng hành, giáo viên tận tâm",
+        "TheKey_ Chìa khóa vàng mở thành công",
     ]
 
     useEffect(() => {

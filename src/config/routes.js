@@ -6,7 +6,8 @@ const routes = {
     learning: '/learning/:slug',
     deiltaLearningPath: '/learning-path/deilta-learning-path',
     profile:'/profile',
-    setting:'/setting'
+    setting:'/setting',
+    learningcenter:'/learningcenter'
 }
 
 export default routes;

@@ -1,7 +1,7 @@
 import styles from './SideBar.module.scss'
 import classNames from 'classnames/bind'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHouse, faNewspaper, faRoad } from '@fortawesome/free-solid-svg-icons'
+import { faHouse, faNewspaper, faRoad,faGraduationCap } from '@fortawesome/free-solid-svg-icons'
 import ListItem from "./ListItem";
 import config from "../../config";
 
@@ -18,6 +18,11 @@ const listMenu = [
         icon: <FontAwesomeIcon icon={faRoad} className={cx('icon')} />,
         to: config.routes.learningPath
     },
+    // {
+    //     title: 'Học tập',
+    //     icon: <FontAwesomeIcon icon={faGraduationCap} className={cx('icon')} />,
+    //     to: config.routes.learningcenter
+    // },
     // {
     //     title: 'Bài viết',
     //     icon: <FontAwesomeIcon icon={faNewspaper} className={cx('icon')}/>,
