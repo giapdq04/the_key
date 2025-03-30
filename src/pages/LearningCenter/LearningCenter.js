@@ -6,7 +6,9 @@ const cx = classNames.bind(styles)
 const LearningCenter = () => {
   return (
     <div className={cx("wrapper")}>
-      <h2>Man hinh chi tiet</h2>
+  <h1 className="text-3xl font-bold underline text-red-500">
+    Hello world!
+</h1>
       </div>
   )
 }

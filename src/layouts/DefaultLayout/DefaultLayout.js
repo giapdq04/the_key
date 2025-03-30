@@ -67,7 +67,7 @@ const DefaultLayout = ({children}) => {
                             <FontAwesomeIcon icon={faRoad}/>
                             <span>Learning Path</span>
                         </NavLink>
-                        {/* <NavLink
+                        <NavLink
                             className={(nav) => cx('nav-item', {
                                 'active': nav.isActive
                             })}
@@ -75,7 +75,7 @@ const DefaultLayout = ({children}) => {
                         >
                             <FontAwesomeIcon icon={faRoad}/>
                             <span>Trung tâm học tập</span>
-                        </NavLink> */}
+                        </NavLink>
                     </nav>
                 )}
             </div>
