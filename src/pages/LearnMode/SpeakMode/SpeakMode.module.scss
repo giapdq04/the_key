@@ -1,0 +1,223 @@
+.wrapper {
+    padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+  
+    .back-button {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-right: 1rem;
+    }
+  
+    .back-icon {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+  
+    .title {
+      font-size: 1.75rem;
+      font-weight: 600;
+      color: #333;
+    }
+  }
+  
+  .score-display {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+    color: #6b7280;
+  }
+  
+  .speak-card {
+    width: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+  }
+  
+  .speak-content {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .word-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    position: relative;
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .word-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #333;
+    margin-right: 1rem;
+  }
+  
+  .word-pronunciation {
+    font-size: 1rem;
+    color: #6b7280;
+  }
+  
+  .audio-button {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 0.5rem;
+    border-radius: 50%;
+  }
+  
+  .audio-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    color: #4f46e5;
+  }
+  
+  .word-image-container {
+    width: 100%;
+    height: 200px;
+    margin-bottom: 1.5rem;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  
+  .word-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .recording-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .recording-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .record-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+  }
+  
+  .record-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+  
+  .recording-indicator {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #ef4444;
+    font-weight: 600;
+  }
+  
+  .recording-pulse {
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 50%;
+    background-color: #ef4444;
+    animation: pulse 1.5s infinite;
+  }
+  
+  @keyframes pulse {
+    0% {
+      transform: scale(0.95);
+      box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+    }
+  
+    70% {
+      transform: scale(1);
+      box-shadow: 0 0 0 10px rgba(239, 68, 68, 0);
+    }
+  
+    100% {
+      transform: scale(0.95);
+      box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+    }
+  }
+  
+  .feedback-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+  }
+  
+  .feedback {
+    font-size: 1.25rem;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+    width: 100%;
+  
+    &.correct {
+      color: #10b981;
+      background-color: rgba(16, 185, 129, 0.1);
+    }
+  
+    &.incorrect {
+      color: #ef4444;
+      background-color: rgba(239, 68, 68, 0.1);
+    }
+  }
+  
+  .next-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .next-icon {
+    width: 1rem;
+    height: 1rem;
+  }
+  
+  .progress-indicator {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    justify-content: center;
+  }
+  
+  .progress-dot {
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 50%;
+    background-color: #e5e7eb;
+  
+    &.active {
+      background-color: #4f46e5;
+    }
+  
+    &.completed {
+      background-color: #10b981;
+    }
+  }
+  
+  
