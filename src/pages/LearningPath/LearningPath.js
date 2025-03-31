@@ -98,7 +98,7 @@ const LearningPath = () => {
                                 </div>
                             ))}
                         </div>
-                        <Link to={config.routes.deiltaLearningPath}>
+                        <Link to={config.routes.assessment}>
                             <div>
                                 <button className={cx("detail-button")}>XEM CHI TIẾT</button>
                             </div>

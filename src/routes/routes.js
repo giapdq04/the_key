@@ -1,4 +1,5 @@
 import config from '../config';
+import { Assessment } from '../pages/Assessment/Assessment';
 import Blog from '../pages/Blog/Blog';
 import CourseDetail from "../pages/CourseDetail/CourseDetail";
 import DeiltaLearningpath from '../pages/DeiltaLearningpath/DeiltaLearningPath';
@@ -18,7 +19,8 @@ const publicRoutes = [
     { path: config.routes.deiltaLearningPath, component: DeiltaLearningpath },
     { path: config.routes.profile, component: Profile },
     { path: config.routes.setting, component: Setting, layout: null },
-    {path: config.routes.learningcenter,component:LearningCenter}
+    {path: config.routes.learningcenter,component:LearningCenter},
+    {path:config.routes.assessment,component:Assessment,layout:null}
 ];
 
 export { publicRoutes };
