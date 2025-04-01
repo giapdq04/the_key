@@ -1,6 +1,6 @@
 import classNames from "classnames/bind";
-import React, {lazy, Suspense} from "react";
-import {useSelector} from "react-redux";
+import React, { lazy, Suspense } from "react";
+import { useSelector } from "react-redux";
 import styles from "./Home.module.scss";
 import List from "./List/List";
 import config from "../../config";
@@ -12,15 +12,20 @@ const SlideShow = lazy(() => import("../../components/Slider/Slider"));
 const Home = () => {
     // Lấy dữ liệu từ Redux store
     const courses = useSelector((state) => state.courses);
+    const slideImages = useSelector(state => state.slides);
 
     return (
         <div className={cx("wrapper")}>
             <div className={cx("container")}>
-                <div className={cx("slide-container")}>
-                    <Suspense>
-                        <SlideShow/>
-                    </Suspense>
-                </div>
+                {
+                    slideImages.length > 0 && (
+                        <div className={cx("slide-container")}>
+                            <Suspense>
+                                <SlideShow />
+                            </Suspense>
+                        </div>
+                    )
+                }
 
                 <div className={cx("content-wrapper")}>
                     <List
