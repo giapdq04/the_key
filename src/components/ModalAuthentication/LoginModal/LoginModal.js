@@ -6,12 +6,14 @@ import {auth, provider, signInWithPopup} from "../../../config/firebase"
 import styles from "./LoginModal.module.scss"
 import {setShowLoginModal} from "../../../store/showLoginModal";
 import {useDispatch, useSelector} from "react-redux";
+import { useNavigate } from 'react-router';
 
 const cx = classNames.bind(styles)
 
 const LoginModal = () => {
     const [currentSlogan, setCurrentSlogan] = useState(0)
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const showLoginModal = useSelector(state => state.showLoginModal)
     const slogans = [
         " Better language, Better Life",
@@ -52,10 +54,22 @@ const LoginModal = () => {
                 Cookies.set("userID", userID, {expires: 7})
                 Cookies.set("accessToken", accessToken, {expires: 7})
                 Cookies.set("refreshToken", refreshToken, {expires: 7})
-            }
 
-            onClose()
-            window.location.reload()
+                // Đóng modal login
+                onClose()
+
+                // Kiểm tra xem đây có phải là lần đăng nhập đầu tiên không
+                const hasCompletedAssessment = localStorage.getItem('hasCompletedAssessment');
+                
+                if (!hasCompletedAssessment) {
+                    // Nếu là lần đầu, điều hướng đến trang Assessment
+                    localStorage.setItem('isFirstLogin', 'true');
+                    window.location.href = '/assessment';
+                } else {
+                    // Nếu không phải lần đầu, reload trang
+                    window.location.reload();
+                }
+            }
         } catch (error) {
             console.error("Lỗi đăng nhập Google:", error)
         }
