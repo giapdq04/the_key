@@ -1,89 +1,96 @@
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { Button } from '../../components/ui/button';
-import { Card } from '../../components/ui/card';
-import PlacementTest from '../PlacementTest/PlacementTest';
-import { useNavigate } from 'react-router';
+"use client"
+
+import { useState, useEffect } from "react"
+import { Button } from "../../components/ui/button"
+import { Card } from "../../components/ui/card"
+import PlacementTest from "../PlacementTest/PlacementTest"
+import { useNavigate } from "react-router"
 
 export const Assessment = () => {
-  const [showTest, setShowTest] = useState(false);
-  const navigate = useNavigate();
+  const [showTest, setShowTest] = useState(false)
+  const navigate = useNavigate()
 
   useEffect(() => {
-    // Kiểm tra xem có phải là lần đăng nhập đầu tiên không
-    const isFirstLogin = localStorage.getItem('isFirstLogin');
+    // Check if this is the first login
+    const isFirstLogin = localStorage.getItem("isFirstLogin")
     if (!isFirstLogin) {
-      // Nếu không phải lần đăng nhập đầu tiên, chuyển về trang chủ
-      navigate('/');
+      // If not the first login, redirect to home
+      navigate("/")
     }
-  }, [navigate]);
+  }, [navigate])
 
   const handleSkipTest = () => {
-    // Lưu trạng thái đã bỏ qua bài test
-    localStorage.setItem('hasCompletedAssessment', 'true');
-    localStorage.removeItem('isFirstLogin'); // Xóa trạng thái đăng nhập đầu tiên
-    navigate('/'); // Điều hướng đến màn hình chính
-  };
+    // Save the state that the test was skipped
+    localStorage.setItem("hasCompletedAssessment", "true")
+    localStorage.removeItem("isFirstLogin") // Remove first login state
+    navigate("/") // Navigate to main screen
+  }
 
   if (showTest) {
-    return <PlacementTest onComplete={() => {
-      // Lưu trạng thái đã hoàn thành bài test
-      localStorage.setItem('hasCompletedAssessment', 'true');
-      localStorage.removeItem('isFirstLogin'); // Xóa trạng thái đăng nhập đầu tiên
-      navigate('/');
-    }} />;
+    return (
+      <PlacementTest
+        onComplete={() => {
+          // Save the state that the test was completed
+          localStorage.setItem("hasCompletedAssessment", "true")
+          localStorage.removeItem("isFirstLogin") // Remove first login state
+          navigate("/")
+        }}
+      />
+    )
   }
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-50">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="w-full max-w-2xl mx-auto p-6"
-      >
-        <Card className="p-8">
-          <div className="text-center space-y-6">
-            <h1 className="text-3xl font-bold text-gray-900">
-              Chào mừng bạn đến với The Key!
-            </h1>
-            
-            <div className="space-y-4">
-              <p className="text-lg text-gray-600">
-                Để có trải nghiệm học tập tốt nhất, chúng tôi khuyến nghị bạn nên làm bài kiểm tra đầu vào.
-                Tuy nhiên, bạn vẫn có thể bỏ qua và thực hiện sau.
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-b from-blue-50 to-white">
+      <div className="w-full max-w-3xl mx-auto p-8">
+        <Card className="p-10 shadow-xl border-0 rounded-2xl overflow-hidden relative">
+          {/* Decorative elements */}
+          <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -mr-16 -mt-16"></div>
+          <div className="absolute bottom-0 left-0 w-24 h-24 bg-primary/5 rounded-full -ml-12 -mb-12"></div>
+
+          <div className="text-center space-y-8 relative z-10">
+            <h1 className="text-4xl font-bold text-gray-900 tracking-tight">Chào mừng bạn đến với The Key!</h1>
+
+            <div className="space-y-6">
+              <p className="text-xl text-gray-600 leading-relaxed">
+                Để có trải nghiệm học tập tốt nhất, chúng tôi khuyến nghị bạn nên làm bài kiểm tra đầu vào. Tuy nhiên,
+                bạn vẫn có thể bỏ qua và thực hiện sau.
               </p>
 
-              <div className="bg-blue-50 p-4 rounded-lg">
-                <h3 className="font-semibold mb-2">Lợi ích của bài kiểm tra đầu vào:</h3>
-                <ul className="text-left space-y-2 text-gray-700">
-                  <li>• Đánh giá chính xác trình độ tiếng Phần của bạn</li>
-                  <li>• Xây dựng lộ trình học tập phù hợp</li>
-                  <li>• Tiết kiệm thời gian học tập</li>
-                  <li>• Tối ưu hiệu quả học tập</li>
+              <div className="bg-blue-50 p-6 rounded-xl border border-blue-100">
+                <h3 className="font-semibold text-xl mb-4 text-blue-800">Lợi ích của bài kiểm tra đầu vào:</h3>
+                <ul className="text-left space-y-3 text-gray-700">
+                  <li className="flex items-start">
+                    <span className="text-primary text-xl mr-2">•</span>
+                    <span className="text-lg">Đánh giá chính xác trình độ tiếng Phần của bạn</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-primary text-xl mr-2">•</span>
+                    <span className="text-lg">Xây dựng lộ trình học tập phù hợp</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-primary text-xl mr-2">•</span>
+                    <span className="text-lg">Tiết kiệm thời gian học tập</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-primary text-xl mr-2">•</span>
+                    <span className="text-lg">Tối ưu hiệu quả học tập</span>
+                  </li>
                 </ul>
               </div>
             </div>
 
-            <div className="flex flex-col gap-4 pt-4">
-              <Button 
-                size="lg" 
-                className="w-full"
-                onClick={() => setShowTest(true)}
-              >
+            <div className="flex flex-col gap-4 pt-6">
+              <Button size="lg" className="w-full text-xl py-7 rounded-xl" onClick={() => setShowTest(true)}>
                 Bắt đầu bài kiểm tra đầu vào
               </Button>
-              <Button 
-                variant="outline" 
-                size="lg" 
-                className="w-full"
-                onClick={handleSkipTest}
-              >
+              <Button variant="outline" size="lg" className="w-full text-xl py-7 rounded-xl" onClick={handleSkipTest}>
                 Bỏ qua bài kiểm tra
               </Button>
             </div>
           </div>
         </Card>
-      </motion.div>
+      </div>
     </div>
-  );
-};
+  )
+}
+
