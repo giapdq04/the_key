@@ -20,7 +20,7 @@ const LearnMode = ({ onBack, topic }) => {
       id: 1,
       word: "Football",
       translation: "Bóng đá",
-      image: "/placeholder.svg?height=200&width=300",
+      image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       example: "He plays football every weekend.",
       pronunciation: "/ˈfʊtbɔːl/",
     },
@@ -28,7 +28,7 @@ const LearnMode = ({ onBack, topic }) => {
       id: 2,
       word: "Goal",
       translation: "Bàn thắng",
-      image: "/placeholder.svg?height=200&width=300",
+      image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       example: "He scored a goal in the last minute.",
       pronunciation: "/ɡəʊl/",
     },
@@ -36,7 +36,7 @@ const LearnMode = ({ onBack, topic }) => {
       id: 3,
       word: "Referee",
       translation: "Trọng tài",
-      image: "/placeholder.svg?height=200&width=300",
+      image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       example: "The referee showed a red card to the player.",
       pronunciation: "/ˌrɛfəˈriː/",
     },
@@ -61,8 +61,17 @@ const LearnMode = ({ onBack, topic }) => {
   }
 
   const handlePlayAudio = () => {
-    // In a real app, this would play the pronunciation audio
-    console.log("Playing audio for:", currentWord.word)
+    // Sử dụng Web Speech API để đọc từ
+    const utterance = new SpeechSynthesisUtterance(currentWord.word);
+    
+    // Tùy chỉnh giọng nói (nếu muốn)
+    utterance.lang = "en-US"; // Ngôn ngữ: tiếng Anh (Mỹ)
+    utterance.rate = 1; // Tốc độ đọc (1 là bình thường)
+    utterance.pitch = 1; // Độ cao giọng (1 là bình thường)
+    utterance.volume = 1; // Âm lượng (1 là tối đa)
+
+    // Phát âm
+    window.speechSynthesis.speak(utterance);
   }
 
   const toggleFlashcard = () => {
@@ -183,4 +192,3 @@ const LearnMode = ({ onBack, topic }) => {
 }
 
 export default LearnMode
-

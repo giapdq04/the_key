@@ -43,10 +43,10 @@ const LearningCenter = () => {
   };
 
   const topics = [
-    { id: 1, name: "Football", wordsCount: 20, progress: 45, image: "/placeholder.svg?height=80&width=80" },
-    { id: 2, name: "Food", wordsCount: 30, progress: 70, image: "/placeholder.svg?height=80&width=80" },
-    { id: 3, name: "Travel", wordsCount: 25, progress: 20, image: "/placeholder.svg?height=80&width=80" },
-    { id: 4, name: "Technology", wordsCount: 35, progress: 10, image: "/placeholder.svg?height=80&width=80" },
+    { id: 1, name: "Football", wordsCount: 20, progress: 45, image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
+    { id: 2, name: "Food", wordsCount: 30, progress: 70, image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
+    { id: 3, name: "Travel", wordsCount: 25, progress: 20, image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
+    { id: 4, name: "Technology", wordsCount: 35, progress: 10, image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
   ];
 
   const tests = [
