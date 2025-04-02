@@ -1,16 +1,16 @@
 // App.js
 import Cookies from "js-cookie";
-import {Fragment, useEffect} from "react";
-import {useDispatch} from "react-redux";
-import {BrowserRouter, Route, Routes} from "react-router";
-import {ToastContainer} from "react-toastify";
+import { Fragment, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { BrowserRouter, Route, Routes } from "react-router";
+import { ToastContainer } from "react-toastify";
 import axiosClient from "./apis/axiosClient";
 import DefaultLayout from "./layouts/DefaultLayout/DefaultLayout";
-import {publicRoutes} from "./routes/routes";
-import {setCourses} from "./store/coursesSlice";
-import {setUser} from "./store/userSlice";
-import {setEnrolledCourses} from "./store/enrolledCoursesSlice";
-import {setSlides} from "./store/slidesSlice";
+import { publicRoutes } from "./routes/routes";
+import { setCourses } from "./store/coursesSlice";
+import { setUser } from "./store/userSlice";
+import { setEnrolledCourses } from "./store/enrolledCoursesSlice";
+import { setSlides } from "./store/slidesSlice";
 
 function App() {
     const dispatch = useDispatch();
@@ -57,15 +57,17 @@ function App() {
             }
         };
 
-        fetchUserInfo();
-        fetchCourses();
-        fetchSlides();
+        fetchUserInfo().then(() => {
+            fetchCourses()
+            fetchSlides()
+        })
+
     }, [dispatch]);
 
     return (
         <BrowserRouter>
             <div className="App">
-                <ToastContainer/>
+                <ToastContainer />
                 <Routes>
                     {publicRoutes.map((route, index) => {
                         const Page = route.component;
@@ -83,7 +85,7 @@ function App() {
                                 path={route.path}
                                 element={
                                     <Layout>
-                                        <Page/>
+                                        <Page />
                                     </Layout>
                                 }
                             />
