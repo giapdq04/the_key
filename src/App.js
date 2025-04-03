@@ -1,4 +1,5 @@
-// App.js
+
+import './config/socket.io'
 import Cookies from "js-cookie";
 import { Fragment, useEffect } from "react";
 import { useDispatch } from "react-redux";
