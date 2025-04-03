@@ -1,0 +1,373 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap');
+
+.appShell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: hsl(0, 0%, 5%);
+  font-family: 'Roboto Mono', monospace;
+  
+  @media(prefers-color-scheme: light) {
+    background: hsl(0, 0%, 95%);
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #020930 0%, #0c1a5e 40%, #1a3a9c 70%, #0f6e9e 90%, #0a9a9a 100%);
+  position: relative;
+}
+
+.glitchyTextCharReadable {
+  opacity: 0;
+  position: absolute;
+}
+
+@keyframes glitchSwitch {
+  0% { content: var(--char-0); }
+  10% { content: var(--char-1); }
+  20% { content: var(--char-2); }
+  30% { content: var(--char-3); }
+  40% { content: var(--char-4); }
+  50% { content: var(--char-5); }
+  60% { content: var(--char-6); }
+  70% { content: var(--char-7); }
+  80% { content: var(--char-8); }
+  90% { content: var(--char-9); }
+  100% { content: var(--char-0); }
+}
+
+.glitchyTextChar {
+  color: transparent;
+  position: relative;
+  
+  &:after {
+    --txt: attr(data-char);
+    animation-duration: 0.2s;
+    animation-delay: 0.2s;
+    animation-fill-mode: backwards;
+    animation-timing-function: steps(1);
+    animation-iteration-count: var(--count);
+    animation-name: glitchSwitch;
+    color: hsl(0, 0%, 95%);
+    transition: color 0.2s ease 0s;
+    position: absolute;
+    content: var(--txt);
+    left: 0;
+    top: 0;
+    
+    @media(prefers-color-scheme: light) {
+      color: hsl(0, 0%, 5%);
+    }
+  }
+}
+
+.bearShades {
+  opacity: var(--bear-shades, 0);
+}
+
+.bearTearStream {
+  fill: hsla(200, 100%, 75%, var(--bear-tears, 0.75));
+}
+
+.bearBrows {
+  stroke: hsla(0, 0%, 0%, var(--bear-brows, 1));
+}
+
+.bearEye {
+  fill: hsla(0, 0%, 0%, var(--bear-eyes, 1));
+  
+  &.bearEyeLeft, &.bearEyeRight {
+    fill: hsla(200, 100%, 75%, var(--bear-eyes, 1));
+    transform-origin: center;
+  }
+  
+  &.bearEyeLeft {
+    transform-origin: 97px 894px;
+  }
+  
+  &.bearEyeRight {
+    transform-origin: 201px 894px;
+  }
+}
+
+.bearLogo {
+  position: absolute;
+  left: 20%;
+  top: 50%;
+  width: 150px;
+  height: 150px;
+  transition: transform 0.1s ease-out; // Làm mượt hiệu ứng nghiêng
+  
+  @media (max-width: 768px) {
+    position: relative;
+    left: auto;
+    top: auto;
+    transform: none;
+    margin-bottom: 2rem;
+  }
+}
+
+.bearLogoTears {
+  --bear-shades: 0;
+  --bear-brows: 1;
+  --bear-tears: 0.75;
+  --bear-eyes: 1;
+  transition: --bear-tears 0.3s ease, --bear-brows 0.3s ease, transform 0.1s ease-out;
+  
+  path, circle, ellipse {
+    transition: fill 0.2s ease 0s, transform 0.2s ease 0s;
+  }
+}
+
+.code {
+  font-size: 8rem;
+  color: white;
+  margin: 0;
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  transform: translate(-50%, -50%);
+  
+  @media (max-width: 768px) {
+    position: relative;
+    left: auto;
+    top: auto;
+    transform: none;
+    margin: 2rem 0;
+  }
+}
+
+.codeMessage {
+  font-size: 1.5rem;
+  color: white;
+  position: absolute;
+  left: 50%;
+  top: 55%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  
+  @media (max-width: 768px) {
+    position: relative;
+    left: auto;
+    top: auto;
+    transform: none;
+    margin: 1rem 0;
+    font-size: 1.2rem;
+  }
+}
+
+.errorDescription {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  max-width: 600px;
+  position: absolute;
+  left: 50%;
+  top: 65%;
+  transform: translate(-50%, -50%);
+  line-height: 1.5;
+  margin: 0;
+  
+  @media (max-width: 768px) {
+    position: relative;
+    left: auto;
+    top: auto;
+    transform: none;
+    margin: 1rem 0;
+    padding: 0 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+.message {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  text-decoration: none;
+  font-size: 1.5rem;
+  
+  &:hover {
+    text-decoration: underline;
+  }
+  
+  @media (max-width: 768px) {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    transform: none;
+    margin-top: 2rem;
+  }
+}
+
+.fourOhFourCode span:nth-of-type(2) {
+  --scaleX: 30;
+  --scaleY: -20;
+  --translateX: calc((var(--X)) * var(--scaleX) * 1px);
+  --translateY: calc((var(--Y)) * var(--scaleY) * 1px);
+  
+  &:after {
+    transform: translate(var(--translateX), var(--translateY));
+  }
+}
+
+.fourOhFourCode span:nth-of-type(3) {
+  --scaleX: -20;
+  --scaleY: 50;
+  --translateX: calc((var(--X)) * var(--scaleX) * 1px);
+  --translateY: calc((var(--Y)) * var(--scaleY) * 1px);
+  
+  &:after {
+    transform: translate(var(--translateX), var(--translateY));
+  }
+}
+
+.fourOhFourCode span:nth-of-type(4) {
+  --scaleX: -30;
+  --scaleY: 40;
+  --translateX: calc((var(--X)) * var(--scaleX) * 1px);
+  --translateY: calc((var(--Y)) * var(--scaleY) * 1px);
+  
+  &:after {
+    transform: translate(var(--translateX), var(--translateY));
+  }
+}
+
+.fourOhFourCodeMessage span:nth-of-type(2):after,
+.fourOhFourCodeMessage span:nth-of-type(3):after,
+.fourOhFourCodeMessage span:nth-of-type(4):after,
+.fourOhFourCodeMessage span:nth-of-type(6):after,
+.fourOhFourCodeMessage span:nth-of-type(7):after,
+.fourOhFourCodeMessage span:nth-of-type(8):after,
+.fourOhFourCodeMessage span:nth-of-type(9):after,
+.fourOhFourCodeMessage span:nth-of-type(10):after {
+  --translateX: calc((var(--X)) * var(--scaleX) * 1px);
+  --translateY: calc((var(--Y)) * var(--scaleY) * 1px);
+  transform: translate(var(--translateX), var(--translateY));
+}
+
+.fourOhFourCodeMessage span:nth-of-type(2) {
+  --scaleX: 20;
+  --scaleY: 10;
+}
+
+.fourOhFourCodeMessage span:nth-of-type(3) {
+  --scaleX: 5;
+  --scaleY: -10;
+}
+
+.fourOhFourCodeMessage span:nth-of-type(4) {
+  --scaleX: 40;
+  --scaleY: -30;
+}
+
+.fourOhFourCodeMessage span:nth-of-type(6) {
+  --scaleX: 50;
+  --scaleY: 50;
+}
+
+.fourOhFourCodeMessage span:nth-of-type(7) {
+  --scaleX: 0;
+  --scaleY: -15;
+}
+
+.fourOhFourCodeMessage span:nth-of-type(8) {
+  --scaleX: 35;
+  --scaleY: 10;
+}
+
+.fourOhFourCodeMessage span:nth-of-type(9) {
+  --scaleX: -40;
+  --scaleY: 25;
+}
+
+.fourOhFourCodeMessage span:nth-of-type(10) {
+  --scaleX: 50;
+  --scaleY: -25;
+}
+
+.stars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(2px 2px at 20px 30px, #eee, rgba(0, 0, 0, 0)),
+                    radial-gradient(2px 2px at 40px 70px, #fff, rgba(0, 0, 0, 0)),
+                    radial-gradient(1px 1px at 90px 40px, #fff, rgba(0, 0, 0, 0)),
+                    radial-gradient(2px 2px at 160px 120px, #ddd, rgba(0, 0, 0, 0)),
+                    radial-gradient(1px 1px at 200px 90px, #fff, rgba(0, 0, 0, 0)),
+                    radial-gradient(1px 1px at 300px 200px, #fff, rgba(0, 0, 0, 0)),
+                    radial-gradient(1px 1px at 400px 250px, #eee, rgba(0, 0, 0, 0)),
+                    radial-gradient(2px 2px at 500px 100px, #fff, rgba(0, 0, 0, 0)),
+                    radial-gradient(1px 1px at 50px 300px, #fff, rgba(0, 0, 0, 0)),
+                    radial-gradient(1px 1px at 150px 350px, #ddd, rgba(0, 0, 0, 0)),
+                    radial-gradient(1px 1px at 250px 300px, #fff, rgba(0, 0, 0, 0)),
+                    radial-gradient(2px 2px at 350px 350px, #fff, rgba(0, 0, 0, 0)),
+                    radial-gradient(2px 2px at 450px 400px, #fff, rgba(0, 0, 0, 0)),
+                    radial-gradient(1px 1px at 550px 350px, #eee, rgba(0, 0, 0, 0)),
+                    radial-gradient(1px 1px at 650px 300px, #fff, rgba(0, 0, 0, 0)),
+                    radial-gradient(2px 2px at 750px 350px, #fff, rgba(0, 0, 0, 0));
+  background-repeat: repeat;
+  background-size: 800px 800px;
+  animation: twinkle 5s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+  0% { opacity: 0.7; }
+  100% { opacity: 1; }
+}
+
+.planets {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.planetLeft {
+  position: absolute;
+  left: -5%;
+  top: 30%;
+  width: 25vw;
+  height: 25vw;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #1a3a9c, #0c1a5e);
+  box-shadow: inset 5px -5px 25px rgba(255, 255, 255, 0.2),
+              inset -5px 5px 25px rgba(0, 0, 0, 0.5);
+  opacity: 0.8;
+}
+
+.planetTopRight {
+  position: absolute;
+  right: 5%;
+  top: 15%;
+  width: 10vw;
+  height: 10vw;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 40%, #8a4baf, #4a1a7a);
+  box-shadow: inset 3px -3px 15px rgba(255, 255, 255, 0.2),
+              inset -3px 3px 15px rgba(0, 0, 0, 0.5);
+  opacity: 0.9;
+}
+
+.planetBottomRight {
+  position: absolute;
+  right: -5%;
+  bottom: 20%;
+  width: 20vw;
+  height: 20vw;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 40%, #6a2b9f, #3a1a5a);
+  box-shadow: inset 4px -4px 20px rgba(255, 255, 255, 0.2),
+              inset -4px 4px 20px rgba(0, 0, 0, 0.5);
+  opacity: 0.8;
+}

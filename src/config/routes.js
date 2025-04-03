@@ -8,7 +8,8 @@ const routes = {
     profile:'/profile',
     setting:'/setting',
     learningcenter:'/learningcenter',
-    assessment:'/assessment'
+    assessment:'/assessment',
+    notfound:'/notfound'
 }
 
 export default routes;

@@ -1,3 +1,4 @@
+import Notfound from '../components/404/Notfound';
 import config from '../config';
 import { Assessment } from '../pages/Assessment/Assessment';
 import Blog from '../pages/Blog/Blog';
@@ -20,7 +21,8 @@ const publicRoutes = [
     { path: config.routes.profile, component: Profile },
     { path: config.routes.setting, component: Setting, layout: null },
     {path: config.routes.learningcenter,component:LearningCenter},
-    {path:config.routes.assessment,component:Assessment,layout:null}
+    {path:config.routes.assessment,component:Assessment,layout:null},
+    {path:config.routes.notfound,component:Notfound,layout:null}
 ];
 
 export { publicRoutes };
