@@ -1,9 +1,9 @@
 import React from 'react'
 import classNames from 'classnames/bind'
-import styles from "./DeiltaLearningPath.module.scss";
+import styles from "./DetailLearningPath.module.scss";
 const cx = classNames.bind(styles)
 
-const DeiltaLearningPath = () => {
+const DetailLearningPath = () => {
   return (
     <div className={cx("wrapper")}>
       <h2>Man hinh chi tiet</h2>
@@ -11,4 +11,4 @@ const DeiltaLearningPath = () => {
   )
 }
 
-export default DeiltaLearningPath
+export default DetailLearningPath

@@ -90,12 +90,12 @@ const Video = ({currentLesson}) => {
 
                 <div className={cx('content-wrapper')}>
                     <p>Tham gia nhóm <a rel="noopener noreferrer nofollow" target="_blank"
-                                        href="https://www.facebook.com/groups/f8official/">Học lập trình tại
-                        F8</a> trên Facebook để cùng nhau trao đổi trong quá trình học tập ❤️
+                                        href="https://www.facebook.com/groups/5095536260566936">Học Tiếng Anh cùng
+                        TheKey</a> trên Facebook để cùng nhau trao đổi trong quá trình học tập ❤️
                     </p>
-                    <p>Các bạn subscribe kênh Youtube <a rel="noopener noreferrer nofollow" target="_blank"
-                                                         href="https://url.mycv.vn/f8_youtube?ref=lesson_desc">F8
-                        Official</a> để nhận thông báo khi có các bài học mới nhé ❤️</p>
+                    <p>Fanpage: <a rel="noopener noreferrer nofollow" target="_blank"
+                                   href="https://www.facebook.com/thekey.edu.vn">F8
+                        Official</a> ❤️</p>
                 </div>
             </div>
 

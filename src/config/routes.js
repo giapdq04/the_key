@@ -4,10 +4,10 @@ const routes = {
     blog: '/blog',
     courses: '/courses/:slug',
     learning: '/learning/:slug',
-    deiltaLearningPath: '/learning-path/deilta-learning-path',
+    detailLearningPath: '/learning-path/detail-learning-path',
     profile:'/profile',
     setting:'/setting',
-    learningcenter:'/learningcenter'
+    learningCenter:'/learning-center'
 }
 
 export default routes;

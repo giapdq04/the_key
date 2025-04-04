@@ -6,9 +6,6 @@ import { Tooltip } from "react-tooltip";
 import { Link } from "react-router";
 import config from "../../config";
 
-
-
-
 const cx = classNames.bind(styles);
 
 const learningPaths = [
@@ -65,7 +62,7 @@ const LearningPath = () => {
                                 <p className={cx("learning-path-desc")}>{path.description}</p>
                             </div>
                             <a className={cx("thum-round")} href="https://www.youtube.com/">
-                                <img loading="lazy" src={path.image} className={cx("learning-path-image")} alt="" />
+                                <img loading="lazy" src={path.image} className={cx("learning-path-image")} alt={path.title} />
                             </a>
                         </div>
 
@@ -98,7 +95,7 @@ const LearningPath = () => {
                                 </div>
                             ))}
                         </div>
-                        <Link to={config.routes.deiltaLearningPath}>
+                        <Link to={config.routes.detailLearningPath}>
                             <div>
                                 <button className={cx("detail-button")}>XEM CHI TIẾT</button>
                             </div>

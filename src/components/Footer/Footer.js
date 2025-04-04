@@ -2,6 +2,8 @@ import classNames from "classnames/bind";
 import React from 'react';
 import styles from './Footer.module.scss';
 import images from "../../assets/images";
+import {Link} from "react-router";
+import routes from "../../config/routes";
 
 const cx = classNames.bind(styles);
 const Footer = () => {
@@ -11,11 +13,11 @@ const Footer = () => {
                 <div className={cx('top-row')}>
                     <div className={cx('col')}>
                         <div className={cx('column-top')}>
-                            <img loading="lazy" className={cx('logo')} src={images.logo} alt='logo' />
+                            <Link to={routes.home}><img loading="lazy" className={cx('logo')} src={images.logo} alt='logo' /></Link>
                             <h2 className={cx('slogan')}>Chìa khóa vàng để thành công</h2>
                         </div>
                         <div className={cx('contact-list')}>
-                            <b>Điện thoại: </b><a href='tel:0346220536'>0387.956.345</a>
+                            <b>Điện thoại: </b><a href='tel:0387956345'>0387.956.345</a>
                             <br />
                             <b>Email: </b><a href="mailto:thekey.edu.vn@gmail.com">thekey.edu.vn@gmail.com</a>
                             <br />
@@ -80,16 +82,16 @@ const Footer = () => {
                 <div className={cx('bottom-row')}>
                     <p className={cx('copyright')}>© 2025  Made by TheKey</p>
                     <div className={cx('social-list')}>
-                        <a className={cx('social-icon')} target="_blank" rel="noreferrer" href='https://www.youtube.com/'>
-                            <img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png" alt="youtube" />
+                        <a className={cx('social-icon')} target="_blank" rel="noreferrer" href='https://www.youtube.com/@trungtamngoainguthekey9390'>
+                            <img loading="lazy" src={images.youtube} alt="youtube" />
                         </a>
 
                         <a className={cx('social-icon')} target="_blank" rel="noreferrer" href='https://www.facebook.com/thekey.edu.vn'>
-                            <img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Facebook_Logo_%282019%29.png/768px-Facebook_Logo_%282019%29.png" alt="youtube" />
+                            <img loading="lazy" src={images.facebook} alt="facebook"/>
                         </a>
 
                         <a className={cx('social-icon')} target="_blank" rel="noreferrer" href='https://www.tiktok.com/@thekeytienganh'>
-                            <img loading="lazy" src="https://cdn.pixabay.com/photo/2021/06/15/12/28/tiktok-6338432_960_720.png" alt="youtube" />
+                            <img loading="lazy" src={images.tiktok} alt='tiktok'/>
                         </a>
                     </div>
                 </div>

@@ -1,11 +1,12 @@
 import classNames from "classnames/bind"
 import Cookies from "js-cookie"
-import {useEffect, useState} from "react"
+import { useEffect, useState } from "react"
 import axiosClient from "../../../apis/axiosClient"
-import {auth, provider, signInWithPopup} from "../../../config/firebase"
+import { auth, provider, signInWithPopup } from "../../../config/firebase"
 import styles from "./LoginModal.module.scss"
-import {setShowLoginModal} from "../../../store/showLoginModal";
-import {useDispatch, useSelector} from "react-redux";
+import { setShowLoginModal } from "../../../store/showLoginModal";
+import { useDispatch, useSelector } from "react-redux";
+import { Bounce, toast } from "react-toastify"
 
 const cx = classNames.bind(styles)
 
@@ -48,16 +49,29 @@ const LoginModal = () => {
             })
 
             if (signInResult.status === 200) {
-                const {userID, accessToken, refreshToken} = signInResult.data
-                Cookies.set("userID", userID, {expires: 7})
-                Cookies.set("accessToken", accessToken, {expires: 7})
-                Cookies.set("refreshToken", refreshToken, {expires: 7})
+                const { userID, accessToken, refreshToken } = signInResult.data
+                Cookies.set("userID", userID, { expires: 7 })
+                Cookies.set("accessToken", accessToken, { expires: 7 })
+                Cookies.set("refreshToken", refreshToken, { expires: 7 })
             }
 
             onClose()
             window.location.reload()
         } catch (error) {
             console.error("Lỗi đăng nhập Google:", error)
+            if (error?.response?.status === 403) {
+                toast.error('Tài khoản đã bị khóa. Vui lòng liên hệ với quản trị viên để biết thêm chi tiết.', {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: false,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    transition: Bounce
+                });
+            }
         }
     }
 
@@ -93,7 +107,7 @@ const LoginModal = () => {
                         <div className={cx("slogan-container")}>
                             <div className={cx("slogan-animation")}>
                                 {slogans.map((slogan, index) => (
-                                    <div key={index} className={cx("slogan", {active: index === currentSlogan})}>
+                                    <div key={index} className={cx("slogan", { active: index === currentSlogan })}>
                                         {slogan}
                                     </div>
                                 ))}
@@ -123,6 +137,10 @@ const LoginModal = () => {
                             <p className={cx("modal-desc")}>
                                 Mỗi người nên sử dụng riêng một tài khoản, tài khoản nhiều người sử dụng chung sẽ bị
                                 khóa.
+                            </p>
+
+                            <p className={cx("modal-desc")}>
+                                Cần hỗ trợ hãy liên hệ qua email: websitethekey@gmail.com
                             </p>
                         </div>
                     </div>
