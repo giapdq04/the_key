@@ -164,13 +164,84 @@
   background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
   padding: 20px;
   display: flex;
-  justify-content: center;
-  gap: 20px;
+  flex-direction: column;
+  gap: 10px;
   z-index: 20;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
 
-  @media screen and (max-width: 768px) {
-    padding: 12px;
-    gap: 12px;
+  &.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .progress-bar {
+    width: 100%;
+    padding: 0 10px;
+
+    input[type="range"] {
+      width: 100%;
+      height: 4px;
+      -webkit-appearance: none;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 2px;
+      outline: none;
+      transition: all 0.3s ease;
+
+      &::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 12px;
+        height: 12px;
+        background: var(--primary-color);
+        border-radius: 50%;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      &::-moz-range-thumb {
+        width: 12px;
+        height: 12px;
+        background: var(--primary-color);
+        border-radius: 50%;
+        cursor: pointer;
+        border: none;
+        transition: all 0.3s ease;
+      }
+
+      &:hover {
+        height: 6px;
+
+        &::-webkit-slider-thumb {
+          width: 14px;
+          height: 14px;
+        }
+
+        &::-moz-range-thumb {
+          width: 14px;
+          height: 14px;
+        }
+      }
+    }
+
+    .time-display {
+      display: flex;
+      justify-content: space-between;
+      color: white;
+      font-size: 12px;
+      margin-top: 5px;
+      opacity: 0.8;
+    }
+  }
+
+  .control-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+
+    @media screen and (max-width: 768px) {
+      gap: 12px;
+    }
   }
 
   .control-button {
@@ -189,11 +260,6 @@
     @media screen and (max-width: 768px) {
       padding: 6px 12px;
       font-size: 12px;
-      
-      &.play-pause {
-        width: 32px;
-        height: 32px;
-      }
     }
 
     &:hover {
@@ -207,6 +273,11 @@
       border-radius: 50%;
       padding: 0;
       justify-content: center;
+
+      @media screen and (max-width: 768px) {
+        width: 32px;
+        height: 32px;
+      }
     }
 
     svg {
