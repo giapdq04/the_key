@@ -1,4 +1,4 @@
-import { faHeart, faPlay } from "@fortawesome/free-solid-svg-icons";
+import { faHeart, faPlay, faForward, faBackward, faPause } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classNames from "classnames/bind";
 import Cookies from "js-cookie";
@@ -18,18 +18,27 @@ const Video = ({currentLesson}) => {
     const userID = Cookies.get("userID");
     const {slug} = useParams()
     const dispatch = useDispatch()
-    
-    // Di chuyển biến called ra ngoài hàm handleProgress
-    // và sử dụng useRef để lưu trạng thái giữa các lần render
+    const playerRef = React.useRef(null);
+    const [isPlaying, setIsPlaying] = React.useState(false);
     const calledRef = React.useRef(false);
 
-    const PlayIcon = () => {
-        return (
-            <button className={cx('play-button')}>
-                <FontAwesomeIcon icon={faPlay}/>
-            </button>
-        )
-    }
+    const handlePlayPause = () => {
+        setIsPlaying(!isPlaying);
+    };
+
+    const handleNext = () => {
+        if (playerRef.current) {
+            const currentTime = playerRef.current.getCurrentTime();
+            playerRef.current.seekTo(currentTime + 10);
+        }
+    };
+
+    const handlePrevious = () => {
+        if (playerRef.current) {
+            const currentTime = playerRef.current.getCurrentTime();
+            playerRef.current.seekTo(currentTime - 10);
+        }
+    };
 
     const handleProgress = async (state) => {
         if (!currentLesson.isCompleted && state.played >= 0.5 && !calledRef.current) {
@@ -58,23 +67,33 @@ const Video = ({currentLesson}) => {
                 <div className={cx('video-player-container')}>
                     <div className={cx('video-player')}>
                         <ReactPlayer
+                            ref={playerRef}
                             onProgress={handleProgress}
                             width={'100%'}
                             height={'100%'}
-                            controls
+                            controls={false}
                             playsinline={true}
-                            fallback={
-                                <div className={cx('fallback')}>
-                                    <img loading="lazy"
-                                         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnKMnEffBBNeaHWy2zz34vKlBzaYvt3H9gyg&s"
-                                         alt=""/>
-                                </div>
-                            }
-                            playing={true}
-                            light={`https://img.youtube.com/vi/${currentLesson?.ytbVideoID}/maxresdefault.jpg`}
-                            playIcon={<PlayIcon/>}
+                            playing={isPlaying}
                             url={`https://www.youtube.com/watch?v=${currentLesson?.ytbVideoID}`}
                         />
+                        <div className={cx('video-overlay')} onClick={handlePlayPause}>
+                            {!isPlaying && (
+                                <div className={cx('play-icon')}>
+                                    <FontAwesomeIcon icon={faPlay} />
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                    <div className={cx('custom-controls')}>
+                        <button onClick={handlePrevious} className={cx('control-button')}>
+                            <FontAwesomeIcon icon={faBackward} /> -10s
+                        </button>
+                        <button onClick={handlePlayPause} className={cx('control-button', 'play-pause')}>
+                            <FontAwesomeIcon icon={isPlaying ? faPause : faPlay} />
+                        </button>
+                        <button onClick={handleNext} className={cx('control-button')}>
+                            +10s <FontAwesomeIcon icon={faForward} />
+                        </button>
                     </div>
                 </div>
             </div>
