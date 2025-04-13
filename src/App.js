@@ -1,17 +1,16 @@
-
 import './config/socket.io'
 import Cookies from "js-cookie";
-import { Fragment, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { BrowserRouter, Route, Routes } from "react-router";
-import { ToastContainer } from "react-toastify";
+import {Fragment, useEffect} from "react";
+import {useDispatch} from "react-redux";
+import {BrowserRouter, Route, Routes} from "react-router";
+import {ToastContainer} from "react-toastify";
 import axiosClient from "./apis/axiosClient";
 import DefaultLayout from "./layouts/DefaultLayout/DefaultLayout";
-import { publicRoutes } from "./routes/routes";
-import { setCourses } from "./store/coursesSlice";
-import { setUser } from "./store/userSlice";
-import { setEnrolledCourses } from "./store/enrolledCoursesSlice";
-import { setSlides } from "./store/slidesSlice";
+import {publicRoutes} from "./routes/routes";
+import {setCourses} from "./store/coursesSlice";
+import {setUser} from "./store/userSlice";
+import {setEnrolledCourses} from "./store/enrolledCoursesSlice";
+import {setSlides} from "./store/slidesSlice";
 
 function App() {
     const dispatch = useDispatch();
@@ -46,7 +45,8 @@ function App() {
 
         const fetchSlides = async () => {
             try {
-                const response = await axiosClient.get("/slide");
+                const isMobile = window.innerWidth <= 768;
+                const response = await axiosClient.get("/slide?type=" + (isMobile ? "mobile" : "desktop"));
                 if (Array.isArray(response.data)) {
                     const sortedSlides = response.data.sort((a, b) => a.order - b.order);
                     dispatch(setSlides(sortedSlides));
@@ -68,7 +68,7 @@ function App() {
     return (
         <BrowserRouter>
             <div className="App">
-                <ToastContainer />
+                <ToastContainer/>
                 <Routes>
                     {publicRoutes.map((route, index) => {
                         const Page = route.component;
@@ -86,7 +86,7 @@ function App() {
                                 path={route.path}
                                 element={
                                     <Layout>
-                                        <Page />
+                                        <Page/>
                                     </Layout>
                                 }
                             />

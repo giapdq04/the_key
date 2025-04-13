@@ -10,8 +10,7 @@ import config from "../../config";
 import useClickOutside from "../../hooks/useClickOutside";
 import Image from "../Image";
 import styles from "./AvatarMenu.module.scss";
-
-const DEFAULT_AVATAR = "https://cdn-icons-png.flaticon.com/512/847/847969.png";
+import images from "../../assets/images";
 
 const cx = classNames.bind(styles);
 
@@ -48,7 +47,7 @@ const UserInfo = ({user}) => (
         <div className={cx("_avatarWrapper_12z5x_11")}>
             <Image
                 className={cx("_avatar_a1a1")}
-                src={user.avatar || DEFAULT_AVATAR}
+                src={user.avatar || images.default_avatar}
                 alt="User avatar"
             />
         </div>
@@ -113,7 +112,7 @@ const AvatarMenu = () => {
             >
                 <Image
                     className={cx("user-avatar")}
-                    src={user?.avatar || DEFAULT_AVATAR}
+                    src={user?.avatar || images.default_avatar}
                     alt="User avatar"
                     onClick={toggleMenu}
                 />
