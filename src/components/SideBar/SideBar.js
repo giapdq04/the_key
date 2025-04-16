@@ -1,5 +1,5 @@
 
-import { faHouse, faRoad } from '@fortawesome/free-solid-svg-icons';
+import { faGraduationCap, faHouse, faRoad } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
 import config from "../../config";
@@ -22,9 +22,9 @@ const listMenu = [
     {
         title: 'Học tập',
         icon: <FontAwesomeIcon icon={faGraduationCap} className={cx('icon')} />,
-        to: config.routes.learningcenter
+        to: config.routes.learningCenter
     },
-    
+
     //     title: 'Bài viết',
     //     icon: <FontAwesomeIcon icon={faNewspaper} className={cx('icon')}/>,
     //     to: config.routes.blog

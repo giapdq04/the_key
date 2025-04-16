@@ -11,6 +11,7 @@ import {setCourses} from "./store/coursesSlice";
 import {setUser} from "./store/userSlice";
 import {setEnrolledCourses} from "./store/enrolledCoursesSlice";
 import {setSlides} from "./store/slidesSlice";
+import Notfound from "./components/404/Notfound"; // Thêm import Notfound component
 
 function App() {
     const dispatch = useDispatch();
@@ -92,6 +93,8 @@ function App() {
                             />
                         );
                     })}
+                    {/* Thêm route cho trang 404 Not Found */}
+                    <Route path="*" element={<Notfound />} />
                 </Routes>
             </div>
         </BrowserRouter>
