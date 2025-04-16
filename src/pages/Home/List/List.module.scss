@@ -1,5 +1,86 @@
+.wrapper {
+  margin-top: 40px;
+  
+  &.mobile {
+    margin-top: 20px;
+  }
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  
+  @media screen and (max-width: 768px) {
+    margin-bottom: 15px;
+  }
+  
+  @media screen and (max-width: 480px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-color);
+  
+  @media screen and (max-width: 768px) {
+    font-size: 20px;
+  }
+  
+  @media screen and (max-width: 480px) {
+    font-size: 18px;
+  }
+}
+
+.more-btn {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--primary-color);
+  
+  &:hover {
+    text-decoration: underline;
+  }
+  
+  @media screen and (max-width: 768px) {
+    font-size: 14px;
+  }
+}
+
+.content {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  
+  @media screen and (max-width: 1200px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  @media screen and (max-width: 992px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  
+  @media screen and (max-width: 576px) {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+}
+
 .list-container {
   margin-top: 50px;
+  
+  @media screen and (max-width: 768px) {
+    margin-top: 30px;
+  }
+  
+  @media screen and (max-width: 480px) {
+    margin-top: 20px;
+  }
 }
 
 .learned-users {
@@ -9,6 +90,16 @@
 
   .user-number {
     font-weight: 600;
+  }
+  
+  @media screen and (max-width: 768px) {
+    margin-top: 25px;
+    font-size: 1.3rem;
+  }
+  
+  @media screen and (max-width: 480px) {
+    margin-top: 15px;
+    font-size: 1.2rem;
   }
 }
 
@@ -21,14 +112,26 @@
   &:not(:first-child) {
     margin-top: 5px;
   }
+  
+  @media screen and (max-width: 768px) {
+    margin-right: 16px;
+  }
+  
+  @media screen and (max-width: 480px) {
+    margin-right: 10px;
+  }
 }
 
 .section {
   font-size: 2.6rem;
   font-weight: 800;
 
-  @media screen and (max-width: 414px) {
-    font-size: 2.4rem;
+  @media screen and (max-width: 768px) {
+    font-size: 2.2rem;
+  }
+  
+  @media screen and (max-width: 480px) {
+    font-size: 1.8rem;
   }
 }
 
@@ -43,6 +146,20 @@
   border-radius: 4px;
   padding: 3px 6px;
   background-color: #1473e6;
+  
+  @media screen and (max-width: 768px) {
+    font-size: 1rem;
+    padding: 2px 5px;
+    right: -6px;
+    top: -5px;
+  }
+  
+  @media screen and (max-width: 480px) {
+    font-size: 0.9rem;
+    padding: 2px 4px;
+    right: -4px;
+    top: -4px;
+  }
 }
 
 .more {
@@ -52,9 +169,16 @@
 
   .more-icon {
     font-size: 1.2rem;
+    margin-left: 4px;
   }
-
-
+  
+  @media screen and (max-width: 768px) {
+    font-size: 1.4rem;
+    
+    .more-icon {
+      font-size: 1.1rem;
+    }
+  }
 }
 
 .more-for-mobile {
@@ -62,8 +186,22 @@
   border-radius: 50px;
   width: 30px;
   height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  color: #f05123;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    background-color: #e9e9e9;
+  }
+  
+  @media screen and (max-width: 480px) {
+    width: 28px;
+    height: 28px;
+  }
 }
-
 
 .course-list {
   display: flex;
@@ -71,7 +209,19 @@
   gap: 40px 25px;
   margin-top: 20px;
 
+  @media screen and (max-width: 1024px) {
+    gap: 30px 20px;
+  }
+  
   @media screen and (max-width: 768px) {
-    gap: 20px 3px;
+    gap: 20px 15px;
+    margin-top: 15px;
+    justify-content: center;
+  }
+  
+  @media screen and (max-width: 480px) {
+    gap: 15px 10px;
+    margin-top: 12px;
   }
 }
+

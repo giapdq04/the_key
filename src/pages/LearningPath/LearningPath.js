@@ -95,7 +95,7 @@ const LearningPath = () => {
                                 </div>
                             ))}
                         </div>
-                        <Link to={config.routes.detailLearningPath}>
+                        <Link to={config.routes.notfound}>
                             <div>
                                 <button className={cx("detail-button")}>XEM CHI TIẾT</button>
                             </div>

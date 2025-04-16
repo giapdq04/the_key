@@ -7,7 +7,9 @@ const routes = {
     detailLearningPath: '/learning-path/detail-learning-path',
     profile:'/profile',
     setting:'/setting',
-    learningCenter:'/learning-center'
+    learningCenter:'/learning-center',
+    assessment:'/assessment',
+    notfound:'/notfound'
 }
 
 export default routes;

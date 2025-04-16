@@ -1,4 +1,6 @@
+import Notfound from '../components/404/Notfound';
 import config from '../config';
+import { Assessment } from '../pages/Assessment/Assessment';
 import Blog from '../pages/Blog/Blog';
 import CourseDetail from "../pages/CourseDetail/CourseDetail";
 import DetailLearningPath from '../pages/DetailLearningPath/DetailLearningPath';
@@ -10,15 +12,17 @@ import Profile from '../pages/Profile/Profile';
 import Setting from '../pages/Setting/Setting';
 
 const publicRoutes = [
-    {path: config.routes.home, component: Home},
-    {path: config.routes.learningPath, component: LearningPath},
-    {path: config.routes.blog, component: Blog},
-    {path: config.routes.courses, component: CourseDetail},
-    {path: config.routes.learning, component: Learning, layout: null},
-    {path: config.routes.detailLearningPath, component: DetailLearningPath},
-    {path: config.routes.profile, component: Profile},
-    {path: config.routes.setting, component: Setting, layout: null},
-    {path: config.routes.learningCenter, component: LearningCenter}
+    { path: config.routes.home, component: Home },
+    { path: config.routes.learningPath, component: LearningPath },
+    { path: config.routes.blog, component: Blog },
+    { path: config.routes.courses, component: CourseDetail },
+    { path: config.routes.learning, component: Learning, layout: null },
+    { path: config.routes.detailLearningPath, component: DetailLearningPath },
+    { path: config.routes.profile, component: Profile },
+    { path: config.routes.setting, component: Setting, layout: null },
+    { path: config.routes.learningCenter, component: LearningCenter },
+    { path: config.routes.assessment, component: Assessment, layout: null },
+    { path: config.routes.notfound, component: Notfound, layout: null }
 ];
 
-export {publicRoutes};
+export { publicRoutes };

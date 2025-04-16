@@ -19,12 +19,12 @@ const listMenu = [
         icon: <FontAwesomeIcon icon={faRoad} className={cx('icon')} />,
         to: config.routes.learningPath
     },
-    // {
-    //     title: 'Học tập',
-    //     icon: <FontAwesomeIcon icon={faGraduationCap} className={cx('icon')} />,
-    //     to: config.routes.learningcenter
-    // },
-    // {
+    {
+        title: 'Học tập',
+        icon: <FontAwesomeIcon icon={faGraduationCap} className={cx('icon')} />,
+        to: config.routes.learningcenter
+    },
+    
     //     title: 'Bài viết',
     //     icon: <FontAwesomeIcon icon={faNewspaper} className={cx('icon')}/>,
     //     to: config.routes.blog

@@ -1,0 +1,186 @@
+.wrapper {
+    padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+  
+    .back-button {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-right: 1rem;
+    }
+  
+    .back-icon {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+  
+    .title {
+      font-size: 1.75rem;
+      font-weight: 600;
+      color: #333;
+    }
+  }
+  
+  .score-display {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+    color: #6b7280;
+  }
+  
+  .game-card {
+    width: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+  }
+  
+  .game-content {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .word-hint {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.5rem;
+  }
+  
+  .word-image-container {
+    width: 100%;
+    height: 200px;
+    margin-bottom: 1.5rem;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .word-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .audio-button {
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    padding: 0.5rem;
+  }
+  
+  .audio-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    color: #4f46e5;
+  }
+  
+  .selected-letters {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .letter-slot {
+    width: 3rem;
+    height: 3rem;
+    border: 2px dashed #e5e7eb;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333;
+    background-color: #f8f9fa;
+    cursor: pointer;
+  
+    &.filled {
+      border-style: solid;
+      border-color: #4f46e5;
+      background-color: #eef2ff;
+    }
+  }
+  
+  .feedback {
+    font-size: 1.25rem;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+  
+    &.correct {
+      color: #10b981;
+      background-color: rgba(16, 185, 129, 0.1);
+    }
+  }
+  
+  .available-letters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .letter-button {
+    width: 3rem;
+    height: 3rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    padding: 0;
+  }
+  
+  .navigation-buttons {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .nav-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .nav-icon {
+    width: 1rem;
+    height: 1rem;
+  }
+  
+  .progress-indicator {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    justify-content: center;
+  }
+  
+  .progress-dot {
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 50%;
+    background-color: #e5e7eb;
+  
+    &.active {
+      background-color: #4f46e5;
+    }
+  
+    &.completed {
+      background-color: #10b981;
+    }
+  }
+  
+  

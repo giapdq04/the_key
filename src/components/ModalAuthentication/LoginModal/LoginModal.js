@@ -7,12 +7,14 @@ import styles from "./LoginModal.module.scss"
 import { setShowLoginModal } from "../../../store/showLoginModal";
 import { useDispatch, useSelector } from "react-redux";
 import { Bounce, toast } from "react-toastify"
+import { useNavigate } from 'react-router';
 
 const cx = classNames.bind(styles)
 
 const LoginModal = () => {
     const [currentSlogan, setCurrentSlogan] = useState(0)
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const showLoginModal = useSelector(state => state.showLoginModal)
     const slogans = [
         " Better language, Better Life",
@@ -49,105 +51,117 @@ const LoginModal = () => {
             })
 
             if (signInResult.status === 200) {
-                const { userID, accessToken, refreshToken } = signInResult.data
-                Cookies.set("userID", userID, { expires: 7 })
-                Cookies.set("accessToken", accessToken, { expires: 7 })
-                Cookies.set("refreshToken", refreshToken, { expires: 7 })
-            }
+                const {userID, accessToken, refreshToken} = signInResult.data
+                Cookies.set("userID", userID, {expires: 7})
+                Cookies.set("accessToken", accessToken, {expires: 7})
+                Cookies.set("refreshToken", refreshToken, {expires: 7})
 
+            // Đóng modal login
             onClose()
-            window.location.reload()
-        } catch (error) {
-            console.error("Lỗi đăng nhập Google:", error)
-            if (error?.response?.status === 403) {
-                toast.error('Tài khoản đã bị khóa. Vui lòng liên hệ với quản trị viên để biết thêm chi tiết.', {
-                    position: "top-center",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: false,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "light",
-                    transition: Bounce
-                });
+
+            // Kiểm tra xem đây có phải là lần đăng nhập đầu tiên không
+            const hasCompletedAssessment = localStorage.getItem('hasCompletedAssessment');
+
+            if (!hasCompletedAssessment) {
+                // Nếu là lần đầu, điều hướng đến trang Assessment
+                localStorage.setItem('isFirstLogin', 'true');
+                window.location.href = '/assessment';
+            } else {
+                // Nếu không phải lần đầu, reload trang
+                window.location.reload();
             }
         }
+        } catch (error) {
+        console.error("Lỗi đăng nhập Google:", error)
+        if (error?.response?.status === 403) {
+            toast.error('Tài khoản đã bị khóa. Vui lòng liên hệ với quản trị viên để biết thêm chi tiết.', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition: Bounce
+            });
+        }
     }
+}
 
-    return (
-        <div className={cx("overlay")} onClick={onClose}>
-            <div className={cx("modal")} onClick={(e) => e.stopPropagation()}>
-                <button className={cx("close-icon")} onClick={onClose}>
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                    >
-                        <line x1="18" y1="6" x2="6" y2="18"></line>
-                        <line x1="6" y1="6" x2="18" y2="18"></line>
-                    </svg>
-                </button>
-                <div className={cx("modal-container")}>
-                    <div className={cx("illustration-side")}>
-                        <div className={cx("logo-container")}>
-                            <img
-                                loading="lazy"
-                                src={require('../../../assets/images/thekey_logo.webp')}
-                                alt="F8"
-                                className={cx("logo")}
-                            />
-                        </div>
-                        <div className={cx("slogan-container")}>
-                            <div className={cx("slogan-animation")}>
-                                {slogans.map((slogan, index) => (
-                                    <div key={index} className={cx("slogan", { active: index === currentSlogan })}>
-                                        {slogan}
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
+return (
+    <div className={cx("overlay")} onClick={onClose}>
+        <div className={cx("modal")} onClick={(e) => e.stopPropagation()}>
+            <button className={cx("close-icon")} onClick={onClose}>
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                >
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <div className={cx("modal-container")}>
+                <div className={cx("illustration-side")}>
+                    <div className={cx("logo-container")}>
                         <img
-                            src={require('../../../assets/images/Cover website.webp')}
-                            alt="Study illustration"
-                            className={cx("study-image")}
+                            loading="lazy"
+                            src={require('../../../assets/images/thekey_logo.webp')}
+                            alt="F8"
+                            className={cx("logo")}
                         />
                     </div>
-                    <div className={cx("content-side")}>
-                        <div className={cx("login-content")}>
-                            <h1 className={cx("title")}>Đăng nhập</h1>
-                            <p className={cx("subtitle")}>Đăng nhập với tài khoản</p>
-
-                            <div className={cx("auth-buttons")}>
-                                <button className={cx("google-btn")} onClick={handleGoogleLogin}>
-                                    <img
-                                        src="https://cdn3.iconfinder.com/data/icons/logos-brands-3/24/logo_brand_brands_logos_google-1024.png"
-                                        alt="Google"
-                                    />
-                                    <span>Google</span>
-                                </button>
-                            </div>
-
-                            <p className={cx("modal-desc")}>
-                                Mỗi người nên sử dụng riêng một tài khoản, tài khoản nhiều người sử dụng chung sẽ bị
-                                khóa.
-                            </p>
-
-                            <p className={cx("modal-desc")}>
-                                Cần hỗ trợ hãy liên hệ qua email: websitethekey@gmail.com
-                            </p>
+                    <div className={cx("slogan-container")}>
+                        <div className={cx("slogan-animation")}>
+                            {slogans.map((slogan, index) => (
+                                <div key={index} className={cx("slogan", { active: index === currentSlogan })}>
+                                    {slogan}
+                                </div>
+                            ))}
                         </div>
+                    </div>
+                    <img
+                        src={require('../../../assets/images/Cover website.webp')}
+                        alt="Study illustration"
+                        className={cx("study-image")}
+                    />
+                </div>
+                <div className={cx("content-side")}>
+                    <div className={cx("login-content")}>
+                        <h1 className={cx("title")}>Đăng nhập</h1>
+                        <p className={cx("subtitle")}>Đăng nhập với tài khoản</p>
+
+                        <div className={cx("auth-buttons")}>
+                            <button className={cx("google-btn")} onClick={handleGoogleLogin}>
+                                <img
+                                    src="https://cdn3.iconfinder.com/data/icons/logos-brands-3/24/logo_brand_brands_logos_google-1024.png"
+                                    alt="Google"
+                                />
+                                <span>Google</span>
+                            </button>
+                        </div>
+
+                        <p className={cx("modal-desc")}>
+                            Mỗi người nên sử dụng riêng một tài khoản, tài khoản nhiều người sử dụng chung sẽ bị
+                            khóa.
+                        </p>
+
+                        <p className={cx("modal-desc")}>
+                            Cần hỗ trợ hãy liên hệ qua email: websitethekey@gmail.com
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
-    )
+    </div>
+)
 }
 
 export default LoginModal
