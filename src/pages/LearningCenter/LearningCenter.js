@@ -143,7 +143,7 @@ const LearningCenter = () => {
                           onClick={() => setActiveMode("learn")}
                         >
                           <BrainIcon className={cx("mode-icon")} />
-                          <span>Learn</span>
+                          <span className={cx("size_txt")}>Learn</span>
                         </Button>
 
                         <Button
@@ -153,7 +153,7 @@ const LearningCenter = () => {
                           onClick={() => setActiveMode("quiz")}
                         >
                           <BarChartIcon className={cx("mode-icon")} />
-                          <span>Quiz</span>
+                          <span className={cx("size_txt")}>Quiz</span>
                         </Button>
 
                         <Button
@@ -163,7 +163,7 @@ const LearningCenter = () => {
                           onClick={() => setActiveMode("game")}
                         >
                           <Gamepad2Icon className={cx("mode-icon")} />
-                          <span>Game</span>
+                          <span className={cx("size_txt")}>Game</span>
                         </Button>
 
                         <Button
@@ -173,7 +173,7 @@ const LearningCenter = () => {
                           onClick={() => setActiveMode("type")}
                         >
                           <KeyboardIcon className={cx("mode-icon")} />
-                          <span>Type</span>
+                          <span className={cx("size_txt")}>Type</span>
                         </Button>
 
                         <Button
@@ -183,7 +183,7 @@ const LearningCenter = () => {
                           onClick={() => setActiveMode("speak")}
                         >
                           <MicIcon className={cx("mode-icon")} />
-                          <span>Speak</span>
+                          <span className={cx("size_txt")}>Speak</span>
                         </Button>
                       </div>
                     </CardContent>

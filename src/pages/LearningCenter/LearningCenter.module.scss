@@ -7,7 +7,14 @@
   display: flex;
   flex-direction: column;
 }
+.size_txt{
+  font-size: 14px;
+  white-space: nowrap;
 
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
+}
 .header {
   margin-bottom: 2rem;
 
@@ -92,7 +99,7 @@
 }
 
 .progress-content {
-  padding: 1.5rem;
+  padding: 2rem;
 }
 
 .progress-header {
@@ -103,13 +110,13 @@
 }
 
 .progress-title {
-  font-size: 1.25rem;
+  font-size: 2.25rem;
   font-weight: 600;
   color: #333;
 }
 
 .progress-text {
-  font-size: 1.125rem;
+  font-size: 2.125rem;
   font-weight: 500;
 }
 
@@ -210,8 +217,8 @@
 }
 
 .topic-image {
-  width: 6rem;
-  height: 6rem;
+  width: 20rem;
+  height: 20rem;
   border-radius: 12px;
   object-fit: cover;
   margin-bottom: 1rem;
@@ -241,30 +248,97 @@
 }
 
 .learning-modes {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
   width: 100%;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+
+  @media (max-width: 768px) {
+    gap: 1rem;
+    padding: 0 0.5rem;
+  }
 }
 
 .mode-button {
+  flex: 1;
+  min-width: 100px;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 0.75rem 0.5rem;
-  font-size: 0.875rem;
-  height: auto;
-  
-  &.mode-button-wide {
-    grid-column: span 3;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  font-size: 16px !important;
+  font-weight: 600;
+  height: 3.5rem;
+
+  &:nth-child(1) {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    &:hover {
+      background-color: #c8e6c9;
+    }
+  }
+
+  &:nth-child(2) {
+    background-color: #e3f2fd;
+    color: #1976d2;
+    &:hover {
+      background-color: #bbdefb;
+    }
+  }
+
+  &:nth-child(3) {
+    background-color: #fce4ec;
+    color: #c2185b;
+    &:hover {
+      background-color: #f8bbd0;
+    }
+  }
+
+  &:nth-child(4) {
+    background-color: #fff3e0;
+    color: #f57c00;
+    &:hover {
+      background-color: #ffe0b2;
+    }
+  }
+
+  &:nth-child(5) {
+    background-color: #f3e5f5;
+    color: #7b1fa2;
+    &:hover {
+      background-color: #e1bee7;
+    }
+  }
+
+  @media (max-width: 640px) {
+    flex: 0 0 calc(50% - 1rem);
+    padding: 0.75rem;
+    min-width: 120px;
+    margin-bottom: 1rem;
+    height: 3rem;
+  }
+
+  @media (max-width: 480px) {
+    flex: 1 1 100%;
+    margin-bottom: 0.75rem;
+    padding: 1rem;
+    height: 3.5rem;
   }
 }
 
 .mode-icon {
-  width: 1.25rem;
-  height: 1.25rem;
-  margin-bottom: 0.25rem;
+  width: 1.5rem;
+  height: 1.5rem;
+
+  @media (max-width: 768px) {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
 }
 
 // Tests grid

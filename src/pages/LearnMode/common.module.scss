@@ -1,0 +1,137 @@
+// Common styles for all learning modes
+.mode-wrapper {
+  min-height: 100vh;
+  width: 100%;
+  padding: 2rem;
+  background-color: #ffffff;
+  overflow-y: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.mode-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.mode-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.mode-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.back-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #4b5563;
+  background-color: #f3f4f6;
+  border-radius: 8px;
+  transition: all 0.2s;
+
+  &:hover {
+    background-color: #e5e7eb;
+  }
+}
+
+// Typography
+.text-base {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.text-lg {
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.text-xl {
+  font-size: 20px;
+  line-height: 1.6;
+}
+
+.text-2xl {
+  font-size: 24px;
+  line-height: 1.4;
+}
+
+// Common card styles
+.card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+// Common button styles
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: all 0.2s;
+  min-height: 3rem;
+
+  &.primary {
+    background-color: #4f46e5;
+    color: white;
+    &:hover {
+      background-color: #4338ca;
+    }
+  }
+
+  &.secondary {
+    background-color: #f3f4f6;
+    color: #4b5563;
+    &:hover {
+      background-color: #e5e7eb;
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .mode-wrapper {
+    padding: 1rem;
+  }
+
+  .mode-title {
+    font-size: 1.75rem;
+  }
+
+  .text-base {
+    font-size: 14px;
+  }
+
+  .text-lg {
+    font-size: 16px;
+  }
+
+  .text-xl {
+    font-size: 18px;
+  }
+
+  .text-2xl {
+    font-size: 20px;
+  }
+} 
